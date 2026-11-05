@@ -18,6 +18,7 @@
 			</Title>
 				<TitleLocation>None</TitleLocation>
 				<Height>22</Height>
+				<VerticalStretch>true</VerticalStretch>
 				<HorizontalStretch>true</HorizontalStretch>
 				<ContextMenu name="ШапкаHTMLКонтекстноеМеню" id="14"/>
 				<ExtendedTooltip name="ШапкаHTMLРасширеннаяПодсказка" id="15"/>
@@ -62,7 +63,12 @@
 			<CommandName>Form.Command.КомандаЗапуститьВсе</CommandName>
 			<ExtendedTooltip name="КнопкаЗапуститьВсеРасширеннаяПодсказка" id="31"/>
 		</Button>
-		<UsualGroup name="Карточка1" id="34">
+		<Button name="КнопкаОстановить" id="34">
+			<Type>UsualButton</Type>
+			<CommandName>Form.Command.КомандаОстановить</CommandName>
+			<ExtendedTooltip name="КнопкаОстановитьРасширеннаяПодсказка" id="37"/>
+		</Button>
+		<UsualGroup name="Карточка1" id="40">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -70,56 +76,56 @@
 					<v8:content>1. ЦПУ: арифметический цикл</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка1РасширеннаяПодсказка" id="58"/>
+			<ExtendedTooltip name="Карточка1РасширеннаяПодсказка" id="64"/>
 			<ChildItems>
-			<InputField name="Сц1Описание" id="37">
+			<InputField name="Сц1Описание" id="43">
 				<DataPath>Сц1Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц1ОписаниеКонтекстноеМеню" id="38"/>
-				<ExtendedTooltip name="Сц1ОписаниеРасширеннаяПодсказка" id="39"/>
+				<ContextMenu name="Сц1ОписаниеКонтекстноеМеню" id="44"/>
+				<ExtendedTooltip name="Сц1ОписаниеРасширеннаяПодсказка" id="45"/>
 			</InputField>
-			<InputField name="Сц1Реализация" id="40">
+			<InputField name="Сц1Реализация" id="46">
 				<DataPath>Сц1Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц1РеализацияКонтекстноеМеню" id="41"/>
-				<ExtendedTooltip name="Сц1РеализацияРасширеннаяПодсказка" id="42"/>
+				<ContextMenu name="Сц1РеализацияКонтекстноеМеню" id="47"/>
+				<ExtendedTooltip name="Сц1РеализацияРасширеннаяПодсказка" id="48"/>
 			</InputField>
-			<UsualGroup name="Карточка1Строка" id="43">
+			<UsualGroup name="Карточка1Строка" id="49">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка1СтрокаРасширеннаяПодсказка" id="61"/>
+				<ExtendedTooltip name="Карточка1СтрокаРасширеннаяПодсказка" id="67"/>
 				<ChildItems>
-			<InputField name="Сц1Статус" id="46">
+			<InputField name="Сц1Статус" id="52">
 				<DataPath>Сц1Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц1СтатусКонтекстноеМеню" id="47"/>
-				<ExtendedTooltip name="Сц1СтатусРасширеннаяПодсказка" id="48"/>
+				<ContextMenu name="Сц1СтатусКонтекстноеМеню" id="53"/>
+				<ExtendedTooltip name="Сц1СтатусРасширеннаяПодсказка" id="54"/>
 			</InputField>
-				<Button name="КнопкаЗапустить1" id="49">
+				<Button name="КнопкаЗапустить1" id="55">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить1</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить1РасширеннаяПодсказка" id="52"/>
+					<ExtendedTooltip name="КнопкаЗапустить1РасширеннаяПодсказка" id="58"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц1Результат" id="55">
+			<InputField name="Сц1Результат" id="61">
 				<DataPath>Сц1Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц1РезультатКонтекстноеМеню" id="56"/>
-				<ExtendedTooltip name="Сц1РезультатРасширеннаяПодсказка" id="57"/>
+				<ContextMenu name="Сц1РезультатКонтекстноеМеню" id="62"/>
+				<ExtendedTooltip name="Сц1РезультатРасширеннаяПодсказка" id="63"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка2" id="64">
+		<UsualGroup name="Карточка2" id="70">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -127,56 +133,56 @@
 					<v8:content>2. ЦПУ: строковые операции</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка2РасширеннаяПодсказка" id="88"/>
+			<ExtendedTooltip name="Карточка2РасширеннаяПодсказка" id="94"/>
 			<ChildItems>
-			<InputField name="Сц2Описание" id="67">
+			<InputField name="Сц2Описание" id="73">
 				<DataPath>Сц2Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц2ОписаниеКонтекстноеМеню" id="68"/>
-				<ExtendedTooltip name="Сц2ОписаниеРасширеннаяПодсказка" id="69"/>
+				<ContextMenu name="Сц2ОписаниеКонтекстноеМеню" id="74"/>
+				<ExtendedTooltip name="Сц2ОписаниеРасширеннаяПодсказка" id="75"/>
 			</InputField>
-			<InputField name="Сц2Реализация" id="70">
+			<InputField name="Сц2Реализация" id="76">
 				<DataPath>Сц2Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц2РеализацияКонтекстноеМеню" id="71"/>
-				<ExtendedTooltip name="Сц2РеализацияРасширеннаяПодсказка" id="72"/>
+				<ContextMenu name="Сц2РеализацияКонтекстноеМеню" id="77"/>
+				<ExtendedTooltip name="Сц2РеализацияРасширеннаяПодсказка" id="78"/>
 			</InputField>
-			<UsualGroup name="Карточка2Строка" id="73">
+			<UsualGroup name="Карточка2Строка" id="79">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка2СтрокаРасширеннаяПодсказка" id="91"/>
+				<ExtendedTooltip name="Карточка2СтрокаРасширеннаяПодсказка" id="97"/>
 				<ChildItems>
-			<InputField name="Сц2Статус" id="76">
+			<InputField name="Сц2Статус" id="82">
 				<DataPath>Сц2Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц2СтатусКонтекстноеМеню" id="77"/>
-				<ExtendedTooltip name="Сц2СтатусРасширеннаяПодсказка" id="78"/>
+				<ContextMenu name="Сц2СтатусКонтекстноеМеню" id="83"/>
+				<ExtendedTooltip name="Сц2СтатусРасширеннаяПодсказка" id="84"/>
 			</InputField>
-				<Button name="КнопкаЗапустить2" id="79">
+				<Button name="КнопкаЗапустить2" id="85">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить2</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить2РасширеннаяПодсказка" id="82"/>
+					<ExtendedTooltip name="КнопкаЗапустить2РасширеннаяПодсказка" id="88"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц2Результат" id="85">
+			<InputField name="Сц2Результат" id="91">
 				<DataPath>Сц2Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц2РезультатКонтекстноеМеню" id="86"/>
-				<ExtendedTooltip name="Сц2РезультатРасширеннаяПодсказка" id="87"/>
+				<ContextMenu name="Сц2РезультатКонтекстноеМеню" id="92"/>
+				<ExtendedTooltip name="Сц2РезультатРасширеннаяПодсказка" id="93"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка3" id="94">
+		<UsualGroup name="Карточка3" id="100">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -184,56 +190,56 @@
 					<v8:content>3. ЦПУ: коллекции</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка3РасширеннаяПодсказка" id="118"/>
+			<ExtendedTooltip name="Карточка3РасширеннаяПодсказка" id="124"/>
 			<ChildItems>
-			<InputField name="Сц3Описание" id="97">
+			<InputField name="Сц3Описание" id="103">
 				<DataPath>Сц3Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц3ОписаниеКонтекстноеМеню" id="98"/>
-				<ExtendedTooltip name="Сц3ОписаниеРасширеннаяПодсказка" id="99"/>
+				<ContextMenu name="Сц3ОписаниеКонтекстноеМеню" id="104"/>
+				<ExtendedTooltip name="Сц3ОписаниеРасширеннаяПодсказка" id="105"/>
 			</InputField>
-			<InputField name="Сц3Реализация" id="100">
+			<InputField name="Сц3Реализация" id="106">
 				<DataPath>Сц3Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц3РеализацияКонтекстноеМеню" id="101"/>
-				<ExtendedTooltip name="Сц3РеализацияРасширеннаяПодсказка" id="102"/>
+				<ContextMenu name="Сц3РеализацияКонтекстноеМеню" id="107"/>
+				<ExtendedTooltip name="Сц3РеализацияРасширеннаяПодсказка" id="108"/>
 			</InputField>
-			<UsualGroup name="Карточка3Строка" id="103">
+			<UsualGroup name="Карточка3Строка" id="109">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка3СтрокаРасширеннаяПодсказка" id="121"/>
+				<ExtendedTooltip name="Карточка3СтрокаРасширеннаяПодсказка" id="127"/>
 				<ChildItems>
-			<InputField name="Сц3Статус" id="106">
+			<InputField name="Сц3Статус" id="112">
 				<DataPath>Сц3Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц3СтатусКонтекстноеМеню" id="107"/>
-				<ExtendedTooltip name="Сц3СтатусРасширеннаяПодсказка" id="108"/>
+				<ContextMenu name="Сц3СтатусКонтекстноеМеню" id="113"/>
+				<ExtendedTooltip name="Сц3СтатусРасширеннаяПодсказка" id="114"/>
 			</InputField>
-				<Button name="КнопкаЗапустить3" id="109">
+				<Button name="КнопкаЗапустить3" id="115">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить3</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить3РасширеннаяПодсказка" id="112"/>
+					<ExtendedTooltip name="КнопкаЗапустить3РасширеннаяПодсказка" id="118"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц3Результат" id="115">
+			<InputField name="Сц3Результат" id="121">
 				<DataPath>Сц3Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц3РезультатКонтекстноеМеню" id="116"/>
-				<ExtendedTooltip name="Сц3РезультатРасширеннаяПодсказка" id="117"/>
+				<ContextMenu name="Сц3РезультатКонтекстноеМеню" id="122"/>
+				<ExtendedTooltip name="Сц3РезультатРасширеннаяПодсказка" id="123"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка4" id="124">
+		<UsualGroup name="Карточка4" id="130">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -241,56 +247,56 @@
 					<v8:content>4. Запись ИБ: справочник, по одному (вне транзакции)</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка4РасширеннаяПодсказка" id="148"/>
+			<ExtendedTooltip name="Карточка4РасширеннаяПодсказка" id="154"/>
 			<ChildItems>
-			<InputField name="Сц4Описание" id="127">
+			<InputField name="Сц4Описание" id="133">
 				<DataPath>Сц4Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц4ОписаниеКонтекстноеМеню" id="128"/>
-				<ExtendedTooltip name="Сц4ОписаниеРасширеннаяПодсказка" id="129"/>
+				<ContextMenu name="Сц4ОписаниеКонтекстноеМеню" id="134"/>
+				<ExtendedTooltip name="Сц4ОписаниеРасширеннаяПодсказка" id="135"/>
 			</InputField>
-			<InputField name="Сц4Реализация" id="130">
+			<InputField name="Сц4Реализация" id="136">
 				<DataPath>Сц4Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц4РеализацияКонтекстноеМеню" id="131"/>
-				<ExtendedTooltip name="Сц4РеализацияРасширеннаяПодсказка" id="132"/>
+				<ContextMenu name="Сц4РеализацияКонтекстноеМеню" id="137"/>
+				<ExtendedTooltip name="Сц4РеализацияРасширеннаяПодсказка" id="138"/>
 			</InputField>
-			<UsualGroup name="Карточка4Строка" id="133">
+			<UsualGroup name="Карточка4Строка" id="139">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка4СтрокаРасширеннаяПодсказка" id="151"/>
+				<ExtendedTooltip name="Карточка4СтрокаРасширеннаяПодсказка" id="157"/>
 				<ChildItems>
-			<InputField name="Сц4Статус" id="136">
+			<InputField name="Сц4Статус" id="142">
 				<DataPath>Сц4Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц4СтатусКонтекстноеМеню" id="137"/>
-				<ExtendedTooltip name="Сц4СтатусРасширеннаяПодсказка" id="138"/>
+				<ContextMenu name="Сц4СтатусКонтекстноеМеню" id="143"/>
+				<ExtendedTooltip name="Сц4СтатусРасширеннаяПодсказка" id="144"/>
 			</InputField>
-				<Button name="КнопкаЗапустить4" id="139">
+				<Button name="КнопкаЗапустить4" id="145">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить4</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить4РасширеннаяПодсказка" id="142"/>
+					<ExtendedTooltip name="КнопкаЗапустить4РасширеннаяПодсказка" id="148"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц4Результат" id="145">
+			<InputField name="Сц4Результат" id="151">
 				<DataPath>Сц4Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц4РезультатКонтекстноеМеню" id="146"/>
-				<ExtendedTooltip name="Сц4РезультатРасширеннаяПодсказка" id="147"/>
+				<ContextMenu name="Сц4РезультатКонтекстноеМеню" id="152"/>
+				<ExtendedTooltip name="Сц4РезультатРасширеннаяПодсказка" id="153"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка5" id="154">
+		<UsualGroup name="Карточка5" id="160">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -298,56 +304,56 @@
 					<v8:content>5. Запись ИБ: справочник, в одной транзакции</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка5РасширеннаяПодсказка" id="178"/>
+			<ExtendedTooltip name="Карточка5РасширеннаяПодсказка" id="184"/>
 			<ChildItems>
-			<InputField name="Сц5Описание" id="157">
+			<InputField name="Сц5Описание" id="163">
 				<DataPath>Сц5Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц5ОписаниеКонтекстноеМеню" id="158"/>
-				<ExtendedTooltip name="Сц5ОписаниеРасширеннаяПодсказка" id="159"/>
+				<ContextMenu name="Сц5ОписаниеКонтекстноеМеню" id="164"/>
+				<ExtendedTooltip name="Сц5ОписаниеРасширеннаяПодсказка" id="165"/>
 			</InputField>
-			<InputField name="Сц5Реализация" id="160">
+			<InputField name="Сц5Реализация" id="166">
 				<DataPath>Сц5Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц5РеализацияКонтекстноеМеню" id="161"/>
-				<ExtendedTooltip name="Сц5РеализацияРасширеннаяПодсказка" id="162"/>
+				<ContextMenu name="Сц5РеализацияКонтекстноеМеню" id="167"/>
+				<ExtendedTooltip name="Сц5РеализацияРасширеннаяПодсказка" id="168"/>
 			</InputField>
-			<UsualGroup name="Карточка5Строка" id="163">
+			<UsualGroup name="Карточка5Строка" id="169">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка5СтрокаРасширеннаяПодсказка" id="181"/>
+				<ExtendedTooltip name="Карточка5СтрокаРасширеннаяПодсказка" id="187"/>
 				<ChildItems>
-			<InputField name="Сц5Статус" id="166">
+			<InputField name="Сц5Статус" id="172">
 				<DataPath>Сц5Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц5СтатусКонтекстноеМеню" id="167"/>
-				<ExtendedTooltip name="Сц5СтатусРасширеннаяПодсказка" id="168"/>
+				<ContextMenu name="Сц5СтатусКонтекстноеМеню" id="173"/>
+				<ExtendedTooltip name="Сц5СтатусРасширеннаяПодсказка" id="174"/>
 			</InputField>
-				<Button name="КнопкаЗапустить5" id="169">
+				<Button name="КнопкаЗапустить5" id="175">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить5</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить5РасширеннаяПодсказка" id="172"/>
+					<ExtendedTooltip name="КнопкаЗапустить5РасширеннаяПодсказка" id="178"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц5Результат" id="175">
+			<InputField name="Сц5Результат" id="181">
 				<DataPath>Сц5Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц5РезультатКонтекстноеМеню" id="176"/>
-				<ExtendedTooltip name="Сц5РезультатРасширеннаяПодсказка" id="177"/>
+				<ContextMenu name="Сц5РезультатКонтекстноеМеню" id="182"/>
+				<ExtendedTooltip name="Сц5РезультатРасширеннаяПодсказка" id="183"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка6" id="184">
+		<UsualGroup name="Карточка6" id="190">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -355,56 +361,56 @@
 					<v8:content>6. Запись ИБ: документы с проведением</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка6РасширеннаяПодсказка" id="208"/>
+			<ExtendedTooltip name="Карточка6РасширеннаяПодсказка" id="214"/>
 			<ChildItems>
-			<InputField name="Сц6Описание" id="187">
+			<InputField name="Сц6Описание" id="193">
 				<DataPath>Сц6Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц6ОписаниеКонтекстноеМеню" id="188"/>
-				<ExtendedTooltip name="Сц6ОписаниеРасширеннаяПодсказка" id="189"/>
+				<ContextMenu name="Сц6ОписаниеКонтекстноеМеню" id="194"/>
+				<ExtendedTooltip name="Сц6ОписаниеРасширеннаяПодсказка" id="195"/>
 			</InputField>
-			<InputField name="Сц6Реализация" id="190">
+			<InputField name="Сц6Реализация" id="196">
 				<DataPath>Сц6Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц6РеализацияКонтекстноеМеню" id="191"/>
-				<ExtendedTooltip name="Сц6РеализацияРасширеннаяПодсказка" id="192"/>
+				<ContextMenu name="Сц6РеализацияКонтекстноеМеню" id="197"/>
+				<ExtendedTooltip name="Сц6РеализацияРасширеннаяПодсказка" id="198"/>
 			</InputField>
-			<UsualGroup name="Карточка6Строка" id="193">
+			<UsualGroup name="Карточка6Строка" id="199">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка6СтрокаРасширеннаяПодсказка" id="211"/>
+				<ExtendedTooltip name="Карточка6СтрокаРасширеннаяПодсказка" id="217"/>
 				<ChildItems>
-			<InputField name="Сц6Статус" id="196">
+			<InputField name="Сц6Статус" id="202">
 				<DataPath>Сц6Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц6СтатусКонтекстноеМеню" id="197"/>
-				<ExtendedTooltip name="Сц6СтатусРасширеннаяПодсказка" id="198"/>
+				<ContextMenu name="Сц6СтатусКонтекстноеМеню" id="203"/>
+				<ExtendedTooltip name="Сц6СтатусРасширеннаяПодсказка" id="204"/>
 			</InputField>
-				<Button name="КнопкаЗапустить6" id="199">
+				<Button name="КнопкаЗапустить6" id="205">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить6</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить6РасширеннаяПодсказка" id="202"/>
+					<ExtendedTooltip name="КнопкаЗапустить6РасширеннаяПодсказка" id="208"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц6Результат" id="205">
+			<InputField name="Сц6Результат" id="211">
 				<DataPath>Сц6Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц6РезультатКонтекстноеМеню" id="206"/>
-				<ExtendedTooltip name="Сц6РезультатРасширеннаяПодсказка" id="207"/>
+				<ContextMenu name="Сц6РезультатКонтекстноеМеню" id="212"/>
+				<ExtendedTooltip name="Сц6РезультатРасширеннаяПодсказка" id="213"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка7" id="214">
+		<UsualGroup name="Карточка7" id="220">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -412,56 +418,56 @@
 					<v8:content>7. Запросы: чтение и группировки</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка7РасширеннаяПодсказка" id="238"/>
+			<ExtendedTooltip name="Карточка7РасширеннаяПодсказка" id="244"/>
 			<ChildItems>
-			<InputField name="Сц7Описание" id="217">
+			<InputField name="Сц7Описание" id="223">
 				<DataPath>Сц7Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц7ОписаниеКонтекстноеМеню" id="218"/>
-				<ExtendedTooltip name="Сц7ОписаниеРасширеннаяПодсказка" id="219"/>
+				<ContextMenu name="Сц7ОписаниеКонтекстноеМеню" id="224"/>
+				<ExtendedTooltip name="Сц7ОписаниеРасширеннаяПодсказка" id="225"/>
 			</InputField>
-			<InputField name="Сц7Реализация" id="220">
+			<InputField name="Сц7Реализация" id="226">
 				<DataPath>Сц7Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц7РеализацияКонтекстноеМеню" id="221"/>
-				<ExtendedTooltip name="Сц7РеализацияРасширеннаяПодсказка" id="222"/>
+				<ContextMenu name="Сц7РеализацияКонтекстноеМеню" id="227"/>
+				<ExtendedTooltip name="Сц7РеализацияРасширеннаяПодсказка" id="228"/>
 			</InputField>
-			<UsualGroup name="Карточка7Строка" id="223">
+			<UsualGroup name="Карточка7Строка" id="229">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка7СтрокаРасширеннаяПодсказка" id="241"/>
+				<ExtendedTooltip name="Карточка7СтрокаРасширеннаяПодсказка" id="247"/>
 				<ChildItems>
-			<InputField name="Сц7Статус" id="226">
+			<InputField name="Сц7Статус" id="232">
 				<DataPath>Сц7Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц7СтатусКонтекстноеМеню" id="227"/>
-				<ExtendedTooltip name="Сц7СтатусРасширеннаяПодсказка" id="228"/>
+				<ContextMenu name="Сц7СтатусКонтекстноеМеню" id="233"/>
+				<ExtendedTooltip name="Сц7СтатусРасширеннаяПодсказка" id="234"/>
 			</InputField>
-				<Button name="КнопкаЗапустить7" id="229">
+				<Button name="КнопкаЗапустить7" id="235">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить7</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить7РасширеннаяПодсказка" id="232"/>
+					<ExtendedTooltip name="КнопкаЗапустить7РасширеннаяПодсказка" id="238"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц7Результат" id="235">
+			<InputField name="Сц7Результат" id="241">
 				<DataPath>Сц7Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц7РезультатКонтекстноеМеню" id="236"/>
-				<ExtendedTooltip name="Сц7РезультатРасширеннаяПодсказка" id="237"/>
+				<ContextMenu name="Сц7РезультатКонтекстноеМеню" id="242"/>
+				<ExtendedTooltip name="Сц7РезультатРасширеннаяПодсказка" id="243"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка8" id="244">
+		<UsualGroup name="Карточка8" id="250">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -469,56 +475,56 @@
 					<v8:content>8. Сериализация: JSON</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка8РасширеннаяПодсказка" id="268"/>
+			<ExtendedTooltip name="Карточка8РасширеннаяПодсказка" id="274"/>
 			<ChildItems>
-			<InputField name="Сц8Описание" id="247">
+			<InputField name="Сц8Описание" id="253">
 				<DataPath>Сц8Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц8ОписаниеКонтекстноеМеню" id="248"/>
-				<ExtendedTooltip name="Сц8ОписаниеРасширеннаяПодсказка" id="249"/>
+				<ContextMenu name="Сц8ОписаниеКонтекстноеМеню" id="254"/>
+				<ExtendedTooltip name="Сц8ОписаниеРасширеннаяПодсказка" id="255"/>
 			</InputField>
-			<InputField name="Сц8Реализация" id="250">
+			<InputField name="Сц8Реализация" id="256">
 				<DataPath>Сц8Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц8РеализацияКонтекстноеМеню" id="251"/>
-				<ExtendedTooltip name="Сц8РеализацияРасширеннаяПодсказка" id="252"/>
+				<ContextMenu name="Сц8РеализацияКонтекстноеМеню" id="257"/>
+				<ExtendedTooltip name="Сц8РеализацияРасширеннаяПодсказка" id="258"/>
 			</InputField>
-			<UsualGroup name="Карточка8Строка" id="253">
+			<UsualGroup name="Карточка8Строка" id="259">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка8СтрокаРасширеннаяПодсказка" id="271"/>
+				<ExtendedTooltip name="Карточка8СтрокаРасширеннаяПодсказка" id="277"/>
 				<ChildItems>
-			<InputField name="Сц8Статус" id="256">
+			<InputField name="Сц8Статус" id="262">
 				<DataPath>Сц8Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц8СтатусКонтекстноеМеню" id="257"/>
-				<ExtendedTooltip name="Сц8СтатусРасширеннаяПодсказка" id="258"/>
+				<ContextMenu name="Сц8СтатусКонтекстноеМеню" id="263"/>
+				<ExtendedTooltip name="Сц8СтатусРасширеннаяПодсказка" id="264"/>
 			</InputField>
-				<Button name="КнопкаЗапустить8" id="259">
+				<Button name="КнопкаЗапустить8" id="265">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить8</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить8РасширеннаяПодсказка" id="262"/>
+					<ExtendedTooltip name="КнопкаЗапустить8РасширеннаяПодсказка" id="268"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц8Результат" id="265">
+			<InputField name="Сц8Результат" id="271">
 				<DataPath>Сц8Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц8РезультатКонтекстноеМеню" id="266"/>
-				<ExtendedTooltip name="Сц8РезультатРасширеннаяПодсказка" id="267"/>
+				<ContextMenu name="Сц8РезультатКонтекстноеМеню" id="272"/>
+				<ExtendedTooltip name="Сц8РезультатРасширеннаяПодсказка" id="273"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка9" id="274">
+		<UsualGroup name="Карточка9" id="280">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -526,56 +532,56 @@
 					<v8:content>9. Сериализация: ЗначениеВСтрокуВнутр</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка9РасширеннаяПодсказка" id="298"/>
+			<ExtendedTooltip name="Карточка9РасширеннаяПодсказка" id="304"/>
 			<ChildItems>
-			<InputField name="Сц9Описание" id="277">
+			<InputField name="Сц9Описание" id="283">
 				<DataPath>Сц9Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц9ОписаниеКонтекстноеМеню" id="278"/>
-				<ExtendedTooltip name="Сц9ОписаниеРасширеннаяПодсказка" id="279"/>
+				<ContextMenu name="Сц9ОписаниеКонтекстноеМеню" id="284"/>
+				<ExtendedTooltip name="Сц9ОписаниеРасширеннаяПодсказка" id="285"/>
 			</InputField>
-			<InputField name="Сц9Реализация" id="280">
+			<InputField name="Сц9Реализация" id="286">
 				<DataPath>Сц9Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц9РеализацияКонтекстноеМеню" id="281"/>
-				<ExtendedTooltip name="Сц9РеализацияРасширеннаяПодсказка" id="282"/>
+				<ContextMenu name="Сц9РеализацияКонтекстноеМеню" id="287"/>
+				<ExtendedTooltip name="Сц9РеализацияРасширеннаяПодсказка" id="288"/>
 			</InputField>
-			<UsualGroup name="Карточка9Строка" id="283">
+			<UsualGroup name="Карточка9Строка" id="289">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка9СтрокаРасширеннаяПодсказка" id="301"/>
+				<ExtendedTooltip name="Карточка9СтрокаРасширеннаяПодсказка" id="307"/>
 				<ChildItems>
-			<InputField name="Сц9Статус" id="286">
+			<InputField name="Сц9Статус" id="292">
 				<DataPath>Сц9Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц9СтатусКонтекстноеМеню" id="287"/>
-				<ExtendedTooltip name="Сц9СтатусРасширеннаяПодсказка" id="288"/>
+				<ContextMenu name="Сц9СтатусКонтекстноеМеню" id="293"/>
+				<ExtendedTooltip name="Сц9СтатусРасширеннаяПодсказка" id="294"/>
 			</InputField>
-				<Button name="КнопкаЗапустить9" id="289">
+				<Button name="КнопкаЗапустить9" id="295">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить9</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить9РасширеннаяПодсказка" id="292"/>
+					<ExtendedTooltip name="КнопкаЗапустить9РасширеннаяПодсказка" id="298"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц9Результат" id="295">
+			<InputField name="Сц9Результат" id="301">
 				<DataPath>Сц9Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц9РезультатКонтекстноеМеню" id="296"/>
-				<ExtendedTooltip name="Сц9РезультатРасширеннаяПодсказка" id="297"/>
+				<ContextMenu name="Сц9РезультатКонтекстноеМеню" id="302"/>
+				<ExtendedTooltip name="Сц9РезультатРасширеннаяПодсказка" id="303"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка10" id="304">
+		<UsualGroup name="Карточка10" id="310">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -583,56 +589,56 @@
 					<v8:content>10. Память: большая коллекция строк</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка10РасширеннаяПодсказка" id="328"/>
+			<ExtendedTooltip name="Карточка10РасширеннаяПодсказка" id="334"/>
 			<ChildItems>
-			<InputField name="Сц10Описание" id="307">
+			<InputField name="Сц10Описание" id="313">
 				<DataPath>Сц10Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц10ОписаниеКонтекстноеМеню" id="308"/>
-				<ExtendedTooltip name="Сц10ОписаниеРасширеннаяПодсказка" id="309"/>
+				<ContextMenu name="Сц10ОписаниеКонтекстноеМеню" id="314"/>
+				<ExtendedTooltip name="Сц10ОписаниеРасширеннаяПодсказка" id="315"/>
 			</InputField>
-			<InputField name="Сц10Реализация" id="310">
+			<InputField name="Сц10Реализация" id="316">
 				<DataPath>Сц10Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц10РеализацияКонтекстноеМеню" id="311"/>
-				<ExtendedTooltip name="Сц10РеализацияРасширеннаяПодсказка" id="312"/>
+				<ContextMenu name="Сц10РеализацияКонтекстноеМеню" id="317"/>
+				<ExtendedTooltip name="Сц10РеализацияРасширеннаяПодсказка" id="318"/>
 			</InputField>
-			<UsualGroup name="Карточка10Строка" id="313">
+			<UsualGroup name="Карточка10Строка" id="319">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка10СтрокаРасширеннаяПодсказка" id="331"/>
+				<ExtendedTooltip name="Карточка10СтрокаРасширеннаяПодсказка" id="337"/>
 				<ChildItems>
-			<InputField name="Сц10Статус" id="316">
+			<InputField name="Сц10Статус" id="322">
 				<DataPath>Сц10Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц10СтатусКонтекстноеМеню" id="317"/>
-				<ExtendedTooltip name="Сц10СтатусРасширеннаяПодсказка" id="318"/>
+				<ContextMenu name="Сц10СтатусКонтекстноеМеню" id="323"/>
+				<ExtendedTooltip name="Сц10СтатусРасширеннаяПодсказка" id="324"/>
 			</InputField>
-				<Button name="КнопкаЗапустить10" id="319">
+				<Button name="КнопкаЗапустить10" id="325">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить10</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить10РасширеннаяПодсказка" id="322"/>
+					<ExtendedTooltip name="КнопкаЗапустить10РасширеннаяПодсказка" id="328"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц10Результат" id="325">
+			<InputField name="Сц10Результат" id="331">
 				<DataPath>Сц10Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц10РезультатКонтекстноеМеню" id="326"/>
-				<ExtendedTooltip name="Сц10РезультатРасширеннаяПодсказка" id="327"/>
+				<ContextMenu name="Сц10РезультатКонтекстноеМеню" id="332"/>
+				<ExtendedTooltip name="Сц10РезультатРасширеннаяПодсказка" id="333"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="Карточка11" id="334">
+		<UsualGroup name="Карточка11" id="340">
 			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
@@ -640,52 +646,52 @@
 					<v8:content>11. Файлы: запись и чтение текста</v8:content>
 				</v8:item>
 			</Title>
-			<ExtendedTooltip name="Карточка11РасширеннаяПодсказка" id="358"/>
+			<ExtendedTooltip name="Карточка11РасширеннаяПодсказка" id="364"/>
 			<ChildItems>
-			<InputField name="Сц11Описание" id="337">
+			<InputField name="Сц11Описание" id="343">
 				<DataPath>Сц11Описание</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц11ОписаниеКонтекстноеМеню" id="338"/>
-				<ExtendedTooltip name="Сц11ОписаниеРасширеннаяПодсказка" id="339"/>
+				<ContextMenu name="Сц11ОписаниеКонтекстноеМеню" id="344"/>
+				<ExtendedTooltip name="Сц11ОписаниеРасширеннаяПодсказка" id="345"/>
 			</InputField>
-			<InputField name="Сц11Реализация" id="340">
+			<InputField name="Сц11Реализация" id="346">
 				<DataPath>Сц11Реализация</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц11РеализацияКонтекстноеМеню" id="341"/>
-				<ExtendedTooltip name="Сц11РеализацияРасширеннаяПодсказка" id="342"/>
+				<ContextMenu name="Сц11РеализацияКонтекстноеМеню" id="347"/>
+				<ExtendedTooltip name="Сц11РеализацияРасширеннаяПодсказка" id="348"/>
 			</InputField>
-			<UsualGroup name="Карточка11Строка" id="343">
+			<UsualGroup name="Карточка11Строка" id="349">
 				<Group>Horizontal</Group>
 				<Representation>None</Representation>
 				<ShowTitle>false</ShowTitle>
-				<ExtendedTooltip name="Карточка11СтрокаРасширеннаяПодсказка" id="361"/>
+				<ExtendedTooltip name="Карточка11СтрокаРасширеннаяПодсказка" id="367"/>
 				<ChildItems>
-			<InputField name="Сц11Статус" id="346">
+			<InputField name="Сц11Статус" id="352">
 				<DataPath>Сц11Статус</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц11СтатусКонтекстноеМеню" id="347"/>
-				<ExtendedTooltip name="Сц11СтатусРасширеннаяПодсказка" id="348"/>
+				<ContextMenu name="Сц11СтатусКонтекстноеМеню" id="353"/>
+				<ExtendedTooltip name="Сц11СтатусРасширеннаяПодсказка" id="354"/>
 			</InputField>
-				<Button name="КнопкаЗапустить11" id="349">
+				<Button name="КнопкаЗапустить11" id="355">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.КомандаЗапустить11</CommandName>
-					<ExtendedTooltip name="КнопкаЗапустить11РасширеннаяПодсказка" id="352"/>
+					<ExtendedTooltip name="КнопкаЗапустить11РасширеннаяПодсказка" id="358"/>
 				</Button>
 				</ChildItems>
 			</UsualGroup>
-			<InputField name="Сц11Результат" id="355">
+			<InputField name="Сц11Результат" id="361">
 				<DataPath>Сц11Результат</DataPath>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="Сц11РезультатКонтекстноеМеню" id="356"/>
-				<ExtendedTooltip name="Сц11РезультатРасширеннаяПодсказка" id="357"/>
+				<ContextMenu name="Сц11РезультатКонтекстноеМеню" id="362"/>
+				<ExtendedTooltip name="Сц11РезультатРасширеннаяПодсказка" id="363"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
@@ -1762,6 +1768,15 @@
 				</v8:item>
 			</Title>
 			<Action>КомандаЗапуститьВсе</Action>
+		</Command>
+		<Command name="КомандаОстановить" id="6013">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Остановить текущий тест</v8:content>
+				</v8:item>
+			</Title>
+			<Action>КомандаОстановитьТест</Action>
 		</Command>
 	</Commands>
 </Form>
