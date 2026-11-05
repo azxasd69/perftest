@@ -23,6 +23,58 @@
 				<ContextMenu name="ШапкаHTMLКонтекстноеМеню" id="14"/>
 				<ExtendedTooltip name="ШапкаHTMLРасширеннаяПодсказка" id="15"/>
 			</HTMLDocumentField>
+				<UsualGroup name="ГруппаОтчёты" id="6208">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаОтчётыРасширеннаяПодсказка" id="6209"/>
+			<ChildItems>
+				<Button name="КнопкаОткрытьДашборд" id="6200">
+					<Type>UsualButton</Type>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дашборд</v8:content>
+						</v8:item>
+					</Title>
+					<CommandName>Form.Command.КомандаОткрытьДашборд</CommandName>
+					<ExtendedTooltip name="КнопкаОткрытьДашбордРасширеннаяПодсказка" id="6201"/>
+				</Button>
+				<Button name="КнопкаОткрытьТоп" id="6202">
+					<Type>UsualButton</Type>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Топ-100</v8:content>
+						</v8:item>
+					</Title>
+					<CommandName>Form.Command.КомандаОткрытьТоп</CommandName>
+					<ExtendedTooltip name="КнопкаОткрытьТопРасширеннаяПодсказка" id="6203"/>
+				</Button>
+				<Button name="КнопкаОткрытьСравнение" id="6204">
+					<Type>UsualButton</Type>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сравнение</v8:content>
+						</v8:item>
+					</Title>
+					<CommandName>Form.Command.КомандаОткрытьСравнение</CommandName>
+					<ExtendedTooltip name="КнопкаОткрытьСравнениеРасширеннаяПодсказка" id="6205"/>
+				</Button>
+				<Button name="КнопкаОткрытьИсторию" id="6206">
+					<Type>UsualButton</Type>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>История</v8:content>
+						</v8:item>
+					</Title>
+					<CommandName>Form.Command.КомандаОткрытьИсторию</CommandName>
+					<ExtendedTooltip name="КнопкаОткрытьИсториюРасширеннаяПодсказка" id="6207"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
 		<UsualGroup name="ГруппаПараметры" id="16">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
@@ -1813,6 +1865,42 @@
 				</v8:item>
 			</Title>
 			<Action>КомандаОстановитьТест</Action>
+		</Command>
+			<Command name="КомандаОткрытьДашборд" id="6106">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дашборд</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОткрытьДашборд</Action>
+		</Command>
+		<Command name="КомандаОткрытьТоп" id="6107">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Топ-100</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОткрытьТоп</Action>
+		</Command>
+		<Command name="КомандаОткрытьСравнение" id="6108">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сравнение</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОткрытьСравнение</Action>
+		</Command>
+		<Command name="КомандаОткрытьИсторию" id="6109">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>История</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОткрытьИсторию</Action>
 		</Command>
 	</Commands>
 </Form>
