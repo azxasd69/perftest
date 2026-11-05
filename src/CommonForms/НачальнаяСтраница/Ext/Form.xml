@@ -41,19 +41,19 @@
 				<Width>8</Width>
 				<ContextMenu name="ПовторовКонтекстноеМеню" id="23"/>
 				<ExtendedTooltip name="ПовторовРасширеннаяПодсказка" id="24"/>
-			</InputField>			<InputField name="ПутьCSV" id="25">
-				<DataPath>ПутьCSV</DataPath>
+			</InputField>			<InputField name="Стенд" id="25">
+				<DataPath>Стенд</DataPath>
 				<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Файл CSV</v8:content>
+					<v8:content>Стенд (сборка)</v8:content>
 				</v8:item>
 			</Title>
 				<ReadOnly>true</ReadOnly>
 				<TitleLocation>None</TitleLocation>
 				<HorizontalStretch>true</HorizontalStretch>
-				<ContextMenu name="ПутьCSVКонтекстноеМеню" id="26"/>
-				<ExtendedTooltip name="ПутьCSVРасширеннаяПодсказка" id="27"/>
+				<ContextMenu name="СтендКонтекстноеМеню" id="26"/>
+				<ExtendedTooltip name="СтендРасширеннаяПодсказка" id="27"/>
 			</InputField>
 			</ChildItems>
 		</UsualGroup>
@@ -1369,16 +1369,16 @@
 				<v8:NumberQualifiers><v8:Digits>3</v8:Digits><v8:FractionDigits>0</v8:FractionDigits><v8:AllowedSign>Nonnegative</v8:AllowedSign></v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ПутьCSV" id="5056">
+		<Attribute name="Стенд" id="5056">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>ПутьCSV</v8:content>
+					<v8:content>Стенд</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:string</v8:Type>
-				<v8:StringQualifiers><v8:Length>500</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers>
+				<v8:StringQualifiers><v8:Length>600</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers>
 			</Type>
 		</Attribute>
 		<Attribute name="ШапкаHTML" id="5057">
@@ -1611,19 +1611,7 @@
 				<v8:StringQualifiers><v8:Length>600</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ОрчАдресРезультата" id="5064">
-			<Title>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>ОрчАдресРезультата</v8:content>
-				</v8:item>
-			</Title>
-			<Type>
-				<v8:Type>xs:string</v8:Type>
-				<v8:StringQualifiers><v8:Length>600</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers>
-			</Type>
-		</Attribute>
-		<Attribute name="ОрчВремена" id="5065">
+		<Attribute name="ОрчВремена" id="5064">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1635,7 +1623,7 @@
 				<v8:StringQualifiers><v8:Length>0</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ОрчЕдиница" id="5066">
+		<Attribute name="ОрчЕдиница" id="5065">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1647,11 +1635,47 @@
 				<v8:StringQualifiers><v8:Length>600</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ОрчОчередь" id="5067">
+		<Attribute name="ОрчОчередь" id="5066">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>ОрчОчередь</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers><v8:Length>600</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ОрчРезультатВремяМс" id="5067">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОрчРезультатВремяМс</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers><v8:Digits>15</v8:Digits><v8:FractionDigits>0</v8:FractionDigits><v8:AllowedSign>Nonnegative</v8:AllowedSign></v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ОрчРезультатПорция" id="5068">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОрчРезультатПорция</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers><v8:Digits>15</v8:Digits><v8:FractionDigits>0</v8:FractionDigits><v8:AllowedSign>Nonnegative</v8:AllowedSign></v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ОрчРезультатЕдиница" id="5069">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОрчРезультатЕдиница</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
