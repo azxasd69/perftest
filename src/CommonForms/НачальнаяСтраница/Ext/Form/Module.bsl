@@ -104,42 +104,88 @@
 |<html>
 |<head><meta charset='utf-8'><style>
 |html{width:100%;height:100%}
-|body{width:100%;height:100%;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;font-size:13px;color:#111827;background:#F3F4F6}
-|.band{background:#111827;padding:14px 24px}
-|.band h1{margin:0 0 4px 0;font-size:19px;font-weight:600;color:#FFFFFF}
-|.band .sub{color:#9CA3AF;font-size:12px;line-height:1.7}
-|.band .sub b{color:#93C5FD;font-weight:600}
-|.num{display:inline-block;background:#2563EB;color:#FFFFFF;border-radius:10px;padding:0 7px;font-size:11px;font-weight:600;margin-right:6px}
-|.wrap{padding:10px 24px}
-|table.cards{width:100%;border-spacing:6px 0}
-|td.card{width:33%;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:6px;padding:8px 12px;vertical-align:top}
-|.card h2{margin:0 0 4px 0;font-size:12px;font-weight:600;color:#111827}
-|.card p{margin:0;color:#374151;line-height:1.45;font-size:12px}
-|.accent{color:#2563EB;font-weight:600}
-|.prog{margin:8px 0 2px 0}
-|.ptable{width:100%;border-spacing:0 3px}
-|.pl{width:230px;max-width:230px;font-size:11px;color:#4B5563;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-|.pb{}
-|.pbg{background:#E5E7EB;border-radius:4px;height:8px;overflow:hidden;width:100%}
-|.pbar{background:#2563EB;height:8px;width:0%;transition:width .25s}
-|.pp{width:48px;text-align:right;font-size:11px;color:#6B7280}
+|body{width:100%;height:100%;margin:0;padding:0;background:#F3F5F8;color:#1E2530;font:13px/1.5 'Segoe UI',Arial,sans-serif}
+|header.top{background:#171E28;color:#E8EDF5;padding:14px 24px 12px}
+|header.top h1{margin:0 0 2px 0;font-size:19px;font-weight:600}
+|header.top .sub{color:#9FB0C7;font-size:12px;margin-bottom:10px}
+|.chips{display:flex;flex-wrap:wrap;gap:8px}
+|.chip{background:#232D3C;border:1px solid #33415A;color:#E8EDF5;border-radius:999px;padding:2px 10px;font-size:11.5px;white-space:nowrap}
+|.chip b{font-weight:600;color:#CFE0FF}
+|.hints{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:12px}
+|.hint{background:#20293A;border:1px solid #31405A;border-radius:10px;padding:9px 12px;color:#9FB0C7;font-size:12px;line-height:1.55}
+|.hint b{color:#E8EDF5;display:block;margin-bottom:3px;font-size:12.5px}
+|.wrap{padding:10px 24px 16px}
+|.runbar{font-size:12.5px;color:#5B6675;padding:4px 0 2px}
+|.runbar b{color:#1E2530}
+|table.pts{width:100%;border-spacing:0 4px}
+|.pl{width:200px;max-width:200px;font-size:12px;color:#5B6675;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+|.pbg{background:#DDE3EA;border-radius:3px;height:6px;overflow:hidden;width:100%}
+|.pbar{background:#2F6FED;height:6px;width:0%;transition:width .15s}
+|.pp{width:56px;text-align:right;font-size:11.5px;color:#5B6675}
+|.sumwrap h2{font-size:14px;margin:12px 0 6px}
+|table.sum{width:100%;border-collapse:collapse;background:#FFFFFF;border:1px solid #DDE3EA;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.08);font-size:12px}
+|.sum th{background:#EEF2F7;color:#5B6675;font-size:11.5px;font-weight:600;text-align:left;padding:5px 9px}
+|.sum td{padding:5px 9px;border-top:1px solid #DDE3EA}
+|.sum td.num{text-align:right;font-variant-numeric:tabular-nums}
+|.empty{color:#5B6675}
 |</style>
 |<script type='text/javascript'>
 |function SetProgress(i, pct, text){
 |  var b = document.getElementById('pb' + i);
-|  if (b) { b.style.width = pct + '%'; b.style.background = (pct >= 100) ? '#16A34A' : '#2563EB'; }
+|  if (b) { b.style.width = pct + '%'; b.style.background = (pct >= 100) ? '#1A7F4B' : '#2F6FED'; }
 |  var t = document.getElementById('pt' + i);
 |  if (t) { t.innerHTML = text; }
 |}
+|function SetStandChip(v){
+|  var e = document.getElementById('chipStandValue');
+|  if (e) { e.innerHTML = (v && v.length > 0) ? v : '-'; }
+|}
+|function SetGlobalStatus(text){
+|  var e = document.getElementById('globalStatus');
+|  if (e) { e.innerHTML = text; }
+|}
+|function AddSummaryRow(n, title, stand, median, perK, repeats, minmax, stamp){
+|  var tb = document.getElementById('summaryBody');
+|  var empty = document.getElementById('summaryEmpty');
+|  if (empty) { empty.parentNode.removeChild(empty); }
+|  var tr = document.createElement('tr');
+|  tr.innerHTML = '<td>' + n + '</td><td>' + title + '</td><td>' + stand + '</td>'
+|    + '<td class=num>' + median + '</td><td class=num>' + perK + '</td>'
+|    + '<td class=num>' + repeats + '</td><td class=num>' + minmax + '</td><td>' + stamp + '</td>';
+|  tb.appendChild(tr);
+|}
+|function ResetSummary(){
+|  var tb = document.getElementById('summaryBody');
+|  while (tb.rows.length > 0) tb.deleteRow(0);
+|  var tr = document.createElement('tr');
+|  tr.id = 'summaryEmpty';
+|  tr.innerHTML = '<td colspan=8 class=empty>- пока нет завершённых карточек -</td>';
+|  tb.appendChild(tr);
+|  var g = document.getElementById('globalStatus');
+|  if (g) { g.innerHTML = '-'; }
+|}
 |</script></head>
 |<body>
-|<div class='band'>
-|  <h1>ПерфТест - измерение производительности платформы 1С</h1>
-|  <div class='sub'>Платформа: <b id='PlatformVersion'>{{PlatformVersion}}</b> | Сеанс: <b id='UserName'>{{UserName}}</b> | Дата: <b id='CurrentDate'>{{CurrentDate}}</b></div>
-|</div>
+|<header class='top'>
+|  <h1>ПерфТест - панель тестов производительности</h1>
+|  <div class='sub'>Начальная страница: 11 карточек тестов , запуск, ход, результат - по каждой карточке</div>
+|  <div class='chips'>
+|    <span class='chip'>Платформа: <b id='chipPlatform'>{{PlatformVersion}}</b></span>
+|    <span class='chip'>Конфигурация: <b id='chipConfig'>{{ConfigVersion}}</b></span>
+|    <span class='chip'>Режим ИБ: <b id='chipMode'>{{IbMode}}</b></span>
+|    <span class='chip'>Стенд: <b id='chipStandValue'>{{StandValue}}</b></span>
+|    <span class='chip'>Сеанс: <b id='chipUser'>{{UserName}}</b></span>
+|    <span class='chip'>Дата: <b id='chipDate'>{{CurrentDate}}</b></span>
+|  </div>
+|  <div class='hints'>
+|    <div class='hint'><b>Как пользоваться</b>Нажмите «Запустить» на нужной карточке - выполнится только её сценарий. Кнопка «Запустить все последовательно» прогоняет все карточки по порядку.</div>
+|    <div class='hint'><b>Ход выполнения</b>Во время прогона строка карточки в таблице ниже показывает чанки («Чанк 3 из 10: 412 мс, 30%») и повторы («Прогон 2 из 3: 4 501 мс»).</div>
+|    <div class='hint'><b>Результаты</b>Успех начинается с «ОК:», ошибка - с «Ошибка:». Медиана и время на порцию пишутся в регистр ПерфРезультаты и в сводку ниже. Во время прогона кнопки заблокированы; «Остановить» отменяет текущий тест.</div>
+|  </div>
+|</header>
 |<div class='wrap'>
-|  <div class='prog'>
-|    <table class='ptable'>
+|  <div class='runbar'><b id='globalStatus'>-</b></div>
+|  <table class='pts'>
 |    <tr><td class='pl' id='pn1'>1. ЦПУ: арифметика</td><td class='pb'><div class='pbg'><div class='pbar' id='pb1'></div></div></td><td class='pp' id='pt1'>0%</td></tr>
 |    <tr><td class='pl' id='pn2'>2. ЦПУ: строки</td><td class='pb'><div class='pbg'><div class='pbar' id='pb2'></div></div></td><td class='pp' id='pt2'>0%</td></tr>
 |    <tr><td class='pl' id='pn3'>3. ЦПУ: коллекции</td><td class='pb'><div class='pbg'><div class='pbar' id='pb3'></div></div></td><td class='pp' id='pt3'>0%</td></tr>
@@ -151,13 +197,14 @@
 |    <tr><td class='pl' id='pn9'>9. Сериализация: внутренняя</td><td class='pb'><div class='pbg'><div class='pbar' id='pb9'></div></div></td><td class='pp' id='pt9'>0%</td></tr>
 |    <tr><td class='pl' id='pn10'>10. Память</td><td class='pb'><div class='pbg'><div class='pbar' id='pb10'></div></div></td><td class='pp' id='pt10'>0%</td></tr>
 |    <tr><td class='pl' id='pn11'>11. Файлы I/O</td><td class='pb'><div class='pbg'><div class='pbar' id='pb11'></div></div></td><td class='pp' id='pt11'>0%</td></tr>
+|  </table>
+|  <div class='sumwrap'>
+|    <h2>Сводка результатов</h2>
+|    <table class='sum'>
+|      <thead><tr><th>№</th><th>Сценарий</th><th>Стенд</th><th>Медиана, мс</th><th>мс/тыс.</th><th>Повторов</th><th>Мин...Макс, мс</th><th>Дата замера</th></tr></thead>
+|      <tbody id='summaryBody'><tr id='summaryEmpty'><td colspan='8' class='empty'>- пока нет завершённых карточек -</td></tr></tbody>
 |    </table>
 |  </div>
-|  <table class='cards'><tr>
-|    <td class='card'><h2>Как читать карточки</h2><p>У каждого теста свой блок: суть, реализация, кнопка запуска, ход по прогонам и итог «ОК: медиана ... мс». Кнопки блокируются на время прогона.</p></td>
-|    <td class='card'><h2>Как сравнивать</h2><p>Один файл базы, разные запуски платформы: вендор 8.3.27, тестовая сборка библиотек, 8.5.4. Сравнивайте медианы, а не одиночные прогоны.</p></td>
-|    <td class='card'><h2>Где результат</h2><p>Итоги пишутся в регистр сведений ПерфРезультаты (Стенд + Сценарий). В поле «Стенд» укажите имя сборки. Автономный прогон: /C «ПерфАвтоПрогон;<стенд>».</p></td>
-|  </tr></table>
 |</div>
 |</body>
 |</html>";
@@ -165,36 +212,45 @@
 
 &НаСервере
 Функция СобратьШапкуHTML()
+	СтрокаСоединения = ВРег(СокрЛП(СтрокаСоединенияИнформационнойБазы()));
+	РежимИБСтрока = ?(СтрНайти(СтрокаСоединения, "FILE=") > 0, "файловый", "серверный");
+	СтендСтрока = СокрЛП(Стенд);
 	ВерсияПлатформыСтрока = ПерфСценарии.ВерсияПлатформы();
 	ИмяСеанса = СокрЛП(ИмяПользователя());
 	ДатаСтрока = Формат(ТекущаяДатаСеанса(), "ДЛФ_D");
 	Попытка
-		Шапка = ШапкаЧерезDOM(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока);
+		Шапка = ШапкаЧерезDOM(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока, РежимИБСтрока, СтендСтрока);
+		Если ПустаяСтрока(Шапка) Тогда
+			ВызватьИсключение "Шапка не собрана";
+		КонецЕсли;
 	Исключение
-		Шапка = ШапкаЧерезМакросы(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока);
+		Шапка = ШапкаЧерезМакросы(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока, РежимИБСтрока, СтендСтрока);
 	КонецПопытки;
-	Если ПустаяСтрока(Шапка) Тогда
-		Шапка = ШапкаЧерезМакросы(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока);
-	КонецЕсли;
 	Возврат Шапка;
 КонецФункции
 
 &НаСервере
-Функция ШапкаЧерезDOM(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока)
+Функция ШапкаЧерезDOM(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока, РежимИБСтрока, СтендСтрока)
 	Чтение = Новый ЧтениеHTML;
 	Чтение.УстановитьСтроку(ШаблонШапкиHTML());
 	Построитель = Новый ПостроительDOM;
 	ДокументHTML = Построитель.Прочитать(Чтение);
-	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "PlatformVersion"), ВерсияПлатформыСтрока);
-	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "UserName"), ИмяСеанса);
-	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "CurrentDate"), ДатаСтрока);
+	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "chipPlatform"), ВерсияПлатформыСтрока);
+	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "chipConfig"), Метаданные.Версия);
+	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "chipMode"), РежимИБСтрока);
+	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "chipStandValue"), ?(ПустаяСтрока(СтендСтрока), "-", СтендСтрока));
+	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "chipUser"), ИмяСеанса);
+	УстановитьТекстЭлемента(ДокументHTML, НайтиВложенныйЭлемент(ДокументHTML, ДокументHTML, "chipDate"), ДатаСтрока);
 	Возврат ТекстДокументаHTML(ДокументHTML);
 КонецФункции
 
 &НаСервере
-Функция ШапкаЧерезМакросы(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока)
+Функция ШапкаЧерезМакросы(ВерсияПлатформыСтрока, ИмяСеанса, ДатаСтрока, РежимИБСтрока, СтендСтрока)
 	Текст = ШаблонШапкиHTML();
 	Текст = СтрЗаменить(Текст, "{{PlatformVersion}}", ВерсияПлатформыСтрока);
+	Текст = СтрЗаменить(Текст, "{{ConfigVersion}}", Метаданные.Версия);
+	Текст = СтрЗаменить(Текст, "{{IbMode}}", РежимИБСтрока);
+	Текст = СтрЗаменить(Текст, "{{StandValue}}", ?(ПустаяСтрока(СтендСтрока), "-", СтендСтрока));
 	Текст = СтрЗаменить(Текст, "{{UserName}}", ИмяСеанса);
 	Текст = СтрЗаменить(Текст, "{{CurrentDate}}", ДатаСтрока);
 	Возврат Текст;
@@ -268,6 +324,8 @@
 	ОрчРезультатПорция = 0;
 	ОрчРезультатЕдиница = "";
 	ОрчУИДЗадания = ПерфСценарии.ЗапуститьСценарийФон(ЭтаФорма["Сц" + ОрчКарточка + "Имя"], 0, 10);
+	ПоказатьСтендHTML();
+	ПоказатьСтатусHTML("Выполняется: карточка " + ОрчКарточка + " (" + ЭтаФорма["Сц" + ОрчКарточка + "Имя"] + ")");
 	ПодключитьОбработчикОжидания("ОпросПрогрессаФон", 0.3, Истина);
 КонецПроцедуры
 
@@ -341,7 +399,9 @@
 	ОрчЕдиница = ОрчРезультатЕдиница;
 	ОрчПрогон = ОрчПрогон + 1;
 	ЭтаФорма["Сц" + НомерКарточки + "Статус"] = "Прогон " + ОрчПрогон + " из " + Повторов + ": "
+
 		+ Формат(ОрчРезультатВремяМс, "ЧГ=0") + " мс";
+	ПоказатьСтатусHTML("Выполняется: карточка " + НомерКарточки + " - прогон " + ОрчПрогон + " из " + Повторов);
 	ОрчВремена = ОрчВремена + ?(ПустаяСтрока(ОрчВремена), "", ";") + Формат(ОрчРезультатВремяМс, "ЧГ=0");
 	ДобавитьСтрокуРезультата(НомерКарточки, ОрчПрогон);
 	Если ОрчПрогон < Повторов Тогда
@@ -371,6 +431,7 @@
 		ОрчПорция, ОрчЕдиница, ОрчВремена, Повторов, ОрчПаспортКлиента);
 	МедианаМс = Итог.МедианаМс;
 	НаЕдиницу = Итог.НаЕдиницуМс;
+	МинМаксСтрока = Формат(Итог.МинМс, "ЧГ=") + "..." + Формат(Итог.МаксМс, "ЧГ=");
 	ЭтаФорма["Сц" + НомерКарточки + "Статус"] = "Готово";
 	ЭтаФорма["Сц" + НомерКарточки + "Результат"] = "ОК: медиана " + Формат(МедианаМс, "ЧГ=")
 		+ " мс (" + Формат(НаЕдиницу, "ЧДЦ=2; ЧГ=") + " мс/тыс. " + ОрчЕдиница + ")";
@@ -381,6 +442,8 @@
 	СтрокаСводки.НаЕдиницуМс = НаЕдиницу;
 	СтрокаСводки.Единица = ОрчЕдиница;
 	ПоказатьПрогрессHTML(НомерКарточки, 100, "100%");
+	ДобавитьСтрокуСводкиHTML(НомерКарточки, МедианаМс, НаЕдиницу, МинМаксСтрока);
+	ПоказатьСтатусHTML("Готово: карточка " + НомерКарточки);
 	СледующаяИзОчереди();
 КонецПроцедуры
 
@@ -407,6 +470,7 @@
 	ОрчУИДЗадания = "";
 	ЭтаФорма["Сц" + ОрчКарточка + "Статус"] = "Ошибка";
 	ЭтаФорма["Сц" + ОрчКарточка + "Результат"] = "Ошибка: " + ТекстОшибки;
+	ПоказатьСтатусHTML("Остановлено на карточке " + ОрчКарточка + ": " + ТекстОшибки);
 	УстановитьДоступностьКнопок(Истина);
 КонецПроцедуры
 
@@ -429,6 +493,7 @@
 	ОрчУИДЗадания = "";
 	ЭтаФорма["Сц" + ОрчКарточка + "Статус"] = "Отменено";
 	ЭтаФорма["Сц" + ОрчКарточка + "Результат"] = "Отмена: тест остановлен пользователем";
+	ПоказатьСтатусHTML("Отменено: карточка " + ОрчКарточка);
 	УстановитьДоступностьКнопок(Истина);
 КонецПроцедуры
 
@@ -436,6 +501,7 @@
 Процедура КомандаЗапуститьВсе(Команда)
 	Результаты.Очистить();
 	Сводка.Очистить();
+	СброситьСводкуHTML();
 	Очередь = Новый Массив;
 	Для Н = 1 По 11 Цикл
 		Если ПустаяСтрока(ЭтаФорма["Сц" + Н + "Имя"]) Тогда
@@ -540,6 +606,57 @@
 	КонецПопытки;
 КонецПроцедуры
 
+&НаКлиенте
+Процедура ПоказатьСтатусHTML(Текст)
+	Попытка
+		МостHTML = ОбъектОкнаHTML();
+		Если МостHTML <> Неопределено Тогда
+			МостHTML.SetGlobalStatus(Текст);
+		КонецЕсли;
+	Исключение
+		ИгнорируемаяОшибка = ИнформацияОбОшибке();
+	КонецПопытки;
+КонецПроцедуры
+
+&НаКлиенте
+Процедура ПоказатьСтендHTML()
+	Попытка
+		МостHTML = ОбъектОкнаHTML();
+		Если МостHTML <> Неопределено Тогда
+			МостHTML.SetStandChip(Стенд);
+		КонецЕсли;
+	Исключение
+		ИгнорируемаяОшибка = ИнформацияОбОшибке();
+	КонецПопытки;
+КонецПроцедуры
+
+&НаКлиенте
+Процедура ДобавитьСтрокуСводкиHTML(НомерКарточки, МедианаМс, НаЕдиницу, МинМаксСтрока)
+	Попытка
+		МостHTML = ОбъектОкнаHTML();
+		Если МостHTML <> Неопределено Тогда
+			МостHTML.AddSummaryRow(НомерКарточки, ЭтаФорма["Сц" + НомерКарточки + "Имя"],
+				?(ПустаяСтрока(Стенд), "-", Стенд),
+				Формат(МедианаМс, "ЧГ="), Формат(НаЕдиницу, "ЧДЦ=2; ЧГ="),
+				Формат(Повторов, "ЧГ="), МинМаксСтрока,
+				Формат(ТекущаяДата(), "ДЛФ_DT")); // BSLLS:DeprecatedCurrentDate-off (ТекущаяДатаСеанса недоступна в тонком клиенте - e321966b)
+		КонецЕсли;
+	Исключение
+		ИгнорируемаяОшибка = ИнформацияОбОшибке();
+	КонецПопытки;
+КонецПроцедуры
+
+&НаКлиенте
+Процедура СброситьСводкуHTML()
+	Попытка
+		МостHTML = ОбъектОкнаHTML();
+		Если МостHTML <> Неопределено Тогда
+			МостHTML.ResetSummary();
+		КонецЕсли;
+	Исключение
+		ИгнорируемаяОшибка = ИнформацияОбОшибке();
+	КонецПопытки;
+КонецПроцедуры
 &НаКлиенте
 Процедура КомандаЗапустить1(Команда)
 	ЗапуститьКарточку(1);
