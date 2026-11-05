@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Width>96</Width>
+	<Height>52</Height>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<HTMLDocumentField name="ШапкаHTML" id="1">
+			<DataPath>ШапкаHTML</DataPath>
+			<TitleLocation>None</TitleLocation>
+			<ContextMenu name="ШапкаHTMLКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ШапкаHTMLРасширеннаяПодсказка" id="3"/>
+		</HTMLDocumentField>
+		<Table name="ТаблицаСценариев" id="4">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>false</EnableStartDrag>
+			<EnableDrag>false</EnableDrag>
+			<DataPath>Сценарии</DataPath>
+			<ContextMenu name="ТаблицаСценариевКонтекстноеМеню" id="5"/>
+			<AutoCommandBar name="ТаблицаСценариевКоманднаяПанель" id="6"/>
+			<ExtendedTooltip name="ТаблицаСценариевРасширеннаяПодсказка" id="7"/>
+			<SearchControlAddition name="ТаблицаСценариевУправлениеПоиском" id="8"/>
+			<ChildItems>
+				<CheckBoxField name="СценарииВыполнить" id="9">
+					<DataPath>Сценарии.Выполнить</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="СценарииВыполнитьКонтекстноеМеню" id="10"/>
+					<ExtendedTooltip name="СценарииВыполнитьРасширеннаяПодсказка" id="11"/>
+				</CheckBoxField>
+				<InputField name="СценарииПредставление" id="12">
+					<DataPath>Сценарии.Представление</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Width>40</Width>
+					<ContextMenu name="СценарииПредставлениеКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="СценарииПредставлениеРасширеннаяПодсказка" id="14"/>
+				</InputField>
+				<InputField name="СценарииОписание" id="15">
+					<DataPath>Сценарии.Описание</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Width>70</Width>
+					<ContextMenu name="СценарииОписаниеКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="СценарииОписаниеРасширеннаяПодсказка" id="17"/>
+				</InputField>
+				<InputField name="СценарииПорция" id="18">
+					<DataPath>Сценарии.Порция</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Width>10</Width>
+					<ContextMenu name="СценарииПорцияКонтекстноеМеню" id="19"/>
+					<ExtendedTooltip name="СценарииПорцияРасширеннаяПодсказка" id="20"/>
+				</InputField>
+				<InputField name="СценарииЕдиница" id="21">
+					<DataPath>Сценарии.Единица</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Width>12</Width>
+					<ContextMenu name="СценарииЕдиницаКонтекстноеМеню" id="22"/>
+					<ExtendedTooltip name="СценарииЕдиницаРасширеннаяПодсказка" id="23"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="ГруппаПараметры" id="24">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаПараметрыРасширеннаяПодсказка" id="25"/>
+			<ChildItems>
+				<InputField name="Повторов" id="26">
+					<DataPath>Повторов</DataPath>
+					<Width>8</Width>
+					<ContextMenu name="ПовторовКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ПовторовРасширеннаяПодсказка" id="28"/>
+				</InputField>
+				<InputField name="ПутьCSV" id="29">
+					<DataPath>ПутьCSV</DataPath>
+					<Width>60</Width>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ПутьCSVКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="ПутьCSVРасширеннаяПодсказка" id="31"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаКнопок" id="32">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаКнопокРасширеннаяПодсказка" id="33"/>
+			<ChildItems>
+				<Button name="КнопкаЗапустить" id="34">
+					<Type>UsualButton</Type>
+					<Default>true</Default>
+					<CommandName>Form.Command.КомандаЗапустить</CommandName>
+					<ExtendedTooltip name="КнопкаЗапуститьРасширеннаяПодсказка" id="35"/>
+				</Button>
+				<Button name="КнопкаОтметитьВсе" id="36">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.КомандаОтметитьВсе</CommandName>
+					<ExtendedTooltip name="КнопкаОтметитьВсеРасширеннаяПодсказка" id="37"/>
+				</Button>
+				<Button name="КнопкаСнятьВсех" id="38">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.КомандаСнятьВсех</CommandName>
+					<ExtendedTooltip name="КнопкаСнятьВсехРасширеннаяПодсказка" id="39"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="Статус" id="40">
+			<DataPath>Статус</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<TitleLocation>None</TitleLocation>
+			<HorizontalStretch>true</HorizontalStretch>
+			<ContextMenu name="СтатусКонтекстноеМеню" id="41"/>
+			<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="42"/>
+		</InputField>
+		<UsualGroup name="ГруппаСводка" id="43">
+			<Group>Vertical</Group>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сводка (медиана по прогонам)</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="ГруппаСводкаРасширеннаяПодсказка" id="44"/>
+			<ChildItems>
+				<Table name="ТаблицаСводка" id="45">
+					<Representation>List</Representation>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>false</EnableStartDrag>
+					<EnableDrag>false</EnableDrag>
+					<DataPath>Сводка</DataPath>
+					<ContextMenu name="ТаблицаСводкаКонтекстноеМеню" id="46"/>
+					<AutoCommandBar name="ТаблицаСводкаКоманднаяПанель" id="47"/>
+					<ExtendedTooltip name="ТаблицаСводкаРасширеннаяПодсказка" id="48"/>
+					<ChildItems>
+						<InputField name="СводкаПредставление" id="49">
+							<DataPath>Сводка.Представление</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>44</Width>
+							<ContextMenu name="СводкаПредставлениеКонтекстноеМеню" id="50"/>
+							<ExtendedTooltip name="СводкаПредставлениеРасширеннаяПодсказка" id="51"/>
+						</InputField>
+						<InputField name="СводкаМедианаМс" id="52">
+							<DataPath>Сводка.МедианаМс</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>12</Width>
+							<ContextMenu name="СводкаМедианаМсКонтекстноеМеню" id="53"/>
+							<ExtendedTooltip name="СводкаМедианаМсРасширеннаяПодсказка" id="54"/>
+						</InputField>
+						<InputField name="СводкаНаЕдиницуМс" id="55">
+							<DataPath>Сводка.НаЕдиницуМс</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>16</Width>
+							<ContextMenu name="СводкаНаЕдиницуМсКонтекстноеМеню" id="56"/>
+							<ExtendedTooltip name="СводкаНаЕдиницуМсРасширеннаяПодсказка" id="57"/>
+						</InputField>
+						<InputField name="СводкаЕдиница" id="58">
+							<DataPath>Сводка.Единица</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>12</Width>
+							<ContextMenu name="СводкаЕдиницаКонтекстноеМеню" id="59"/>
+							<ExtendedTooltip name="СводкаЕдиницаРасширеннаяПодсказка" id="60"/>
+						</InputField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаРезультаты" id="61">
+			<Group>Vertical</Group>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Прогоны</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="ГруппаРезультатыРасширеннаяПодсказка" id="62"/>
+			<ChildItems>
+				<Table name="ТаблицаРезультаты" id="63">
+					<Representation>List</Representation>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>false</EnableStartDrag>
+					<EnableDrag>false</EnableDrag>
+					<DataPath>Результаты</DataPath>
+					<ContextMenu name="ТаблицаРезультатыКонтекстноеМеню" id="64"/>
+					<AutoCommandBar name="ТаблицаРезультатыКоманднаяПанель" id="65"/>
+					<ExtendedTooltip name="ТаблицаРезультатыРасширеннаяПодсказка" id="66"/>
+					<ChildItems>
+						<InputField name="РезультатыСценарий" id="67">
+							<DataPath>Результаты.Сценарий</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>28</Width>
+							<ContextMenu name="РезультатыСценарийКонтекстноеМеню" id="68"/>
+							<ExtendedTooltip name="РезультатыСценарийРасширеннаяПодсказка" id="69"/>
+						</InputField>
+						<InputField name="РезультатыПрогон" id="70">
+							<DataPath>Результаты.Прогон</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>8</Width>
+							<ContextMenu name="РезультатыПрогонКонтекстноеМеню" id="71"/>
+							<ExtendedTooltip name="РезультатыПрогонРасширеннаяПодсказка" id="72"/>
+						</InputField>
+						<InputField name="РезультатыВремяМс" id="73">
+							<DataPath>Результаты.ВремяМс</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>12</Width>
+							<ContextMenu name="РезультатыВремяМсКонтекстноеМеню" id="74"/>
+							<ExtendedTooltip name="РезультатыВремяМсРасширеннаяПодсказка" id="75"/>
+						</InputField>
+						<InputField name="РезультатыНаЕдиницуМс" id="76">
+							<DataPath>Результаты.НаЕдиницуМс</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Width>16</Width>
+							<ContextMenu name="РезультатыНаЕдиницуМсКонтекстноеМеню" id="77"/>
+							<ExtendedTooltip name="РезультатыНаЕдиницуМсРасширеннаяПодсказка" id="78"/>
+						</InputField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Сценарии" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сценарии</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Выполнить" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>☑</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>v8:Boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Имя" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Имя</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>60</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Представление" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сценарий</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Описание" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Что делает</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>300</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Порция" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Порция</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>12</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Единица" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Единица</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>40</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Повторов" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Повторов</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>3</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Результаты" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Результаты</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Сценарий" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сценарий</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>60</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Представление" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Представление</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Прогон" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Прогон</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>3</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ВремяМс" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Время, мс</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Порция" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Порция</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>12</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Единица" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Единица</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>40</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="НаЕдиницуМс" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>мс на порцию</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>3</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Сводка" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сводка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Сценарий" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сценарий</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>60</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Представление" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Представление</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="МедианаМс" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Медиана, мс</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="НаЕдиницуМс" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>мс на порцию</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>3</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Единица" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Единица</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>40</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Повторов" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Повторов на сценарий</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ПутьCSV" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Файл CSV</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>500</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Статус" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Статус</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>300</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ШапкаHTML" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Шапка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="КомандаЗапустить" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Запустить</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ЗапуститьПрогоны</Action>
+		</Command>
+		<Command name="КомандаОтметитьВсе" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отметить все</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОтметитьВсе</Action>
+		</Command>
+		<Command name="КомандаСнятьВсех" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Снять все</v8:content>
+				</v8:item>
+			</Title>
+			<Action>СнятьВсех</Action>
+		</Command>
+	</Commands>
+</Form>
