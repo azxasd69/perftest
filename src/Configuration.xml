@@ -252,6 +252,8 @@
 			<CommonModule>ПерфКокпит</CommonModule>
 			<CommonModule>ПерфUI</CommonModule>
 			<CommonModule>ПерфСтендыHTML</CommonModule>
+			<Constant>ПерфТемаСветлая</Constant>
+			<Constant>ПерфПанельСвернута</Constant>
 			<CommonForm>НачальнаяСтраница</CommonForm>
 			<CommonForm>ПерфДашборд</CommonForm>
 			<CommonForm>ПерфИсторияЗамеров</CommonForm>
