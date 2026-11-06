@@ -398,7 +398,8 @@
 	Части.Добавить(СтилиДинамика());
 	Части.Добавить(СтилиСворачивания());
 	Части.Добавить(СкриптМоста());
-	Части.Добавить("</head><body>");
+	КлассПанели = ?(СостояниеПанели() = "collapsed", " class='pf-collapsed'", "");
+	Части.Добавить("</head><body" + КлассПанели + ">");
 	Части.Добавить(Меню(Активный, ВерсияСтрокой));
 	Если НЕ ПустаяСтрока(КлассОбёртки) Тогда
 		Части.Добавить("<div class='" + КлассОбёртки + "'>");
@@ -776,6 +777,49 @@
 // Состояние хранится в localStorage под ключом pf-nav.
 // ---------------------------------------------------------------------------
 
+// Состояние панели (свернута / развернута) хранится на стороне 1С: localStorage
+// не переживает переход между формами, потому что каждая форма - новый документ.
+Функция ФайлПанели()
+
+	Возврат КаталогВременныхФайлов() + "perftest_nav.txt";
+
+КонецФункции
+
+// "collapsed" или "expanded". По умолчанию панель развернута.
+Функция СостояниеПанели() Экспорт
+
+	Попытка
+		Файл = Новый Файл(ФайлПанели());
+		Если Файл.Существует() Тогда
+			Чтение = Новый ЧтениеТекста(ФайлПанели(), КодировкаТекста.UTF8);
+			Значение = СокрЛП(Чтение.ПрочитатьСтроку());
+			Чтение.Закрыть();
+			Если Значение = "collapsed" ИЛИ Значение = "expanded" Тогда
+				Возврат Значение;
+			КонецЕсли;
+		КонецЕсли;
+	Исключение
+		ИгнорируемаяОшибка = ИнформацияОбОшибке();
+	КонецПопытки;
+	Возврат "expanded";
+
+КонецФункции
+
+Процедура СохранитьСостояниеПанели(Значение) Экспорт
+
+	Если Значение <> "collapsed" И Значение <> "expanded" Тогда
+		Возврат;
+	КонецЕсли;
+	Попытка
+		Запись = Новый ЗаписьТекста(ФайлПанели(), КодировкаТекста.UTF8);
+		Запись.ЗаписатьСтроку(Значение);
+		Запись.Закрыть();
+	Исключение
+		ИгнорируемаяОшибка = ИнформацияОбОшибке();
+	КонецПопытки;
+
+КонецПроцедуры
+
 Функция СтилиСворачивания() Экспорт
 	Возврат "<style>"
 		+ "body{-webkit-transition:padding-left .18s;transition:padding-left .18s}"
@@ -814,10 +858,12 @@
 		+ "PFNav.toggle=function(){var on=PFNav.on();"
 		+ "document.body.className=on?'':'pf-collapsed';"
 		+ "try{localStorage.setItem(PFNav.key,on?'0':'1');}catch(e){}"
+		+ "try{if(window.PF1C&&PF1C.send){PF1C.send('nav:'+(on?'expanded':'collapsed'));}}"
+		+ "catch(e){}"
 		+ "PFNav.apply();return false;};"
-		+ "PFNav.init=function(){var on=false;"
-		+ "try{on=localStorage.getItem(PFNav.key)==='1';}catch(e){on=false;}"
-		+ "document.body.className=on?'pf-collapsed':'';"
+		+ "PFNav.init=function(){"
+		+ "var on=(document.body.className.indexOf('pf-collapsed')>=0);"
+		+ "try{localStorage.setItem(PFNav.key,on?'1':'0');}catch(e){}"
 		+ "var side=document.getElementById('pfSide')||document.querySelector('.side');"
 		+ "if(side&&!document.getElementById('pfNavBtn')){"
 		+ "var b=document.createElement('button');b.id='pfNavBtn';b.className='nav-btn';"
