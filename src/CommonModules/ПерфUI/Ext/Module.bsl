@@ -374,11 +374,13 @@
 	Части.Добавить("<!DOCTYPE html><html class='" + КлассТемы + "'><head><meta charset='utf-8'>");
 	Части.Добавить("<meta name='viewport' content='width=device-width, initial-scale=1'>");
 	Части.Добавить("<title>" + Экранировать(Заголовок) + "</title>");
+	// Порядок важен: стили страницы идут до панели, поэтому фон, шрифт или
+	// отступы конкретной страницы не могут изменить ее внешний вид.
+	Части.Добавить(ДопСтили);
 	Части.Добавить(СтилиМеню());
 	Части.Добавить(СтилиСветлая());
 	Части.Добавить(СтилиДинамика());
 	Части.Добавить(СтилиСворачивания());
-	Части.Добавить(ДопСтили);
 	Части.Добавить(СкриптМоста());
 	Части.Добавить("</head><body>");
 	Части.Добавить(Меню(Активный, ВерсияСтрокой));
@@ -402,7 +404,8 @@
 	Возврат "<style>"
 		+ "body{padding-left:232px}"
 		+ ".side{position:fixed;left:0;top:0;bottom:0;width:220px;background:#0D1117;"
-		+ "color:#C6CFDD;padding:16px 12px;box-sizing:border-box;z-index:50;overflow:auto}"
+		+ "color:#C6CFDD;padding:16px 12px;box-sizing:border-box;z-index:50;overflow:auto;"
+		+ "font:13px/20px 'Segoe UI',Arial,sans-serif}"
 		+ ".side .logo{display:-webkit-flex;display:flex;-webkit-align-items:center;"
 		+ "align-items:center;padding:6px 8px 18px}"
 		+ ".side .mark{width:28px;height:28px;border-radius:8px;margin-right:10px;"
@@ -414,7 +417,7 @@
 		+ "color:#5F6A7C;padding:12px 10px 6px}"
 		+ ".side a{display:-webkit-flex;display:flex;-webkit-align-items:center;"
 		+ "align-items:center;color:#AAB4C4;text-decoration:none;font-size:13px;"
-		+ "padding:8px 10px;border-radius:8px;margin-bottom:2px}"
+		+ "line-height:20px;padding:7px 10px;border-radius:8px;margin-bottom:2px}"
 		+ ".side a:hover{background:#171E28;color:#E6ECF5}"
 		+ ".side a.active{background:#1C232C;color:#EEF2FF;"
 		+ "box-shadow:inset 2px 0 0 #C4F252}"
@@ -429,7 +432,10 @@
 Функция Меню(Активный = "", ВерсияСтрокой = "") Экспорт
 
 	Пункты = ПунктыМеню();
-	ПодписьВерсии = ?(ПустаяСтрока(ВерсияСтрокой), "панель", "версия " + ВерсияСтрокой);
+	// Подпись всегда одна и та же: версия конфигурации из метаданных.
+	// Параметр ВерсияСтрокой оставлен для совместимости вызовов и не используется,
+	// иначе панель на разных страницах выглядела по-разному ("панель" против "версия 1.22").
+	ПодписьВерсии = "версия " + СокрЛП(Строка(Метаданные.Версия));
 
 	Части = Новый Массив;
 	Части.Добавить("<nav class='side' id='pfSide'>"
