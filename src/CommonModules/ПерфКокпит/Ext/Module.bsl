@@ -195,6 +195,7 @@
 		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' onchange='PF1C.send(""rep:""+this.value)'></label>");
 	Части.Добавить("<button class='btn kbd' id='openPal' onclick='PF1C.openPal()'>"
 		+ "K<kbd>Ctrl+K</kbd></button>");
+	Части.Добавить("<button class='btn kbd' id='pfThemeBtn' onclick='PFTheme.toggle()'>Тема</button>");
 	Части.Добавить("<button class='btn primary' id='runAll' onclick='PF1C.send(""all"")'>"
 		+ "Запустить все</button>");
 	Части.Добавить("<button class='btn danger' id='stop' disabled "
