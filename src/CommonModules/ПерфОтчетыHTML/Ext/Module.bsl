@@ -17,6 +17,23 @@
 // HTML плюс фактически использованные параметры (база, стенд сравнения, сценарий),
 // по ним формы предзаполняют поля и пишут маркер смоука.
 
+// Пустое состояние: иконка, заголовок, пояснение и действие вместо строки текста.
+Функция ПустоеСостояние(Заголовок, Пояснение)
+
+	Возврат "<div class='empty'>"
+		+ "<div class='empty-ico'>"
+		+ "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'"
+		+ " stroke-linecap='round' stroke-linejoin='round' width='34' height='34'>"
+		+ "<rect x='3' y='4' width='18' height='14' rx='2'/><path d='M7 20h10'/>"
+		+ "<path d='M7 9h6M7 13h4'/></svg></div>"
+		+ "<h2>" + Экранировать(Заголовок) + "</h2>"
+		+ "<p class='muted'>" + Экранировать(Пояснение) + "</p>"
+		+ "<button class='btn primary' onclick='PFNav.go(&quot;НачальнаяСтраница&quot;)'>"
+		+ "Открыть кокпит</button>"
+		+ "</div>";
+
+КонецФункции
+
 // Топ-100 конфигураций (стендов) по интегральному индексу (ТЗ отчётов §5).
 Функция СобратьТопКонфигураций(БазовыйСтенд) Экспорт
 
@@ -88,8 +105,10 @@
 
 	Если Строки.Количество() = 0 Тогда
 		HTML = Стили() + ШапкаОтчёта("Топ-100 конфигураций", Чипы)
-			+ "<div class='wrap'><p class='muted'>Нет данных: нечего сравнивать с базовым стендом. "
-			+ "Запустите тесты хотя бы на двух стендах.</p></div>";
+			+ "<div class='wrap'>"
+			+ ПустоеСостояние("Пока нечего сравнивать",
+			+ "Нужны замеры минимум на двух стендах: базовом и сравниваемом.")
+			+ "</div>";
 	Возврат РезультатОтчёта(HTML, База, "", "", "ПерфТопКонфигураций");
 	КонецЕсли;
 
@@ -149,7 +168,10 @@
 
 	Если ДанныеСтенда = Неопределено ИЛИ ДанныеБазы = Неопределено Тогда
 		HTML = Стили() + ШапкаОтчёта("Сравнение стендов", Чипы)
-			+ "<div class='wrap'><p class='muted'>Нужны замеры минимум на двух стендах.</p></div>";
+			+ "<div class='wrap'>"
+			+ ПустоеСостояние("Нет второго стенда",
+			+ "Сравнение строится по двум стендам. Соберите паспорт и замеры ещё на одном стенде.")
+			+ "</div>";
 	Возврат РезультатОтчёта(HTML, База, Сравниваемый, "", "ПерфСравнениеСтендов");
 	КонецЕсли;
 
@@ -333,7 +355,7 @@
 		+ "; шумных замеров: " + ФорматЧисла(Шумных, 0);
 
 	HTML = Стили() + ШапкаОтчёта("История замеров", Чипы)
-		+ "<div class='wrap'>" + Спарклайн(Значения, 720, 60)
+		+ "<div class='wrap'>" + БлокСпарклайна(Значения, 720, 60)
 		+ "<p class='muted'>" + Экранировать(Сводка) + "</p>"
 		+ Таблица(Заголовки, Строки)
 		+ "</div>";
@@ -1056,9 +1078,9 @@
 		+ ".chips{display:flex;flex-wrap:wrap}"
 		+ ".chip{background:#1F2228;border:1px solid #2F333A;border-radius:999px;padding:4px 11px;font-size:12px;color:#A0A5AE;margin:0 8px 6px 0}"
 		+ ".chip b{color:#ECEEF3;font-weight:600;margin-left:6px}"
-		+ ".wrap{padding:16px 18px 26px}"
+		+ ".wrap{padding:16px 18px 26px;width:100%;max-width:100%;box-sizing:border-box}"
 		+ "table{border-collapse:collapse;width:100%;background:#17191F;border:1px solid #2F333A}"
-		+ "th,td{padding:7px 9px;border-bottom:1px solid #26292F;text-align:left;font-size:12px;white-space:nowrap}"
+		+ "th,td{padding:7px 9px;border-bottom:1px solid #26292F;text-align:left;font-size:12px;white-space:normal;word-wrap:break-word}"
 		+ "th{background:#1F2228;color:#A0A5AE;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:11px}"
 		+ "tr:hover td{background:#282B33}"
 		+ "td.num{text-align:right;font-family:Consolas,'Courier New',monospace;color:#ECEEF3}"
@@ -1074,6 +1096,11 @@
 		+ ".bar i{display:block;height:100%}"
 		+ "h2{font-size:14px;margin:18px 0 9px;color:#ECEEF3}"
 		+ "svg{background:#1F2228;border:1px solid #2F333A;border-radius:10px}"
+		+ ".spark svg{background:transparent !important;border:0 !important;border-radius:0}"
+		+ ".empty{max-width:520px;margin:48px auto;text-align:center;padding:24px}"
+		+ ".empty-ico{color:#6A4CF6;margin-bottom:10px}"
+		+ ".empty h2{font-size:16px;margin:0 0 8px;color:#ECEEF3}"
+		+ ".empty p{margin:0 0 16px;font-size:13px;line-height:1.5}"
 		+ "</style>";
 КонецФункции
 
@@ -1136,6 +1163,17 @@
 	КонецЦикла;
 	Ч.Добавить("</tbody></table>");
 	Возврат СтрСоединить(Ч, "");
+КонецФункции
+
+// Спарклайн в обертке: пустой график не оставляет рамку на странице.
+Функция БлокСпарклайна(Значения, Ширина, Высота)
+
+	График = Спарклайн(Значения, Ширина, Высота);
+	Если ПустаяСтрока(График) Тогда
+		Возврат "";
+	КонецЕсли;
+	Возврат "<div class='spark'>" + График + "</div>";
+
 КонецФункции
 
 // Инлайн-SVG спарклайн по значениям: ширина и высота в пикселях, без библиотек.

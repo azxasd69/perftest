@@ -20,9 +20,11 @@
 		+ "background-image:radial-gradient(90% 60% at 15% -10%,rgba(58,72,110,.45),rgba(14,15,19,0)),"
 		+ "radial-gradient(70% 50% at 90% 0%,rgba(48,84,58,.28),rgba(14,15,19,0));"
 		+ "background-repeat:no-repeat}"
-		+ ".wrap{max-width:1500px;margin:0 auto;padding:14px 18px 70px}"
+		+ ".wrap{max-width:1500px;width:100%;margin:0 auto;padding:14px 18px 70px;"
+		+ "box-sizing:border-box}"
 		+ ".bar{position:-webkit-sticky;top:0;z-index:40;background:#1A1D24;"
-		+ "border:1px solid #26292F;border-radius:16px;padding:9px 12px;margin-bottom:14px}"
+		+ "border:1px solid #26292F;border-radius:16px;padding:9px 12px;margin-bottom:14px;"
+		+ "-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:8px 6px}"
 		+ ".bar,.brand,.crumbles,.field,.c-foot,.c-top,.log-head{display:-webkit-flex;"
 		+ "display:flex;-webkit-align-items:center;align-items:center}"
 		+ ".brand{font-weight:650;letter-spacing:-.01em}"
@@ -53,6 +55,10 @@
 		+ ".btn.kbd kbd{font-family:Consolas,'Courier New',monospace;font-size:10px;"
 		+ "background:#2B2E34;border:1px solid #3A3F47;border-radius:4px;padding:0 4px;"
 		+ "margin-left:6px}"
+		+ ".span-2{grid-column:span 2}.span-3{grid-column:span 3}"
+		+ ".span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-12{grid-column:span 12}"
+		+ "@media (max-width:1500px){.card.span-4{grid-column:span 6}}"
+		+ "@media (max-width:1100px){.card.span-4,.card.span-6{grid-column:span 12}}"
 		+ ".bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));"
 		+ "grid-column-gap:12px}"
 		+ ".tile{background:#17191F;border:1px solid #26292F;border-radius:16px;"
@@ -144,8 +150,8 @@
 // Карточка сценария: индекс, код, бейдж, суть, реализация, единица, кнопка, полосы.
 Функция КарточкаHTML(Номер, Сценарий, Ширина)
 	Порция = Формат(Сценарий.Порция, "ЧГ=");
-	Возврат "<section class='tile card state-idle' id='card" + Номер + "'"
-		+ " style='grid-column:span " + Ширина + "'>"
+	Возврат "<section class='tile card span-" + Ширина + " state-idle' id='card"
+		+ Номер + "'>"
 		+ "<i class='edge'></i>"
 		+ "<div class='c-top'><span class='idx'>" + Формат(Номер, "ЧЦ=2; ЧВН=; ЧГ=") + "</span>"
 		+ "<span class='code' title='" + Экранировать(Сценарий.Имя) + "'>"
@@ -157,7 +163,7 @@
 		+ ", повторов " + Формат(Сценарий.Повторов, "ЧН=0; ЧГ=") + "</p>"
 		+ "<div class='c-foot'><span class='unit'>" + Порция + " "
 		+ Экранировать(Сценарий.Единица) + "</span>"
-		+ "<button class='btn' onclick='PF1C.run(" + Номер + ")'>Запустить</button></div>"
+		+ "<button class='btn primary' onclick='PF1C.run(" + Номер + ")'>Запустить</button></div>"
 		+ "<div class='status'>&mdash;</div>"
 		+ "<p class='result'></p>"
 		+ "<div class='cbar'><i></i></div></section>";
@@ -215,7 +221,7 @@
 	Номер = 0;
 	Для Каждого Сценарий Из Сценарии Цикл
 		Номер = Номер + 1;
-		Ширина = ?(Номер <= 2, 6, 4);
+		Ширина = 4; // одинаковая ширина: ровная сетка по три карточки в ряд
 		Части.Добавить(КарточкаHTML(Номер, Сценарий, Ширина));
 	КонецЦикла;
 

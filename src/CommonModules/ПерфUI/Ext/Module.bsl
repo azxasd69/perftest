@@ -208,7 +208,7 @@
 		+ ".nav-i.active svg{color:#6A4CF6 !important}"
 		+ ".side-stand{background:#F7F3FF !important;border-color:#E7DEFB !important}"
 		+ ".ss-h{color:#5C5770 !important}"
-		+ ".ss-r span{color:#9A97A8 !important}"
+		+ ".ss-r span{color:#6B6879 !important}"
 		+ ".ss-r b{color:#45424F !important}"
 		+ ".side-foot{color:#9A97A8 !important;border-color:#E6E1F0 !important}"
 		+ ".nav-btn{background:#F3EEFC !important;color:#45424F !important;border-color:#E6D9FF !important}"
@@ -419,7 +419,10 @@
 // Стили рейла. Вызывать один раз на страницу.
 Функция СтилиМеню() Экспорт
 	Возврат "<style>"
-		+ "body{padding-left:232px}"
+		+ "html{overflow-x:hidden}"
+		+ "body{padding-left:232px;overflow-x:hidden;max-width:100%}"
+		+ "table{max-width:100%}"
+		+ "td,th{white-space:normal;word-wrap:break-word}"
 		+ ".side{position:fixed;left:0;top:0;bottom:0;width:220px;background:#0D1117;"
 		+ "color:#C6CFDD;padding:16px 12px;box-sizing:border-box;z-index:50;overflow:auto;"
 		+ "font:13px/20px 'Segoe UI',Arial,sans-serif}"
