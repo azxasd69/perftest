@@ -44,7 +44,7 @@
 			<ScriptVariant>Russian</ScriptVariant>
 			<DefaultRoles/>
 			<Vendor/>
-			<Version>1.21</Version>
+			<Version>1.22</Version>
 			<UpdateCatalogAddress/>
 			<IncludeHelpInContents>false</IncludeHelpInContents>
 			<UseManagedFormInOrdinaryApplication>false</UseManagedFormInOrdinaryApplication>
@@ -251,9 +251,11 @@
 			<CommonModule>ПерфОтчетыHTML</CommonModule>
 			<CommonModule>ПерфКокпит</CommonModule>
 			<CommonModule>ПерфUI</CommonModule>
+			<CommonModule>ПерфСтендыHTML</CommonModule>
 			<CommonForm>НачальнаяСтраница</CommonForm>
 			<CommonForm>ПерфДашборд</CommonForm>
 			<CommonForm>ПерфИсторияЗамеров</CommonForm>
+			<CommonForm>ПерфСтенды</CommonForm>
 			<CommonForm>ПерфСравнениеСтендов</CommonForm>
 			<CommonForm>ПерфТопКонфигураций</CommonForm>
 			<Catalog>ПерфНоменклатура</Catalog>

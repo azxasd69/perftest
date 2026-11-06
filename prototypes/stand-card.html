@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru" class="pf-dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточка стенда — ПерфТест</title>
+<script>
+/* Тема определяется сама, переключателя на карточке нет.
+   Приоритет: сохранённый выбор приложения (pf-theme) -> системная тема -> тёмная.
+   Класс ставится до отрисовки, чтобы не было вспышки светлой темы. */
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem('pf-theme'); } catch (e) { }
+  var light;
+  if (saved === 'light' || saved === 'dark') {
+    light = saved === 'light';
+  } else if (window.matchMedia) {
+    light = window.matchMedia('(prefers-color-scheme: light)').matches;
+  } else {
+    light = false;
+  }
+  /* Только для превью прототипа: ?theme=light|dark фиксирует тему для снимка.
+     В переносе в 1С этого параметра нет — там тема берётся из приложения. */
+  var forced = /(?:\?|&)theme=(light|dark)/.exec(location.search);
+  if (forced) { light = forced[1] === 'light'; }
+  document.documentElement.className = light ? 'pf-light' : 'pf-dark';
+})();
+</script>
+<style>
+/* ---------- токены ---------- */
+:root {
+  --bg: #0E0F13;
+  --bg-glow-1: rgba(58, 72, 110, .42);
+  --bg-glow-2: rgba(48, 84, 58, .26);
+  --panel: #16181E;
+  --panel-2: #1A1D24;
+  --panel-3: #1F2228;
+  --line: #262A31;
+  --line-strong: #33383F;
+  --text: #ECEEF3;
+  --text-dim: #A7ABB5;
+  --muted: #767A84;
+  --accent: #C4F252;
+  --accent-ink: #10130A;
+  --accent-soft: rgba(196, 242, 82, .12);
+  --warn: #F2B84B;
+  --warn-soft: rgba(242, 184, 75, .14);
+  --ok: #7BD88F;
+  --shadow: 0 18px 40px rgba(0, 0, 0, .35);
+  --radius: 16px;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+.pf-light {
+  /* Светлая тема приложения: фиолетовый акцент, как у остальных страниц. */
+  --bg: #FBF8FF;
+  --bg-glow-1: rgba(106, 76, 246, .12);
+  --bg-glow-2: rgba(120, 160, 255, .10);
+  --panel: #FFFFFF;
+  --panel-2: #FFFFFF;
+  --panel-3: #F4F0FC;
+  --line: #E6E1F0;
+  --line-strong: #D6CFE6;
+  --text: #1B1A21;
+  --text-dim: #45424F;
+  --muted: #6B6879;
+  --accent: #6A4CF6;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(106, 76, 246, .12);
+  --warn: #A05A00;
+  --warn-soft: rgba(160, 90, 0, .10);
+  --ok: #1F7A3D;
+  --shadow: 0 10px 30px rgba(16, 24, 40, .10);
+}
+
+/* ---------- база ---------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(90% 55% at 12% -10%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(70% 45% at 92% 0%, var(--bg-glow-2), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font: 15px/1.5 "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 22px 24px 64px; }
+
+/* ---------- шапка карточки ---------- */
+.head { display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: flex-start; margin-bottom: 18px; }
+.head-main { flex: 1 1 420px; min-width: 280px; }
+.crumbs { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.crumbs span + span::before { content: "›"; margin: 0 8px; color: var(--line-strong); }
+h1 { margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -.02em; font-weight: 650; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 600; color: var(--text-dim);
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: 999px; padding: 4px 10px;
+}
+.chip b { color: var(--text); font-weight: 650; }
+.chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.chip.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 35%, var(--line)); background: var(--warn-soft); }
+.chip.warn .dot { background: var(--warn); box-shadow: 0 0 0 3px var(--warn-soft); }
+.head-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.select {
+  appearance: none; font: 600 13.5px "Segoe UI", Arial, sans-serif; color: var(--text);
+  background: var(--panel-2) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23888' stroke-width='1.6' stroke-linecap='round'/></svg>") no-repeat right 10px center;
+  border: 1px solid var(--line); border-radius: 10px; padding: 8px 30px 8px 12px; cursor: pointer;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font: 650 13.5px "Segoe UI", Arial, sans-serif;
+  border-radius: 10px; padding: 8px 13px; cursor: pointer;
+  background: var(--panel-2); border: 1px solid var(--line); color: var(--text);
+}
+.btn:hover { border-color: var(--line-strong); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+.btn.primary:hover { filter: brightness(1.05); }
+
+/* ---------- плитки KPI ---------- */
+.kpi { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+.tile {
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 15px 16px 13px; box-shadow: var(--shadow);
+}
+.tile .lbl { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.tile .big { font-size: 28px; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+.tile .big small { font-size: 13px; font-weight: 600; color: var(--text-dim); margin-left: 4px; }
+.tile .sub { font-size: 12.5px; color: var(--muted); margin-top: 7px; }
+
+/* ---------- сетка блоков ---------- */
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px 18px 14px; box-shadow: var(--shadow);
+}
+.card.span-2 { grid-column: 1 / -1; }
+.card h2 {
+  margin: 0 0 12px; font-size: 13px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--muted); font-weight: 700;
+}
+.rows { display: grid; grid-template-columns: minmax(120px, 40%) 1fr; gap: 6px 14px; }
+.rows dt { color: var(--muted); font-size: 13.5px; }
+.rows dd { margin: 0; font-size: 13.5px; overflow-wrap: anywhere; }
+.rows dd.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- таблица замеров ---------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr:hover { background: var(--panel-3); }
+td.name { white-space: normal; }
+td .code { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.bar { position: relative; height: 6px; border-radius: 4px; background: var(--panel-3); min-width: 90px; overflow: hidden; }
+.bar i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, transparent)); }
+
+/* ---------- замечания ---------- */
+.notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.notes li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13.5px; color: var(--text-dim);
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px;
+}
+.notes .ico { flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+.notes .ico.w { background: var(--warn-soft); color: var(--warn); border: 1px solid color-mix(in srgb, var(--warn) 40%, var(--line)); }
+.notes .ico.k { background: var(--accent-soft); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line)); }
+
+/* ---------- подвал ---------- */
+.foot {
+  display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center;
+  margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--muted);
+}
+.foot .mono { font-family: var(--mono); }
+.empty {
+  border: 1px dashed var(--line-strong); border-radius: var(--radius);
+  padding: 26px; text-align: center; color: var(--muted); font-size: 14px;
+}
+
+/* ---------- адаптив ---------- */
+@media (max-width: 1000px) {
+  .kpi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid { grid-template-columns: 1fr; }
+  .wrap { padding: 18px 16px 48px; }
+}
+@media (max-width: 560px) {
+  h1 { font-size: 21px; }
+  .kpi { grid-template-columns: 1fr; }
+  .rows { grid-template-columns: 1fr; }
+  .rows dt { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+}
+@media print {
+  body { background: #fff; color: #000; }
+  .head-actions, .bar, .foot { display: none; }
+  .card, .tile { box-shadow: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ШАПКА -->
+  <header class="head">
+    <div class="head-main">
+      <div class="crumbs"><span>ПерфТест</span><span>стенды</span><span>карточка</span></div>
+      <h1>вендор 8.3.27 — эталон</h1>
+      <div class="chips">
+        <span class="chip"><i class="dot"></i>паспорт актуален</span>
+        <span class="chip">платформа <b>8.3.27.2342</b></span>
+        <span class="chip">ИБ <b>файловая (1CD)</b></span>
+        <span class="chip">клиент <b>толстый</b></span>
+        <span class="chip warn"><i class="dot"></i>собрано не всё: 1 блок</span>
+      </div>
+    </div>
+    <div class="head-actions">
+      <select class="select" aria-label="Стенд">
+        <option>вендор 8.3.27 — эталон</option>
+        <option>тест 8.3.27 + библиотеки</option>
+        <option>8.5.4.1306</option>
+      </select>
+      <a class="btn" href="#">Сравнить</a>
+      <a class="btn primary" href="#">На дашборд</a>
+    </div>
+  </header>
+
+  <!-- KPI -->
+  <section class="kpi">
+    <div class="tile">
+      <div class="lbl">Ядра / потоки</div>
+      <div class="big">22<small>/ 22</small></div>
+      <div class="sub">Xeon E5-2696 v4, HT выключен</div>
+    </div>
+    <div class="tile">
+      <div class="lbl">Память сервера</div>
+      <div class="big">63,8<small>ГБ</small></div>
+      <div class="sub">4 × 16 ГБ DDR4-2400, 4 слота</div>
+    </div>
+    <div class="tile">
+      <div class="lbl">Данные ИБ</div>
+      <div class="big">245<small>КБ</small></div>
+      <div class="sub">7 объектов PerfTest, схема 3</div>
+    </div>
+    <div class="tile">
+      <div class="lbl">Замеров в стенде</div>
+      <div class="big">22</div>
+      <div class="sub">11 сценариев × 2 повтора</div>
+    </div>
+  </section>
+
+  <!-- СРЕДА + ПЛАТФОРМА -->
+  <section class="grid">
+    <article class="card">
+      <h2>Среда сервера</h2>
+      <dl class="rows">
+        <dt>ОС</dt><dd>Windows 11 Pro, 10.0.26300, build 26300</dd>
+        <dt>Процессор</dt><dd>Intel Xeon E5-2696 v4 @ 2.20 ГГц</dd>
+        <dt>Частота</dt><dd class="num">2 201 МГц (паспортная 2 200)</dd>
+        <dt>Память</dt><dd class="num">65 374 МБ, свободно 49 243 МБ</dd>
+        <dt>Модули ОЗУ</dt><dd>4 слота, DDR4-2400, Samsung</dd>
+        <dt>BIOS / UEFI</dt><dd>American Megatrends 5.12</dd>
+        <dt>Тип машины</dt><dd>физическая машина</dd>
+        <dt>Диски</dt><dd>NE-1TB 2280, 954 ГБ, NVMe</dd>
+        <dt>Свободно на C:</dt><dd class="num">104 ГБ</dd>
+        <dt>Сеть</dt><dd>Intel I219-V, 1 000 Мбит/с</dd>
+        <dt>Аптайм</dt><dd>3 дн 7 ч 12 мин</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <h2>Платформа и информационная база</h2>
+      <dl class="rows">
+        <dt>Платформа сервера</dt><dd>8.3.27.2342, Windows x86</dd>
+        <dt>Платформа клиента</dt><dd>8.3.27.2342, Windows x86</dd>
+        <dt>Режим клиента</dt><dd>толстый клиент (управляемое приложение)</dd>
+        <dt>Режим ИБ</dt><dd>файловая</dd>
+        <dt>СУБД</dt><dd>файловая (1CD)</dd>
+        <dt>Имя ИБ</dt><dd>d:\InfoBasePerf</dd>
+        <dt>Версия конфигурации</dt><dd>1.22</dd>
+        <dt>Часовой пояс сеанса</dt><dd>RTZ 2 (зима), UTC+3</dd>
+        <dt>Часовой пояс ИБ</dt><dd>RTZ 2 (зима), UTC+3</dd>
+        <dt>Каталог программы</dt><dd>C:\Program Files (x86)\1cv8\8.3.27.2342\bin</dd>
+        <dt>Временные файлы</dt><dd>C:\Users\Павел\AppData\Local\Temp\1C</dd>
+      </dl>
+    </article>
+  </section>
+
+  <!-- КЛИЕНТ -->
+  <section class="grid">
+    <article class="card span-2">
+      <h2>Рабочее место (клиент)</h2>
+      <dl class="rows">
+        <dt>Компьютер</dt><dd>KOMP (HUANANZHI)</dd>
+        <dt>ОС клиента</dt><dd>Windows 11 Pro, build 26300</dd>
+        <dt>Процессор</dt><dd>Intel Xeon E5-2696 v4, 22 ядер / 22 потока</dd>
+        <dt>Память</dt><dd class="num">65 374 МБ, свободно 49 243 МБ</dd>
+        <dt>Идентификатор клиента</dt><dd class="mono">63d4233e-89aa-41b5-a626-9930d3ad1247</dd>
+        <dt>Аптайм</dt><dd>3 дн 7 ч 12 мин</dd>
+      </dl>
+    </article>
+  </section>
+
+  <!-- ЗАМЕРЫ -->
+  <section class="card span-2" style="margin-bottom:16px">
+    <h2>Замеры стенда (медианы)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Сценарий</th><th class="n">Медиана, мс</th><th class="n">мс / ед.</th>
+            <th class="n">Мин</th><th class="n">Макс</th><th class="n">Порция</th><th>Доля</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="name">Память: коллекции<div class="code">Память_Коллекции</div></td><td class="n">84</td><td class="n">4,20</td><td class="n">81</td><td class="n">88</td><td class="n">20 000</td><td><div class="bar"><i style="width:100%"></i></div></td></tr>
+          <tr><td class="name">Файлы: ввод-вывод<div class="code">Файлы_IO</div></td><td class="n">61</td><td class="n">0,61</td><td class="n">58</td><td class="n">64</td><td class="n">100 000</td><td><div class="bar"><i style="width:73%"></i></div></td></tr>
+          <tr><td class="name">ЦПУ: арифметика<div class="code">CPU_Арифметика</div></td><td class="n">70</td><td class="n">1,40</td><td class="n">68</td><td class="n">73</td><td class="n">50 000</td><td><div class="bar"><i style="width:83%"></i></div></td></tr>
+          <tr><td class="name">ЦПУ: строки<div class="code">CPU_Строки</div></td><td class="n">58</td><td class="n">7,25</td><td class="n">55</td><td class="n">61</td><td class="n">8 000</td><td><div class="bar"><i style="width:69%"></i></div></td></tr>
+          <tr><td class="name">Запись ИБ: справочник, по одному<div class="code">Запись_СправочникБезТранзакции</div></td><td class="n">41</td><td class="n">2,05</td><td class="n">39</td><td class="n">44</td><td class="n">20</td><td><div class="bar"><i style="width:49%"></i></div></td></tr>
+          <tr><td class="name">Запись ИБ: справочник в транзакции<div class="code">Запись_СправочникВТранзакции</div></td><td class="n">12</td><td class="n">0,30</td><td class="n">11</td><td class="n">13</td><td class="n">40</td><td><div class="bar"><i style="width:14%"></i></div></td></tr>
+          <tr><td class="name">Документ: проведение<div class="code">Документ_Проведение</div></td><td class="n">37</td><td class="n">1,85</td><td class="n">35</td><td class="n">40</td><td class="n">20</td><td><div class="bar"><i style="width:44%"></i></div></td></tr>
+          <tr><td class="name">Запросы: чтение<div class="code">Запросы_Чтение</div></td><td class="n">29</td><td class="n">0,29</td><td class="n">28</td><td class="n">31</td><td class="n">100</td><td><div class="bar"><i style="width:35%"></i></div></td></tr>
+          <tr><td class="name">Сериализация: JSON<div class="code">Сериализация_JSON</div></td><td class="n">44</td><td class="n">0,44</td><td class="n">42</td><td class="n">47</td><td class="n">100</td><td><div class="bar"><i style="width:52%"></i></div></td></tr>
+          <tr><td class="name">Сериализация: ЗначениеВСтроку<div class="code">Сериализация_ЗначениеВСтроку</div></td><td class="n">38</td><td class="n">0,38</td><td class="n">36</td><td class="n">40</td><td class="n">100</td><td><div class="bar"><i style="width:45%"></i></div></td></tr>
+          <tr><td class="name">ЦПУ: коллекции<div class="code">CPU_Коллекции</div></td><td class="n">82</td><td class="n">4,10</td><td class="n">79</td><td class="n">86</td><td class="n">20 000</td><td><div class="bar"><i style="width:98%"></i></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ЗАМЕЧАНИЯ -->
+  <section class="grid">
+    <article class="card">
+      <h2>Что не собрано</h2>
+      <ul class="notes">
+        <li><span class="ico w">!</span><span>WMI сервера: запросы выполнены, часть счётчиков недоступна без прав администратора</span></li>
+        <li><span class="ico k">i</span><span>Ветка Linux не выполнялась: стенд на Windows, <span class="mono">/proc</span> и <span class="mono">/sys</span> отсутствуют</span></li>
+        <li><span class="ico k">i</span><span>Тип СУБД не определяется платформой в клиент-серверном режиме; здесь — файловая база</span></li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Диагностика сбора</h2>
+      <dl class="rows">
+        <dt>Схема паспорта</dt><dd class="num">3</dd>
+        <dt>Время сбора</dt><dd class="num">1 146 мс</dd>
+        <dt>Блоков не собрано</dt><dd class="num">1</dd>
+        <dt>Дата паспорта</dt><dd>06.11.2026, 10:14</dd>
+        <dt>Платформа сбора</dt><dd>1.22, 8.3.27.2342</dd>
+      </dl>
+    </article>
+  </section>
+
+  <footer class="foot">
+    <span>Паспорт стенда · <span class="mono">schema=3</span></span>
+    <span>Отпечаток <span class="mono">schema=2;computer=komp;os=windows 11…</span></span>
+    <span>Сбор не влияет на замер: выполняется до старта и в фоне</span>
+  </footer>
+</div>
+</body>
+</html>
