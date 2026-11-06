@@ -52,14 +52,12 @@
 
 	// Верхняя панель: бренд, крошки, поля, палитра, пуск и стоп.
 	Части.Добавить("<header class='bar'>");
+	// Первая строка: бренд, фильтр стенда, число повторов и пуск.
+	Части.Добавить("<div class='bar-row'>");
 	Части.Добавить("<div class='brand'><span class='pulse'></span>ПерфТест"
 		+ "<span class='ver'>" + Экранировать(КонфигурацияСтрокой) + "</span></div>");
 	Части.Добавить("<div class='crumbles'><span>обзор</span><span>сценарии</span>"
 		+ "<span>журнал</span></div>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфДашборд'>Дашборд</button>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфСравнениеСтендов'>Сравнение</button>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфИсторияЗамеров'>История</button>");
 	Части.Добавить("<span class='grow'></span>");
 	Части.Добавить("<label class='field'><span>стенд</span>"
 		+ "<input class='stand-input' id='stand' value='" + Экранировать(СтендСтрокой) + "'"
@@ -67,6 +65,18 @@
 	Части.Добавить("<label class='field'><span>×</span>"
 		+ "<input class='rep-input' type='number' min='1' max='9' value='"
 		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>");
+	Части.Добавить("<button class='btn primary' id='runAll' data-pf='send:all'>"
+		+ "Запустить все</button>");
+	Части.Добавить("<button class='btn danger' id='stop' disabled "
+		+ "data-pf='send:stop'>Стоп</button>");
+	Части.Добавить("</div>");
+	// Вторая строка: переходы по отчётам, палитра и переключатель темы.
+	Части.Добавить("<div class='bar-row'>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфДашборд'>Дашборд</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфСравнениеСтендов'>Сравнение</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфИсторияЗамеров'>История</button>");
+	Части.Добавить("<span class='grow'></span>");
 	Части.Добавить("<button class='btn kbd' data-pf='pal'>"
 		+ "K<kbd>Ctrl+K</kbd></button>");
 	// Подпись сразу по текущей теме: без промежуточного «Тема» до выполнения скрипта.
@@ -76,10 +86,7 @@
 	ПодписьТемы = ?(СнимокТемы.Тема = "light", "Тёмная тема", "Светлая тема");
 	Части.Добавить("<button class='btn kbd' id='pfThemeBtn' data-pf='theme'>"
 		+ ПодписьТемы + "</button>");
-	Части.Добавить("<button class='btn primary' id='runAll' data-pf='send:all'>"
-		+ "Запустить все</button>");
-	Части.Добавить("<button class='btn danger' id='stop' disabled "
-		+ "data-pf='send:stop'>Стоп</button>");
+	Части.Добавить("</div>");
 	Части.Добавить("</header>");
 
 	// Bento: четыре KPI
