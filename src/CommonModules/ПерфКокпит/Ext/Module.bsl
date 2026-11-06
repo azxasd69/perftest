@@ -212,10 +212,10 @@
 		+ "<div class='big'><span id='kMedian'>&mdash;</span><small> мс</small></div>"
 		+ "<div class='sub' id='kMedianHint'>по завершенным</div></section>");
 	Части.Добавить("<section class='tile span-3'><div class='lbl'>Самый медленный</div>"
-		+ "<div class='big' id='kSlow' style='font-size:20px'>&mdash;</div>"
+		+ "<div class='big' id='kSlow' style='font-size:26px'>&mdash;</div>"
 		+ "<div class='sub' id='kSlowHint'>наибольшая медиана</div></section>");
 	Части.Добавить("<section class='tile span-2'><div class='lbl'>Последний</div>"
-		+ "<div class='big' id='kLast' style='font-size:19px'>&mdash;</div>"
+		+ "<div class='big' id='kLast' style='font-size:24px'>&mdash;</div>"
 		+ "<div class='sub'>время замера</div></section>");
 
 	// Карточки: первые две шире, как в шаблоне

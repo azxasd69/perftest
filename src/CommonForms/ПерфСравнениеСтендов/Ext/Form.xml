@@ -12,6 +12,7 @@
 	</Events>
 	<ChildItems>
 		<UsualGroup name="ГруппаПараметры" id="533">
+				<Visible>false</Visible>
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
