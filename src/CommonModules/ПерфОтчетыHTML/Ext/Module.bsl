@@ -1,4 +1,4 @@
-﻿// ПерфОтчетыHTML - сборка HTML-отчётов из регистров ПерфРезультаты, ПерфСтенды, ПерфИстория.
+// ПерфОтчетыHTML - сборка HTML-отчётов из регистров ПерфРезультаты, ПерфСтенды, ПерфИстория.
 //
 // Отчёт не хранится: каждый вызов читает регистры и строит самодостаточную страницу
 // (стили и скрипты встроены, внешних ресурсов нет - страница открывается из файла).
@@ -994,9 +994,12 @@
 // Структура результата отчёта: HTML + фактически использованные параметры.
 Функция РезультатОтчёта(HTML, БазовыйСтенд = "", СтендСравнения = "", Сценарий = "") Экспорт
 	Сеанс = ОписаниеСеанса();
+	// Поле HTML документа показывает только полный документ: текст, начинающийся
+	// не с <html, платформа трактует как адрес и выводит пустую страницу.
+	Документ = "<html><body>" + HTML + "</body></html>";
 	Возврат Новый Структура("HTML, БазовыйСтенд, СтендСравнения, Сценарий,"
 		+ "ТекущийСтенд, ЕстьТекущийСтенд, Платформа, РежимИБ, Компьютер",
-		HTML, СокрЛП(БазовыйСтенд), СокрЛП(СтендСравнения), СокрЛП(Сценарий),
+		Документ, СокрЛП(БазовыйСтенд), СокрЛП(СтендСравнения), СокрЛП(Сценарий),
 		Сеанс.Стенд, НЕ ПустаяСтрока(Сеанс.Стенд), Сеанс.Платформа, Сеанс.РежимИБ,
 		Сеанс.Компьютер);
 КонецФункции
@@ -1039,30 +1042,30 @@
 // CSS отчёта: встроен в страницу, внешних файлов нет.
 Функция Стили()
 	Возврат "<style>"
-		+ "body{margin:0;font:13px/1.45 'Segoe UI',Arial,sans-serif;background:#f4f6f9;color:#1f2937}"
-		+ ".top{background:#0f172a;color:#e5edf7;padding:14px 18px}"
-		+ ".top h1{margin:0 0 10px;font-size:18px;font-weight:600}"
-		+ ".chips{display:flex;flex-wrap:wrap;gap:8px}"
-		+ ".chip{background:#1e293b;border:1px solid #334155;border-radius:999px;padding:4px 10px;font-size:12px}"
-		+ ".chip b{color:#fff;font-weight:600;margin-left:6px}"
-		+ ".wrap{padding:14px 18px 24px}"
-		+ "table{border-collapse:collapse;width:100%;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.08)}"
-		+ "th,td{padding:6px 8px;border-bottom:1px solid #e5e7eb;text-align:left;font-size:12px;white-space:nowrap}"
-		+ "th{background:#eef2f7;font-weight:600;color:#334155}"
-		+ "tr:hover td{background:#f8fafc}"
-		+ "td.num{text-align:right}"
-		+ ".good{color:#047857;font-weight:600}"
-		+ ".bad{color:#b91c1c;font-weight:600}"
-		+ ".warn{color:#b45309}"
-		+ ".muted{color:#64748b}"
-		+ ".badge{display:inline-block;padding:1px 6px;border-radius:4px;font-size:11px;background:#e2e8f0}"
-		+ ".cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}"
-		+ ".card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px}"
-		+ ".big{font-size:22px;font-weight:700;margin:4px 0}"
-		+ ".bar{height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;margin:2px 0 6px}"
+		+ "body{margin:0;font:13px/1.5 'Segoe UI',Arial,sans-serif;background:#0E0F13;color:#ECEEF3}"
+		+ ".top{background:#17191F;border-bottom:1px solid #2F333A;padding:16px 18px 14px}"
+		+ ".top h1{margin:0 0 12px;font-size:18px;font-weight:600;color:#ECEEF3}"
+		+ ".chips{display:flex;flex-wrap:wrap}"
+		+ ".chip{background:#1F2228;border:1px solid #2F333A;border-radius:999px;padding:4px 11px;font-size:12px;color:#A0A5AE;margin:0 8px 6px 0}"
+		+ ".chip b{color:#ECEEF3;font-weight:600;margin-left:6px}"
+		+ ".wrap{padding:16px 18px 26px}"
+		+ "table{border-collapse:collapse;width:100%;background:#17191F;border:1px solid #2F333A}"
+		+ "th,td{padding:7px 9px;border-bottom:1px solid #26292F;text-align:left;font-size:12px;white-space:nowrap}"
+		+ "th{background:#1F2228;color:#A0A5AE;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:11px}"
+		+ "tr:hover td{background:#282B33}"
+		+ "td.num{text-align:right;font-family:Consolas,'Courier New',monospace;color:#ECEEF3}"
+		+ ".good{color:#76E699;font-weight:600}"
+		+ ".bad{color:#FF7E70;font-weight:600}"
+		+ ".warn{color:#F5C25F}"
+		+ ".muted{color:#A0A5AE}"
+		+ ".badge{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;background:#2B332A;color:#C4F252}"
+		+ ".cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));grid-column-gap:12px}"
+		+ ".card{background:#17191F;border:1px solid #2F333A;border-radius:14px;padding:12px 14px;margin-bottom:12px}"
+		+ ".big{font-size:26px;font-weight:700;margin:6px 0;color:#C4F252;font-family:Consolas,'Courier New',monospace}"
+		+ ".bar{height:6px;background:#2B2E34;border-radius:3px;overflow:hidden;margin:3px 0 7px}"
 		+ ".bar i{display:block;height:100%}"
-		+ "h2{font-size:14px;margin:16px 0 8px;color:#0f172a}"
-		+ "svg{background:#fff;border:1px solid #e5e7eb;border-radius:8px}"
+		+ "h2{font-size:14px;margin:18px 0 9px;color:#ECEEF3}"
+		+ "svg{background:#1F2228;border:1px solid #2F333A;border-radius:10px}"
 		+ "</style>";
 КонецФункции
 
@@ -1180,7 +1183,17 @@
 	Если Значение = Неопределено Тогда
 		Возврат "-";
 	КонецЕсли;
-	Возврат Формат(Значение, "ЧДЦ=" + Строка(Знаков) + "; ЧГ=0");
+	Результат = Формат(Значение, "ЧДЦ=" + Строка(Знаков) + "; ЧГ=0");
+	Если ПустаяСтрока(Результат) Тогда
+		// Для нуля формат с ЧГ=0 отдаёт пустую строку - собираем нули вручную
+		// (СтрПовторить в 8.3.27.2342 отсутствует).
+		Нули = "";
+		Для НомерЗнака = 1 По Знаков Цикл
+			Нули = Нули + "0";
+		КонецЦикла;
+		Результат = "0" + ?(Знаков > 0, "," + Нули, "");
+	КонецЕсли;
+	Возврат Результат;
 КонецФункции
 
 // Дата в формате ДЛФ=DT; пустая дата (0001-01-01) - «-».
