@@ -64,8 +64,6 @@
 		+ ".tile{background:#17191F;border:1px solid #26292F;border-radius:16px;"
 		+ "padding:14px 15px;margin-bottom:12px;position:relative;overflow:hidden;"
 		+ "min-width:0;box-sizing:border-box}"
-		+ ".span-2{grid-column:span 2}.span-3{grid-column:span 3}.span-4{grid-column:span 4}"
-		+ ".span-6{grid-column:span 6}.span-12{grid-column:span 12}"
 		+ ".lbl{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#767A84;"
 		+ "font-weight:650}"
 		+ ".big{font-size:32px;font-weight:680;letter-spacing:-.03em;line-height:1.1;"

@@ -245,6 +245,12 @@
 		+ ".chip{background:#F3EEFC;border-color:#E6D9FF;"
 		+ "color:#5C5770}"
 		+ ".chip b{color:#1B1A21}"
+		// Сводка отчёта: те же чипы, но собранные блоком .summary.
+		+ ".summary span{background:#F3EEFC;border-color:#E6D9FF;color:#5C5770}"
+		+ ".summary b{color:#1B1A21}"
+		// Значок пустого состояния и подписи в полосе прогресса.
+		+ ".empty-ico{color:#6A4CF6}"
+		+ ".empty h2{color:#1B1A21}"
 		+ "table{background:#FFFFFF;border-color:#E6E1F0}"
 		+ "th{background:#F6F2FF;color:#6B6879}"
 		+ "th,td{border-color:#EFEAF8;color:#1B1A21}"
