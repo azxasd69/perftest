@@ -246,7 +246,6 @@
 		<ChildObjects>
 			<Language>Русский</Language>
 			<CommonModule>ПерфПаспорт</CommonModule>
-			<CommonModule>ПерфПаспортКлиент</CommonModule>
 			<CommonModule>ПерфСценарии</CommonModule>
 			<CommonModule>ПерфОтчетыHTML</CommonModule>
 			<CommonModule>ПерфКокпит</CommonModule>
