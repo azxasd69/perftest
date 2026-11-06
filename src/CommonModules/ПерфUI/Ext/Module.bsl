@@ -435,5 +435,10 @@
 		+ "70%{box-shadow:0 0 0 8px rgba(196,242,82,0)}100%{box-shadow:0 0 0 0 rgba(196,242,82,0)}}"
 		+ ".state-run .idx{-webkit-animation:pfGlow 1.8s infinite;animation:pfGlow 1.8s infinite}"
 		+ ".stat b{-webkit-transition:color .2s;transition:color .2s}"
+		+ ".card{min-height:196px}"
+		+ ".status{display:block !important;visibility:hidden;min-height:18px}"
+		+ ".state-run .status,.state-ok .status,.state-err .status,.state-cancel .status{visibility:visible !important}"
+		+ ".result{display:block !important;visibility:hidden;min-height:28px;box-sizing:border-box}"
+		+ ".result.ok,.result.err,.result.cancel{visibility:visible !important}"
 		+ "</style>";
 КонецФункции
