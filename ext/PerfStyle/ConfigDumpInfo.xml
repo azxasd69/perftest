@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ConfigDumpInfo xmlns="http://v8.1c.ru/8.3/xcf/dumpinfo" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" format="Hierarchical" version="2.20">
+	<ConfigVersions>
+		<Metadata name="Configuration.PerfStyle" id="f53d0487-afb4-4059-9cc1-9b0778e084cd" configVersion="9f766b3f3d0800599cc7744b8bca0327da9323a0"/>
+		<Metadata name="Style.PerfCockpit" id="61c2eb61-ef5f-4a39-90fa-d0945f6299a5" configVersion="60e42bf86989b13f0c59c34317103fb56fae39bd"/>
+		<Metadata name="Style.PerfCockpit.Style" id="61c2eb61-ef5f-4a39-90fa-d0945f6299a5.0" configVersion="81a18944057701d36a48f2a96fe7de7ad2cae442"/>
+	</ConfigVersions>
+</ConfigDumpInfo>
