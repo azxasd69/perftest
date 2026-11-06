@@ -144,3 +144,86 @@
 	Результат = СтрЗаменить(Результат, ">", "&gt;");
 	Возврат СтрЗаменить(Результат, """", "&quot;");
 КонецФункции
+
+// ---------------------------------------------------------------------------
+// Блок: темы. Тёмная - базовая (Стили), светлая - переопределение поверх неё.
+// Переключение: PFTheme.toggle(), состояние в localStorage (pf-theme).
+// ---------------------------------------------------------------------------
+
+// Светлая тема по референсу index-v5: поверхности #FBF8FF/#FFFFFF, акцент #6A4CF6.
+Функция СтилиСветлая() Экспорт
+	Возврат "<style id='pfLight' media='not all'>"
+		+ "html,body{background:#FBF8FF !important;color:#1B1A21 !important;background-image:none !important}"
+		+ ".bar{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
+		+ ".brand{color:#1B1A21}"
+		+ ".brand .pulse{background:#6A4CF6;box-shadow:0 0 0 4px #EDE8FF}"
+		+ ".brand .ver{color:#6B6879;border-color:#E6E1F0}"
+		+ ".crumbles,.crumbles span{color:#9A97A8}"
+		+ ".field,.field span{color:#6B6879}"
+		+ ".field input{background:#FFFFFF;color:#1B1A21;border-color:#E6E1F0}"
+		+ ".field input:focus{border-color:#6A4CF6}"
+		+ ".btn{background:#FFFFFF;color:#45424F;border-color:#D6CFE6}"
+		+ ".btn:hover:not(:disabled){background:#F6F2FF;border-color:#6A4CF6}"
+		+ ".btn.primary{background:#6A4CF6;color:#FFFFFF}"
+		+ ".btn.primary:hover:not(:disabled){background:#5B3DF0}"
+		+ ".btn.danger{color:#B3261E;border-color:#F0C9C5}"
+		+ ".tile{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
+		+ ".lbl{color:#9A97A8}"
+		+ ".big{color:#1B1A21}"
+		+ ".big small,.sub{color:#6B6879}"
+		+ ".track{background:#F3EEFC}"
+		+ ".track i{background:#6A4CF6}"
+		+ ".idx{color:#43289F;background:#EDE8FF}"
+		+ ".code{color:#9A97A8}"
+		+ ".badge{background:#F3EEFC;color:#6B6879}"
+		+ ".badge.ok{background:#E2F5EC;color:#0F7A4F}.badge.err{background:#FBE6E5;color:#B3261E}"
+		+ ".card h3{color:#1B1A21}"
+		+ ".p{color:#45424F}.p b{color:#1B1A21}"
+		+ ".unit{color:#6B6879;border-color:#E6E1F0}"
+		+ ".result.ok{background:#E2F5EC;color:#0F7A4F}.result.err{background:#FBE6E5;color:#B3261E}"
+		+ ".status{color:#6B6879}"
+		+ ".cbar i{background:#6A4CF6}"
+		+ "table th,table td{border-color:#EDE9F6}"
+		+ "thead th{color:#9A97A8}"
+		+ "tbody tr:hover{background:#F6F2FF}"
+		+ ".empty,.foot{color:#9A97A8}"
+		+ ".log-head h2{color:#1B1A21}.log-head span{color:#9A97A8}"
+		+ ".stat{background:#FFFFFF;border-color:#E6E1F0;color:#45424F}"
+		+ ".stat b{color:#1B1A21}"
+		+ ".scrim{background:rgba(27,26,33,.45)}"
+		+ ".pal{background:#FFFFFF;border-color:#E6E1F0}"
+		+ ".pal input{color:#1B1A21;border-color:#E6E1F0}"
+		+ ".pal li{color:#6B6879}.pal li.sel{background:#EDE8FF;color:#1B1A21}"
+		+ ".pal .tip{color:#9A97A8;border-color:#E6E1F0}"
+		+ ".theme-btn{position:fixed;right:18px;bottom:42px;z-index:60;background:#FFFFFF;"
+		+ "color:#45424F;border:1px solid #D6CFE6;border-radius:999px;padding:7px 14px;"
+		+ "font:600 13px 'Segoe UI',Arial,sans-serif;cursor:pointer}"
+		+ "</style>"
+		+ "<style>.theme-btn{position:fixed;right:18px;bottom:42px;z-index:60;"
+		+ "background:#1F2228;color:#ECEEF3;border:1px solid #2F333A;border-radius:999px;"
+		+ "padding:7px 14px;font:600 13px 'Segoe UI',Arial,sans-serif;cursor:pointer}"
+		+ "</style>";
+КонецФункции
+
+// Скрипт темы: применяет сохранённое состояние и переключает по кнопке.
+Функция СкриптТемы() Экспорт
+	Возврат "<scr" + "ipt>"
+		+ "var PFTheme={key:'pf-theme',"
+		+ "apply:function(name){var s=document.getElementById('pfLight');"
+		+ "if(s){s.media=(name==='light')?'all':'not all';}"
+		+ "var b=document.getElementById('pfThemeBtn');"
+		+ "if(b){b.innerHTML=(name==='light')?'Тёмная тема':'Светлая тема';}},"
+		+ "toggle:function(){var cur='dark';"
+		+ "try{cur=localStorage.getItem(PFTheme.key)||'dark';}catch(e){cur='dark';}"
+		+ "var next=(cur==='light')?'dark':'light';"
+		+ "try{localStorage.setItem(PFTheme.key,next);}catch(e){}"
+		+ "PFTheme.apply(next);},"
+		+ "init:function(){var cur='dark';"
+		+ "try{cur=localStorage.getItem(PFTheme.key)||'dark';}catch(e){cur='dark';}"
+		+ "PFTheme.apply(cur);"
+		+ "if(!document.getElementById('pfThemeBtn')){"
+		+ "var b=document.createElement('button');b.id='pfThemeBtn';b.className='theme-btn';"
+		+ "b.onclick=PFTheme.toggle;document.body.appendChild(b);PFTheme.apply(cur);}}};"
+		+ "window.PFTheme=PFTheme;PFTheme.init();"
+		+ "</scr" + "ipt>";
+КонецФункции
