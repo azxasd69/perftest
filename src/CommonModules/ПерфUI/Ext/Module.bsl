@@ -393,3 +393,37 @@
 		+ "take:function(){if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;}};}"
 		+ "</scr" + "ipt>";
 КонецФункции
+
+// ---------------------------------------------------------------------------
+// Блок: динамика. Переходы и мягкие анимации из референса (index-v3):
+// hover карточек, нажатие кнопок, плавные полосы прогресса, пульс статуса.
+// Движок HTML-поля поддерживает transition и keyframes; при их отсутствии
+// вид деградирует до статичного, ничего не ломая.
+// ---------------------------------------------------------------------------
+
+Функция СтилиДинамика() Экспорт
+	Возврат "<style>"
+		+ ".tile{-webkit-transition:border-color .18s,background .18s,box-shadow .18s;"
+		+ "transition:border-color .18s,background .18s,box-shadow .18s}"
+		+ ".card:hover{border-color:#3A4150;background:#1B1E25}"
+		+ ".btn{-webkit-transition:background .15s,border-color .15s,box-shadow .15s,"
+		+ "transform .06s;transition:background .15s,border-color .15s,box-shadow .15s,transform .06s}"
+		+ ".btn:active:not(:disabled){transform:translateY(1px)}"
+		+ ".btn.primary:hover:not(:disabled){box-shadow:0 8px 20px -10px #C4F252}"
+		+ ".track i,.cbar i{-webkit-transition:width .4s ease;transition:width .4s ease}"
+		+ ".side a{-webkit-transition:background .15s,color .15s;transition:background .15s,color .15s}"
+		+ ".nav-btn{-webkit-transition:background .15s,color .15s;transition:background .15s,color .15s}"
+		+ "tbody tr{-webkit-transition:background .12s;transition:background .12s}"
+		+ ".result{-webkit-transition:background .2s,color .2s;transition:background .2s,color .2s}"
+		+ ".badge{-webkit-transition:background .2s,color .2s;transition:background .2s,color .2s}"
+		+ "@-webkit-keyframes pfPulse{0%,100%{opacity:1}50%{opacity:.45}}"
+		+ "@keyframes pfPulse{0%,100%{opacity:1}50%{opacity:.45}}"
+		+ ".brand .pulse{-webkit-animation:pfPulse 2.4s infinite;animation:pfPulse 2.4s infinite}"
+		+ "@-webkit-keyframes pfGlow{0%{box-shadow:0 0 0 0 rgba(196,242,82,.35)}"
+		+ "70%{box-shadow:0 0 0 8px rgba(196,242,82,0)}100%{box-shadow:0 0 0 0 rgba(196,242,82,0)}}"
+		+ "@keyframes pfGlow{0%{box-shadow:0 0 0 0 rgba(196,242,82,.35)}"
+		+ "70%{box-shadow:0 0 0 8px rgba(196,242,82,0)}100%{box-shadow:0 0 0 0 rgba(196,242,82,0)}}"
+		+ ".state-run .idx{-webkit-animation:pfGlow 1.8s infinite;animation:pfGlow 1.8s infinite}"
+		+ ".stat b{-webkit-transition:color .2s;transition:color .2s}"
+		+ "</style>";
+КонецФункции
