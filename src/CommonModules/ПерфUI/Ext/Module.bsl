@@ -317,7 +317,7 @@
 Функция СкриптМеню() Экспорт
 	Возврат "<scr" + "ipt>"
 		+ "var PFNav={go:function(name){"
-		+ "if(name==='НачальнаяСтраница'){return;}"
+		+ ""
 		+ "if(window.PF1C&&PF1C.send){PF1C.send('open:'+name);return;}"
 		+ "if(window.parent&&window.parent.PF1C){window.parent.PF1C.send('open:'+name);}}};"
 		+ "window.PFNav=PFNav;"
