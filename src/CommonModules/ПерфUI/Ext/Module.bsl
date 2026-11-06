@@ -932,7 +932,9 @@
 Функция СкриптМоста() Экспорт
 	Возврат "<scr" + "ipt>" + "if(!window.PF1C){window.PF1C={q:[],"
 		+ "send:function(c){this.q.push(c);},"
-		+ "take:function(){if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;}};}"
+		+ "take:function(){if(!this.q.length){return '';}var s=this.q.join('|');"
+		+ "this.q=[];return s;},"
+		+ "clear:function(){this.q.length=0;}};}"
 		+ "</scr" + "ipt>";
 КонецФункции
 
