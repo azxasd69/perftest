@@ -232,7 +232,26 @@
 		+ "background:#1F2228;color:#ECEEF3;border:1px solid #2F333A;border-radius:999px;"
 		+ "padding:7px 14px;font:600 13px 'Segoe UI',Arial,sans-serif;cursor:pointer}"
 
-				+ "</style>";
+				// Отчётные страницы: шапка, чипы, таблицы, карточки, графики.
+		+ ".top{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
+		+ ".top h1{color:#1B1A21 !important}"
+		+ "h2{color:#1B1A21 !important}"
+		+ ".chip{background:#F3EEFC !important;border-color:#E6D9FF !important;"
+		+ "color:#5C5770 !important}"
+		+ ".chip b{color:#1B1A21 !important}"
+		+ "table{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
+		+ "th{background:#F6F2FF !important;color:#6B6879 !important}"
+		+ "th,td{border-color:#EFEAF8 !important;color:#1B1A21 !important}"
+		+ "tr:hover td{background:#F7F3FF !important}"
+		+ "td.num{color:#1B1A21 !important}"
+		+ ".muted{color:#6B6879 !important}"
+		+ ".card{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
+		+ ".bar{background:#EFEAF8 !important}"
+		+ "svg{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
+		+ ".good{color:#0F7A4F !important}"
+		+ ".bad{color:#B3261E !important}"
+		+ ".warn{color:#8A5A00 !important}"
+		+ "</style>";
 КонецФункции
 
 // Скрипт темы: применяет сохранённое состояние и переключает по кнопке.
