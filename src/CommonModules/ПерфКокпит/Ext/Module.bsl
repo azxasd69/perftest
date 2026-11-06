@@ -177,6 +177,10 @@
 		+ "<span class='ver'>" + Экранировать(КонфигурацияСтрокой) + "</span></div>");
 	Части.Добавить("<div class='crumbles'><span>обзор</span><span>сценарии</span>"
 		+ "<span>журнал</span></div>");
+	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфДашборд"")'>Дашборд</button>");
+	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфТопКонфигураций"")'>Топ-100</button>");
+	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфСравнениеСтендов"")'>Сравнение</button>");
+	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфИсторияЗамеров"")'>История</button>");
 	Части.Добавить("<span class='grow'></span>");
 	Части.Добавить("<label class='field'><span>стенд</span>"
 		+ "<input class='stand-input' id='stand' value='" + Экранировать(СтендСтрокой) + "'"
