@@ -194,7 +194,10 @@
 	Результат = СтрЗаменить(Строка(Значение), "&", "&amp;");
 	Результат = СтрЗаменить(Результат, "<", "&lt;");
 	Результат = СтрЗаменить(Результат, ">", "&gt;");
-	Возврат СтрЗаменить(Результат, """", "&quot;");
+	Результат = СтрЗаменить(Результат, """", "&quot;");
+	// Атрибуты в разметке стоят в одинарных кавычках: без этой замены
+	// имя стенда с апострофом ломает атрибут (аудит 07.11.2026, п.7).
+	Возврат СтрЗаменить(Результат, "'", "&#39;");
 КонецФункции
 
 // ---------------------------------------------------------------------------
@@ -837,3 +840,34 @@
 // вид деградирует до статичного, ничего не ломая.
 // ---------------------------------------------------------------------------
 
+
+// Стили страниц отчётов: перенесены из ПерфОтчетыHTML, чтобы разметка и
+// оформление отчётов жили в одном модуле (аудит 07.11.2026, п.8).
+Функция СтилиОтчетов() Экспорт
+	Возврат "<style>"
+		+ "body{background:var(--pf-bg);color:var(--pf-fg);font-size:16px}.top{background:var(--pf-surface);border-bott"
+		+ "om:1px solid var(--pf-line);padding:16px 16px 12px}.top h1{margin:0 0 12px;font-size:32px;font-weight:600;co"
+		+ "lor:var(--pf-fg)}.chips{display:flex;flex-wrap:wrap}.chip{background:var(--pf-raised);border:1px solid var(-"
+		+ "-pf-line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--pf-fg-2);margin:0 8px 6px 0}.chip "
+		+ "b{color:var(--pf-fg);font-weight:600;margin-left:6px}.wrap{padding:16px 16px 24px;width:100%;max-width:100%;"
+		+ "box-sizing:border-box}table{border-collapse:collapse;width:100%;background:var(--pf-surface);border:1px soli"
+		+ "d var(--pf-line)}th,td{padding:8px 8px;border-bottom:1px solid var(--pf-line);text-align:left;font-size:12px"
+		+ ";white-space:normal;word-wrap:break-word}th{background:var(--pf-raised);color:var(--pf-fg-2);font-weight:600"
+		+ ";text-transform:uppercase;letter-spacing:.06em;font-size:12px}tr:hover td{background:var(--pf-raised)}td.num"
+		+ "{text-align:right;font-family:Consolas,'Courier New',monospace;color:var(--pf-fg)}.good{color:var(--pf-ok);f"
+		+ "ont-weight:600}.bad{color:var(--pf-bad);font-weight:600}.warn{color:var(--pf-warn)}.muted{color:var(--pf-fg-"
+		+ "2)}.badge{display:inline-block;padding:0 8px;border-radius:6px;font-size:12px;background:var(--pf-accent-bg)"
+		+ ";color:var(--pf-accent)}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));grid-c"
+		+ "olumn-gap:12px}.card{background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:12px;padding"
+		+ ":12px 14px;margin-bottom:12px}.big{font-size:26px;font-weight:700;margin:6px 0;color:var(--pf-accent);font-f"
+		+ "amily:Consolas,'Courier New',monospace}.bar{height:6px;background:var(--pf-raised);border-radius:4px;overflo"
+		+ "w:hidden;margin:4px 0 8px}.bar i{display:block;height:100%}h2{font-size:26px;margin:16px 0 8px;color:var(--p"
+		+ "f-fg)}svg{background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:8px}.spark svg{backgroun"
+		+ "d:transparent !important;border:0 !important;border-radius:0}.summary{display:-webkit-flex;display:flex;flex"
+		+ "-wrap:wrap;gap:8px 12px;margin:12px 0 12px}.summary span{background:var(--pf-raised);border:1px solid var(--"
+		+ "pf-line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--pf-fg-2)}.summary b{color:var(--pf-"
+		+ "fg);font-weight:600;margin-left:5px}.empty{max-width:520px;margin:48px auto;text-align:center;padding:24px}."
+		+ "empty-ico{color:var(--pf-accent);margin-bottom:12px}.empty h2{font-size:26px;margin:0 0 8px;color:var(--pf-f"
+		+ "g)}.empty p{margin:0 0 16px;font-size:13px;line-height:1.5}"
+		+ "</style>";
+КонецФункции

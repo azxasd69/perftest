@@ -580,7 +580,7 @@
 
 Функция СтилиКарточки() Экспорт
 	Возврат "<style>"
-		+ "<style>html,body{background:var(--pf-bg);color:var(--pf-fg)}.pfsc-wrap{max-width:1240px;width:100%;margi"
+		+ "html,body{background:var(--pf-bg);color:var(--pf-fg)}.pfsc-wrap{max-width:1240px;width:100%;margi"
 		+ "n:0 auto;padding:20px 24px 56px;box-sizing:border-box;color:var(--pf-fg)}.pfsc-head{display:flex;flex-wr"
 		+ "ap:wrap;gap:16px;align-items:flex-start;margin-bottom:16px}.pfsc-head-main{flex:1 1 420px;min-width:280p"
 		+ "x}.pfsc-crumbs{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pf-fg-3);margin-"
@@ -652,7 +652,7 @@
 		+ "ok);background:rgba(31,122,61,.08);border-color:var(--pf-ok-bg)}.pf-light .pfsc-empty{color:var(--pf-fg-"
 		+ "3);border-color:var(--pf-line-strong)}@media (max-width:900px){.pfsc-kpi{grid-template-columns:repeat(2,"
 		+ "minmax(0,1fr))}.pfsc-grid{grid-template-columns:1fr}.pfsc-wrap{padding:16px 14px 40px}.pfsc-head h1{font"
-		+ "-size:26px}.pfsc-rows{grid-template-columns:minmax(96px,40%) 1fr;gap:8px 12px}}</style></style>";
+		+ "-size:26px}.pfsc-rows{grid-template-columns:minmax(96px,40%) 1fr;gap:8px 12px}}</style>";
 КонецФункции
 
 #КонецОбласти
