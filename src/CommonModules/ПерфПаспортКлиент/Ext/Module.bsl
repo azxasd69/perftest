@@ -93,8 +93,11 @@
 			// BSLLS:UsingObjectNotAvailableUnix-off (COM есть только в толстом клиенте Windows)
 			Локатор = Новый COMОбъект("WbemScripting.SWbemLocator");
 			Сервис = Локатор.ConnectServer(".", "root\cimv2");
+			// BSLLS:AssignAliasFieldsInQuery-off (WQL к WMI, не запрос 1С)
 			ОС = WMIПервый(Сервис, "SELECT Caption, Version, BuildNumber, FreePhysicalMemory, LastBootUpTime FROM Win32_OperatingSystem");
+			// BSLLS:AssignAliasFieldsInQuery-off (WQL к WMI, не запрос 1С)
 			ЦПУ = WMIПервый(Сервис, "SELECT Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeed, LoadPercentage FROM Win32_Processor");
+			// BSLLS:AssignAliasFieldsInQuery-off (WQL к WMI, не запрос 1С)
 			ПК = WMIПервый(Сервис, "SELECT Name, Manufacturer, Model, TotalPhysicalMemory FROM Win32_ComputerSystem");
 			Если ОС <> Неопределено Тогда
 				Части.Добавить("ОС=" + СокрЛП(ОС.Caption) + " v" + СокрЛП(ОС.Version) + " build " + СокрЛП(ОС.BuildNumber));
