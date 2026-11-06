@@ -7,6 +7,9 @@
 	<Events>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+	</Events>
 	<ChildItems>
 		<UsualGroup name="ГруппаПараметры" id="724">
 			<Group>Horizontal</Group>

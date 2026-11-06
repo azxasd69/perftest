@@ -19,7 +19,7 @@
 		+ "background-image:radial-gradient(90% 60% at 15% -10%,rgba(58,72,110,.45),rgba(14,15,19,0)),"
 		+ "radial-gradient(70% 50% at 90% 0%,rgba(48,84,58,.28),rgba(14,15,19,0));"
 		+ "background-repeat:no-repeat}"
-		+ ".wrap{max-width:1500px;margin:0 auto;padding:14px 18px 70px}"
+		+ ".wrap{max-width:100%;margin:0 auto;padding:14px 18px 70px}"
 		+ ".bar{position:-webkit-sticky;top:0;z-index:40;background:#1A1D24;"
 		+ "border:1px solid #26292F;border-radius:16px;padding:9px 12px;margin-bottom:14px}"
 		+ ".bar,.brand,.crumbles,.field,.c-foot,.c-top,.log-head{display:-webkit-flex;"
@@ -344,5 +344,13 @@
 		+ "b.onclick=PFNav.toggle;side.appendChild(b);}"
 		+ "PFNav.apply();};"
 		+ "window.PFNav=PFNav;PFNav.init();"
+		+ "</scr" + "ipt>";
+КонецФункции
+
+// Минимальный мост для отчётов: очередь команд, читаемая таймером формы.
+Функция СкриптМоста() Экспорт
+	Возврат "<scr" + "ipt>" + "if(!window.PF1C){window.PF1C={q:[],"
+		+ "send:function(c){this.q.push(c);},"
+		+ "take:function(){if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;}};}"
 		+ "</scr" + "ipt>";
 КонецФункции
