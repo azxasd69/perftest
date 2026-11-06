@@ -1,4 +1,147 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ConfigDumpInfo xmlns="http://v8.1c.ru/8.3/xcf/dumpinfo" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" format="Hierarchical" version="2.20">
-	<ConfigVersions/>
+	<ConfigVersions>
+		<Metadata name="AccumulationRegister.ПерфОстаткиТоваров" id="89c9ed38-e494-569c-9b60-da8a6f03710f" configVersion="d013edb4e85b7d46ab473fb5a0ba7d3700000000">
+			<Metadata name="AccumulationRegister.ПерфОстаткиТоваров.Dimension.Склад" id="46caf165-212d-54a6-b1fe-1bd83c8b2ed2"/>
+			<Metadata name="AccumulationRegister.ПерфОстаткиТоваров.Resource.Количество" id="77c85e09-879b-56bc-9d92-9896b8d445cb"/>
+			<Metadata name="AccumulationRegister.ПерфОстаткиТоваров.Dimension.Номенклатура" id="797f40ae-13a9-55e2-a70a-ccdb562979e7"/>
+		</Metadata>
+		<Metadata name="Catalog.ПерфНоменклатура" id="51305484-cf08-552e-b755-c689c108269d" configVersion="f4f466e8b5236542ba524b24046c247b00000000">
+			<Metadata name="Catalog.ПерфНоменклатура.Attribute.Цена" id="d4c8e0f0-1376-5ecd-af74-311133078087"/>
+		</Metadata>
+		<Metadata name="Catalog.ПерфСклады" id="6475acb1-320c-5613-89cc-bf3d774f8582" configVersion="9ea748abecd90248b8106f0c2a36940700000000"/>
+		<Metadata name="CommonForm.НачальнаяСтраница" id="9542af22-7c23-5681-b8e1-aaa4e5843b09" configVersion="29e3b4fb94d30b48b613a4c7f9ce5e3100000000"/>
+		<Metadata name="CommonForm.НачальнаяСтраница.Form" id="9542af22-7c23-5681-b8e1-aaa4e5843b09.0" configVersion="28c2a81de6719e4d9386623f11911e1600000000"/>
+		<Metadata name="CommonForm.ПерфДашборд" id="66225aa2-b024-4b8a-a4b8-5935371a08aa" configVersion="3bd29bf48721d84eb40287847e3e6ee100000000"/>
+		<Metadata name="CommonForm.ПерфДашборд.Form" id="66225aa2-b024-4b8a-a4b8-5935371a08aa.0" configVersion="94f86a740a70ae4082891584a8f007ff00000000"/>
+		<Metadata name="CommonForm.ПерфИсторияЗамеров" id="cdd41929-1d00-41b3-8e1b-a6bffd81ef35" configVersion="c0092d246576ca4091105ff21614958500000000"/>
+		<Metadata name="CommonForm.ПерфИсторияЗамеров.Form" id="cdd41929-1d00-41b3-8e1b-a6bffd81ef35.0" configVersion="dfe8b3fe76f556438d0037f0f66f876200000000"/>
+		<Metadata name="CommonForm.ПерфСравнениеСтендов" id="630d3355-a945-49b9-a7b5-3894874e684a" configVersion="7a86f2a9a156a14c9ca8376f91bb4a7700000000"/>
+		<Metadata name="CommonForm.ПерфСравнениеСтендов.Form" id="630d3355-a945-49b9-a7b5-3894874e684a.0" configVersion="7f114b59b0d81b49a0bbabfd4b9ee17f00000000"/>
+		<Metadata name="CommonForm.ПерфТопКонфигураций" id="0d0a83b9-74ab-4600-a319-b536579b2752" configVersion="dba6dd221167fd4e85ccae1bc1fd7f2d00000000"/>
+		<Metadata name="CommonForm.ПерфТопКонфигураций.Form" id="0d0a83b9-74ab-4600-a319-b536579b2752.0" configVersion="e10fafaf9fca2c40abd91fab0bad712200000000"/>
+		<Metadata name="CommonModule.ПерфКокпит" id="38eabdd4-af9e-48f6-b00a-105d3b620771" configVersion="0da7d6492b9c344b9a747b402450c94f00000000"/>
+		<Metadata name="CommonModule.ПерфКокпит.Module" id="38eabdd4-af9e-48f6-b00a-105d3b620771.0" configVersion="e7028f937f000f4db7480eb636d13e6500000000"/>
+		<Metadata name="CommonModule.ПерфОтчетыHTML" id="8b65d5f6-d485-4753-9f8b-fdf282d9331b" configVersion="696027819c29b948889d38b2b1a6f14f00000000"/>
+		<Metadata name="CommonModule.ПерфОтчетыHTML.Module" id="8b65d5f6-d485-4753-9f8b-fdf282d9331b.0" configVersion="9e2c72e8eea9e8459e5cad67a277a8b000000000"/>
+		<Metadata name="CommonModule.ПерфПаспорт" id="deb251f7-080f-4eb2-b207-51a0d435f73b" configVersion="1a7f80298d36524da861f93f7dc1a98000000000"/>
+		<Metadata name="CommonModule.ПерфПаспорт.Module" id="deb251f7-080f-4eb2-b207-51a0d435f73b.0" configVersion="5af48e061e55b4469363846daab6a1a300000000"/>
+		<Metadata name="CommonModule.ПерфПаспортКлиент" id="b0545443-cf50-42c3-8249-6dac46806665" configVersion="dbfc8937b44c7b48af189ec9baca986e00000000"/>
+		<Metadata name="CommonModule.ПерфПаспортКлиент.Module" id="b0545443-cf50-42c3-8249-6dac46806665.0" configVersion="c188c55d516da84a82169252e810824200000000"/>
+		<Metadata name="CommonModule.ПерфСценарии" id="df721a67-382c-501e-8412-608720ccfe5e" configVersion="59730921140c174bba5dfd6735af290b00000000"/>
+		<Metadata name="CommonModule.ПерфСценарии.Module" id="df721a67-382c-501e-8412-608720ccfe5e.0" configVersion="a4e4078a651dd846980e8e40cf7281ea00000000"/>
+		<Metadata name="Configuration.PerfTest" id="97d14e52-07f8-5c34-bcca-fbfefd8cc757" configVersion="97f29030a3bc2d49a9cc3dc6363f625d00000000"/>
+		<Metadata name="Configuration.PerfTest.ManagedApplicationModule" id="099f4f23-b9c9-497b-81f7-e5574c7ca946.6" configVersion="563dfc96e0971a4bb1ff1586d26ca52100000000"/>
+		<Metadata name="DataProcessor.ПерфРаннер" id="806c38d4-c9b6-58dc-9e62-ddd2d02ae4e8" configVersion="424d5eb6a76a9741bc9f8a8f43329dbf00000000"/>
+		<Metadata name="DataProcessor.ПерфРаннер.Form.ФормаРаннера" id="6b6fdebc-9765-5230-834b-98694680c4b0" configVersion="a631aac0f1351e4381d2f454a97a23c200000000"/>
+		<Metadata name="DataProcessor.ПерфРаннер.Form.ФормаРаннера.Form" id="6b6fdebc-9765-5230-834b-98694680c4b0.0" configVersion="e0eee1ffff27d446bd2498bd7ac20d8100000000"/>
+		<Metadata name="Document.ПерфПоступление" id="144efbe9-c9f0-514f-a009-20a5701a1c88" configVersion="0a8ca8c75e29c34980dc1de4af69381500000000">
+			<Metadata name="Document.ПерфПоступление.TabularSection.Товары" id="23228ee2-5afc-5cdf-9415-602c004b4e1d"/>
+			<Metadata name="Document.ПерфПоступление.TabularSection.Товары.Attribute.Количество" id="5e5bb038-9558-5d90-8b2e-af347581fd19"/>
+			<Metadata name="Document.ПерфПоступление.TabularSection.Товары.Attribute.Цена" id="a6dd2b10-2c02-5548-9f06-0014e12a2b41"/>
+			<Metadata name="Document.ПерфПоступление.TabularSection.Товары.Attribute.Номенклатура" id="a82cbadd-196c-534a-bdce-1c0921cca145"/>
+			<Metadata name="Document.ПерфПоступление.Attribute.Склад" id="fb58e19a-d226-5774-9406-605e023ee766"/>
+		</Metadata>
+		<Metadata name="Document.ПерфПоступление.ObjectModule" id="144efbe9-c9f0-514f-a009-20a5701a1c88.0" configVersion="1bdb2f15fb0b72478c7bace324e264b300000000"/>
+		<Metadata name="InformationRegister.ПерфИстория" id="7b9f52a4-1fd5-45ab-83a4-52ec550927ff" configVersion="db62ad5dae594e4c92c345104d4c14b500000000">
+			<Metadata name="InformationRegister.ПерфИстория.Attribute.Повторов" id="0323bed6-b4f2-49ae-a75e-8c73d744e5e8"/>
+			<Metadata name="InformationRegister.ПерфИстория.Dimension.ДатаЗамера" id="2d2b9988-d590-41ff-b7f4-bf63ad67dd49"/>
+			<Metadata name="InformationRegister.ПерфИстория.Resource.НаЕдиницуМс" id="78a9e569-6877-4c84-a444-3aaeed5e17ca"/>
+			<Metadata name="InformationRegister.ПерфИстория.Dimension.Сценарий" id="820b9eb2-89ef-473b-b6d9-c16068957b98"/>
+			<Metadata name="InformationRegister.ПерфИстория.Attribute.Единица" id="870ae883-3529-4d17-9fc9-5f75944b350d"/>
+			<Metadata name="InformationRegister.ПерфИстория.Attribute.ВремяПрогонов" id="8bcbca41-5b2d-48fe-8de4-8f004b2b5e96"/>
+			<Metadata name="InformationRegister.ПерфИстория.Dimension.Стенд" id="92772fc7-b0bb-46a7-a4ae-1d6c93550e9d"/>
+			<Metadata name="InformationRegister.ПерфИстория.Attribute.МинМс" id="adc766f3-05fc-42aa-9f7c-f13035e7b82d"/>
+			<Metadata name="InformationRegister.ПерфИстория.Attribute.Порция" id="afdb30a0-bf16-47b6-8fe0-1a70b9a5e9ed"/>
+			<Metadata name="InformationRegister.ПерфИстория.Resource.МедианаМс" id="c94a941e-cb25-4596-b9c1-cd71555b2380"/>
+			<Metadata name="InformationRegister.ПерфИстория.Attribute.МаксМс" id="f9445777-1e0c-4079-9939-f7a2feec2827"/>
+		</Metadata>
+		<Metadata name="InformationRegister.ПерфРезультаты" id="bc89469d-f28b-4d6e-a1c3-762274b250ec" configVersion="07a21d4ec6f79a4a9f27b2ec4045203200000000">
+			<Metadata name="InformationRegister.ПерфРезультаты.Attribute.Повторов" id="027267ce-4839-4b95-9f31-e94384db491a"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Attribute.Порция" id="4e03ef8e-9e1e-45bc-b857-41ceee57eca1"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Attribute.МинМс" id="51b118cc-bb09-4a0d-80bc-670d659886bb"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Dimension.Сценарий" id="55b014b9-3431-4bf5-976a-6a6038dd590a"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Attribute.ВремяПрогонов" id="56b7a9e0-43b2-421b-a689-608c4056753d"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Attribute.Единица" id="a4c49675-62d1-476c-bd65-97a95aeadd85"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Resource.МедианаМс" id="a83cf84f-8b66-45b9-b8c5-1486c7500dc8"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Attribute.МаксМс" id="b4ab2d45-602d-4d3e-9bb8-647409c2ba30"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Resource.НаЕдиницуМс" id="bfe662f2-525f-42f8-92f5-3a4ba5e836c2"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Attribute.ДатаЗамера" id="d80e8cec-fd26-4b45-8d60-c16922c8b910"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Dimension.Стенд" id="ed05e7a7-4d42-421a-a8a6-3a25347aa879"/>
+			<Metadata name="InformationRegister.ПерфРезультаты.Dimension.ВерсияПлатформы" id="fd5c5309-974b-46ae-a39b-d2470deeb98e"/>
+		</Metadata>
+		<Metadata name="InformationRegister.ПерфСтенды" id="75b6969c-bb95-4a82-837d-3cbfcdb3d87a" configVersion="7bbe5bdd667cdd42b70c282c016b7a7400000000">
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СоединениеИБ" id="00740e08-0fba-42af-9dfc-86b23a4b4727"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентБраузер" id="03718ce6-a43a-4489-81c7-a152f7451b8a"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ТипПлатформыКлиент" id="0ee0a3cf-68cf-4e38-bc37-0746aa55462d"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентЦПУ" id="11cde43b-860c-4001-951e-27ff54f5488f"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверПК" id="18d6bb17-2546-4f3a-81d8-566a5b94113e"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверПроизводитель" id="19060c23-3229-4fd9-b276-1625666f0c9a"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверЧасовойПояс" id="1abedcf3-9d0e-4392-814f-7f08d85476cf"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ВерсияПлатформыСервер" id="1bb7841c-60de-4aca-bbff-1739a57094b7"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверСетьАдаптер" id="1ed42995-5882-4389-84f2-f1ed228292e2"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверОЗУЧастотаМГц" id="1f16ec59-4f27-4cf9-bfc9-21adafe4bf9e"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.РазмерДанныхБайт" id="220ba31c-6df0-4430-817e-f174fa9748b2"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентАптайм" id="2951ecb9-7c82-46df-a5d6-2b50936fb67f"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверКомпьютер" id="2ad98814-0fce-474b-80ee-00aca89315ed"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.РежимКлиента" id="357d48e0-02da-4c09-b150-1b18aa074037"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ВерсияСервера" id="403dbbcc-04f2-4c22-a9ac-9430b6731e0e"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверКаталогПрограммы" id="476cbf72-11ad-470e-8a13-27430a9d6289"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверЦПУМГц" id="49f8cc60-6163-4013-abdd-4cb8999330c0"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентСвободнаПамятьМб" id="4a1fe193-be62-450e-937a-26109b55585d"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентОС" id="4b4e931e-42f4-4f87-b6b0-ed1775c7cde6"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверАптайм" id="53dd0b85-e905-4a16-aece-4817187e1ece"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентЦПУПотоки" id="55e1c851-8ea6-4ae9-81f4-8e955d25c954"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентПамятьМб" id="58cd1f84-5dbc-4049-a304-31b8a16529c1"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.Пользователь" id="5dba804e-ce3d-45e8-84cb-c0b94f7d41ac"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ВариантРазвёртывания" id="5fc39141-5138-4733-8bad-91c98c2d80c9"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ЧасовойПоясИБ" id="6173ffce-6939-407e-be25-e5d81a5c61bc"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверКаталогВременныхФайлов" id="6219eec8-0396-40d0-b9fd-9668019b7712"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СУБД" id="656ece56-1cd3-4ac6-8b79-c2c16ee43432"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверЦПУ" id="65f99f57-c247-4b47-a3a1-a65814709ad2"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Dimension.Стенд" id="6a857ba0-379e-434f-bf72-c70478888da7"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ИмяИБ" id="6b50a5a7-8e72-416a-9216-7772c989156e"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СхемаИдентификации" id="6dae43da-bd35-4447-a264-09551d4b94c1"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ПлатформаСервер" id="6db8c56b-fdce-4230-b7ee-180a70aa423f"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверЦПУПотоки" id="72185cb7-3063-4bd6-96df-c5860b78bcfc"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.Диск" id="72c13e78-52c2-448a-b547-926c00477231"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СтрокаСоединенияИБ" id="79b6edb9-4d70-45cf-8e7a-404d30ef01b7"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверЗагрузкаЦПУПроц" id="7cc1d7f0-bf76-4957-b4ab-227d879c9437"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ОбъёмИБМб" id="7e2af72d-ff2f-496a-9fa5-76d953d051c9"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверСетьСкоростьМбит" id="8018d142-600a-4249-b674-289de9cc0284"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверОС" id="880e332c-7367-4edb-890f-90d0d5f85ddb"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентИмяКомпьютера" id="883d9f5b-2776-4b64-9cc8-2a5ad482a559"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ВерсияСУБД" id="8a58484f-0d7b-494d-8be8-fccd6115691e"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверВиртуализация" id="8d87314e-bc81-42e1-b701-0a140a005ebf"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверПотоков" id="8fd2747c-91f5-43e2-8130-d4184f69b1f3"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ЗамечанияСбора" id="959bbcc6-8a7f-4c12-b376-e568e9439e81"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверМодель" id="a0b6a9e8-2f58-47ef-9a32-caac2e020e46"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверСвободнаПамятьМб" id="a0e79e01-e30f-4d8f-929c-c097ec2342f4"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентИдентификатор" id="aaba4823-f5a7-4c4a-8427-34d0432f1058"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентПлатформа" id="ac5ce911-0cff-485d-8330-896c5e6dd238"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.РежимЗапуска" id="b015d91e-9a8c-414a-851c-59dfaa7f0399"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентЗагрузкаЦПУПроц" id="b71fcc5c-940b-46f5-b548-181ea2fcb6a9"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентЦПУМГц" id="b8ac889e-5234-42ca-a572-26430ec6313f"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ВерсияКонфигурации" id="b97ecd0d-c5b0-4e10-9297-840b67209bbd"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ГлобальныйИдентификатор" id="bfa912e0-e352-4947-8130-0069fd511ce8"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ОбъектовМетаданных" id="c1dd595e-6f7a-4a96-afd1-d15753c504af"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверСвободноНаДискеГБ" id="c61be0b0-9d08-40dd-81b3-8a6b578441a9"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверДиски" id="cb5f31de-bfa3-47cf-9209-b9eae1e440a3"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверПамятьМб" id="d09afdc6-ce32-4487-8a8d-865dfa50e498"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ХешОтпечатка" id="d1b01038-f7cd-40b8-b01f-d1dfad60297f"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверЯдер" id="d6c0249c-6345-4365-9a7e-13ca4bd1eced"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ДатаПаспорта" id="dbf16f0a-0b00-49fb-a3d5-adcc947d1dd4"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СхемаПаспорта" id="dc66b0d1-ace4-4805-bb23-1575bd97b4cf"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.КлиентПК" id="de21e4c7-69d6-4b3b-a9bd-48ecba2a667b"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ВерсияПлатформыКлиент" id="de5ac939-e1d3-4756-be2b-4fc581424a79"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.Отпечаток" id="e02667f3-7ef8-48bb-a81e-ad614310cfba"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.РежимИБ" id="e2aa64dd-f3f9-40ac-9747-86d3980878d4"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверОЗУПроизводитель" id="e9ca1992-8475-480b-8cf8-97cf4ca2b983"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.Примечание" id="ec1f86e5-5b0a-4b92-8640-4a82c69efb3c"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверBIOS" id="f3287b23-c334-4723-8fb6-9bf3d6082e7f"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.ИдентификаторСтенда" id="f4af9376-1937-47a9-ac44-8bd75e9e86c2"/>
+			<Metadata name="InformationRegister.ПерфСтенды.Attribute.СерверОЗУСлотов" id="ffb550a0-33b3-456c-a367-6742e2db0832"/>
+		</Metadata>
+		<Metadata name="Language.Русский" id="fec41b5f-91f5-427a-8a58-26a89ed5eb6e" configVersion="d0986f775ff33649b3fe89b4a16d187300000000"/>
+	</ConfigVersions>
 </ConfigDumpInfo>

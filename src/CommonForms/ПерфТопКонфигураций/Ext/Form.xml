@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<Width>130</Width>
 	<Height>64</Height>
 	<VerticalScroll>useIfNecessary</VerticalScroll>
@@ -16,7 +16,12 @@
 			<ChildItems>
 				<InputField name="БазовыйСтенд" id="403">
 					<DataPath>БазовыйСтенд</DataPath>
-					<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Базовый стенд</v8:content></v8:item></Title>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Базовый стенд</v8:content>
+						</v8:item>
+					</Title>
 					<TitleLocation>Left</TitleLocation>
 					<Width>24</Width>
 					<ContextMenu name="БазовыйСтендКонтекстноеМеню" id="406"/>
@@ -24,7 +29,6 @@
 				</InputField>
 				<Button name="КнопкаСформировать" id="412">
 					<Type>UsualButton</Type>
-					<Default>true</Default>
 					<CommandName>Form.Command.КомандаСформировать</CommandName>
 					<ExtendedTooltip name="КнопкаСформироватьРасширеннаяПодсказка" id="415"/>
 				</Button>
@@ -37,32 +41,67 @@
 		</UsualGroup>
 		<HTMLDocumentField name="ОтчетHTML" id="430">
 			<DataPath>ОтчетHTML</DataPath>
-			<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Отчёт</v8:content></v8:item></Title>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отчёт</v8:content>
+				</v8:item>
+			</Title>
 			<TitleLocation>None</TitleLocation>
 			<Height>40</Height>
-			<VerticalStretch>true</VerticalStretch>
-			<HorizontalStretch>true</HorizontalStretch>
 			<ContextMenu name="ОтчетHTMLКонтекстноеМеню" id="433"/>
 			<ExtendedTooltip name="ОтчетHTMLРасширеннаяПодсказка" id="436"/>
 		</HTMLDocumentField>
 	</ChildItems>
 	<Attributes>
 		<Attribute name="ОтчетHTML" id="439">
-			<Title><v8:item><v8:lang>ru</v8:lang><v8:content>ОтчетHTML</v8:content></v8:item></Title>
-			<Type><v8:Type>xs:string</v8:Type><v8:StringQualifiers><v8:Length>0</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers></Type>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОтчетHTML</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
 		</Attribute>
 		<Attribute name="БазовыйСтенд" id="442">
-			<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Базовый стенд</v8:content></v8:item></Title>
-			<Type><v8:Type>xs:string</v8:Type><v8:StringQualifiers><v8:Length>100</v8:Length><v8:AllowedLength>Variable</v8:AllowedLength></v8:StringQualifiers></Type>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Базовый стенд</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
 		</Attribute>
 	</Attributes>
 	<Commands>
 		<Command name="КомандаСформировать" id="445">
-			<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Сформировать</v8:content></v8:item></Title>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать</v8:content>
+				</v8:item>
+			</Title>
 			<Action>Сформировать</Action>
 		</Command>
 		<Command name="КомандаСбросить" id="448">
-			<Title><v8:item><v8:lang>ru</v8:lang><v8:content>Сбросить к сеансу</v8:content></v8:item></Title>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сбросить к сеансу</v8:content>
+				</v8:item>
+			</Title>
 			<Action>СброситьКСеансу</Action>
 		</Command>
 	</Commands>

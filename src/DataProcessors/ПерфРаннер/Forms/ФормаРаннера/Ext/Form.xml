@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<Width>96</Width>
 	<Height>52</Height>
 	<VerticalScroll>useIfNecessary</VerticalScroll>
@@ -17,18 +17,41 @@
 		<Table name="ТаблицаСценариев" id="4">
 			<Representation>List</Representation>
 			<AutoInsertNewRow>true</AutoInsertNewRow>
-			<EnableStartDrag>false</EnableStartDrag>
-			<EnableDrag>false</EnableDrag>
 			<DataPath>Сценарии</DataPath>
+			<RowFilter xsi:nil="true"/>
 			<ContextMenu name="ТаблицаСценариевКонтекстноеМеню" id="5"/>
 			<AutoCommandBar name="ТаблицаСценариевКоманднаяПанель" id="6"/>
 			<ExtendedTooltip name="ТаблицаСценариевРасширеннаяПодсказка" id="7"/>
-			<SearchControlAddition name="ТаблицаСценариевУправлениеПоиском" id="8"/>
+			<SearchStringAddition name="ТаблицаСценариевСтрокаПоиска" id="79">
+				<AdditionSource>
+					<Item>ТаблицаСценариев</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаСценариевСтрокаПоискаКонтекстноеМеню" id="80"/>
+				<ExtendedTooltip name="ТаблицаСценариевСтрокаПоискаРасширеннаяПодсказка" id="81"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТаблицаСценариевСостояниеПросмотра" id="82">
+				<AdditionSource>
+					<Item>ТаблицаСценариев</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаСценариевСостояниеПросмотраКонтекстноеМеню" id="83"/>
+				<ExtendedTooltip name="ТаблицаСценариевСостояниеПросмотраРасширеннаяПодсказка" id="84"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТаблицаСценариевУправлениеПоиском" id="8">
+				<AdditionSource>
+					<Item>ТаблицаСценариев</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаСценариевУправлениеПоискомКонтекстноеМеню" id="85"/>
+				<ExtendedTooltip name="ТаблицаСценариевУправлениеПоискомРасширеннаяПодсказка" id="86"/>
+			</SearchControlAddition>
 			<ChildItems>
 				<CheckBoxField name="СценарииВыполнить" id="9">
 					<DataPath>Сценарии.Выполнить</DataPath>
 					<TitleLocation>None</TitleLocation>
 					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
 					<ContextMenu name="СценарииВыполнитьКонтекстноеМеню" id="10"/>
 					<ExtendedTooltip name="СценарииВыполнитьРасширеннаяПодсказка" id="11"/>
 				</CheckBoxField>
@@ -91,7 +114,6 @@
 			<ChildItems>
 				<Button name="КнопкаЗапустить" id="34">
 					<Type>UsualButton</Type>
-					<Default>true</Default>
 					<CommandName>Form.Command.КомандаЗапустить</CommandName>
 					<ExtendedTooltip name="КнопкаЗапуститьРасширеннаяПодсказка" id="35"/>
 				</Button>
@@ -116,24 +138,47 @@
 			<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="42"/>
 		</InputField>
 		<UsualGroup name="ГруппаСводка" id="43">
-			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Сводка (медиана по прогонам)</v8:content>
 				</v8:item>
 			</Title>
+			<Group>Vertical</Group>
 			<ExtendedTooltip name="ГруппаСводкаРасширеннаяПодсказка" id="44"/>
 			<ChildItems>
 				<Table name="ТаблицаСводка" id="45">
 					<Representation>List</Representation>
 					<AutoInsertNewRow>true</AutoInsertNewRow>
-					<EnableStartDrag>false</EnableStartDrag>
-					<EnableDrag>false</EnableDrag>
 					<DataPath>Сводка</DataPath>
+					<RowFilter xsi:nil="true"/>
 					<ContextMenu name="ТаблицаСводкаКонтекстноеМеню" id="46"/>
 					<AutoCommandBar name="ТаблицаСводкаКоманднаяПанель" id="47"/>
 					<ExtendedTooltip name="ТаблицаСводкаРасширеннаяПодсказка" id="48"/>
+					<SearchStringAddition name="ТаблицаСводкаСтрокаПоиска" id="87">
+						<AdditionSource>
+							<Item>ТаблицаСводка</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаСводкаСтрокаПоискаКонтекстноеМеню" id="88"/>
+						<ExtendedTooltip name="ТаблицаСводкаСтрокаПоискаРасширеннаяПодсказка" id="89"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ТаблицаСводкаСостояниеПросмотра" id="90">
+						<AdditionSource>
+							<Item>ТаблицаСводка</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаСводкаСостояниеПросмотраКонтекстноеМеню" id="91"/>
+						<ExtendedTooltip name="ТаблицаСводкаСостояниеПросмотраРасширеннаяПодсказка" id="92"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ТаблицаСводкаУправлениеПоиском" id="93">
+						<AdditionSource>
+							<Item>ТаблицаСводка</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаСводкаУправлениеПоискомКонтекстноеМеню" id="94"/>
+						<ExtendedTooltip name="ТаблицаСводкаУправлениеПоискомРасширеннаяПодсказка" id="95"/>
+					</SearchControlAddition>
 					<ChildItems>
 						<InputField name="СводкаПредставление" id="49">
 							<DataPath>Сводка.Представление</DataPath>
@@ -168,24 +213,47 @@
 			</ChildItems>
 		</UsualGroup>
 		<UsualGroup name="ГруппаРезультаты" id="61">
-			<Group>Vertical</Group>
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Прогоны</v8:content>
 				</v8:item>
 			</Title>
+			<Group>Vertical</Group>
 			<ExtendedTooltip name="ГруппаРезультатыРасширеннаяПодсказка" id="62"/>
 			<ChildItems>
 				<Table name="ТаблицаРезультаты" id="63">
 					<Representation>List</Representation>
 					<AutoInsertNewRow>true</AutoInsertNewRow>
-					<EnableStartDrag>false</EnableStartDrag>
-					<EnableDrag>false</EnableDrag>
 					<DataPath>Результаты</DataPath>
+					<RowFilter xsi:nil="true"/>
 					<ContextMenu name="ТаблицаРезультатыКонтекстноеМеню" id="64"/>
 					<AutoCommandBar name="ТаблицаРезультатыКоманднаяПанель" id="65"/>
 					<ExtendedTooltip name="ТаблицаРезультатыРасширеннаяПодсказка" id="66"/>
+					<SearchStringAddition name="ТаблицаРезультатыСтрокаПоиска" id="96">
+						<AdditionSource>
+							<Item>ТаблицаРезультаты</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаРезультатыСтрокаПоискаКонтекстноеМеню" id="97"/>
+						<ExtendedTooltip name="ТаблицаРезультатыСтрокаПоискаРасширеннаяПодсказка" id="98"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ТаблицаРезультатыСостояниеПросмотра" id="99">
+						<AdditionSource>
+							<Item>ТаблицаРезультаты</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаРезультатыСостояниеПросмотраКонтекстноеМеню" id="100"/>
+						<ExtendedTooltip name="ТаблицаРезультатыСостояниеПросмотраРасширеннаяПодсказка" id="101"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ТаблицаРезультатыУправлениеПоиском" id="102">
+						<AdditionSource>
+							<Item>ТаблицаРезультаты</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаРезультатыУправлениеПоискомКонтекстноеМеню" id="103"/>
+						<ExtendedTooltip name="ТаблицаРезультатыУправлениеПоискомРасширеннаяПодсказка" id="104"/>
+					</SearchControlAddition>
 					<ChildItems>
 						<InputField name="РезультатыСценарий" id="67">
 							<DataPath>Результаты.Сценарий</DataPath>
@@ -240,7 +308,7 @@
 						</v8:item>
 					</Title>
 					<Type>
-						<v8:Type>v8:Boolean</v8:Type>
+						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 				</Column>
 				<Column name="Имя" id="2">
