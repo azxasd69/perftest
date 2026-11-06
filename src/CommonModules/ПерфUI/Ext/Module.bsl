@@ -227,3 +227,75 @@
 		+ "window.PFTheme=PFTheme;PFTheme.init();"
 		+ "</scr" + "ipt>";
 КонецФункции
+
+// ---------------------------------------------------------------------------
+// Блок: боковое меню навигации (референс index-v2: тёмный рейл, активный пункт
+// с лаймовой полосой). Ссылки шлют команды open:<ИмяФормы> через мост PF1C.
+// ---------------------------------------------------------------------------
+
+// Стили рейла. Вызывать один раз на страницу.
+Функция СтилиМеню() Экспорт
+	Возврат "<style>"
+		+ "body{padding-left:232px}"
+		+ ".side{position:fixed;left:0;top:0;bottom:0;width:220px;background:#0D1117;"
+		+ "color:#C6CFDD;padding:16px 12px;box-sizing:border-box;z-index:50;overflow:auto}"
+		+ ".side .logo{display:-webkit-flex;display:flex;-webkit-align-items:center;"
+		+ "align-items:center;padding:6px 8px 18px}"
+		+ ".side .mark{width:28px;height:28px;border-radius:8px;margin-right:10px;"
+		+ "background:#C4F252}"
+		+ ".side .logo b{color:#F2F6FF;font-size:13.5px;font-weight:650;display:block}"
+		+ ".side .logo span{font-size:10.5px;color:#7D8798;letter-spacing:.06em;"
+		+ "text-transform:uppercase}"
+		+ ".nav-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;"
+		+ "color:#5F6A7C;padding:12px 10px 6px}"
+		+ ".side a{display:-webkit-flex;display:flex;-webkit-align-items:center;"
+		+ "align-items:center;color:#AAB4C4;text-decoration:none;font-size:13px;"
+		+ "padding:8px 10px;border-radius:8px;margin-bottom:2px}"
+		+ ".side a:hover{background:#171E28;color:#E6ECF5}"
+		+ ".side a.active{background:#1C232C;color:#EEF2FF;"
+		+ "box-shadow:inset 2px 0 0 #C4F252}"
+		+ ".side-foot{margin-top:18px;border-top:1px solid #1B222C;padding:12px 10px 4px;"
+		+ "font-size:11px;color:#69748A}"
+		+ ".side-foot .dot{width:6px;height:6px;border-radius:50%;background:#31C48D;"
+		+ "display:inline-block;margin-right:6px}"
+		+ "</style>";
+КонецФункции
+
+// Рейл навигации. Активный - имя открытой формы.
+Функция Меню(Активный = "") Экспорт
+	Пункты = Новый Массив;
+	Пункты.Добавить(Новый Структура("Форма, Подпись",
+		"НачальнаяСтраница", "Кокпит"));
+	Пункты.Добавить(Новый Структура("Форма, Подпись",
+		"ПерфДашборд", "Дашборд"));
+	Пункты.Добавить(Новый Структура("Форма, Подпись",
+		"ПерфТопКонфигураций", "Топ-100"));
+	Пункты.Добавить(Новый Структура("Форма, Подпись",
+		"ПерфСравнениеСтендов", "Сравнение стендов"));
+	Пункты.Добавить(Новый Структура("Форма, Подпись",
+		"ПерфИсторияЗамеров", "История замеров"));
+
+	Части = Новый Массив;
+	Части.Добавить("<nav class='side'><div class='logo'><span class='mark'></span>"
+		+ "<div><b>ПерфТест</b><span>кокпит 1.19</span></div></div>");
+	Части.Добавить("<div class='nav-label'>разделы</div>");
+	Для Каждого Пункт Из Пункты Цикл
+		Класс = ?(Пункт.Форма = Активный, " class='active'", "");
+		Части.Добавить("<a" + Класс + " href='#' onclick='PFNav.go("""
+			+ Пункт.Форма + """);return false'>" + Экранировать(Пункт.Подпись) + "</a>");
+	КонецЦикла;
+	Части.Добавить("<div class='side-foot'><div><span class='dot'></span>готов к работе</div>"
+		+ "<div>документация: 1c\\perf-test</div></div></nav>");
+	Возврат СтрСоединить(Части, "");
+КонецФункции
+
+// Скрипт навигации: пересылает выбор пункта в 1С.
+Функция СкриптМеню() Экспорт
+	Возврат "<scr" + "ipt>"
+		+ "var PFNav={go:function(name){"
+		+ "if(name==='НачальнаяСтраница'){return;}"
+		+ "if(window.PF1C&&PF1C.send){PF1C.send('open:'+name);return;}"
+		+ "if(window.parent&&window.parent.PF1C){window.parent.PF1C.send('open:'+name);}}};"
+		+ "window.PFNav=PFNav;"
+		+ "</scr" + "ipt>";
+КонецФункции
