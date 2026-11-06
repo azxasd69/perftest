@@ -151,8 +151,18 @@
 // ---------------------------------------------------------------------------
 
 // Светлая тема по референсу index-v5: поверхности #FBF8FF/#FFFFFF, акцент #6A4CF6.
+// Правила светлой темы без обрамляющих тегов: их вставляет Документ в <style media=...>.
+Функция ПравилаСветлой() Экспорт
+
+	Текст = СтилиСветлая();
+	Текст = СтрЗаменить(Текст, "<style>", "");
+	Текст = СтрЗаменить(Текст, "</style>", "");
+	Возврат Текст;
+
+КонецФункции
+
 Функция СтилиСветлая() Экспорт
-	Возврат "<style id='pfLight' media='not all'>"
+	Возврат "<style>"
 		+ "html,body{background:#FBF8FF !important;color:#1B1A21 !important;background-image:none !important}"
 		+ ".bar{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
 		+ ".brand{color:#1B1A21}"
@@ -224,13 +234,6 @@
 		+ ".pal input{color:#1B1A21;border-color:#E6E1F0}"
 		+ ".pal li{color:#6B6879}.pal li.sel{background:#EDE8FF;color:#1B1A21}"
 		+ ".pal .tip{color:#9A97A8;border-color:#E6E1F0}"
-		+ ".theme-btn{position:fixed;right:18px;bottom:42px;z-index:60;background:#FFFFFF;"
-		+ "color:#45424F;border:1px solid #D6CFE6;border-radius:999px;padding:7px 14px;"
-		+ "font:600 13px 'Segoe UI',Arial,sans-serif;cursor:pointer}"
-		+ "</style>"
-		+ "<style>.theme-btn{position:fixed;right:18px;bottom:42px;z-index:60;"
-		+ "background:#1F2228;color:#ECEEF3;border:1px solid #2F333A;border-radius:999px;"
-		+ "padding:7px 14px;font:600 13px 'Segoe UI',Arial,sans-serif;cursor:pointer}"
 
 				// Отчётные страницы: шапка, чипы, таблицы, карточки, графики.
 		+ ".top{background:#FFFFFF !important;border-color:#E6E1F0 !important}"
@@ -305,53 +308,31 @@
 // иначе системная тема (prefers-color-scheme), иначе тёмная.
 // ПоказыватьКнопку = Ложь - страница без переключателя (карточка стенда).
 Функция СкриптТемы(ПоказыватьКнопку = Истина, НачальнаяТема = "dark") Экспорт
+
+	// Тема полностью определяется сервером: класс на <html> и media у <style id='pfLight'>
+	// выставлены в разметке. Скрипт только переключает их по кнопке (она есть на кокпите)
+	// и сообщает выбор в 1С.
 	Возврат "<scr" + "ipt>"
-		+ "var PFTheme={key:'pf-theme',noButton:" + ?(ПоказыватьКнопку, "false", "true") + ",css:'',"
-		+ "apply:function(name){try{document.documentElement.className=(name==='light')?'pf-light':'pf-dark';}catch(e){}"
+		+ "var PFTheme={"
+		+ "current:function(){try{return document.documentElement.className.indexOf('pf-light')>=0"
+		+ "?'light':'dark';}catch(e){return 'dark';}},"
+		+ "apply:function(name){var on=(name==='light');"
+		+ "try{document.documentElement.className=on?'pf-light':'pf-dark';}catch(e){}"
 		+ "var st=document.getElementById('pfLight');"
-		+ "if(st){var on=(name==='light');"
-		+ "st.media=on?'all':'not all';"
-		+ "try{st.sheet.disabled=!on;}catch(e){}"
-		+ "st.innerHTML=on?PFTheme.css:'';}"
+		+ "if(st){st.media=on?'all':'not all';}"
 		+ "var b=document.getElementById('pfThemeBtn');"
-		+ "if(b){b.innerHTML=(name==='light')?'Тёмная тема':'Светлая тема';}},"
-		+ "toggle:function(){var cur='dark';"
-		+ "var next=(cur==='light')?'dark':'light';"
-		+ "try{localStorage.setItem(PFTheme.key,next);}catch(e){}"
+		+ "if(b){b.innerHTML=on?'Тёмная тема':'Светлая тема';}},"
+		+ "toggle:function(){var next=(PFTheme.current()==='light')?'dark':'light';"
+		+ "PFTheme.apply(next);"
 		+ "try{if(window.PF1C&&PF1C.send){PF1C.send('theme:'+next);}}catch(e){}"
-		+ "PFTheme.apply(next);return false;},"
-		+ "init:function(){var st=document.getElementById('pfLight');"
-		+ "if(st){PFTheme.css=st.innerHTML;st.innerHTML='';}"
-		+ "var cur=" + ?(НачальнаяТема = "light", "'light'", "'dark'") + ";"
-		+ "if(!PFTheme.noButton&&!document.getElementById('pfThemeBtn')&&document.body){"
-		+ "var b=document.createElement('button');b.id='pfThemeBtn';b.className='theme-btn';"
-		+ "b.onclick=PFTheme.toggle;document.body.appendChild(b);}"
-		+ "PFTheme.apply(cur);}};"
-		+ "function PFThemeToggle(b){var s=document.getElementById('pfLight');"
-		+ "if(!s){return false;}if(!window.pfLightCss){window.pfLightCss=s.innerHTML;}"
-		+ "var on=(s.media!=='all');s.media=on?'all':'not all';"
-		+ "try{s.sheet.disabled=!on;}catch(e){}"
-		+ "s.innerHTML=on?window.pfLightCss:'';"
-		+ "try{localStorage.setItem('pf-theme',on?'light':'dark');}catch(e){}"
-		+ "try{if(window.PF1C&&PF1C.send){PF1C.send('theme:'+(on?'light':'dark'));}}catch(e){}"
-		+ "if(b){b.innerHTML=on?'Тёмная тема':'Светлая тема';}"
-		+ "return false;}"
-		+ "function PFThemeToggle(b){var src=document.getElementById('pfLight');"
-		+ "if(!window.pfCss){window.pfCss=(window.PFTheme&&PFTheme.css)?PFTheme.css:(src?src.innerHTML:'');}"
-		+ "if(src&&src.parentNode){src.parentNode.removeChild(src);}"
-		+ "var cur=document.getElementById('pfLightOn');var on=!cur;"
-		+ "if(on&&window.pfCss){var st=document.createElement('style');"
-		+ "st.id='pfLightOn';st.type='text/css';"
-		+ "st.appendChild(document.createTextNode(window.pfCss));"
-		+ "var h=document.getElementsByTagName('head');"
-		+ "if(!h.length){h=[document.body];}h[0].appendChild(st);}"
-		+ "if(!on&&cur){cur.parentNode.removeChild(cur);}"
-		+ "try{localStorage.setItem('pf-theme',on?'light':'dark');}catch(e){}"
-		+ "try{if(window.PF1C&&PF1C.send){PF1C.send('theme:'+(on?'light':'dark'));}}catch(e){}"
-		+ "if(b){b.innerHTML=on?'Тёмная тема':'Светлая тема';}"
-		+ "return false;}"
-		+ "window.PFTheme=PFTheme;PFTheme.init();"
+		+ "return false;}};"
+		+ "window.PFTheme=PFTheme;"
+		+ "function PFThemeToggle(b){return PFTheme.toggle();}"
+		+ "window.PFThemeToggle=PFThemeToggle;"
+		+ (?(ПоказыватьКнопку, "", ""))
+		+ "PFTheme.apply(PFTheme.current());"
 		+ "</scr" + "ipt>";
+
 КонецФункции
 
 // ---------------------------------------------------------------------------
@@ -409,7 +390,11 @@
 	// отступы конкретной страницы не могут изменить ее внешний вид.
 	Части.Добавить(ДопСтили);
 	Части.Добавить(СтилиМеню());
-	Части.Добавить(СтилиСветлая());
+	// Светлые правила вставляются всегда, но включаются только при теме light:
+	// media выставляет сервер, поэтому страница правильная еще до выполнения JS.
+	Части.Добавить("<style id='pfLight' media='" + ?(Тема = "light", "all", "not all") + "'>");
+	Части.Добавить(ПравилаСветлой());
+	Части.Добавить("</style>");
 	Части.Добавить(СтилиДинамика());
 	Части.Добавить(СтилиСворачивания());
 	Части.Добавить(СкриптМоста());
