@@ -840,6 +840,7 @@
 		+ "else if(cmd==='palpick'){if(PF1C.palPick){PF1C.palPick(parseInt(arg,10));}}"
 		+ "else if(cmd==='close'){if(PF1C.closePal){PF1C.closePal();}}"
 		+ "else if(cmd==='theme'){if(window.PFThemeToggle){PFThemeToggle(el);}}"
+		+ "else{console.warn('PF: unknown data-pf action',a);}"
 		+ "return true;};"
 		+ "document.addEventListener('click',function(e){var el=e.target;"
 		+ "while(el&&el!==document.body&&!(el.getAttribute&&el.getAttribute('data-pf'))){el=el.parentNode;}"
