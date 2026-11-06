@@ -28,7 +28,7 @@
 						</v8:item>
 					</Title>
 					<TitleLocation>Left</TitleLocation>
-					<Width>24</Width>
+					<Width>44</Width>
 					<ContextMenu name="БазовыйСтендКонтекстноеМеню" id="506"/>
 					<ExtendedTooltip name="БазовыйСтендРасширеннаяПодсказка" id="509"/>
 				</InputField>

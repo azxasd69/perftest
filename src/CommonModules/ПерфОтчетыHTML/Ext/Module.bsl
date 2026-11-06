@@ -347,16 +347,19 @@
 		Разброс = (Максимум - Минимум) / Среднее * 100;
 	КонецЕсли;
 
-	Сводка = "Замеров: " + ФорматЧисла(Все.Количество(), 0)
-		+ "; медиана медиан: " + ФорматЧисла(Среднее, 0) + " мс"
-		+ "; минимум: " + ФорматЧисла(Минимум, 0) + " мс"
-		+ "; максимум: " + ФорматЧисла(Максимум, 0) + " мс"
-		+ "; разброс: " + ФорматЧисла(Разброс, 1) + " процентов"
-		+ "; шумных замеров: " + ФорматЧисла(Шумных, 0);
+	// Сводка: короткие пары «подпись - число», числа выделены, чтобы строка читалась.
+	Сводка = "<div class='summary'>"
+		+ "<span>Замеров <b>" + ФорматЧисла(Все.Количество(), 0) + "</b></span>"
+		+ "<span>Медиана медиан <b>" + ФорматЧисла(Среднее, 0) + " мс</b></span>"
+		+ "<span>Минимум <b>" + ФорматЧисла(Минимум, 0) + " мс</b></span>"
+		+ "<span>Максимум <b>" + ФорматЧисла(Максимум, 0) + " мс</b></span>"
+		+ "<span>Разброс <b>" + ФорматЧисла(Разброс, 1) + " %</b></span>"
+		+ "<span>Шумных <b>" + ФорматЧисла(Шумных, 0) + "</b></span>"
+		+ "</div>";
 
 	HTML = Стили() + ШапкаОтчёта("История замеров", Чипы)
 		+ "<div class='wrap'>" + БлокСпарклайна(Значения, 720, 60)
-		+ "<p class='muted'>" + Экранировать(Сводка) + "</p>"
+		+ Сводка
 		+ Таблица(Заголовки, Строки)
 		+ "</div>";
 	Возврат РезультатОтчёта(HTML, Стенд, "", Сценарий, "ПерфИсторияЗамеров");
@@ -435,7 +438,7 @@
 			+ "</div><div class='big' style='color:" + Цвет + "'>"
 			+ ?(СтендК.Ключ = База, "база", ФорматЧисла(Индекс.Индекс, 1))
 			+ "</div><div class='muted'>" + ФорматЧисла(Индекс.Сценариев, 0) + " из "
-			+ ФорматЧисла(Данные.Сценарии.Количество(), 0) + " сценариев; замер "
+			+ ФорматЧисла(Данные.Сценарии.Количество(), 0) + " сценариев · замер "
 			+ ФорматДаты(Индекс.ПоследнийЗамер) + "</div>"
 			+ СтрСоединить(Бары, "") + "</div>");
 	КонецЦикла;
@@ -1074,7 +1077,7 @@
 	Возврат ПерфUI.Стили() + "<style>"
 		+ "body{background:#0E0F13;color:#ECEEF3;font-size:16px}"
 		+ ".top{background:#17191F;border-bottom:1px solid #2F333A;padding:16px 18px 14px}"
-		+ ".top h1{margin:0 0 12px;font-size:18px;font-weight:600;color:#ECEEF3}"
+		+ ".top h1{margin:0 0 12px;font-size:22px;font-weight:650;color:#ECEEF3}"
 		+ ".chips{display:flex;flex-wrap:wrap}"
 		+ ".chip{background:#1F2228;border:1px solid #2F333A;border-radius:999px;padding:4px 11px;font-size:12px;color:#A0A5AE;margin:0 8px 6px 0}"
 		+ ".chip b{color:#ECEEF3;font-weight:600;margin-left:6px}"
@@ -1097,6 +1100,10 @@
 		+ "h2{font-size:14px;margin:18px 0 9px;color:#ECEEF3}"
 		+ "svg{background:#1F2228;border:1px solid #2F333A;border-radius:10px}"
 		+ ".spark svg{background:transparent !important;border:0 !important;border-radius:0}"
+		+ ".summary{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:6px 10px;margin:10px 0 14px}"
+		+ ".summary span{background:#1F2228;border:1px solid #2F333A;border-radius:999px;"
+		+ "padding:4px 11px;font-size:12px;color:#A0A5AE}"
+		+ ".summary b{color:#ECEEF3;font-weight:600;margin-left:5px}"
 		+ ".empty{max-width:520px;margin:48px auto;text-align:center;padding:24px}"
 		+ ".empty-ico{color:#6A4CF6;margin-bottom:10px}"
 		+ ".empty h2{font-size:16px;margin:0 0 8px;color:#ECEEF3}"

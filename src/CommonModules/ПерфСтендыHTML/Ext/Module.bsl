@@ -276,9 +276,11 @@
 		Части.Добавить(Чип("ИБ " + СокрЛП(П.СУБД), ""));
 	КонецЕсли;
 	Если ЗначениеЗаполнено(П.РежимКлиента) Тогда
-		КлиентКоротко = СокрЛП(П.РежимКлиента);
-		Если ВРег(Лев(КлиентКоротко, 6)) = "КЛИЕНТ" Тогда
-			КлиентКоротко = СокрЛП(Сред(КлиентКоротко, 8));
+		// «толстый клиент (управляемое)» -> «толстый»: подпись чипа уже говорит «клиент».
+		СловаКлиента = СтрРазделить(СокрЛП(П.РежимКлиента), " ");
+		КлиентКоротко = СокрЛП(СловаКлиента[0]);
+		Если ВРег(КлиентКоротко) = "КЛИЕНТ" И СловаКлиента.Количество() > 1 Тогда
+			КлиентКоротко = СокрЛП(СловаКлиента[1]);
 		КонецЕсли;
 		Части.Добавить(Чип("клиент " + КлиентКоротко, ""));
 	КонецЕсли;
@@ -592,7 +594,7 @@
 		+ ".pfsc-head-main{flex:1 1 420px;min-width:280px}"
 		+ ".pfsc-crumbs{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#767A84;margin-bottom:6px}"
 		+ ".pfsc-crumbs span+span:before{content:'›';margin:0 8px;color:#33383F}"
-		+ ".pfsc-head h1{margin:0;font-size:26px;line-height:1.2;letter-spacing:-.02em;font-weight:650}"
+		+ ".pfsc-head h1{margin:0;font-size:22px;line-height:1.25;letter-spacing:-.01em;font-weight:650}"
 		+ ".pfsc-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}"
 		+ ".pfsc-chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;"
 		+ "color:#A7ABB5;background:#1A1D24;border:1px solid #262A31;border-radius:999px;padding:4px 10px}"
@@ -615,8 +617,10 @@
 		+ ".pfsc-big{font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1}"
 		+ ".pfsc-big small{font-size:13px;font-weight:600;color:#A7ABB5;margin-left:4px}"
 		+ ".pfsc-sub{font-size:12.5px;color:#767A84;margin-top:7px}"
-		+ ".pfsc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}"
-		+ ".pfsc-card{background:#16181E;border:1px solid #262A31;border-radius:16px;padding:16px 18px 14px}"
+		+ ".pfsc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;"
+		+ "margin-bottom:16px;-webkit-align-items:stretch;align-items:stretch}"
+		+ ".pfsc-card{background:#16181E;border:1px solid #262A31;border-radius:16px;"
+		+ "padding:16px 18px 14px;height:100%;box-sizing:border-box}"
 		+ ".pfsc-card.pfsc-span{grid-column:1/-1;margin-bottom:16px}"
 		+ ".pfsc-card h2{margin:0 0 12px;font-size:13px;letter-spacing:.07em;text-transform:uppercase;"
 		+ "color:#767A84;font-weight:700}"
