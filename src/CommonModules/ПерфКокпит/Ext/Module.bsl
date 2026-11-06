@@ -292,7 +292,7 @@
 		+ "b.innerHTML=(st==='run'?'выполняется':st==='ok'?'готово':st==='err'?'ошибка':"
 		+ "st==='cancel'?'отменено':'-');}},"
 		+ "progress:function(n,p,txt){var c=document.getElementById('card'+n);if(!c){return;}"
-		+ "var b=c.querySelector('.cbar i');if(b){b.style.width=(p<0?0:(p>100?100:p))+'%';}"
+		+ "var b=c.querySelector('.cbar i');if(b){b.style.width=(p<0?0:(p>99?99:p))+'%';}"
 		+ "var s=c.querySelector('.status');if(s&&txt){s.innerHTML=txt;}},"
 		+ "result:function(n,cls,txt){var c=document.getElementById('card'+n);if(!c){return;}"
 		+ "var r=c.querySelector('.result');if(r){r.className='result '+(cls||'');"
