@@ -411,7 +411,7 @@
 		КонецЦикла;
 		СортироватьПоДельте(Худшие);
 
-		Цвет = ?(Индекс.Индекс >= 100, "#047857", ?(Индекс.Индекс >= 90, "#b45309", "#b91c1c"));
+		Цвет = ?(Индекс.Индекс >= 100, "var(--pf-ok)", ?(Индекс.Индекс >= 90, "var(--pf-warn)", "var(--pf-bad)"));
 		Бары = Новый Массив;
 		Счетчик = 0;
 		Для Каждого Худший Из Худшие Цикл
@@ -429,13 +429,13 @@
 			Бары.Добавить("<div class='muted xs'>"
 				+ Экранировать(Худший.Сценарий) + ": " + ДельтаТекст(Худший.Дельта) + "%</div>"
 				+ "<div class='bar'><i style='width:" + ФорматЧисла(Ширина, 0)
-				+ "%;background:" + ?(Худший.Дельта < 0, "#b91c1c", "#047857") + "'></i></div>");
+				+ "%;background:" + ?(Худший.Дельта < 0, "var(--pf-bad)", "var(--pf-ok)") + "'></i></div>");
 		КонецЦикла;
 
 		Карточки.Добавить("<div class='card'><div class='muted'>" + Экранировать(СтендК.Ключ)
 			+ ?(СокрЛП(СтендК.Ключ) = СтендСеанса, " <span class='badge'>этот сеанс</span>", "")
 			+ ?(П = Неопределено, "", "  <span class='badge'>" + Экранировать(П.ПлатформаСервер + " / " + П.РежимИБ) + "</span>")
-			+ "</div><div class='big " + ?(Цвет = "#76E699", "good", "bad") + "'>"
+			+ "</div><div class='big " + ?(Цвет = "var(--pf-ok)", "good", "bad") + "'>"
 			+ ?(СтендК.Ключ = База, "база", ФорматЧисла(Индекс.Индекс, 1))
 			+ "</div><div class='muted'>" + ФорматЧисла(Индекс.Сценариев, 0) + " из "
 			+ ФорматЧисла(Данные.Сценарии.Количество(), 0) + " сценариев · замер "
@@ -1077,28 +1077,28 @@
 
 Функция Стили() Экспорт
 	Возврат "<style>"
-		+ "<style>body{background:#0E0F13;color:#ECEEF3;font-size:16px}.top{background:#17191F;border-bottom:1px solid "
-		+ "#2F333A;padding:16px 18px 14px}.top h1{margin:0 0 12px;font-size:22px;font-weight:650;color:#ECEEF3}.chips{d"
-		+ "isplay:flex;flex-wrap:wrap}.chip{background:#1F2228;border:1px solid #2F333A;border-radius:999px;padding:4px"
-		+ " 12px;font-size:12px;color:#A0A5AE;margin:0 8px 6px 0}.chip b{color:#ECEEF3;font-weight:600;margin-left:6px}"
-		+ ".wrap{padding:16px 18px 26px;width:100%;max-width:100%;box-sizing:border-box}table{border-collapse:collapse;"
-		+ "width:100%;background:#17191F;border:1px solid #2F333A}th,td{padding:8px 8px;border-bottom:1px solid #26292F"
-		+ ";text-align:left;font-size:12px;white-space:normal;word-wrap:break-word}th{background:#1F2228;color:#A0A5AE;"
-		+ "font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:11px}tr:hover td{background:#282B33}"
-		+ "td.num{text-align:right;font-family:Consolas,'Courier New',monospace;color:#ECEEF3}.good{color:#76E699;font-"
-		+ "weight:600}.bad{color:#FF7E70;font-weight:600}.warn{color:#F5C25F}.muted{color:#A0A5AE}.badge{display:inline"
-		+ "-block;padding:0px 8px;border-radius:6px;font-size:11px;background:#2B332A;color:#C4F252}.cards{display:grid"
-		+ ";grid-template-columns:repeat(auto-fill,minmax(260px,1fr));grid-column-gap:12px}.card{background:#17191F;bor"
-		+ "der:1px solid #2F333A;border-radius:14px;padding:12px 14px;margin-bottom:12px}.big{font-size:26px;font-weigh"
-		+ "t:700;margin:6px 0;color:#C4F252;font-family:Consolas,'Courier New',monospace}.bar{height:6px;background:#2B"
-		+ "2E34;border-radius:3px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%}h2{font-size:14px;m"
-		+ "argin:18px 0 8px;color:#ECEEF3}svg{background:#1F2228;border:1px solid #2F333A;border-radius:10px}.spark svg"
-		+ "{background:transparent !important;border:0 !important;border-radius:0}.summary{display:-webkit-flex;display"
-		+ ":flex;flex-wrap:wrap;gap:6px 10px;margin:10px 0 14px}.summary span{background:#1F2228;border:1px solid #2F33"
-		+ "3A;border-radius:999px;padding:4px 12px;font-size:12px;color:#A0A5AE}.summary b{color:#ECEEF3;font-weight:60"
-		+ "0;margin-left:5px}.empty{max-width:520px;margin:48px auto;text-align:center;padding:24px}.empty-ico{color:#6"
-		+ "A4CF6;margin-bottom:10px}.empty h2{font-size:16px;margin:0 0 8px;color:#ECEEF3}.empty p{margin:0 0 16px;font"
-		+ "-size:13px;line-height:1.5}</style>"
+		+ "body{background:var(--pf-bg);color:var(--pf-fg);font-size:16px}.top{background:var(--pf-surface);border-bottom:1px solid var(--pf-line)"
+		+ ";padding:16px 18px 14px}.top h1{margin:0 0 12px;font-size:32px;font-weight:650;color:var(--pf-fg)}.chips{display:"
+		+ "flex;flex-wrap:wrap}.chip{background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:999px;padding:4px 12px;f"
+		+ "ont-size:12px;color:var(--pf-fg-2);margin:0 8px 6px 0}.chip b{color:var(--pf-fg);font-weight:600;margin-left:6px}.wrap{p"
+		+ "adding:16px 18px 26px;width:100%;max-width:100%;box-sizing:border-box}table{border-collapse:collapse;width:1"
+		+ "00%;background:var(--pf-surface);border:1px solid var(--pf-line)}th,td{padding:8px 8px;border-bottom:1px solid var(--pf-line);text-a"
+		+ "lign:left;font-size:12px;white-space:normal;word-wrap:break-word}th{background:var(--pf-raised);color:var(--pf-fg-2);font-we"
+		+ "ight:600;text-transform:uppercase;letter-spacing:.06em;font-size:12px}tr:hover td{background:var(--pf-raised)}td.num{"
+		+ "text-align:right;font-family:Consolas,'Courier New',monospace;color:var(--pf-fg)}.good{color:var(--pf-ok);font-weight:"
+		+ "600}.bad{color:var(--pf-bad);font-weight:600}.warn{color:var(--pf-warn)}.muted{color:var(--pf-fg-2)}.badge{display:inline-block;"
+		+ "padding:0px 8px;border-radius:6px;font-size:12px;background:var(--pf-accent-bg);color:var(--pf-accent)}.cards{display:grid;grid-t"
+		+ "emplate-columns:repeat(auto-fill,minmax(260px,1fr));grid-column-gap:12px}.card{background:var(--pf-surface);border:1px"
+		+ " solid var(--pf-line);border-radius:14px;padding:12px 14px;margin-bottom:12px}.big{font-size:26px;font-weight:700;m"
+		+ "argin:6px 0;color:var(--pf-accent);font-family:Consolas,'Courier New',monospace}.bar{height:6px;background:var(--pf-raised);bo"
+		+ "rder-radius:3px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%}h2{font-size:26px;margin:1"
+		+ "8px 0 8px;color:var(--pf-fg)}svg{background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:10px}.spark svg{backgr"
+		+ "ound:transparent !important;border:0 !important;border-radius:0}.summary{display:-webkit-flex;display:flex;f"
+		+ "lex-wrap:wrap;gap:6px 10px;margin:10px 0 14px}.summary span{background:var(--pf-raised);border:1px solid var(--pf-line);bord"
+		+ "er-radius:999px;padding:4px 12px;font-size:12px;color:var(--pf-fg-2)}.summary b{color:var(--pf-fg);font-weight:600;margi"
+		+ "n-left:5px}.empty{max-width:520px;margin:48px auto;text-align:center;padding:24px}.empty-ico{color:var(--pf-accent);m"
+		+ "argin-bottom:10px}.empty h2{font-size:26px;margin:0 0 8px;color:var(--pf-fg)}.empty p{margin:0 0 16px;font-size:1"
+		+ "3px;line-height:1.5}"
 		+ "</style>";
 КонецФункции
 
@@ -1202,7 +1202,7 @@
 		Точки.Добавить(ФорматЧисла(Х, 1) + "," + ФорматЧисла(Y, 1));
 	КонецЦикла;
 	Возврат "<svg width='" + ФорматЧисла(Ширина, 0) + "' height='" + ФорматЧисла(Высота, 0)
-		+ "'><polyline fill='none' stroke='#2563eb' stroke-width='2' points='"
+		+ "'><polyline fill='none' stroke='var(--pf-info)' stroke-width='2' points='"
 		+ СтрСоединить(Точки, " ") + "'/></svg>";
 КонецФункции
 
