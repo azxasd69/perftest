@@ -37,7 +37,7 @@
 		+ ", повторов " + Формат(Сценарий.Повторов, "ЧН=0; ЧГ=") + "</p>"
 		+ "<div class='c-foot'><span class='unit'>" + Порция + " "
 		+ Экранировать(Сценарий.Единица) + "</span>"
-		+ "<button class='btn primary' onclick='PF1C.run(" + Номер + ")'>Запустить</button></div>"
+		+ "<button class='btn primary' data-pf='run:" + Номер + "'>Запустить</button></div>"
 		+ "<div class='status'>&mdash;</div>"
 		+ "<p class='result'></p>"
 		+ "<div class='cbar'><i></i></div></section>";
@@ -56,30 +56,30 @@
 		+ "<span class='ver'>" + Экранировать(КонфигурацияСтрокой) + "</span></div>");
 	Части.Добавить("<div class='crumbles'><span>обзор</span><span>сценарии</span>"
 		+ "<span>журнал</span></div>");
-	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфДашборд"")'>Дашборд</button>");
-	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфТопКонфигураций"")'>Топ-100</button>");
-	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфСравнениеСтендов"")'>Сравнение</button>");
-	Части.Добавить("<button class='btn kbd' onclick='PF1C.send(""open:ПерфИсторияЗамеров"")'>История</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфДашборд'>Дашборд</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфСравнениеСтендов'>Сравнение</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфИсторияЗамеров'>История</button>");
 	Части.Добавить("<span class='grow'></span>");
 	Части.Добавить("<label class='field'><span>стенд</span>"
 		+ "<input class='stand-input' id='stand' value='" + Экранировать(СтендСтрокой) + "'"
-		+ " spellcheck='false' onchange='PF1C.send(""stand:""+this.value)'></label>");
+		+ " spellcheck='false' data-pf-field='stand'></label>");
 	Части.Добавить("<label class='field'><span>×</span>"
 		+ "<input class='rep-input' type='number' min='1' max='9' value='"
-		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' onchange='PF1C.send(""rep:""+this.value)'></label>");
-	Части.Добавить("<button class='btn kbd' onclick='PF1C.openPal()'>"
+		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>");
+	Части.Добавить("<button class='btn kbd' data-pf='pal'>"
 		+ "K<kbd>Ctrl+K</kbd></button>");
 	// Подпись сразу по текущей теме: без промежуточного «Тема» до выполнения скрипта.
 	// Подпись кнопки берётся из того же снимка, что и каркас: без второго запроса
 	// к константе и без риска показать не то состояние, что уже отрисовано.
 	СнимокТемы = ПерфUI.ДополнитьНастройки(Настройки);
 	ПодписьТемы = ?(СнимокТемы.Тема = "light", "Тёмная тема", "Светлая тема");
-	Части.Добавить("<button class='btn kbd' id='pfThemeBtn' onclick='PFThemeToggle(this)'>"
+	Части.Добавить("<button class='btn kbd' id='pfThemeBtn' data-pf='theme'>"
 		+ ПодписьТемы + "</button>");
-	Части.Добавить("<button class='btn primary' id='runAll' onclick='PF1C.send(""all"")'>"
+	Части.Добавить("<button class='btn primary' id='runAll' data-pf='send:all'>"
 		+ "Запустить все</button>");
 	Части.Добавить("<button class='btn danger' id='stop' disabled "
-		+ "onclick='PF1C.send(""stop"")'>Стоп</button>");
+		+ "data-pf='send:stop'>Стоп</button>");
 	Части.Добавить("</header>");
 
 	// Bento: четыре KPI
@@ -161,7 +161,7 @@
 		+ "return x.t.toLowerCase().indexOf(q)>=0;});"
 		+ "if(PF1C.palIdx>PF1C.palItems.length-1){PF1C.palIdx=Math.max(0,PF1C.palItems.length-1);}"
 		+ "var html='';for(var i=0;i<PF1C.palItems.length;i++){var it=PF1C.palItems[i];"
-		+ "html+=""<li class='""+(i===PF1C.palIdx?'sel':'')+""' onclick='PF1C.palPick(""+i+"")'>""+it.t+'</li>';}"
+		+ "html+=""<li class='""+(i===PF1C.palIdx?'sel':'')+""' data-pf='palpick:""+i+""'>""+it.t+'</li>';}"
 		+ "var ul=document.getElementById('palList');if(ul){ul.innerHTML=html;}},"
 		+ "palPick:function(i){var it=PF1C.palItems[i];if(!it){return;}PF1C.closePal();PF1C.send(it.c);},"
 		+ "palRun:function(){PF1C.palPick(PF1C.palIdx);},"

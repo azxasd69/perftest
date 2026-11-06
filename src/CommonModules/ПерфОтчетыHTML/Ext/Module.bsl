@@ -28,7 +28,7 @@
 		+ "<path d='M7 9h6M7 13h4'/></svg></div>"
 		+ "<h2>" + Экранировать(Заголовок) + "</h2>"
 		+ "<p class='muted'>" + Экранировать(Пояснение) + "</p>"
-		+ "<button class='btn primary' onclick='PFNav.go(&quot;НачальнаяСтраница&quot;)'>"
+		+ "<button class='btn primary' data-pf='open:НачальнаяСтраница'>"
 		+ "Открыть кокпит</button>"
 		+ "</div>";
 
@@ -1025,9 +1025,9 @@
 	// всегда собирается целиком - это делает единый каркас.
 	Тело = "<div class='pf-rep-tools'>"
 		+ "<span class='lbl'>базовый стенд</span>"
-		+ "<input value='" + Экранировать(БазовыйСтенд) + "' onchange='PF1C.send(""base:""+this.value)'>"
-		+ "<button class='btn' onclick='PF1C.send(""refresh"")'>Сформировать</button>"
-		+ "<button class='btn' onclick='PF1C.send(""reset"")'>Сбросить к сеансу</button>"
+		+ "<input value='" + Экранировать(БазовыйСтенд) + "' data-pf-field='base'>"
+		+ "<button class='btn' data-pf='send:refresh'>Сформировать</button>"
+		+ "<button class='btn' data-pf='send:reset'>Сбросить к сеансу</button>"
 		+ "</div>" + "<div class='pf-body'>" + HTML + "</div>";
 	// Стили страницы идут в head через ДопСтили: так каркас (панель, тема)
 	// применяется после них, и светлой теме не нужны !important для приоритета.

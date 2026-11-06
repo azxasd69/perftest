@@ -498,8 +498,8 @@
 		КонецЕсли;
 		Класс = ?(Пункт.Форма = Активный, " active", "");
 		Части.Добавить("<a class='nav-i" + Класс + "' href='#' title='"
-			+ Экранировать(Пункт.Подпись) + "' onclick='PFNav.go("""
-			+ Пункт.Форма + """);return false'>"
+			+ Экранировать(Пункт.Подпись) + "' data-pf='open:"
+			+ Пункт.Форма + "'>"
 			+ Иконка(Пункт.Иконка)
 			+ "<span class='nm'>" + Экранировать(Пункт.Подпись) + "</span></a>");
 	КонецЦикла;
@@ -827,7 +827,26 @@
 		+ "send:function(c){this.q.push(c);},"
 		+ "take:function(){if(!this.q.length){return '';}var s=this.q.join('|');"
 		+ "this.q=[];return s;},"
-		+ "clear:function(){this.q.length=0;}};}"
+		+ "clear:function(){this.q.length=0;}};"
+		+ "if(!window.PFAct){"
+		+ "var act=function(el){var a=el&&el.getAttribute&&el.getAttribute('data-pf');"
+		+ "if(!a){return false;}var i=a.indexOf(':');"
+		+ "var cmd=i<0?a:a.substring(0,i),arg=i<0?'':a.substring(i+1);"
+		+ "if(cmd==='open'||cmd==='nav'){if(window.PFNav&&PFNav.go){PFNav.go(arg);}"
+		+ "else if(window.PF1C&&PF1C.send){PF1C.send('open:'+arg);}}"
+		+ "else if(cmd==='send'){PF1C.send(arg);}"
+		+ "else if(cmd==='run'){if(PF1C.run){PF1C.run(arg);}else{PF1C.send('run:'+arg);}}"
+		+ "else if(cmd==='pal'){if(PF1C.openPal){PF1C.openPal();}}"
+		+ "else if(cmd==='palpick'){if(PF1C.palPick){PF1C.palPick(parseInt(arg,10));}}"
+		+ "else if(cmd==='close'){if(PF1C.closePal){PF1C.closePal();}}"
+		+ "else if(cmd==='theme'){if(window.PFThemeToggle){PFThemeToggle(el);}}"
+		+ "return true;};"
+		+ "document.addEventListener('click',function(e){var el=e.target;"
+		+ "while(el&&el!==document.body&&!(el.getAttribute&&el.getAttribute('data-pf'))){el=el.parentNode;}"
+		+ "if(el&&el.getAttribute&&act(el)){e.preventDefault();}},false);"
+		+ "document.addEventListener('change',function(e){var el=e.target;"
+		+ "var f=el&&el.getAttribute&&el.getAttribute('data-pf-field');"
+		+ "if(f&&window.PF1C){PF1C.send(f+':'+el.value);}},false);}}"
 		+ "</scr" + "ipt>";
 КонецФункции
 

@@ -294,14 +294,14 @@
 
 	// Действия: выбор стенда и переходы. Переключателя темы здесь нет.
 	Части.Добавить("<div class='pfsc-actions'>");
-	Части.Добавить("<select class='pfsc-select' onchange='PF1C.send(""stand:""+this.value)'>");
+	Части.Добавить("<select class='pfsc-select' data-pf-field='stand'>");
 	Для Каждого Имя Из Данные.Стенды Цикл
 		Части.Добавить("<option value='" + Текст(Имя) + "'" + ?(СокрЛП(Имя) = Данные.Стенд, " selected", "")
 			+ ">" + Текст(Имя) + "</option>");
 	КонецЦикла;
 	Части.Добавить("</select>");
-	Части.Добавить("<button class='pfsc-btn' onclick='PF1C.send(""open:ПерфСравнениеСтендов"")'>Сравнить</button>");
-	Части.Добавить("<button class='pfsc-btn primary' onclick='PF1C.send(""open:ПерфДашборд"")'>На дашборд</button>");
+	Части.Добавить("<button class='pfsc-btn' data-pf='open:ПерфСравнениеСтендов'>Сравнить</button>");
+	Части.Добавить("<button class='pfsc-btn primary' data-pf='open:ПерфДашборд'>На дашборд</button>");
 	Части.Добавить("</div></header>");
 	Возврат СтрСоединить(Части, "");
 
