@@ -299,3 +299,52 @@
 		+ "window.PFNav=PFNav;"
 		+ "</scr" + "ipt>";
 КонецФункции
+
+// ---------------------------------------------------------------------------
+// Блок: сворачивание бокового меню (как в панелях управления).
+// Состояние хранится в localStorage под ключом pf-nav.
+// ---------------------------------------------------------------------------
+
+Функция СтилиСворачивания() Экспорт
+	Возврат "<style>"
+		+ "body{-webkit-transition:padding-left .18s;transition:padding-left .18s}"
+		+ "body.pf-collapsed{padding-left:76px !important}"
+		+ ".side{-webkit-transition:width .18s;transition:width .18s}"
+		+ "body.pf-collapsed .side{width:60px !important;padding:16px 8px !important}"
+		+ "body.pf-collapsed .side .logo b,body.pf-collapsed .side .logo span,"
+		+ "body.pf-collapsed .nav-label,body.pf-collapsed .side-foot{display:none !important}"
+		+ "body.pf-collapsed .side a{font-size:0 !important;padding:9px 0 !important;"
+		+ "text-align:center}"
+		+ "body.pf-collapsed .side a .dot-n,.side a .dot-n{width:8px;height:8px;"
+		+ "border-radius:50%;background:#4A5464;display:inline-block;margin-right:9px}"
+		+ "body.pf-collapsed .side a .dot-n{margin-right:0}"
+		+ ".side a.active .dot-n{background:#C4F252}"
+		+ ".nav-btn{position:absolute;top:12px;right:-12px;width:24px;height:24px;"
+		+ "border-radius:50%;background:#1C232C;color:#C6CFDD;border:1px solid #2A323D;"
+		+ "cursor:pointer;font:600 12px 'Segoe UI',Arial,sans-serif;padding:0;z-index:51}"
+		+ ".nav-btn:hover{background:#26303C;color:#FFFFFF}"
+		+ "</style>";
+КонецФункции
+
+Функция СкриптСворачивания() Экспорт
+	Возврат "<scr" + "ipt>"
+		+ "var PFNav=window.PFNav||{};"
+		+ "PFNav.key='pf-nav';"
+		+ "PFNav.on=function(){return document.body.className.indexOf('pf-collapsed')>=0;};"
+		+ "PFNav.apply=function(){var b=document.getElementById('pfNavBtn');"
+		+ "if(b){b.innerHTML=PFNav.on()?'>':'<';}};"
+		+ "PFNav.toggle=function(){var on=PFNav.on();"
+		+ "document.body.className=on?'':'pf-collapsed';"
+		+ "try{localStorage.setItem(PFNav.key,on?'0':'1');}catch(e){}"
+		+ "PFNav.apply();return false;};"
+		+ "PFNav.init=function(){var on=false;"
+		+ "try{on=localStorage.getItem(PFNav.key)==='1';}catch(e){on=false;}"
+		+ "document.body.className=on?'pf-collapsed':'';"
+		+ "var side=document.getElementById('pfSide')||document.querySelector('.side');"
+		+ "if(side&&!document.getElementById('pfNavBtn')){"
+		+ "var b=document.createElement('button');b.id='pfNavBtn';b.className='nav-btn';"
+		+ "b.onclick=PFNav.toggle;side.appendChild(b);}"
+		+ "PFNav.apply();};"
+		+ "window.PFNav=PFNav;PFNav.init();"
+		+ "</scr" + "ipt>";
+КонецФункции
