@@ -1041,8 +1041,9 @@
 
 // CSS отчёта: встроен в страницу, внешних файлов нет.
 Функция Стили()
-	Возврат "<style>"
-		+ "body{margin:0;font:13px/1.5 'Segoe UI',Arial,sans-serif;background:#0E0F13;color:#ECEEF3}"
+	// База токенов и типографики - из ПерфUI, ниже только отчётные правила.
+	Возврат ПерфUI.Стили() + "<style>"
+		+ "body{background:#0E0F13;color:#ECEEF3}"
 		+ ".top{background:#17191F;border-bottom:1px solid #2F333A;padding:16px 18px 14px}"
 		+ ".top h1{margin:0 0 12px;font-size:18px;font-weight:600;color:#ECEEF3}"
 		+ ".chips{display:flex;flex-wrap:wrap}"
