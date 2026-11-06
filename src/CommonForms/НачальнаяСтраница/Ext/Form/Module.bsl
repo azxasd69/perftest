@@ -9,17 +9,7 @@
 // HTML-шапка собирается через DOM (статья infostart.ru/1c/articles/2675965).
 
 &НаКлиенте
-Перем ДиагностикаСкрыла;
-&НаКлиенте
 Перем СостояниеОпроса;
-
-// ПРОБА МОСТА: клик по элементу с id exportedInterfaceEventElement должен поднять ПриНажатии.
-Функция ДобавитьПробуМоста(Текст)
-	Скрипт = "<span id='exportedInterfaceEventElement' style='display:none'>e</span>"
-		+ "<scr" + "ipt>setTimeout(function(){var e=document.getElementById('exportedInterfaceEventElement');"
-		+ "if(e){e.click();}},1500);</scr" + "ipt>";
-	Возврат СтрЗаменить(Текст, "</body>", Скрипт + "</body>");
-КонецФункции
 
 &НаСервере
 Процедура ЗаписатьКомандуВЛог(Команда)
@@ -856,15 +846,6 @@
 
 #Область ДиагностикаДвижкаHTML
 
-&НаКлиенте
-Функция ЭтоДиагностикаФич()
-	Попытка
-		Возврат СтрНайти(НРег(СокрЛП(ПараметрЗапуска)), "перффичи") > 0;
-	Исключение
-		Возврат Ложь;
-	КонецПопытки;
-КонецФункции
-
 // Фоновый сбор паспорта при старте: пользователь ничего не ждёт. Быстрая фаза
 // (без COM) уходит в фоновое задание сразу, полная - следом в том же задании.
 &НаКлиенте
@@ -904,152 +885,6 @@
 	// Метка версии ставится до раннего выхода: иначе при обычном запуске
 	// она оставалась пустой и первая же активация окна перестраивала страницу.
 	ПоследняяВерсияНастроек = ВерсияНастроекСервер();
-	Если Не ЭтоДиагностикаФич() Тогда
-		Возврат;
-	КонецЕсли;
-	ПодключитьОбработчикОжидания("ПрочитатьДиагностикуФич", 1, Истина);
-КонецПроцедуры
-
-&НаСервере
-Функция ДобавитьДиагностику(ШапкаТекст)
-	Скрипт = "<script>" + ТекстДиагностикиФич() + "</script>";
-	Результат = СтрЗаменить(ШапкаТекст, "</body>", Скрипт + "</body>");
-	Если СтрДлина(Результат) > СтрДлина(ШапкаТекст) Тогда
-		Возврат Результат;
-	КонецЕсли;
-	Возврат ШапкаТекст + Скрипт;
-КонецФункции
-
-&НаСервереБезКонтекста
-Функция ТекстДиагностикиФич()
-	Возврат "function PF_Diag_Run(){
-|var R=[];
-|function rec(n,v){R.push(n+'='+v);}
-|function sup(p,v){var r='?';try{if(window.CSS&&CSS.supports){r=CSS.supports(p,v)?'y':'n';}else{r='x';}}catch(e){r='e';}return r;}
-|function t(n,p,v){rec(n,sup(p,v));}
-|function es(n,c){var r='n';try{new Function(c);r='y';}catch(e){r='n';}rec(n,r);}
-|function mk(c){var d=document.createElement('div');d.style.cssText=c;return d;}
-|try{
-|rec('ready','1');
-|rec('ua',String(navigator.userAgent||'').replace(/[ ;]/g,'_'));
-|rec('vw',String(window.innerWidth||0));rec('vh',String(window.innerHeight||0));
-|rec('dh',String((document.documentElement&&document.documentElement.clientHeight)||0));
-|rec('bh',String((document.body&&document.body.offsetHeight)||0));
-|rec('state',String(document.readyState));
-|rec('scripts',String(document.getElementsByTagName('script').length));
-|rec('dpr',String(window.devicePixelRatio||1));
-|var box=mk('position:fixed;left:-9999px;top:0;width:320px;height:220px;overflow:auto');
-|document.body.appendChild(box);
-|t('d_flex','display','flex');t('d_grid','display','grid');t('d_iflex','display','inline-flex');t('d_block','display','block');
-|t('p_sticky','position','sticky');t('p_fixed','position','fixed');t('p_absolute','position','absolute');
-|t('gap','gap','10px');t('grid_gap','grid-gap','10px');t('column_gap','column-gap','10px');t('row_gap','row-gap','10px');
-|t('bdf','backdrop-filter','blur(4px)');t('wbdf','-webkit-backdrop-filter','blur(4px)');
-|t('oklch','color','oklch(0.5 0.1 200)');t('colormix','color','color-mix(in oklch, red, blue)');
-|t('clamp','width','clamp(1px,2px,3px)');t('minf','width','min(1px,2px)');t('maxf','width','max(1px,2px)');
-|t('calc','width','calc(100% - 10px)');t('aspect','aspect-ratio','1');t('fvn','font-variant-numeric','tabular-nums');
-|t('radius','border-radius','12px');t('shadow','box-shadow','0 1px 2px #000');t('grad','background-image','linear-gradient(90deg,#000,#fff)');
-|t('transform','transform','translateY(1px)');t('transition','transition','all .2s');t('anim','animation','a 1s');
-|t('objfit','object-fit','cover');t('filter','filter','blur(2px)');t('mixbm','mix-blend-mode','multiply');
-|t('clip','clip-path','inset(0)');t('inset','inset','0px');t('flexwrap','flex-wrap','wrap');t('fdir','flex-direction','column');
-|t('alignitems','align-items','center');t('justifyc','justify-content','space-between');t('gridtc','grid-template-columns','1fr 1fr');
-|t('gridauto','grid-auto-flow','row');t('gridareas','grid-template-areas','a b');t('textoverflow','text-overflow','ellipsis');
-|t('wordbreak','word-break','break-word');t('ptr','pointer-events','none');t('userselect','user-select','none');
-|t('scrollsmooth','scroll-behavior','smooth');t('overscroll','overscroll-behavior','contain');t('boxsizing','box-sizing','border-box');
-|t('bgclip','background-clip','text');t('whitespace','white-space','nowrap');t('texttransform','text-transform','uppercase');
-|t('letterspacing','letter-spacing','.12em');t('lh','line-height','1.4');t('opacity','opacity','.5');t('cursor','cursor','pointer');
-|t('willchange','will-change','transform');t('isolation','isolation','isolate');t('origin','transform-origin','center');
-|t('table','display','table');t('tablecell','display','table-cell');t('flex1','flex','1 1 180px');
-|t('sticky_w','position','-webkit-sticky');t('filterdrop','filter','drop-shadow(0 1px 2px #000)');
-|es('es_arrow','return ()=>1;');es('es_let','let a=1;const b=2;return a+b;');es('es_tpl','var x=1;return `a${x}`;');
-|es('es_class','class A{};return new A();');es('es_spread','var a=[1];var b=[...a];return b.length;');
-|es('es_destr','var o={a:1};var {a}=o;return a;');es('es_forof','var a=[1];for(var x of a){}return 1;');
-|es('es_defparam','function f(a=1){return a}return f();');es('es_map','var m=new Map();m.set(1,2);return m.get(1);');
-|rec('has_set',typeof Set!=='undefined'?'y':'n');rec('has_promise',typeof Promise!=='undefined'?'y':'n');
-|rec('has_from',(typeof Array.from==='function')?'y':'n');rec('has_includes',(typeof String.prototype.includes==='function')?'y':'n');
-|rec('has_padstart',(typeof String.prototype.padStart==='function')?'y':'n');rec('has_qs',(typeof document.querySelector==='function')?'y':'n');
-|rec('has_listen',(typeof document.addEventListener==='function')?'y':'n');rec('has_classlist',(typeof document.body.classList!=='undefined')?'y':'n');
-|rec('has_dataset',(typeof document.body.dataset!=='undefined')?'y':'n');rec('has_raf',(typeof window.requestAnimationFrame==='function')?'y':'n');
-|rec('has_xhr',(typeof XMLHttpRequest!=='undefined')?'y':'n');rec('has_fetch',(typeof fetch!=='undefined')?'y':'n');
-|rec('has_perf',(typeof performance!=='undefined')?'y':'n');rec('has_mutation',(typeof MutationObserver!=='undefined')?'y':'n');
-|var f=mk('display:flex;gap:10px;width:120px');var a1=mk('width:20px;height:10px');var a2=mk('width:20px;height:10px');
-|f.appendChild(a1);f.appendChild(a2);box.appendChild(f);
-|rec('f_flexgap',((a2.offsetLeft-a1.offsetLeft)>=29)?'y':'n');
-|var g=mk('display:grid;grid-template-columns:1fr 1fr;grid-gap:6px;width:120px');var b1=mk('height:10px');var b2=mk('height:10px');
-|g.appendChild(b1);g.appendChild(b2);box.appendChild(g);
-|rec('f_grid',((b2.offsetLeft-b1.offsetLeft)>=40)?'y':'n');
-|rec('f_gridgap',((b1.getBoundingClientRect().width+6)<=(b2.offsetLeft-b1.offsetLeft+1))?'y':'n');
-|var ar=mk('width:100px;aspect-ratio:2');box.appendChild(ar);
-|rec('f_aspect',(ar.offsetHeight>=45&&ar.offsetHeight<=55)?'y':'n');
-|var stc=mk('height:80px;overflow:auto');var big=mk('height:300px');var stk=mk('position:sticky;top:0;height:10px');
-|big.appendChild(stk);stc.appendChild(big);box.appendChild(stc);
-|var stv='n';try{stc.scrollTop=60;var r1=stk.getBoundingClientRect().top;var r2=stc.getBoundingClientRect().top;stv=(Math.abs(r1-r2)<3)?'y':'n';}catch(e){stv='e';}
-|rec('f_sticky',stv);
-|var sw='n';try{var st2=mk('height:80px;overflow:auto');var bg2=mk('height:300px');var sk2=mk('position:-webkit-sticky;top:0;height:10px');bg2.appendChild(sk2);st2.appendChild(bg2);box.appendChild(st2);st2.scrollTop=60;var q1=sk2.getBoundingClientRect().top;var q2=st2.getBoundingClientRect().top;sw=(Math.abs(q1-q2)<3)?'y':'n';}catch(e){sw='e';}
-|rec('f_wsticky',sw);
-|var sc2=mk('height:80px;overflow:auto');var inner=mk('height:300px');sc2.appendChild(inner);box.appendChild(sc2);
-|var scv='n';try{sc2.scrollTop=50;scv=(sc2.scrollTop>=40)?'y':'n';}catch(e){scv='e';}
-|rec('f_scroll',scv);
-|var vr='n';try{var vv=mk('');vv.style.setProperty('--pf','#ff0000');vv.style.color='var(--pf)';box.appendChild(vv);vr=(getComputedStyle(vv).color.indexOf('255')>=0)?'y':'n';}catch(e){vr='e';}
-|rec('f_var',vr);
-|var br='n';try{var bl=mk('width:100px;height:20px;border-radius:10px;background:#000');box.appendChild(bl);br=(getComputedStyle(bl).borderTopLeftRadius!=='0px')?'y':'n';}catch(e){br='e';}
-|rec('f_radius',br);
-|var sh='n';try{var shd=mk('box-shadow:0 1px 2px #000');box.appendChild(shd);sh=(getComputedStyle(shd).boxShadow.indexOf('rgb')>=0)?'y':'n';}catch(e){sh='e';}
-|rec('f_shadow',sh);
-|var tx='n';try{var tt=mk('display:flex;align-items:center;justify-content:center;width:100px;height:30px;font-size:10px');tt.innerHTML='<span>x</span>';box.appendChild(tt);var sp=tt.firstChild;var rt=sp.getBoundingClientRect();tx=((rt.top-tt.getBoundingClientRect().top)>5)?'y':'n';}catch(e){tx='e';}
-|rec('f_flexalign',tx);
-|}catch(e){rec('fatal',String((e&&e.message)||e).substring(0,80));}
-|rec('done','1');
-|window.PF_DIAG=R.join(';');
-|}
-|window.diagText=function(){return window.PF_DIAG||'';};";
-КонецФункции
-
-&НаКлиенте
-Процедура ПрочитатьДиагностикуФич()
-	Если Не ДиагностикаСкрыла = Истина Тогда
-		ДиагностикаСкрыла = Истина;
-		Попытка
-			Для Н = 1 По 11 Цикл
-				Элементы["Карточка" + Н].Видимость = Ложь;
-			КонецЦикла;
-			Элементы.ГруппаПараметры.Видимость = Ложь;
-			Элементы.ГруппаОтчёты.Видимость = Ложь;
-		Исключение
-			ТекстОшибкиСкрытия = КраткоеПредставлениеОшибки(ИнформацияОбОшибке());
-		КонецПопытки;
-		ПодключитьОбработчикОжидания("ПрочитатьДиагностикуФич", 1, Истина);
-		Возврат;
-	КонецЕсли;
-	Текст = "";
-	Попытка
-		Мост = ОбъектОкнаHTML();
-		Если Мост <> Неопределено Тогда
-			Попытка
-				Мост.PF_Diag_Run();
-			Исключение
-				ПричинаСбоя = КраткоеПредставлениеОшибки(ИнформацияОбОшибке());
-			КонецПопытки;
-			Значение = Мост.diagText();
-			Если ТипЗнч(Значение) = Тип("Строка") Тогда
-				Текст = Значение;
-			КонецЕсли;
-		КонецЕсли;
-	Исключение
-		Текст = "ошибка чтения: " + КраткоеПредставлениеОшибки(ИнформацияОбОшибке());
-	КонецПопытки;
-	Если ПустаяСтрока(Текст) Тогда
-		ПодключитьОбработчикОжидания("ПрочитатьДиагностикуФич", 1, Истина);
-		Возврат;
-	КонецЕсли;
-	Попытка
-		Запись = Новый ЗаписьТекста("C:\Users\Павел\AppData\Roaming\AutoClaw-oversea-official\accounts\42cd9b030f9c4e3712f1b0d6d70ed5458a241f49d2f132ad4f7718bb5fc1d247\projects\Default\out\perf\features.txt"); // BSLLS:UsingHardcodePath-off (стенд диагностики)
-		Запись.Записать(Текст);
-		Запись.Закрыть();
-	Исключение
-		ТекстОшибкиЗаписи = КраткоеПредставлениеОшибки(ИнформацияОбОшибке());
-	КонецПопытки;
-	ОтключитьОбработчикОжидания("ПрочитатьДиагностикуФич");
-	ЗавершитьРаботуСистемы(Ложь);
 КонецПроцедуры
 
 #КонецОбласти

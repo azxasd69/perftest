@@ -262,6 +262,9 @@
 // JS: очередь команд для 1С, обновление карточек и KPI, журнал, палитра.
 Функция СкриптКокпита(ВсегоСценариев) Экспорт
 	Возврат "<scr" + "ipt>"
+		// Базовый мост (send/take/clear) уже создан каркасом в head: свой объект
+		// строится поверх него, иначе clear терялся при переходе по меню.
+		+ "var PF1Cbase=window.PF1C||{};"
 		+ "var PF1C={q:[],total:" + Формат(ВсегоСценариев, "ЧН=0; ЧГ=") + ","
 		+ "send:function(c){this.q.push(c);},take:function(){"
 		+ "if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;},"
@@ -340,6 +343,8 @@
 		+ "status:function(txt){var s=document.getElementById('stat');if(s){s.innerHTML=txt;}},"
 		+ "stand:function(v){var s=document.getElementById('stand');if(s){s.value=v;}"
 		+ "var t=document.getElementById('stat');if(t){t.innerHTML='Готов к работе. Стенд: <b>'+v+'</b>';}}};"
+		+ "if(PF1Cbase.clear){PF1C.clear=PF1Cbase.clear;}"
+		+ "if(PF1Cbase.send){PF1C.send=PF1C.send||PF1Cbase.send;}"
 		+ "window.PF1C=PF1C;"
 		+ "window.SetProgress=function(n,p,t){PF1C.progress(n,p,t);};"
 		+ "window.SetGlobalStatus=function(t){PF1C.status(t);};"
