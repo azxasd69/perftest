@@ -1025,7 +1025,7 @@
 	// всегда собирается целиком - это делает единый каркас.
 	Тело = "<div class='pf-rep-tools'>"
 		+ "<span class='lbl'>базовый стенд</span>"
-		+ "<input id='pfBase' value='" + Экранировать(БазовыйСтенд) + "' onchange='PF1C.send(""base:""+this.value)'>"
+		+ "<input value='" + Экранировать(БазовыйСтенд) + "' onchange='PF1C.send(""base:""+this.value)'>"
 		+ "<button class='btn' onclick='PF1C.send(""refresh"")'>Сформировать</button>"
 		+ "<button class='btn' onclick='PF1C.send(""reset"")'>Сбросить к сеансу</button>"
 		+ "</div>" + "<div class='pf-body'>" + HTML + "</div>";

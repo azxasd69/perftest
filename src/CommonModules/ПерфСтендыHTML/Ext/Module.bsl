@@ -294,7 +294,7 @@
 
 	// Действия: выбор стенда и переходы. Переключателя темы здесь нет.
 	Части.Добавить("<div class='pfsc-actions'>");
-	Части.Добавить("<select class='pfsc-select' id='pfStand' onchange='PF1C.send(""stand:""+this.value)'>");
+	Части.Добавить("<select class='pfsc-select' onchange='PF1C.send(""stand:""+this.value)'>");
 	Для Каждого Имя Из Данные.Стенды Цикл
 		Части.Добавить("<option value='" + Текст(Имя) + "'" + ?(СокрЛП(Имя) = Данные.Стенд, " selected", "")
 			+ ">" + Текст(Имя) + "</option>");

@@ -65,9 +65,9 @@
 		+ "<input class='stand-input' id='stand' value='" + Экранировать(СтендСтрокой) + "'"
 		+ " spellcheck='false' onchange='PF1C.send(""stand:""+this.value)'></label>");
 	Части.Добавить("<label class='field'><span>×</span>"
-		+ "<input class='rep-input' type='number' id='repeats' min='1' max='9' value='"
+		+ "<input class='rep-input' type='number' min='1' max='9' value='"
 		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' onchange='PF1C.send(""rep:""+this.value)'></label>");
-	Части.Добавить("<button class='btn kbd' id='openPal' onclick='PF1C.openPal()'>"
+	Части.Добавить("<button class='btn kbd' onclick='PF1C.openPal()'>"
 		+ "K<kbd>Ctrl+K</kbd></button>");
 	// Подпись сразу по текущей теме: без промежуточного «Тема» до выполнения скрипта.
 	// Подпись кнопки берётся из того же снимка, что и каркас: без второго запроса
@@ -107,9 +107,9 @@
 	КонецЦикла;
 
 	// Журнал таблицей на 8 колонок
-	Части.Добавить("<section class='tile span-12' id='logTile'>"
+	Части.Добавить("<section class='tile span-12'>"
 		+ "<div class='log-head'><h2>Журнал замеров</h2>"
-		+ "<span id='logState'>стенд x сценарий</span></div>"
+		+ "<span>стенд x сценарий</span></div>"
 		+ "<table><thead><tr><th class='n'>№</th><th>Сценарий</th><th>Стенд</th>"
 		+ "<th class='n'>Медиана, мс</th><th class='n'>мс/тыс.</th><th class='n'>Повторов</th>"
 		+ "<th class='n'>Мин...Макс</th><th>Дата</th></tr></thead>"
