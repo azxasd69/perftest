@@ -249,6 +249,7 @@
 			<CommonModule>ПерфСценарии</CommonModule>
 			<CommonModule>ПерфОтчетыHTML</CommonModule>
 			<CommonModule>ПерфКокпит</CommonModule>
+			<CommonModule>ПерфUI</CommonModule>
 			<CommonForm>НачальнаяСтраница</CommonForm>
 			<CommonForm>ПерфДашборд</CommonForm>
 			<CommonForm>ПерфИсторияЗамеров</CommonForm>

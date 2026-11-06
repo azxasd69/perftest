@@ -13,7 +13,8 @@
 // команды из HTML забираются таймером через PF1C.take().
 
 Функция СтилиКокпита() Экспорт
-	Возврат "<style>"
+	// База токенов и компонентов - из ПерфUI; ниже только кокпит-специфика.
+	Возврат ПерфUI.Стили() + "<style>"
 		+ "html,body{margin:0;background:#0E0F13;color:#ECEEF3;"
 		+ "font:14px/1.5 'Segoe UI',Arial,sans-serif;"
 		+ "background-image:radial-gradient(90% 60% at 15% -10%,rgba(58,72,110,.45),rgba(14,15,19,0)),"
