@@ -13,27 +13,11 @@
 // команды из HTML забираются таймером через PF1C.take().
 
 Функция СтилиКокпита() Экспорт
+	// Только адаптивная сетка карточек. Всё оформление кокпита теперь в базе:
+	// правила, которые здесь были, дословно совпадали с ПерфUI.Стили.
 	Возврат "<style>"
-		+ ".field .stand-input{width:132px}.field .rep-input{width:52px;text-align:center}.btn.danger:hover:not(:disabl"
-		+ "ed){background:var(--pf-bad-bg)}.btn.kbd{font-size:14px;color:var(--pf-fg-2);padding:4px 8px}.btn.kbd kbd{fo"
-		+ "nt-family:Consolas,'Courier New',monospace;font-size:12px;background:var(--pf-raised);border:1px solid var(-"
-		+ "-pf-line);border-radius:4px;padding:0 4px;margin-left:6px}.edge{position:absolute;left:0;top:14px;bottom:14p"
-		+ "x;width:2px;border-radius:2px;background:transparent}.card.state-run .edge{background:var(--pf-info)}.card.s"
-		+ "tate-ok .edge{background:var(--pf-ok)}.card.state-err .edge{background:var(--pf-bad)}.card.state-cancel .edg"
-		+ "e{background:var(--pf-warn)}.badge.run{background:var(--pf-info-bg);color:var(--pf-info)}.badge.cancel{backg"
-		+ "round:var(--pf-warn-bg);color:var(--pf-warn)}.c-foot .btn{margin-left:auto;padding:8px 14px;font-size:14px}."
-		+ "cbar{position:absolute;left:0;right:0;bottom:0;height:2px;background:transparent}.state-ok .cbar i{backgroun"
-		+ "d:var(--pf-ok)}.state-err .cbar i{background:var(--pf-bad)}.state-cancel .cbar i{background:var(--pf-warn)}."
-		+ "log-head h2{margin:0;font-size:26px;font-weight:640;letter-spacing:-.01em}.log-head span{font-size:14px;colo"
-		+ "r:var(--pf-fg-2);margin-left:10px}.scrim{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(6,7,10"
-		+ ",.72);z-index:90;padding-top:12vh}.pal{width:560px;max-width:92%;margin:0 auto;background:var(--pf-surface);"
-		+ "border:1px solid var(--pf-line);border-radius:14px;overflow:hidden}.pal input{width:100%;box-sizing:border-b"
-		+ "ox;border:0;background:transparent;color:var(--pf-fg);font:16px 'Segoe UI',Arial,sans-serif;padding:16px 16p"
-		+ "x;border-bottom:1px solid var(--pf-line);outline:none}.pal ul{list-style:none;margin:0;padding:6px;max-heigh"
-		+ "t:46vh;overflow:auto}.pal li{padding:8px 10px;border-radius:8px;font-size:14px;cursor:pointer;color:var(--pf"
-		+ "-fg-2)}.pal li.sel{background:var(--pf-accent-bg);color:var(--pf-fg)}.pal .tip{font-size:12px;color:var(--pf"
-		+ "-fg-2);padding:8px 16px;border-top:1px solid var(--pf-line)}.card.span-4{grid-column:span 6}.card.span-4,.ca"
-		+ "rd.span-6{grid-column:span 12}"
+		+ "@media (max-width:1500px){.card.span-4{grid-column:span 6}}@media (max-width:1100px){.card.span-4,.card.span"
+		+ "-6{grid-column:span 12}}"
 		+ "</style>";
 КонецФункции
 
