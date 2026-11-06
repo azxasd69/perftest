@@ -218,10 +218,10 @@
 		+ "<div class='big'><span id='kMedian'>&mdash;</span><small> мс</small></div>"
 		+ "<div class='sub' id='kMedianHint'>по завершенным</div></section>");
 	Части.Добавить("<section class='tile span-3'><div class='lbl'>Самый медленный</div>"
-		+ "<div class='big' id='kSlow' style='font-size:26px'>&mdash;</div>"
+		+ "<div class='big big-lg' id='kSlow'>&mdash;</div>"
 		+ "<div class='sub' id='kSlowHint'>наибольшая медиана</div></section>");
 	Части.Добавить("<section class='tile span-2'><div class='lbl'>Последний</div>"
-		+ "<div class='big' id='kLast' style='font-size:24px'>&mdash;</div>"
+		+ "<div class='big big-md' id='kLast'>&mdash;</div>"
 		+ "<div class='sub'>время замера</div></section>");
 
 	// Карточки: первые две шире, как в шаблоне
@@ -246,7 +246,7 @@
 	Части.Добавить("</main>");
 
 	// Палитра команд
-	Части.Добавить("<div class='scrim' id='scrim' style='display:none'>"
+	Части.Добавить("<div class='scrim hidden' id='scrim'>"
 		+ "<div class='pal'><input id='palInput' placeholder='Сценарий или действие...'"
 		+ " autocomplete='off'><ul id='palList'></ul>"
 		+ "<div class='tip'>стрелки - выбор, Enter - выполнить, Esc - закрыть</div>"
@@ -267,9 +267,9 @@
 		+ "if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;},"
 		+ "run:function(n){this.send('run:'+n);},"
 		+ "openPal:function(){var s=document.getElementById('scrim');"
-		+ "if(s){s.style.display='block';}var i=document.getElementById('palInput');"
+		+ "if(s){s.classList.remove('hidden');}var i=document.getElementById('palInput');"
 		+ "if(i){i.focus();}PF1C.palRefresh();},"
-		+ "closePal:function(){var s=document.getElementById('scrim');if(s){s.style.display='none';}},"
+		+ "closePal:function(){var s=document.getElementById('scrim');if(s){s.classList.add('hidden');}},"
 		+ "palIdx:0,palItems:[],"
 		+ "palActions:function(){var a=[{t:'Запустить все последовательно',k:'action',c:'all'},"
 		+ "{t:'Остановить текущий прогон',k:'action',c:'stop'}];"
@@ -357,7 +357,7 @@
 		+ "else if(s2open()){if(e.key==='ArrowDown'){e.preventDefault();PF1C.palIdx++;PF1C.palRefresh();}"
 		+ "else if(e.key==='ArrowUp'){e.preventDefault();PF1C.palIdx=Math.max(0,PF1C.palIdx-1);PF1C.palRefresh();}"
 		+ "else if(e.key==='Enter'){e.preventDefault();PF1C.palRun();}}});"
-		+ "function s2open(){var s=document.getElementById('scrim');return s&&s.style.display==='block';}"
+		+ "function s2open(){var s=document.getElementById('scrim');return s&&!s.classList.contains('hidden');}"
 		+ "var pi=document.getElementById('palInput');"
 		+ "if(pi){pi.addEventListener('input',function(){PF1C.palIdx=0;PF1C.palRefresh();});}"
 		+ "var sc=document.getElementById('scrim');"
