@@ -238,7 +238,7 @@
 		+ "if(b){b.innerHTML=on?'Тёмная тема':'Светлая тема';}"
 		+ "return false;}"
 		+ "function PFThemeToggle(b){var src=document.getElementById('pfLight');"
-		+ "if(!window.pfCss){window.pfCss=src?src.innerHTML:'';}"
+		+ "if(!window.pfCss){window.pfCss=(window.PFTheme&&PFTheme.css)?PFTheme.css:(src?src.innerHTML:'');}"
 		+ "if(src&&src.parentNode){src.parentNode.removeChild(src);}"
 		+ "var cur=document.getElementById('pfLightOn');var on=!cur;"
 		+ "if(on&&window.pfCss){var st=document.createElement('style');"
