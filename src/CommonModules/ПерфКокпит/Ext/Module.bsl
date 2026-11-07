@@ -296,6 +296,16 @@
 		+ "var t=document.getElementById('stat');if(t){t.innerHTML='Готов к работе. Стенд: <b>'+v+'</b>';}}};"
 		+ "if(PF1Cbase.clear){PF1C.clear=PF1Cbase.clear;}"
 		+ "if(PF1Cbase.send){PF1C.send=PF1C.send||PF1Cbase.send;}"
+		// Подгонка строк под окно: свободная высота делится на число строк
+		// в пределах 46..58 px - без полос и без давки.
+		+ "PF1C.pfFit=function(){var r=document.querySelectorAll('.card.row');if(!r.length){return;}"
+		+ "var top=r[0].getBoundingClientRect().top;"
+		+ "var avail=window.innerHeight-top-12;"
+		+ "var h=Math.floor(avail/r.length)-8;"
+		+ "if(h<46){h=46;}if(h>58){h=58;}"
+		+ "document.documentElement.style.setProperty('--pf-row-h',h+'px');};"
+		+ "window.addEventListener('load',function(){PF1C.pfFit();});"
+		+ "window.addEventListener('resize',function(){PF1C.pfFit();});"
 		+ "window.PF1C=PF1C;"
 		+ "window.SetProgress=function(n,p,t){PF1C.progress(n,p,t);};"
 		+ "window.SetGlobalStatus=function(t){PF1C.status(t);};"
