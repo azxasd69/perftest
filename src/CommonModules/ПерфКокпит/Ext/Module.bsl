@@ -47,27 +47,21 @@
 Функция КарточкаHTML(Номер, Сценарий, Ширина)
 	Порция = Формат(Сценарий.Порция, "ЧГ=");
 	Кат = КатегорияСценария(Сценарий.Имя);
-	Возврат "<section class='tile card span-" + Ширина + " state-idle' id='card"
-		+ Номер + "' data-cat='" + Кат.Код + "'>"
-		+ "<i class='edge'></i>"
-		+ "<div class='c-top'><span class='idx'>" + Формат(Номер, "ЧЦ=2; ЧВН=; ЧГ=") + "</span>"
-		+ "<span class='code' title='" + Экранировать(Сценарий.Имя) + "'>"
-		+ Экранировать(Сценарий.Имя) + "</span>"
+	// Карточка-строка: в одну линию номер, название, код и медиана, детали и кнопка -
+	// в раскрывающейся части. Раскрытие только на наведение и на завершение.
+	Возврат "<section class='tile card row span-" + Ширина + " state-idle' id='card" + Номер
+		+ "' data-cat='" + Кат.Код + "'>"
+		+ "<i class='edge'></i><i class='fill'></i>"
+		+ "<div class='r'><span class='idx'>" + Формат(Номер, "ЧЦ=2; ЧВН=; ЧГ=") + "</span>"
+		+ "<h3 class='nm'>" + Экранировать(Сценарий.Представление) + "</h3>"
+		+ "<span class='code'>" + Экранировать(Сценарий.Имя) + "</span>"
+		+ "<span class='val'>&mdash;</span>"
 		+ "<span class='badge'>&mdash;</span></div>"
-		+ "<h3>" + Экранировать(Сценарий.Представление) + "</h3>"
-		// Метка блока идет отдельной строкой: карточку видно по структуре, а не по сплошному тексту.
-		+ "<p class='p'><b class='pl'>Суть</b>" + Экранировать(Сценарий.Описание) + "</p>"
-		+ "<p class='p'><b class='pl'>Реализация</b>" + Порция + " " + Экранировать(Сценарий.Единица)
-		+ ", повторов " + Формат(Сценарий.Повторов, "ЧН=0; ЧГ=") + "</p>"
-		+ "<div class='c-foot'><span class='unit'>" + Порция + " "
-		+ Экранировать(Сценарий.Единица) + "</span>"
-		+ "<button class='btn primary' data-pf='run:" + Номер + "'>Запустить</button></div>"
-		+ "<div class='status'>&mdash;</div>"
-		+ "<p class='result'></p>"
-		// Кольцо прогресса в углу карточки: движение по нему не сдвигает текст.
-		+ "<svg class='mr' viewBox='0 0 30 30' aria-hidden='true'>"
-		+ "<circle class='mr-bg' cx='15' cy='15' r='12'></circle>"
-		+ "<circle class='mr-fill' cx='15' cy='15' r='12'></circle></svg></section>";
+		+ "<div class='more'><div class='more-in'>"
+		+ "<span class='desc'>" + Порция + " " + Экранировать(Сценарий.Единица)
+		+ " &middot; повторов " + Формат(Сценарий.Повторов, "ЧН=0; ЧГ=") + "</span>"
+		+ "<button class='btn primary' data-pf='run:" + Номер + "'>Запустить</button>"
+		+ "</div><p class='result'></p></div></section>";
 КонецФункции
 
 // Полная страница кокпита.
@@ -173,7 +167,7 @@
 	Номер = 0;
 	Для Каждого Сценарий Из Сценарии Цикл
 		Номер = Номер + 1;
-		Ширина = 4; // одинаковая ширина: ровная сетка по три карточки в ряд
+		Ширина = 12; // карточка-строка занимает всю ширину сетки
 		Части.Добавить(КарточкаHTML(Номер, Сценарий, Ширина));
 	КонецЦикла;
 
@@ -249,14 +243,15 @@
 		+ "state:function(n,st){var c=document.getElementById('card'+n);if(!c){return;}"
 		+ "var sp='',arr=c.className.split(' ');"
 		+ "for(var i=0;i<arr.length;i++){if(arr[i].indexOf('span-')===0){sp=arr[i];}}"
-		+ "c.className='tile card'+(sp?' '+sp:'')+' state-'+st;"
+		+ "c.className='tile card row'+(sp?' '+sp:'')+' state-'+st;"
 		+ "var b=c.querySelector('.badge');if(b){b.className='badge '+st;"
 		+ "b.innerHTML=(st==='run'?'выполняется':st==='ok'?'готово':st==='err'?'ошибка':"
 		+ "st==='cancel'?'отменено':'-');}},"
 		+ "progress:function(n,p,txt){var c=document.getElementById('card'+n);if(!c){return;}"
-		+ "var r=c.querySelector('.mr-fill');if(r){var v=(p<0?0:(p>100?100:p));"
-		+ "r.style.strokeDashoffset=String(75.4*(1-v/100));}"
-		+ "var s=c.querySelector('.status');if(s&&txt){s.innerHTML=txt;}},"
+		+ "var v=(p<0?0:(p>100?100:p)),f=c.querySelector('.fill');"
+		+ "if(f){var s=(v/100);f.style.webkitTransform='scaleX('+s+')';"
+		+ "f.style.transform='scaleX('+s+')';}"
+		+ "if(v<100){var q=c.querySelector('.val');if(q){q.innerHTML=v+'<i>%</i>';}}},"
 		+ "result:function(n,cls,txt){var c=document.getElementById('card'+n);if(!c){return;}"
 		+ "var r=c.querySelector('.result');if(r){r.className='result '+(cls||'');"
 		+ "r.innerHTML=txt||'';}},"
@@ -284,6 +279,8 @@
 		+ "done:function(n,res,txt,median){var c=document.getElementById('card'+n);if(!c){return;}"
 		+ "if(res==='ok'){PF1C.state(n,'ok');PF1C.result(n,'ok',txt);PF1C.progress(n,100,'100%');}"
 		+ "else{PF1C.state(n,res);PF1C.result(n,res,txt);}"
+		+ "var q=c.querySelector('.val');"
+		+ "if(q){q.innerHTML=(res==='ok'?((median||0)+'<i>мс</i>'):'&mdash;');}"
 		+ "c.setAttribute('data-median',median||0);PF1C.refreshKpi();PF1C.lock(false);},"
 		+ "refreshKpi:function(){var cards=document.querySelectorAll('.card');"
 		+ "var ok=0,sum=0,slow=0,slowTitle='',last='';"
