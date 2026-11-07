@@ -136,7 +136,7 @@
 		+ "100%{opacity:1}.brand .pulse{-webkit-animation:pfPulse 2.4s infinite;animation:pfPulse 2.4s infinite}0%{"
 		+ "box-shadow:0 0 0 0 rgba(196,242,82,.35)}70%{box-shadow:0 0 0 8px rgba(196,242,82,0)}100%{box-shadow:0 0 "
 		+ "0 0 rgba(196,242,82,0)}0%{box-shadow:0 0 0 0 rgba(196,242,82,.35)}.state-run .idx{-webkit-animation:pfGl"
-		+ "ow 1.8s infinite;animation:pfGlow 1.8s infinite}.chips{display:flex;flex-wrap:wrap;align-items:center}.chips .badge{margin:0 6px 6px 0}.subtle{color:var(--pf-fg-2);font-size:12px;font-weight:400}</style>";
+		+ "ow 1.8s infinite;animation:pfGlow 1.8s infinite}.chips{display:flex;flex-wrap:wrap;align-items:center}.chips .badge{margin:0 6px 6px 0}.subtle{color:var(--pf-fg-2);font-size:12px;font-weight:400}.tile{-webkit-transition:background .12s,border-color .12s,-webkit-transform .12s;transition:background .12s,border-color .12s,transform .12s}.tile:hover{border-color:var(--pf-line-strong);background:var(--pf-hover);-webkit-transform:translateY(-1px);transform:translateY(-1px)}.tile[data-pf]{cursor:pointer}.tile[data-pf]:active{-webkit-transform:none;transform:none}</style>";
 КонецФункции
 
 // Полная страница: заголовок вкладки и готовое тело.
