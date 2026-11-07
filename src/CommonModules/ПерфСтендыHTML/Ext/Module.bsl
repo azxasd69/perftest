@@ -460,7 +460,7 @@
 	КонецЦикла;
 
 	Части = Новый Массив;
-	Части.Добавить("<section class='tile span-12'>"
+	Части.Добавить("<section class='tile tile-flat span-12'>"
 		+ "<div class='log-head'><h2>Замеры стенда</h2><span>медианы по сценариям</span></div>"
 		+ "<table><thead><tr><th>Сценарий</th><th>Платформа</th><th class='n'>Медиана, мс</th>"
 		+ "<th class='n'>мс / 1000 ед.</th><th class='n'>Мин</th><th class='n'>Макс</th>"
