@@ -12,7 +12,7 @@
 // backdrop-filter; sticky только с префиксом -webkit-.
 
 Функция Стили() Экспорт
-								Возврат "<style>"
+										Возврат "<style>"
 		+ "html{--pf-bg:#FBF8FF;--pf-sunken:#F7F3FF;--pf-surface:#FFFFFF;--pf-raised:#F3EEFC;--pf-line:#E6E1F0;--pf-lin"
 		+ "e-strong:#9C8AC6;--pf-fg:#1B1A21;--pf-fg-2:#45424F;--pf-fg-3:#6B6879;--pf-accent:#6A4CF6;--pf-accent-bg:#EDE"
 		+ "8FF;--pf-on-accent:#FFFFFF;--pf-ok:#0F7A4F;--pf-ok-bg:#E2F5EC;--pf-ok-line:#0F7A4F;--pf-warn:#8A5A00;--pf-wa"
@@ -173,18 +173,18 @@
 		+ "ound:var(--pf-surface);border-color:var(--pf-line);color:var(--pf-fg)}.bar-nav .btn + .btn{margin-left:2px}."
 		+ "bar-single .field{margin-right:10px}.btn.menu{display:-webkit-inline-flex;display:inline-flex;-webkit-align-"
 		+ "items:center;align-items:center;color:var(--pf-fg-2)}.btn.menu:hover:not(:disabled){color:var(--pf-fg)}.hero"
-		+ "-hint{font-size:12px;color:var(--pf-fg-2)}.hero .lbl{margin-bottom:6px}html.pf-dark{--pf-bg:#131418;--pf-sun"
-		+ "ken:#171922;--pf-surface:#1A1D25;--pf-raised:#242833;--pf-line:#2D3240;--pf-line-strong:#6E7A93;--pf-fg:#ECE"
-		+ "EF4;--pf-fg-2:#A5ABBA;--pf-fg-3:#8A92A2;--pf-accent:#9D8CFF;--pf-accent-bg:#2A2450;--pf-on-accent:#120E22;--"
-		+ "pf-ok:#4FD9A0;--pf-ok-bg:#17332A;--pf-ok-line:#2FBF8C;--pf-warn:#F0B45A;--pf-warn-bg:#332A1B;--pf-bad:#FF867"
-		+ "7;--pf-bad-bg:#38242A;--pf-bad-line:#5B3A3E;--pf-info:#82B9FF;--pf-info-bg:#1D2B40;--pf-hover:#282D3A;--pf-s"
-		+ "ide-bg:#101218;--pf-side-fg:#C6CDDB;--pf-scrim:rgba(6,7,10,.72);--pf-shadow-tile:inset 0 1px 0 rgba(255,255,"
-		+ "255,.055);--pf-shadow-bar:0 10px 24px rgba(0,0,0,.45)}html.pf-dark .card[data-cat='cpu'],html.pf-dark .chipf"
-		+ "[data-cat='cpu']{--cat:#6EA8FE}html.pf-dark .card[data-cat='ib'],html.pf-dark .chipf[data-cat='ib']{--cat:#C"
-		+ "4F252}html.pf-dark .card[data-cat='q'],html.pf-dark .chipf[data-cat='q']{--cat:#B49CFF}html.pf-dark .card[da"
-		+ "ta-cat='ser'],html.pf-dark .chipf[data-cat='ser']{--cat:#F0B45A}html.pf-dark .card[data-cat='mem'],html.pf-d"
-		+ "ark .chipf[data-cat='mem']{--cat:#59D3C8}html.pf-dark .card[data-cat='io'],html.pf-dark .chipf[data-cat='io'"
-		+ "]{--cat:#F58FBF}"
+		+ "-hint{font-size:12px;color:var(--pf-fg-2)}.hero .lbl{margin-bottom:6px}html.pf-dark{--pf-bg:#1E2127;--pf-sun"
+		+ "ken:#1B1E23;--pf-surface:#2A2E36;--pf-raised:#333843;--pf-line:#3B414C;--pf-line-strong:#98A3B7;--pf-fg:#EDE"
+		+ "FF4;--pf-fg-2:#ABB2C0;--pf-fg-3:#9AA3B2;--pf-accent:#A08CFF;--pf-accent-bg:#322B58;--pf-on-accent:#141026;--"
+		+ "pf-ok:#57DFA4;--pf-ok-bg:#204038;--pf-ok-line:#35C08E;--pf-warn:#F2B964;--pf-warn-bg:#3D3324;--pf-bad:#FF8B7"
+		+ "C;--pf-bad-bg:#432A2E;--pf-bad-line:#61424A;--pf-info:#86BEFF;--pf-info-bg:#24344F;--pf-hover:#3A404C;--pf-s"
+		+ "ide-bg:#1A1D22;--pf-side-fg:#C9CFDB;--pf-scrim:rgba(12,14,18,.62);--pf-shadow-tile:0 12px 26px -8px rgba(0,0"
+		+ ",0,.68);--pf-shadow-bar:0 10px 24px rgba(0,0,0,.5)}html.pf-dark .card[data-cat='cpu'],html.pf-dark .chipf[da"
+		+ "ta-cat='cpu']{--cat:#6EA8FE}html.pf-dark .card[data-cat='ib'],html.pf-dark .chipf[data-cat='ib']{--cat:#C4F2"
+		+ "52}html.pf-dark .card[data-cat='q'],html.pf-dark .chipf[data-cat='q']{--cat:#B49CFF}html.pf-dark .card[data-"
+		+ "cat='ser'],html.pf-dark .chipf[data-cat='ser']{--cat:#F0B45A}html.pf-dark .card[data-cat='mem'],html.pf-dark"
+		+ " .chipf[data-cat='mem']{--cat:#59D3C8}html.pf-dark .card[data-cat='io'],html.pf-dark .chipf[data-cat='io']{-"
+		+ "-cat:#F58FBF}"
 		+ "</style>";
 КонецФункции
 
