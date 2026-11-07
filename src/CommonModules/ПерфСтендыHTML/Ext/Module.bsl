@@ -276,8 +276,6 @@
 	Части = Новый Массив;
 	Части.Добавить("<header class='bar'>");
 	Части.Добавить("<div class='bar-row'>");
-	Части.Добавить("<div class='brand'><span class='pulse'></span>ПерфТест"
-		+ "<span class='ver'>" + Текст(Метаданные.Версия) + "</span></div>");
 	Части.Добавить("<div class='crumbles'><span>стенд</span><span>карточка</span></div>");
 	Части.Добавить("<span class='grow'></span>");
 	Части.Добавить("<label class='field'><span>стенд</span><select id='stand'"

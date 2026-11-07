@@ -75,9 +75,6 @@
 	// меню (палитра) и пуск/стоп. На узком окне строка переносится.
 	Части.Добавить("<header class='bar bar-single'>");
 	Части.Добавить("<div class='bar-in'>");
-	Части.Добавить("<div class='brand'><span class='pulse'></span>"
-		+ "<span class='brand-name'>ПерфТест</span>"
-		+ "<span class='ver'>" + Экранировать(КонфигурацияСтрокой) + "</span></div>");
 	Части.Добавить("<nav class='bar-nav'>");
 	Части.Добавить("<button class='btn nav' data-pf='open:ПерфДашборд'>Дашборд</button>");
 	Части.Добавить("<button class='btn nav' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");

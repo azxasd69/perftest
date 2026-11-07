@@ -1226,8 +1226,6 @@
 	Части = Новый Массив;
 	Части.Добавить("<header class='bar'>");
 	Части.Добавить("<div class='bar-row'>");
-	Части.Добавить("<div class='brand'><span class='pulse'></span>ПерфТест<span class='ver'>"
-		+ Экранировать(Метаданные.Версия) + "</span></div>");
 	Части.Добавить("<nav class='bar-nav'>");
 	Части.Добавить("<button class='btn nav' data-pf='open:ПерфДашборд'>Дашборд</button>");
 	Части.Добавить("<button class='btn nav' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");
