@@ -12,7 +12,7 @@
 // backdrop-filter; sticky только с префиксом -webkit-.
 
 Функция Стили() Экспорт
-																									Возврат "<style>"
+																										Возврат "<style>"
 		+ "html{--pf-bg:#FBF8FF;--pf-sunken:#F7F3FF;--pf-surface:#FFFFFF;--pf-raised:#F3EEFC;--pf-line:#E6E1F0;--pf-lin"
 		+ "e-strong:#9C8AC6;--pf-fg:#1B1A21;--pf-fg-2:#45424F;--pf-fg-3:#6B6879;--pf-accent:#6A4CF6;--pf-accent-bg:#EDE"
 		+ "8FF;--pf-on-accent:#FFFFFF;--pf-ok:#0F7A4F;--pf-ok-bg:#E2F5EC;--pf-ok-line:#0F7A4F;--pf-warn:#8A5A00;--pf-wa"
@@ -198,7 +198,7 @@
 		+ "v{display:block;width:7px;height:7px;margin-left:auto;border-right:1.6px solid currentColor;border-bottom:1."
 		+ "6px solid currentColor;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-transition:-webkit-tr"
 		+ "ansform .15s;transition:transform .15s}.sec.closed .chev{-webkit-transform:rotate(-45deg);transform:rotate(-"
-		+ "45deg)}.sec.closed .nav-i{display:none}"
+		+ "45deg)}.sec.closed>*:not(.sec-h){display:none}"
 		+ "</style>";
 КонецФункции
 
@@ -624,10 +624,13 @@
 	ДобавитьСтрокуСтенда(Строки, "память", С.Память);
 	ДобавитьСтрокуСтенда(Строки, "ID профиля", С.Идентификатор);
 
-	Возврат "<div class='nav-label'>стенд</div><div class='side-stand'>"
+	// Стенд - такая же сворачиваемая секция, как разделы меню.
+	Возврат "<div class='sec' id='sec-стенд'>"
+		+ "<button class='sec-h' type='button' data-pf='sec:стенд'>Стенд"
+		+ "<i class='chev'></i></button><div class='side-stand'>"
 		+ "<div class='ss-h' title='" + Экранировать(С.Имя) + "'>"
 		+ Экранировать(?(ПустаяСтрока(С.Имя), "стенд не собран", С.Имя)) + "</div>"
-		+ СтрСоединить(Строки, "") + "</div>";
+		+ СтрСоединить(Строки, "") + "</div></div>";
 
 КонецФункции
 
