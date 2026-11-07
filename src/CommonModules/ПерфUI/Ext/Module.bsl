@@ -520,14 +520,17 @@
 // Знак бренда: два разных узла на наклонной оси - базовый стенд и кандидат.
 // Один цвет, геометрия 32x32, вес около 0,4 КБ.
 Функция ЗнакЛоготипа() Экспорт
-
-	Возврат "<svg viewBox='0 0 32 32' width='32' height='32' aria-hidden='true'>"
-		+ "<path d='M9 21 20.5 13.2' fill='none' stroke='#fff' stroke-width='3.6'"
-		+ " stroke-linecap='round'/>"
-		+ "<circle cx='7' cy='22.4' r='3.8' fill='#fff'/>"
-		+ "<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#fff'/>"
-		+ "</svg>";
-
+	Возврат "<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>"
+		+ "<defs><linearGradient id='pfg' x1='0' y1='0' x2='1' y2='1'>"
+		+ "<stop offset='0' stop-color='#6A4CF6'/><stop offset='1' stop-color='#4A35B8'/>"
+		+ "</linearGradient></defs>"
+		+ "<rect width='32' height='32' rx='7.4' fill='url(#pfg)'/>"
+		+ "<path d='M19.7 7.3A10.6 10.6 0 1 0 19.7 24.7' fill='none' stroke='#F2A63C'"
+		+ " stroke-width='3.4' stroke-linecap='round'/>"
+		+ "<g stroke='#ffffff' stroke-width='2.6' stroke-linecap='round'>"
+		+ "<path d='M17.4 16.6H25.4'/><path d='M21.4 10.6v2.8M21.4 20v2.8'/></g>"
+		+ "<circle cx='17.4' cy='16.6' r='2.7' fill='#ffffff'/>"
+		+ "<circle cx='25.4' cy='16.6' r='2.7' fill='#ffffff'/></svg>";
 КонецФункции
 
 Функция Меню(Активный = "", ВерсияСтрокой = "", Тема = "dark") Экспорт
@@ -539,7 +542,7 @@
 
 	Части = Новый Массив;
 	Части.Добавить("<nav class='side' id='pfSide'>"
-		+ "<div class='logo'><span class='mark'></span>"
+		+ "<div class='logo'><span class='mark'>" + ЗнакЛоготипа() + "</span>"
 		+ "<div class='logo-t'><b>ПерфТест</b><span>" + Экранировать(ПодписьВерсии) + "</span></div></div>");
 
 	ТекущаяГруппа = "";
