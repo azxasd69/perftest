@@ -73,39 +73,18 @@
 
 	// Верхняя панель в одну строку: бренд, переходы по отчетам, параметры прогона,
 	// меню (палитра) и пуск/стоп. На узком окне строка переносится.
-	Части.Добавить("<header class='bar bar-single'>");
-	Части.Добавить("<div class='bar-in'>");
-	Части.Добавить("<nav class='bar-nav'>");
-	Части.Добавить("<button class='btn nav' data-pf='open:ПерфДашборд'>Дашборд</button>");
-	Части.Добавить("<button class='btn nav' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");
-	Части.Добавить("<button class='btn nav' data-pf='open:ПерфСравнениеСтендов'>Сравнение</button>");
-	Части.Добавить("<button class='btn nav' data-pf='open:ПерфИсторияЗамеров'>История</button>");
-	Части.Добавить("</nav>");
-	Части.Добавить("<span class='bar-mid'>");
-	// Правая часть переносится одним блоком: параметры, меню и кнопки прогона.
-	Части.Добавить("<label class='field'><span>стенд</span>"
+	Средняя = "<label class='field'><span>стенд</span>"
 		+ "<input class='stand-input' id='stand' value='" + Экранировать(СтендСтрокой) + "'"
-		+ " placeholder='по сеансу' spellcheck='false' data-pf-field='stand'></label>");
-	Части.Добавить("<label class='field'><span>повторов</span>"
+		+ " placeholder='по сеансу' spellcheck='false' data-pf-field='stand'></label>"
+		+ "<label class='field'><span>повторов</span>"
 		+ "<input class='rep-input' type='number' min='1' max='9' value='"
-		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>");
-	Части.Добавить("</span>");
-	Части.Добавить("<span class='bar-right'>");
-	// Палитра теперь называется «Меню»: в ней не только пуск, но и переходы по страницам.
-	Части.Добавить("<button class='btn menu' data-pf='pal'>Меню</button>");
-	// Пуск и стоп всегда рядом: при переносе строки они уезжают вместе, а не порознь.
-	Части.Добавить("<span class='bar-actions'>");
-	Части.Добавить("<button class='btn primary' id='runAll' data-pf='send:all'>"
-		+ "Запустить все</button>");
-	Части.Добавить("<button class='btn danger' id='stop' disabled "
-		+ "data-pf='send:stop'>Стоп</button>");
-	Части.Добавить("</span>");
-	Части.Добавить("</span>");
-	Части.Добавить("</div>");
-	Части.Добавить("</header>");
-	// Шапка закреплена (position:fixed), поэтому в потоке ее заменяет распорка:
-	// высоту ставит скрипт, иначе контент уезжает под шапку.
-	Части.Добавить("<div id='barspace'></div>");
+		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>";
+	Правая = "<button class='btn menu' data-pf='pal'>Меню</button>"
+		+ "<span class='bar-actions'>"
+		+ "<button class='btn primary' id='runAll' data-pf='send:all'>Запустить все</button>"
+		+ "<button class='btn danger' id='stop' disabled data-pf='send:stop'>Стоп</button>"
+		+ "</span>";
+	Части.Добавить(ПерфUI.Шапка("НачальнаяСтраница", Средняя, Правая));
 
 	// Чипы-фильтры по категориям: клик скрывает чужие карточки (только в HTML).
 	Категории = Новый Массив;
@@ -330,12 +309,7 @@
 		+ "if(pi){pi.addEventListener('input',function(){PF1C.palIdx=0;PF1C.palRefresh();});}"
 		+ "var sc=document.getElementById('scrim');"
 		+ "if(sc){sc.addEventListener('click',function(e){if(e.target===sc){PF1C.closePal();}});}"
-		+ "function pfBar(){var b=document.querySelector('.bar-single');"
-		+ "var s=document.getElementById('barspace');"
 		+ "if(!b||!s){return;}s.style.height=(b.offsetHeight)+'px';}"
-		+ "if(window.addEventListener){window.addEventListener('load',pfBar);"
-		+ "window.addEventListener('resize',pfBar);}"
-		+ "setTimeout(pfBar,150);setTimeout(pfBar,700);"
 		+ "</scr" + "ipt>";
 КонецФункции
 

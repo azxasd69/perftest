@@ -159,7 +159,7 @@
 		+ "284px;right:0;top:0;z-index:45;display:block;margin:0;padding:0;border-radius:0;border:0;pointer-events:none"
 		+ ";background:transparent}.bar-in{di"
 		+ "splay:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-align-items:center;align-items"
-		+ ":center;max-width:1500px;margin:0 auto;box-sizing:border-box;padding:9px 15px;border-radius:0 0 14px 14px;background:var(--pf-surface);border:1px solid var(--pf-line);border-top:0;-webkit-box-shadow:var(--pf-shadow-bar);box-shadow:var(--pf-shadow-bar);pointer-events:auto}.bar-mid{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;-webkit-flex:0 0 auto;flex:0 0 auto;margin:0 auto}.bar-mid .field+.field{margin-left:18px}.bar-in{-webkit-justify-content:space-between;justify-content:space-between}.bar-actions .btn,.bar-mid .field{white-space:nowrap}#barspace{height:60px}body.pf-collapsed .bar-single{"
+		+ ":center;max-width:1500px;margin:0 auto;box-sizing:border-box;padding:9px 15px;border-radius:0 0 14px 14px;background:var(--pf-surface);border:1px solid var(--pf-line);border-top:0;-webkit-box-shadow:var(--pf-shadow-bar);box-shadow:var(--pf-shadow-bar);pointer-events:auto}.bar-mid{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;-webkit-flex:0 0 auto;flex:0 0 auto;margin:0 auto}.bar-mid .field+.field{margin-left:18px}.bar-in{-webkit-justify-content:space-between;justify-content:space-between}.bar-nav .btn.active{background:var(--pf-surface);border-color:var(--pf-line);color:var(--pf-accent);font-weight:600}.bar-actions .btn,.bar-mid .field{white-space:nowrap}#barspace{height:60px}body.pf-collapsed .bar-single{"
 		+ "left:76px}.bar-actions{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-item"
 		+ "s:center;margin-left:4px}.bar-right{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;"
 		+ "-webkit-align-items:center;align-items:center;margin-left:0}.bar-nav{display:-webkit-flex;display:flex;-w"
@@ -937,6 +937,31 @@
 КонецФункции
 
 // Минимальный мост для отчетов: очередь команд, читаемая таймером формы.
+// Шапка страницы: одна разметка на все страницы (образец - кокпит).
+// Слева переходы с подсветкой текущей, в центре параметр страницы, справа действия.
+Функция Шапка(Текущая, Средняя = "", Правая = "") Экспорт
+
+	Пункты = Новый Массив;
+	Пункты.Добавить(Новый Структура("Имя, Подпись", "НачальнаяСтраница", "Кокпит"));
+	Пункты.Добавить(Новый Структура("Имя, Подпись", "ПерфСтенды", "Стенд"));
+	Пункты.Добавить(Новый Структура("Имя, Подпись", "ПерфДашборд", "Дашборд"));
+	Пункты.Добавить(Новый Структура("Имя, Подпись", "ПерфТопКонфигураций", "Топ-100"));
+	Пункты.Добавить(Новый Структура("Имя, Подпись", "ПерфСравнениеСтендов", "Сравнение"));
+	Пункты.Добавить(Новый Структура("Имя, Подпись", "ПерфИсторияЗамеров", "История"));
+
+	Части = Новый Массив;
+	Части.Добавить("<header class='bar bar-single'><div class='bar-in'><nav class='bar-nav'>");
+	Для Каждого Пункт Из Пункты Цикл
+		Части.Добавить("<button class='btn nav" + ?(Пункт.Имя = Текущая, " active", "")
+			+ "' data-pf='open:" + Пункт.Имя + "'>" + Пункт.Подпись + "</button>");
+	КонецЦикла;
+	Части.Добавить("</nav><span class='bar-mid'>" + Средняя
+		+ "</span><span class='bar-right'>" + Правая + "</span></div></header>"
+		+ "<div id='barspace'></div>");
+	Возврат СтрСоединить(Части, "");
+
+КонецФункции
+
 Функция СкриптМоста() Экспорт
 	Возврат "<scr" + "ipt>" + "if(!window.PF1C){window.PF1C={q:[],"
 		+ "send:function(c){this.q.push(c);},"
@@ -976,6 +1001,10 @@
 		+ "var s=document.getElementById('sec-'+v[i]);"
 		+ "if(s){s.className='sec closed';}}}catch(e){}}};"
 		+ "window.addEventListener('load',function(){if(window.PFSec){PFSec.apply();}});"
+		+ "window.pfBar=function(){var b=document.querySelector('.bar-single');"
+		+ "var s=document.getElementById('barspace');"
+		+ "if(b&&s){s.style.height=b.offsetHeight+'px';}};"
+		+ "window.addEventListener('load',pfBar);window.addEventListener('resize',pfBar);"
 		+ "document.addEventListener('keydown',function(e){"
 		+ "if(e.key==='Tab'||e.keyCode===9){var h=document.documentElement;"
 		+ "if(h.classList){h.classList.add('kbd');}}},true);"
