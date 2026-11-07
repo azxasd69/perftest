@@ -539,7 +539,7 @@
 
 	Части = Новый Массив;
 	Части.Добавить("<nav class='side' id='pfSide'>"
-		+ "<div class='logo'><span class='mark'>" + ЗнакЛоготипа() + "</span>"
+		+ "<div class='logo'><span class='mark'></span>"
 		+ "<div class='logo-t'><b>ПерфТест</b><span>" + Экранировать(ПодписьВерсии) + "</span></div></div>");
 
 	ТекущаяГруппа = "";
