@@ -21,11 +21,34 @@
 		+ "</style>";
 КонецФункции
 
-// Карточка сценария: индекс, код, бейдж, суть, реализация, единица, кнопка, полосы.
+// Категория сценария по коду: чипы-фильтры и цвет карточки.
+// Цвета заданы в ПерфUI.Стили, здесь только код категории и подпись.
+Функция КатегорияСценария(Код)
+
+	Верх = ВРег(СокрЛП(Код));
+	Если СтрНайти(Верх, "CPU") = 1 Тогда
+		Возврат Новый Структура("Код, Подпись", "cpu", "ЦПУ");
+	ИначеЕсли СтрНайти(Верх, "ЗАПИСЬ") = 1 Тогда
+		Возврат Новый Структура("Код, Подпись", "ib", "Запись ИБ");
+	ИначеЕсли СтрНайти(Верх, "ЗАПРОСЫ") = 1 Тогда
+		Возврат Новый Структура("Код, Подпись", "q", "Запросы");
+	ИначеЕсли СтрНайти(Верх, "СЕРИАЛИЗАЦИЯ") = 1 Тогда
+		Возврат Новый Структура("Код, Подпись", "ser", "Сериализация");
+	ИначеЕсли СтрНайти(Верх, "ПАМЯТЬ") = 1 Тогда
+		Возврат Новый Структура("Код, Подпись", "mem", "Память");
+	ИначеЕсли СтрНайти(Верх, "ФАЙЛЫ") = 1 Тогда
+		Возврат Новый Структура("Код, Подпись", "io", "Файлы");
+	КонецЕсли;
+	Возврат Новый Структура("Код, Подпись", "other", "Прочее");
+
+КонецФункции
+
+// Карточка сценария: индекс, код, бейдж, суть, реализация, единица, кнопка, кольцо.
 Функция КарточкаHTML(Номер, Сценарий, Ширина)
 	Порция = Формат(Сценарий.Порция, "ЧГ=");
+	Кат = КатегорияСценария(Сценарий.Имя);
 	Возврат "<section class='tile card span-" + Ширина + " state-idle' id='card"
-		+ Номер + "'>"
+		+ Номер + "' data-cat='" + Кат.Код + "'>"
 		+ "<i class='edge'></i>"
 		+ "<div class='c-top'><span class='idx'>" + Формат(Номер, "ЧЦ=2; ЧВН=; ЧГ=") + "</span>"
 		+ "<span class='code' title='" + Экранировать(Сценарий.Имя) + "'>"
@@ -40,7 +63,10 @@
 		+ "<button class='btn primary' data-pf='run:" + Номер + "'>Запустить</button></div>"
 		+ "<div class='status'>&mdash;</div>"
 		+ "<p class='result'></p>"
-		+ "<div class='cbar'><i></i></div></section>";
+		// Кольцо прогресса в углу карточки: движение по нему не сдвигает текст.
+		+ "<svg class='mr' viewBox='0 0 30 30' aria-hidden='true'>"
+		+ "<circle class='mr-bg' cx='15' cy='15' r='12'></circle>"
+		+ "<circle class='mr-fill' cx='15' cy='15' r='12'></circle></svg></section>";
 КонецФункции
 
 // Полная страница кокпита.
@@ -84,16 +110,55 @@
 	Части.Добавить("</div>");
 	Части.Добавить("</header>");
 
-	// Bento: четыре KPI
+	// Чипы-фильтры по категориям: клик скрывает чужие карточки (только в HTML).
+	Категории = Новый Массив;
+	Категории.Добавить(Новый Структура("Код, Подпись", "cpu", "ЦПУ"));
+	Категории.Добавить(Новый Структура("Код, Подпись", "ib", "Запись ИБ"));
+	Категории.Добавить(Новый Структура("Код, Подпись", "q", "Запросы"));
+	Категории.Добавить(Новый Структура("Код, Подпись", "ser", "Сериализация"));
+	Категории.Добавить(Новый Структура("Код, Подпись", "mem", "Память"));
+	Категории.Добавить(Новый Структура("Код, Подпись", "io", "Файлы"));
+	Счетчики = Новый Соответствие;
+	Для Каждого Сценарий Из Сценарии Цикл
+		КодКат = КатегорияСценария(Сценарий.Имя).Код;
+		Текущий = Счетчики.Получить(КодКат);
+		Счетчики.Вставить(КодКат, ?(Текущий = Неопределено, 0, Текущий) + 1);
+	КонецЦикла;
+
+	Части.Добавить("<div class='chips-bar'>");
+	Части.Добавить("<button class='chipf' data-cat='all' data-pf='filter:all' aria-pressed='true'>"
+		+ "Все<span class='c'>" + Строка(Сценарии.Количество()) + "</span></button>");
+	Для Каждого Категория Из Категории Цикл
+		Количество = Счетчики.Получить(Категория.Код);
+		Если Количество = Неопределено Тогда
+			Продолжить;
+		КонецЕсли;
+		Части.Добавить("<button class='chipf' data-cat='" + Категория.Код + "'"
+			+ " data-pf='filter:" + Категория.Код + "' aria-pressed='false'"
+			+ " title='" + Экранировать(Категория.Подпись) + "'>"
+			+ "<i class='dot'></i>" + Экранировать(Категория.Подпись)
+			+ "<span class='c'>" + Строка(Количество) + "</span></button>");
+	КонецЦикла;
+	Части.Добавить("<span class='chips-info'>стенд: "
+		+ Экранировать(?(ПустаяСтрока(СтендСтрокой), "по сеансу", СтендСтрокой)) + "</span>");
+	Части.Добавить("</div>");
+
+	// Bento: hero-кольцо выполнения и три показателя.
 	Части.Добавить("<main class='bento'>");
-	Части.Добавить("<section class='tile span-4'><div class='lbl'>Выполнено сценариев</div>"
-		+ "<div class='big'><span id='kDone'>0</span><small> / " + Строка(Сценарии.Количество())
-		+ "</small></div><div class='sub' id='kDoneHint'>еще не запускали</div>"
-		+ "<div class='track'><i id='kDoneBar'></i></div></section>");
-	Части.Добавить("<section class='tile span-3'><div class='lbl'>Средняя медиана</div>"
+	Части.Добавить("<section class='tile span-6 hero'>"
+		// Кольцо - доля выполнения, рядом - число и состояние.
+		+ "<svg class='ring' viewBox='0 0 120 120' aria-hidden='true'>"
+		+ "<circle class='ring-bg' cx='60' cy='60' r='52'></circle>"
+		+ "<circle class='ring-fill' id='heroRing' cx='60' cy='60' r='52'></circle></svg>"
+		+ "<div class='hero-txt'><div class='lbl'>Выполнено сценариев</div>"
+		+ "<div class='big'><span id='kDone'>0</span><small> / "
+		+ Строка(Сценарии.Количество()) + "</small></div>"
+		+ "<div class='hero-hint' id='kDoneHint'>еще не запускали</div></div>"
+		+ "<i class='hero-blob'></i></section>");
+	Части.Добавить("<section class='tile span-2'><div class='lbl'>Средняя медиана</div>"
 		+ "<div class='big'><span id='kMedian'>&mdash;</span><small> мс</small></div>"
 		+ "<div class='sub' id='kMedianHint'>по завершенным</div></section>");
-	Части.Добавить("<section class='tile span-3'><div class='lbl'>Самый медленный</div>"
+	Части.Добавить("<section class='tile span-2'><div class='lbl'>Самый медленный</div>"
 		+ "<div class='big big-lg' id='kSlow'>&mdash;</div>"
 		+ "<div class='sub' id='kSlowHint'>наибольшая медиана</div></section>");
 	Части.Добавить("<section class='tile span-2'><div class='lbl'>Последний</div>"
@@ -145,6 +210,12 @@
 		+ "send:function(c){this.q.push(c);},take:function(){"
 		+ "if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;},"
 		+ "run:function(n){this.send('run:'+n);},"
+		+ "filter:function(cat){var cards=document.querySelectorAll('.card');"
+		+ "for(var i=0;i<cards.length;i++){var c=cards[i];"
+		+ "c.style.display=(cat==='all'||c.getAttribute('data-cat')===cat)?'':'none';}"
+		+ "var ch=document.querySelectorAll('.chipf');"
+		+ "for(var j=0;j<ch.length;j++){ch[j].setAttribute('aria-pressed',"
+		+ "String(ch[j].getAttribute('data-cat')===cat));}},"
 		+ "openPal:function(){var s=document.getElementById('scrim');"
 		+ "if(s){s.classList.remove('hidden');}var i=document.getElementById('palInput');"
 		+ "if(i){i.focus();}PF1C.palRefresh();},"
@@ -175,14 +246,16 @@
 		+ "b.innerHTML=(st==='run'?'выполняется':st==='ok'?'готово':st==='err'?'ошибка':"
 		+ "st==='cancel'?'отменено':'-');}},"
 		+ "progress:function(n,p,txt){var c=document.getElementById('card'+n);if(!c){return;}"
-		+ "var b=c.querySelector('.cbar i');if(b){b.style.width=(p<0?0:(p>99?99:p))+'%';}"
+		+ "var r=c.querySelector('.mr-fill');if(r){var v=(p<0?0:(p>100?100:p));"
+		+ "r.style.strokeDashoffset=String(75.4*(1-v/100));}"
 		+ "var s=c.querySelector('.status');if(s&&txt){s.innerHTML=txt;}},"
 		+ "result:function(n,cls,txt){var c=document.getElementById('card'+n);if(!c){return;}"
 		+ "var r=c.querySelector('.result');if(r){r.className='result '+(cls||'');"
 		+ "r.innerHTML=txt||'';}},"
 		+ "kpi:function(done,avg,slow,slowTitle,last){var e;"
 		+ "e=document.getElementById('kDone');if(e){e.innerHTML=done;}"
-		+ "e=document.getElementById('kDoneBar');if(e){e.style.width=(done/PF1C.total*100)+'%';}"
+		+ "e=document.getElementById('heroRing');"
+		+ "if(e){e.style.strokeDashoffset=String(326.7*(1-done/PF1C.total));}"
 		+ "e=document.getElementById('kDoneHint');if(e){e.innerHTML=done>=PF1C.total?"
 		+ "'все сценарии выполнены':'осталось '+(PF1C.total-done);}"
 		+ "e=document.getElementById('kMedian');if(e){e.innerHTML=avg;}"
