@@ -170,6 +170,21 @@
 		+ ".pal input:focus{outline:2px solid var(--pf-accent);outline-offset:2px}"
 		+ ".p .pl{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;"
 		+ "color:var(--cat,#8A8F98);margin:0 0 2px}"
+		+ ".bar-single{-webkit-flex-direction:row;flex-direction:row;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-align-items:center;align-items:center;padding:10px 12px;border-radius:14px}"
+		+ ".bar-single .brand{margin-right:14px}"
+		+ ".bar-actions{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;"
+		+ "align-items:center;margin-left:4px}"
+		+ ".bar-right{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;"
+		+ "-webkit-align-items:center;align-items:center;margin-left:auto}"
+		+ ".brand-name{font-weight:600;letter-spacing:-.01em;margin-right:8px}"
+		+ ".bar-nav{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:10px;padding:2px}"
+		+ ".bar-nav .btn{margin-left:0;padding:5px 9px;font-size:13px;border-color:transparent;background:transparent;color:var(--pf-fg-2);border-radius:8px}"
+		+ ".bar-nav .btn:hover:not(:disabled){background:var(--pf-surface);border-color:var(--pf-line);color:var(--pf-fg)}"
+		+ ".bar-nav .btn + .btn{margin-left:2px}"
+		+ ".bar-single .field{margin-right:10px}"
+		+ ".btn.menu{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;color:var(--pf-fg-2)}"
+		+ ".btn.menu:hover:not(:disabled){color:var(--pf-fg)}"
+		+ ".btn.menu kbd{font-family:Consolas,'Courier New',monospace;font-size:11px;color:var(--pf-fg-3);background:var(--pf-sunken);border:1px solid var(--pf-line);border-radius:4px;padding:0 4px;margin-left:8px}"
 		+ "</style>";
 КонецФункции
 

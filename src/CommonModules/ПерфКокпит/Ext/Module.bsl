@@ -77,38 +77,36 @@
 	// ПерфUI.Документ: здесь остается только контент кокпита.
 	Части = Новый Массив;
 
-	// Верхняя панель: бренд, крошки, поля, палитра, пуск и стоп.
-	Части.Добавить("<header class='bar'>");
-	// Первая строка: бренд, фильтр стенда, число повторов и пуск.
-	Части.Добавить("<div class='bar-row'>");
-	Части.Добавить("<div class='brand'><span class='pulse'></span>ПерфТест"
+	// Верхняя панель в одну строку: бренд, переходы по отчетам, параметры прогона,
+	// меню (палитра) и пуск/стоп. На узком окне строка переносится.
+	Части.Добавить("<header class='bar bar-single'>");
+	Части.Добавить("<div class='brand'><span class='pulse'></span>"
+		+ "<span class='brand-name'>ПерфТест</span>"
 		+ "<span class='ver'>" + Экранировать(КонфигурацияСтрокой) + "</span></div>");
-	Части.Добавить("<div class='crumbles'><span>обзор</span><span>сценарии</span>"
-		+ "<span>журнал</span></div>");
-	Части.Добавить("<span class='grow'></span>");
+	Части.Добавить("<nav class='bar-nav'>");
+	Части.Добавить("<button class='btn nav' data-pf='open:ПерфДашборд'>Дашборд</button>");
+	Части.Добавить("<button class='btn nav' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");
+	Части.Добавить("<button class='btn nav' data-pf='open:ПерфСравнениеСтендов'>Сравнение</button>");
+	Части.Добавить("<button class='btn nav' data-pf='open:ПерфИсторияЗамеров'>История</button>");
+	Части.Добавить("</nav>");
+	// Правая часть переносится одним блоком: параметры, меню и кнопки прогона.
+	Части.Добавить("<span class='bar-right'>");
 	Части.Добавить("<label class='field'><span>стенд</span>"
 		+ "<input class='stand-input' id='stand' value='" + Экранировать(СтендСтрокой) + "'"
-		+ " spellcheck='false' data-pf-field='stand'></label>");
-	Части.Добавить("<label class='field'><span>×</span>"
+		+ " placeholder='по сеансу' spellcheck='false' data-pf-field='stand'></label>");
+	Части.Добавить("<label class='field'><span>повторов</span>"
 		+ "<input class='rep-input' type='number' min='1' max='9' value='"
 		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>");
+	// Палитра теперь называется «Меню»: в ней не только пуск, но и переходы по страницам.
+	Части.Добавить("<button class='btn menu' data-pf='pal'>Меню<kbd>Ctrl+K</kbd></button>");
+	// Пуск и стоп всегда рядом: при переносе строки они уезжают вместе, а не порознь.
+	Части.Добавить("<span class='bar-actions'>");
 	Части.Добавить("<button class='btn primary' id='runAll' data-pf='send:all'>"
 		+ "Запустить все</button>");
 	Части.Добавить("<button class='btn danger' id='stop' disabled "
 		+ "data-pf='send:stop'>Стоп</button>");
-	Части.Добавить("</div>");
-	// Вторая строка: переходы по отчетам, палитра и переключатель темы.
-	Части.Добавить("<div class='bar-row'>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфДашборд'>Дашборд</button>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфТопКонфигураций'>Топ-100</button>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфСравнениеСтендов'>Сравнение</button>");
-	Части.Добавить("<button class='btn kbd' data-pf='open:ПерфИсторияЗамеров'>История</button>");
-	Части.Добавить("<span class='grow'></span>");
-	Части.Добавить("<button class='btn kbd' data-pf='pal'>"
-		+ "K<kbd>Ctrl+K</kbd></button>");
-	// Переключатель темы переехал в боковое меню: в шапке он дублировал пункт
-	// «оформление» и занимал место в строке команд.
-	Части.Добавить("</div>");
+	Части.Добавить("</span>");
+	Части.Добавить("</span>");
 	Части.Добавить("</header>");
 
 	// Чипы-фильтры по категориям: клик скрывает чужие карточки (только в HTML).
@@ -222,7 +220,11 @@
 		+ "if(i){i.focus();}PF1C.palRefresh();},"
 		+ "closePal:function(){var s=document.getElementById('scrim');if(s){s.classList.add('hidden');}},"
 		+ "palIdx:0,palItems:[],"
-		+ "palActions:function(){var a=[{t:'Запустить все последовательно',k:'action',c:'all'},"
+		+ "palActions:function(){var a=[{t:'Дашборд',k:'page',c:'open:ПерфДашборд'},"
+		+ "{t:'Топ-100 по сценариям',k:'page',c:'open:ПерфТопКонфигураций'},"
+		+ "{t:'Сравнение стендов',k:'page',c:'open:ПерфСравнениеСтендов'},"
+		+ "{t:'История замеров',k:'page',c:'open:ПерфИсторияЗамеров'},"
+		+ "{t:'Запустить все последовательно',k:'action',c:'all'},"
 		+ "{t:'Остановить текущий прогон',k:'action',c:'stop'}];"
 		+ "var cards=document.querySelectorAll('.card');"
 		+ "for(var i=0;i<cards.length;i++){var n=cards[i].id.replace('card','');"
