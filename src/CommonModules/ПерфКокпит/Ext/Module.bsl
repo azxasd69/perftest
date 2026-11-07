@@ -81,14 +81,16 @@
 	Части.Добавить("<button class='btn nav' data-pf='open:ПерфСравнениеСтендов'>Сравнение</button>");
 	Части.Добавить("<button class='btn nav' data-pf='open:ПерфИсторияЗамеров'>История</button>");
 	Части.Добавить("</nav>");
+	Части.Добавить("<span class='bar-mid'>");
 	// Правая часть переносится одним блоком: параметры, меню и кнопки прогона.
-	Части.Добавить("<span class='bar-right'>");
 	Части.Добавить("<label class='field'><span>стенд</span>"
 		+ "<input class='stand-input' id='stand' value='" + Экранировать(СтендСтрокой) + "'"
 		+ " placeholder='по сеансу' spellcheck='false' data-pf-field='stand'></label>");
 	Части.Добавить("<label class='field'><span>повторов</span>"
 		+ "<input class='rep-input' type='number' min='1' max='9' value='"
 		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>");
+	Части.Добавить("</span>");
+	Части.Добавить("<span class='bar-right'>");
 	// Палитра теперь называется «Меню»: в ней не только пуск, но и переходы по страницам.
 	Части.Добавить("<button class='btn menu' data-pf='pal'>Меню</button>");
 	// Пуск и стоп всегда рядом: при переносе строки они уезжают вместе, а не порознь.
