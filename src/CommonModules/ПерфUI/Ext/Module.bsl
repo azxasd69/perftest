@@ -81,10 +81,10 @@
 		+ "e:12px}.big-lg{font-size:26px}.big-md{font-size:26px}.hidden{display:none}.side{position:fixed;left:0;top:0;"
 		+ "bottom:0;width:272px;background:var(--pf-side-bg);color:var(--pf-side-fg);padding:16px 14px;box-sizing:borde"
 		+ "r-box;z-index:50;overflow:auto;font:14px/18px 'Segoe UI',Arial,sans-serif}.side .logo{display:-webkit-flex;d"
-		+ "isplay:flex;-webkit-align-items:center;align-items:center;padding:6px 8px 18px}.side .mark{width:30px;height"
-		+ ":30px;border-radius:9px;margin-right:12px;background:var(--pf-accent)}.side .logo b{color:var(--pf-fg);font-"
-		+ "size:15px;font-weight:600;display:block}.side .logo span{font-size:12px;color:var(--pf-fg-2);letter-spacing:"
-		+ ".06em;text-transform:uppercase}.side a{display:-webkit-flex;display:flex;-webkit-align-items:center;align-it"
+		+ "isplay:flex;-webkit-align-items:center;align-items:center;padding:10px 8px 20px}.side .mark{width:38px;height"
+		+ ":38px;margin-right:11px;background:transparent;-webkit-flex:0 0 auto;flex:0 0 auto}.side .logo b{color:var(--pf-fg);font-"
+		+ "size:15px;font-weight:600;display:block;letter-spacing:-.01em}.side .logo span{font-size:11.5px;color:var(--pf-fg-2);letter-spacing:"
+		+ "0;text-transform:none;margin-top:3px;display:block}.side a{display:-webkit-flex;display:flex;-webkit-align-items:center;align-it"
 		+ "ems:center;color:var(--pf-side-fg);text-decoration:none;font-size:14px;line-height:20px;padding:8px 12px;bor"
 		+ "der-radius:8px;margin-bottom:2px}.side a:hover{background:var(--pf-hover);color:var(--pf-fg)}.side a.active{"
 		+ "background:var(--pf-accent-bg);color:var(--pf-accent);box-shadow:inset 2px 0 0 var(--pf-accent)}.side-foot{m"
@@ -201,7 +201,7 @@
 		+ "45deg)}.sec.closed>*:not(.sec-h){display:none}body.pf-collapsed .logo-t,body.pf-collapsed .side-stand,body.p"
 		+ "f-collapsed .side-foot{display:none}body.pf-collapsed .side{overflow:hidden}.logo .mark{display:-webkit-flex"
 		+ ";display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:c"
-		+ "enter}.logo .mark svg{width:64%;height:64%;display:block}"
+		+ "enter}.logo .mark svg{width:100%;height:100%;display:block}"
 		+ "</style>";
 КонецФункции
 
@@ -521,16 +521,14 @@
 // Один цвет, геометрия 32x32, вес около 0,4 КБ.
 Функция ЗнакЛоготипа() Экспорт
 	Возврат "<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>"
-		+ "<defs><linearGradient id='pfg' x1='0' y1='0' x2='1' y2='1'>"
-		+ "<stop offset='0' stop-color='#6A4CF6'/><stop offset='1' stop-color='#4A35B8'/>"
-		+ "</linearGradient></defs>"
-		+ "<rect width='32' height='32' rx='7.4' fill='url(#pfg)'/>"
-		+ "<path d='M19.7 7.3A10.6 10.6 0 1 0 19.7 24.7' fill='none' stroke='#F2A63C'"
-		+ " stroke-width='3.4' stroke-linecap='round'/>"
-		+ "<g stroke='#ffffff' stroke-width='2.6' stroke-linecap='round'>"
-		+ "<path d='M17.4 16.6H25.4'/><path d='M21.4 10.6v2.8M21.4 20v2.8'/></g>"
-		+ "<circle cx='17.4' cy='16.6' r='2.7' fill='#ffffff'/>"
-		+ "<circle cx='25.4' cy='16.6' r='2.7' fill='#ffffff'/></svg>";
+		+ "<rect width='32' height='32' rx='7.4' fill='#6A4CF6'/>"
+		+ "<g transform='translate(2.6 2.6) scale(0.84)'>"
+		+ "<path d='M15.7 8.2A8.8 8.8 0 1 0 15.7 23.8' fill='none' stroke='#F2A63C'"
+		+ " stroke-width='3.2' stroke-linecap='round'/>"
+		+ "<g stroke='#ffffff' stroke-width='2.4' stroke-linecap='round'>"
+		+ "<path d='M19.8 16H26.4'/><path d='M23.1 11.4v1.8M23.1 19v1.8'/></g>"
+		+ "<circle cx='19.8' cy='16' r='2.3' fill='#ffffff'/>"
+		+ "<circle cx='26.4' cy='16' r='2.3' fill='#ffffff'/></g></svg>";
 КонецФункции
 
 Функция Меню(Активный = "", ВерсияСтрокой = "", Тема = "dark") Экспорт
