@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ru" class="pf-light">
+<head>
+<meta charset="utf-8">
+<title>Карточки тестов — варианты компоновки</title>
+<style id="real-css">
+html{--pf-bg:#FBF8FF;--pf-sunken:#F7F3FF;--pf-surface:#FFFFFF;--pf-raised:#F3EEFC;--pf-line:#E6E1F0;--pf-line-strong:#9C8AC6;--pf-fg:#1B1A21;--pf-fg-2:#45424F;--pf-fg-3:#6B6879;--pf-accent:#6A4CF6;--pf-accent-bg:#EDE8FF;--pf-on-accent:#FFFFFF;--pf-ok:#0F7A4F;--pf-ok-bg:#E2F5EC;--pf-ok-line:#0F7A4F;--pf-warn:#8A5A00;--pf-warn-bg:#FDF3E0;--pf-bad:#B3261E;--pf-bad-bg:#FBE6E5;--pf-bad-line:#F0C9C5;--pf-info:#1F5FA8;--pf-info-bg:#E3EFFC;--pf-hover:#F6F2FF;--pf-side-bg:#FFFFFF;--pf-side-fg:#3A3A45;--pf-scrim:rgba(27,26,33,.42);--pf-shadow-tile:0 12px 26px -20px rgba(0,0,0,.55);--pf-shadow-bar:0 8px 20px rgba(6,7,10,.18)}html,body{margin:0;background:var(--pf-bg);color:var(--pf-fg);font:14px/1.5 'Segoe UI',Arial,sans-serif;}body{padding-left:284px;overflow-x:hidden;max-width:100%}.wrap{max-width:1500px;width:100%;margin:0 auto;padding:16px 16px 70px;box-sizing:border-box}.bar{position:relative;z-index:40;font-size:14px;background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:16px;padding:8px 12px;margin-bottom:14px;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:8px}.bar-row{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.brand{font-weight:600;letter-spacing:-.01em;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.brand .pulse{width:7px;height:7px;border-radius:50%;background:var(--pf-accent);margin-right:8px;box-shadow:0 0 0 4px var(--pf-accent-bg)}.brand .ver{font-size:12px;font-weight:600;color:var(--pf-fg-2);border:1px solid var(--pf-line);border-radius:6px;padding:0 4px;margin-left:8px}.crumbles{font-size:14px;color:var(--pf-fg-2);margin-left:12px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.crumbles span{margin-right:14px}.grow{-webkit-flex:1 1 auto;flex:1 1 auto}.field{font-size:14px;color:var(--pf-fg-2);margin-right:12px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.field span{margin-right:6px}.field input{font:14px 'Segoe UI',Arial,sans-serif;color:var(--pf-fg);background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:8px;padding:4px 8px;outline:none}.field .stand-input{width:132px}.field .rep-input{width:52px;text-align:center}.field input:focus{border-color:var(--pf-accent)}.btn{font:600 14px 'Segoe UI',Arial,sans-serif;border-radius:8px;cursor:pointer;padding:8px 12px;border:1px solid var(--pf-line);background:var(--pf-raised);color:var(--pf-fg);margin-left:8px}.btn:hover:not(:disabled){background:var(--pf-hover);border-color:var(--pf-line-strong)}.btn:disabled{opacity:.4;cursor:default}.btn.primary{background:var(--pf-accent);color:var(--pf-on-accent);border-color:transparent}.btn.primary:hover:not(:disabled){background:var(--pf-accent)}.btn.danger{color:var(--pf-bad);border-color:var(--pf-bad-line)}.btn.danger:hover:not(:disabled){background:var(--pf-bad-bg)}.btn.kbd{font-size:14px;color:var(--pf-fg-2);padding:4px 8px}.btn.kbd kbd{font-family:Consolas,'Courier New',monospace;font-size:12px;background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:4px;padding:0 4px;margin-left:6px}.span-2{grid-column:span 2}.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-12{grid-column:span 12}.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-column-gap:12px}.tile{background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:16px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden;min-width:0;box-sizing:border-box}.lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--pf-fg-2);font-weight:600}.big{font-size:32px;font-weight:700;letter-spacing:-.01em;line-height:1.3;margin-top:8px;font-family:Consolas,'Courier New',monospace}.big small{font-size:14px;color:var(--pf-fg-2);font-weight:500;letter-spacing:0;font-family:'Segoe UI',Arial,sans-serif}.sub{font-size:14px;color:var(--pf-fg-2);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.track{height:4px;border-radius:999px;background:var(--pf-raised);margin-top:12px;overflow:hidden}.track i{display:block;height:100%;width:0;background:var(--pf-accent)}.card{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column}.edge{position:absolute;left:0;top:14px;bottom:14px;width:2px;border-radius:2px;background:transparent}.card.state-run .edge{background:var(--pf-info)}.card.state-ok .edge{background:var(--pf-ok)}.card.state-err .edge{background:var(--pf-bad)}.card.state-cancel .edge{background:var(--pf-warn)}.c-top{margin-bottom:8px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.idx{font-family:Consolas,'Courier New',monospace;font-size:12px;color:var(--pf-accent);background:var(--pf-accent-bg);border-radius:6px;padding:0 4px;margin-right:8px}.code{font-family:Consolas,'Courier New',monospace;font-size:12px;color:var(--pf-fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.badge{margin-left:auto;font-size:12px;font-weight:600;border-radius:999px;padding:4px 8px;background:var(--pf-raised);color:var(--pf-fg-2);white-space:nowrap}.badge.run{background:var(--pf-info-bg);color:var(--pf-info)}.badge.ok{background:var(--pf-ok-bg);color:var(--pf-ok)}.badge.err{background:var(--pf-bad-bg);color:var(--pf-bad)}.badge.cancel{background:var(--pf-warn-bg);color:var(--pf-warn)}.card h3{margin:0 0 8px;font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.3}.p{margin:0 0 6px;font-size:14px;line-height:1.5;color:var(--pf-fg-2)}.p b{color:var(--pf-fg-2);font-weight:600}.c-foot{margin-top:auto;padding-top:12px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.unit{font-family:Consolas,'Courier New',monospace;font-size:12px;color:var(--pf-fg-2);border:1px solid var(--pf-line);border-radius:6px;padding:0 6px;white-space:nowrap}.c-foot .btn{margin-left:auto;padding:8px 14px;font-size:14px}.status{display:none;margin-top:8px;font-size:14px;color:var(--pf-fg-2)}.state-run .status,.state-ok .status,.state-err .status,.state-cancel .status{display:block}.state-run .status{color:var(--pf-info)}.result{display:none;margin:8px 0 0;font-size:14px;font-weight:600;line-height:1.5;padding:6px 8px;border-radius:8px}.result.ok{display:block;color:var(--pf-ok);background:var(--pf-ok-bg)}.result.err{display:block;color:var(--pf-bad);background:var(--pf-bad-bg)}.result.cancel{display:block;color:var(--pf-warn);background:var(--pf-warn-bg)}.log-head{margin-bottom:12px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.log-head h2{margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em}.log-head span{font-size:14px;color:var(--pf-fg-2);margin-left:12px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--pf-line)}thead th{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--pf-fg-2);font-weight:600}tbody tr:hover{background:var(--pf-raised)}td.n,th.n{text-align:right;white-space:nowrap;font-family:Consolas,'Courier New',monospace;font-size:14px}.empty{color:var(--pf-fg-2);font-size:14px;padding:12px 2px}.foot{margin-top:16px;font-size:14px;color:var(--pf-fg-2)}.scrim{position:fixed;left:0;top:0;right:0;bottom:0;background:var(--pf-scrim);z-index:90;padding-top:12vh}.pal{width:560px;max-width:92%;margin:0 auto;background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:12px;overflow:hidden}.pal input{width:100%;box-sizing:border-box;border:0;background:transparent;color:var(--pf-fg);font:16px 'Segoe UI',Arial,sans-serif;padding:16px 16px;border-bottom:1px solid var(--pf-line);outline:none}.pal ul{list-style:none;margin:0;padding:6px;max-height:46vh;overflow:auto}.pal li{padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;color:var(--pf-fg-2)}.pal li.sel{background:var(--pf-accent-bg);color:var(--pf-fg)}.pal .tip{font-size:12px;color:var(--pf-fg-2);padding:8px 16px;border-top:1px solid var(--pf-line)}.stat{position:fixed;left:272px;right:0;bottom:0;background:var(--pf-surface);border-top:1px solid var(--pf-line);padding:8px 16px;font-size:14px;color:var(--pf-fg-2);z-index:30}.stat b{color:var(--pf-fg)}.xs{font-size:12px}.big-lg{font-size:26px}.big-md{font-size:26px}.hidden{display:none}.side{position:fixed;left:0;top:0;bottom:0;width:272px;background:var(--pf-side-bg);color:var(--pf-side-fg);padding:16px 14px;box-sizing:border-box;z-index:50;overflow:auto;font:14px/18px 'Segoe UI',Arial,sans-serif}.side .logo{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;padding:6px 8px 18px}.side .mark{width:30px;height:30px;border-radius:9px;margin-right:12px;background:var(--pf-accent)}.side .logo b{color:var(--pf-fg);font-size:15px;font-weight:600;display:block}.side .logo span{font-size:12px;color:var(--pf-fg-2);letter-spacing:.06em;text-transform:uppercase}.nav-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--pf-fg-2);padding:12px 12px 6px}.side a{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;color:var(--pf-side-fg);text-decoration:none;font-size:14px;line-height:20px;padding:8px 12px;border-radius:8px;margin-bottom:2px}.side a:hover{background:var(--pf-hover);color:var(--pf-fg)}.side a.active{background:var(--pf-accent-bg);color:var(--pf-accent);box-shadow:inset 2px 0 0 var(--pf-accent)}.side-foot{margin-top:16px;border-top:1px solid var(--pf-sunken);padding:12px 12px 4px;font-size:12px;color:var(--pf-fg-2)}.side-foot .dot{width:6px;height:6px;border-radius:50%;background:var(--pf-ok-line);display:inline-block;margin-right:6px}.nav-i svg{width:15px;height:15px;margin-right:9px;flex:0 0 15px;display:block;color:var(--pf-fg-2)}.nav-i:hover svg{color:var(--pf-side-fg)}.nav-i.active svg{color:var(--pf-accent)}.nav-i .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.side-stand{margin:10px 2px 0;padding:12px 12px 10px;border:1px solid var(--pf-line);border-radius:8px;background:var(--pf-sunken)}.ss-h{font-size:12px;color:var(--pf-fg-2);font-weight:600;margin-bottom:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ss-r{displock;font-size:12px;line-height:14px;padding:4px 0}.ss-r span{display:block;color:var(--pf-fg-3);text-transform:uppercase;letter-spacing:.04em;font-size:10px}.ss-r b{display:block;color:var(--pf-side-fg);font-weight:600;text-align:left;line-height:16px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}body.pf-collapsed{padding-left:76px !important}body.pf-collapsed .stat{left:60px !important}body.pf-collapsed .side{width:60px !important;padding:16px 8px !important}body.pf-collapsed .nav-label, body.pf-collapsed .side .logo b, body.pf-collapsed .side .logo span, body.pf-collapsed .side-foot, body.pf-collapsed .side-stand{display:none !important}body.pf-collapsed .side .logo{-webkit-justify-content:center;justify-content:center;padding:6px 0 14px}body.pf-collapsed .side a{font-size:0 !important;padding:0 !important;width:34px;height:34px;margin:0 auto 6px;-webkit-justify-content:center;justify-content:center}body.pf-collapsed .side a .nm{display:none !important}body.pf-collapsed .side a svg{width:17px;height:17px;margin:0 auto !important}.side a .dot-n{width:8px;height:8px;border-radius:50%;background:var(--pf-fg-3);display:inline-block;margin-right:9px}body.pf-collapsed .side a .dot-n{display:none}.side a.active .dot-n{background:var(--pf-accent)}.nav-btn{position:absolute;top:12px;right:-12px;width:24px;height:24px;border-radius:50%;background:var(--pf-raised);color:var(--pf-side-fg);border:1px solid var(--pf-line);cursor:pointer;font:600 12px 'Segoe UI',Arial,sans-serif;padding:0;z-index:51}.nav-btn:hover{background:var(--pf-hover);color:var(--pf-fg)}.card:hover{border-color:var(--pf-line-strong);background:var(--pf-hover)}.card[data-cat]:hover{border-top-color:var(--cat)}.btn:active:not(:disabled){transform:translateY(1px)}tbody tr{-webkit-transition:background .12s;transition:background .12s}.chips{display:flex;flex-wrap:wrap;align-items:center}.chips .badge{margin:0 6px 6px 0}.subtle{color:var(--pf-fg-2);font-size:12px;font-weight:400}.tile:hover{border-color:var(--pf-line-strong);background:var(--pf-hover)}.tile[data-pf]{cursor:pointer}.tile-flat:hover{border-color:var(--pf-line);background:var(--pf-surface)}.tile[data-pf]:active{background:var(--pf-raised)}.side a[data-pf='theme']{margin-top:6px}body.pf-collapsed .side a[data-pf='theme']{margin-top:14px}/* категории: верхняя граница и номер карточки */.card[data-cat='cpu'],.chipf[data-cat='cpu']{--cat:#2F6FD0}.card[data-cat='ib'],.chipf[data-cat='ib']{--cat:#5C8A16}.card[data-cat='q'],.chipf[data-cat='q']{--cat:#7B4BE0}.card[data-cat='ser'],.chipf[data-cat='ser']{--cat:#A96A12}.card[data-cat='mem'],.chipf[data-cat='mem']{--cat:#0E8C80}.card[data-cat='io'],.chipf[data-cat='io']{--cat:#C2417F}.card[data-cat]{border-top:2px solid var(--cat)}.card[data-cat] .idx{color:var(--cat)}.card h3{padding-right:36px}/* кольцо прогресса в карточке */.hero,.card{position:relative}.card .mr{position:absolute;right:14px;top:42px;width:30px;height:30px;-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.mr-bg{fill:none;stroke:var(--pf-line);stroke-width:3.5}.mr-fill{fill:none;stroke:var(--cat,#8A8F98);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:75.4;stroke-dashoffset:75.4;-webkit-transition:stroke-dashoffset .25s ease;transition:stroke-dashoffset .25s ease}/* hero-плитка */.hero{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;overflow:hidden;background:linear-gradient(150deg,var(--pf-accent-bg),var(--pf-surface) 62%)}.hero:hover{background:linear-gradient(150deg,var(--pf-accent-bg),var(--pf-surface) 62%)}.hero .ring{width:96px;height:96px;-webkit-flex:0 0 96px;flex:0 0 96px;margin-right:18px;-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ring-bg{fill:none;stroke:var(--pf-accent);opacity:.42;stroke-width:10}.ring-fill{fill:none;stroke:var(--pf-accent);stroke-width:10;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7;-webkit-transition:stroke-dashoffset .5s ease;transition:stroke-dashoffset .5s ease}.hero-txt{min-width:0}/* чипы-фильтры */.chips-bar{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-align-items:center;align-items:center;margin:0 0 12px}.chipf{font-family:inherit;font-size:12px;font-weight:600;color:var(--pf-fg-2);background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:999px;padding:6px 12px;margin:0 8px 6px 0;cursor:pointer;display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center}.chipf:hover{background:var(--pf-hover);color:var(--pf-fg)}.chipf[aria-pressed='true']{background:var(--pf-accent-bg);border-color:var(--pf-accent);color:var(--pf-fg)}.chipf .dot{width:7px;height:7px;border-radius:50%;background:var(--cat,#8A8F98);margin-right:7px}.chipf .c{font-size:11px;color:var(--pf-fg-3);margin-left:6px}.chips-info{font-size:12px;color:var(--pf-fg-2);margin-left:auto}/* мягкие состояния и фокус */.tile{-webkit-transition:background .04s,border-color .04s,box-shadow .04s;transition:background .04s,border-color .04s,box-shadow .04s}.card{-webkit-transition:none;transition:none}.tile:hover{box-shadow:var(--pf-shadow-tile)}.tile-flat:hover{box-shadow:none}html.kbd .btn:focus,html.kbd .chipf:focus,html.kbd .field input:focus,html.kbd a:focus,html.kbd .pal input:focus{outline:2px solid var(--pf-accent);outline-offset:2px}.pal input:focus{outline:2px solid var(--pf-accent);outline-offset:2px}.p .pl{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--cat,#8A8F98);margin:0 0 2px}.bar-single{position:fixed;left:284px;right:0;top:0;z-index:45;display:block;margin:0;padding:0;border-radius:0 0 14px 14px;border-top:0;border-left:0;border-right:0;-webkit-box-shadow:var(--pf-shadow-bar);box-shadow:var(--pf-shadow-bar)}.bar-in{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-align-items:center;align-items:center;max-width:1500px;margin:0 auto;padding:9px 16px}#barspace{height:60px}body.pf-collapsed .bar-single{left:76px}.bar-single .brand{margin-right:14px}.bar-actions{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;margin-left:4px}.bar-right{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-align-items:center;align-items:center;margin-left:auto}.brand-name{font-weight:600;letter-spacing:-.01em;margin-right:8px}.bar-nav{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:10px;padding:2px}.bar-nav .btn{margin-left:0;padding:5px 9px;font-size:13px;border-color:transparent;background:transparent;color:var(--pf-fg-2);border-radius:8px}.bar-nav .btn:hover:not(:disabled){background:var(--pf-surface);border-color:var(--pf-line);color:var(--pf-fg)}.bar-nav .btn + .btn{margin-left:2px}.bar-single .field{margin-right:10px}.btn.menu{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;color:var(--pf-fg-2)}.btn.menu:hover:not(:disabled){color:var(--pf-fg)}.hero-hint{font-size:12px;color:var(--pf-fg-2)}.hero .lbl{margin-bottom:6px}html.pf-dark{--pf-bg:#292D36;--pf-sunken:#232730;--pf-surface:#363A44;--pf-raised:#40444E;--pf-line:#4B4F59;--pf-line-strong:#A8ACB8;--pf-fg:#EDF0F7;--pf-fg-2:#B6BAC5;--pf-fg-3:#ACB0BC;--pf-accent:#C0A4FF;--pf-accent-bg:#3E3466;--pf-on-accent:#171226;--pf-ok:#63E3AB;--pf-ok-bg:#2B4A3D;--pf-ok-line:#3ACB93;--pf-warn:#F5C273;--pf-warn-bg:#4A3D26;--pf-bad:#FF9689;--pf-bad-bg:#4E3036;--pf-bad-line:#6E444A;--pf-info:#94C6FF;--pf-info-bg:#2E3E5C;--pf-hover:#484D56;--pf-side-bg:#20242C;--pf-side-fg:#C2C6D2;--pf-scrim:rgba(16,18,22,.6);--pf-shadow-tile:0 12px 26px -6px rgba(0,0,0,.55);--pf-shadow-bar:0 10px 24px rgba(0,0,0,.45)}html.pf-dark .card[data-cat='cpu'],html.pf-dark .chipf[data-cat='cpu']{--cat:#6EA8FE}html.pf-dark .card[data-cat='ib'],html.pf-dark .chipf[data-cat='ib']{--cat:#C4F252}html.pf-dark .card[data-cat='q'],html.pf-dark .chipf[data-cat='q']{--cat:#B49CFF}html.pf-dark .card[data-cat='ser'],html.pf-dark .chipf[data-cat='ser']{--cat:#F0B45A}html.pf-dark .card[data-cat='mem'],html.pf-dark .chipf[data-cat='mem']{--cat:#59D3C8}html.pf-dark .card[data-cat='io'],html.pf-dark .chipf[data-cat='io']{--cat:#F58FBF}
+</style>
+<style id="demo-css">
+/* ============================================================
+   Демо-каркас. Всё, что ниже, — только для этой страницы:
+   в 1С поедет только содержимое раздела «вариант».
+   Токены взяты из рабочей темы (--pf-*), поэтому обе темы
+   работают без отдельного набора правил.
+   ============================================================ */
+html,body{background:var(--pf-bg)}
+body.dg{color:var(--pf-fg);-webkit-font-smoothing:antialiased;padding-left:0}
+.dg-wrap{max-width:1180px;margin:0 auto;padding:0 16px 96px}
+
+/* верхняя панель */
+.dg-top{position:-webkit-sticky;position:sticky;top:0;z-index:40;background:var(--pf-surface);
+  border-bottom:1px solid var(--pf-line);box-shadow:var(--pf-shadow-bar)}
+.dg-top-in{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;flex-wrap:wrap}
+.dg-brand{font-weight:700;font-size:15px;margin-right:16px;white-space:nowrap}
+.dg-brand i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--pf-accent);
+  margin-right:8px;vertical-align:1px}
+.dg-top .sp{flex:1 1 auto}
+.dg-btn{border:1px solid var(--pf-line);background:var(--pf-surface);color:var(--pf-fg);
+  border-radius:10px;padding:7px 12px;font:600 13px 'Segoe UI',Arial,sans-serif;cursor:pointer;
+  margin-left:8px;transition:background .12s,border-color .12s}
+.dg-btn:hover{background:var(--pf-hover);border-color:var(--pf-line-strong)}
+.dg-btn.pri{background:var(--pf-accent);border-color:var(--pf-accent);color:var(--pf-on-accent)}
+.dg-btn.pri:hover{background:var(--pf-accent);border-color:var(--pf-accent)}
+
+/* титул раздела */
+.dg-h{margin:34px 0 14px}
+.dg-h h2{margin:0 0 6px;font-size:22px;letter-spacing:-.01em;font-weight:700}
+.dg-h p{margin:0;color:var(--pf-fg-2);font-size:13.5px;max-width:74ch}
+.dg-tag{display:inline-block;font:600 11px/1 Consolas,'Courier New',monospace;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--pf-accent);background:var(--pf-accent-bg);
+  border-radius:5px;padding:4px 7px;margin-bottom:8px}
+
+/* полоса карточек: подпись под каждой */
+.dg-strip{display:flex;flex-wrap:wrap;align-items:flex-start;margin:0 -6px}
+.dg-cell{flex:0 0 50%;max-width:50%;padding:0 6px;box-sizing:border-box;margin-bottom:26px}
+@media (max-width:820px){.dg-cell{flex:0 0 100%;max-width:100%}}
+
+/* вариант 3 — список: подпись состояния слева, строка на всю ширину */
+.dg-list{display:block;max-width:1180px}
+.dg-row3{display:flex;align-items:flex-start;margin-bottom:8px}
+.dg-row3 .dg-cap{width:118px;flex:0 0 118px;margin:18px 12px 0 0}
+.dg-row3 .v3{flex:1 1 auto;margin-bottom:0}
+.dg-cap{font:600 11px/1.3 Consolas,'Courier New',monospace;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--pf-fg-3);margin:10px 2px 0;display:flex;align-items:center}
+.dg-cap b{width:6px;height:6px;border-radius:50%;background:var(--pf-line-strong);margin-right:6px;flex:0 0 6px}
+.dg-cap.run b{background:var(--pf-info)}
+.dg-cap.ok b{background:var(--pf-ok)}
+.dg-cap.err b{background:var(--pf-bad)}
+.dg-cap.hov b{background:var(--pf-accent)}
+
+/* служебная плашка «эмуляция наведения» */
+.dg-note{font-size:12px;color:var(--pf-fg-3);margin:2px 0 0}
+
+/* ---------- секция «как сейчас» ---------- */
+#asis .bento{margin:0 -6px}
+#asis .tile{margin:0}
+#asis .dg-stage{overflow:visible}
+/* состояние наведения: те же объявления, что в .tile:hover, но по классу */
+.asis-hover{background:var(--pf-hover)!important;border-color:var(--pf-line-strong)!important;
+  box-shadow:var(--pf-shadow-tile)!important}
+
+/* ============================================================
+   ВАРИАНТ 1 — «Плотный»: данные вперёд, действия по требованию
+   ============================================================ */
+.v1{position:relative;background:var(--pf-surface);border:1px solid var(--pf-line);
+  border-radius:14px;padding:13px 14px 12px;box-sizing:border-box;overflow:hidden;
+  display:flex;flex-direction:column;min-height:152px;
+  transition:background .12s,border-color .12s,box-shadow .12s,transform .12s}
+.v1:hover,.v1.is-hover{background:var(--pf-hover);border-color:var(--pf-line-strong);
+  box-shadow:var(--pf-shadow-tile);transform:translateY(-2px)}
+.v1:active{transform:translateY(0)}
+
+.v1-top{display:flex;align-items:center;min-height:18px}
+.v1-idx{font:600 11px/1 Consolas,'Courier New',monospace;color:var(--pf-accent);
+  background:var(--pf-accent-bg);border-radius:5px;padding:3px 5px;margin-right:8px;flex:0 0 auto}
+.v1-code{font:500 11.5px/1 Consolas,'Courier New',monospace;color:var(--pf-fg-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1 1 auto}
+.v1-badge{font:600 10.5px/1 'Segoe UI',Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--pf-fg-3);border:1px solid var(--pf-line);border-radius:20px;padding:4px 7px;flex:0 0 auto}
+.v1[data-state="running"] .v1-badge{color:var(--pf-info);border-color:var(--pf-info);background:var(--pf-info-bg)}
+.v1[data-state="done"] .v1-badge{color:var(--pf-ok);border-color:transparent;background:var(--pf-ok-bg)}
+.v1[data-state="error"] .v1-badge{color:var(--pf-bad);border-color:transparent;background:var(--pf-bad-bg)}
+
+.v1-title{margin:9px 0 0;font-size:16px;font-weight:600;line-height:1.25;letter-spacing:-.005em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v1-meta{margin:5px 0 0;font-size:12.5px;line-height:1.35;color:var(--pf-fg-2);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* значение: место под цифру зарезервировано в простое, поэтому высота не скачет */
+.v1-val{margin-top:12px;display:flex;align-items:baseline;min-height:30px;padding-top:8px}
+.v1-num{font:600 23px/1 Consolas,'Courier New',monospace;color:var(--pf-fg);
+  font-variant-numeric:tabular-nums;min-width:0}
+.v1-num.empty{color:var(--pf-fg-3);font-weight:500}
+.v1-unit{font-size:12px;color:var(--pf-fg-3);margin-left:5px}
+.v1-delta{font:600 11px/1 Consolas,'Courier New',monospace;margin-left:8px;padding:3px 5px;
+  border-radius:5px;opacity:0;transition:opacity .12s}
+.v1[data-state="done"] .v1-delta{opacity:1}
+.v1-delta.good{color:var(--pf-ok);background:var(--pf-ok-bg)}
+.v1-delta.bad{color:var(--pf-bad);background:var(--pf-bad-bg)}
+.v1-delta.flat{color:var(--pf-fg-2);background:var(--pf-raised)}
+
+/* искра: пять последних прогонов, появляется только когда есть данные */
+.v1-spark{display:flex;align-items:flex-end;height:16px;margin-top:auto;margin-right:108px;opacity:0;transition:opacity .14s}
+.v1[data-state="done"] .v1-spark{opacity:1}
+.v1-spark i{display:block;width:5px;margin-right:3px;background:var(--pf-line-strong);border-radius:1px}
+.v1[data-state="done"] .v1-spark i.on{background:var(--pf-ok)}
+
+/* действие: в простое — иконка, при наведении разворачивается в подпись */
+.v1-act{position:absolute;right:12px;bottom:11px;display:flex;align-items:center;
+  height:32px;border:1px solid var(--pf-line);background:var(--pf-surface);color:var(--pf-fg);
+  border-radius:9px;padding:0 9px;cursor:pointer;overflow:hidden;
+  font:600 12.5px 'Segoe UI',Arial,sans-serif;
+  transition:background .12s,border-color .12s,padding .16s}
+.v1-act:hover{background:var(--pf-raised);border-color:var(--pf-line-strong)}
+.v1-ico{font-size:11px;line-height:1;width:12px;text-align:center;flex:0 0 12px;color:var(--pf-accent)}
+.v1-lbl{max-width:0;opacity:0;white-space:nowrap;overflow:hidden;
+  transition:max-width .18s,opacity .14s,margin-left .18s;margin-left:0}
+.v1:hover .v1-lbl,.v1.is-hover .v1-lbl,.v1:focus-within .v1-lbl{max-width:110px;opacity:1;margin-left:7px}
+.v1[data-state="done"] .v1-lbl,.v1[data-state="running"] .v1-lbl{max-width:110px;opacity:1;margin-left:7px}
+.v1[data-state="running"] .v1-act{border-color:var(--pf-bad);color:var(--pf-bad)}
+.v1[data-state="running"] .v1-ico{color:var(--pf-bad)}
+
+/* прогресс: волосяная линия по верхней кромке, не двигает содержимое */
+.v1-prog{position:absolute;left:0;top:0;height:2px;width:100%;background:transparent;overflow:hidden}
+.v1-prog i{display:block;height:2px;width:0;background:var(--pf-info);
+  -webkit-transition:width .18s linear;transition:width .18s linear}
+.v1[data-state="running"] .v1-prog i{width:45%}
+.v1[data-state="done"] .v1-prog i{width:100%;background:var(--pf-ok)}
+.v1[data-state="error"] .v1-prog i{width:100%;background:var(--pf-bad)}
+
+/* ============================================================
+   ВАРИАНТ 2 — «Пульт»: кольцо как главный индикатор
+   ============================================================ */
+.v2{position:relative;background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:16px;
+  padding:14px;box-sizing:border-box;min-height:152px;display:flex;flex-direction:column;
+  transition:background .12s,border-color .12s,box-shadow .12s,transform .12s}
+.v2:hover,.v2.is-hover{background:var(--pf-hover);border-color:var(--pf-line-strong);
+  box-shadow:var(--pf-shadow-tile);transform:translateY(-2px)}
+.v2-main{display:flex;align-items:flex-start}
+.v2-ring{position:relative;width:64px;height:64px;flex:0 0 64px;margin-right:12px}
+.v2-ring svg{width:64px;height:64px;display:block;-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}
+.v2-ring .tr{fill:none;stroke:var(--pf-line);stroke-width:5}
+.v2-ring .fl{fill:none;stroke:var(--pf-accent);stroke-width:5;stroke-linecap:round;
+  stroke-dasharray:163.4;stroke-dashoffset:163.4;
+  -webkit-transition:stroke-dashoffset .2s linear;transition:stroke-dashoffset .2s linear}
+.v2[data-state="running"] .v2-ring .fl{stroke:var(--pf-info);-webkit-animation:v2spin 2.4s linear infinite;animation:v2spin 2.4s linear infinite}
+.v2[data-state="done"] .v2-ring .fl{stroke:var(--pf-ok);stroke-dashoffset:0}
+.v2[data-state="error"] .v2-ring .fl{stroke:var(--pf-bad);stroke-dashoffset:52}
+@-webkit-keyframes v2spin{0%{stroke-dashoffset:163.4}100%{stroke-dashoffset:0}}
+@keyframes v2spin{0%{stroke-dashoffset:163.4}100%{stroke-dashoffset:0}}
+.v2-c{position:absolute;left:0;top:0;width:64px;height:64px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font:600 15px/1 Consolas,'Courier New',monospace;
+  font-variant-numeric:tabular-nums;color:var(--pf-fg)}
+.v2-c small{font:500 9px/1.2 'Segoe UI',Arial,sans-serif;color:var(--pf-fg-3);margin-top:2px;
+  letter-spacing:.02em}
+.v2[data-state="done"] .v2-c{color:var(--pf-ok)}
+.v2[data-state="error"] .v2-c{color:var(--pf-bad)}
+.v2-head{flex:1 1 auto;min-width:0}
+.v2-kicker{display:flex;align-items:center;margin-bottom:5px}
+.v2-idx{font:600 11px/1 Consolas,'Courier New',monospace;color:var(--pf-fg-3);margin-right:7px}
+.v2-code{font:500 11px/1 Consolas,'Courier New',monospace;color:var(--pf-fg-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v2-title{margin:0;font-size:15.5px;font-weight:600;line-height:1.25;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v2-sub{margin:6px 0 0;font-size:12px;line-height:1.35;color:var(--pf-fg-2);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v2-foot{margin-top:auto;display:flex;align-items:center;padding-top:12px}
+.v2-state{font:600 11px/1.2 'Segoe UI',Arial,sans-serif;letter-spacing:.01em;
+  color:var(--pf-fg-3);flex:1 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v2[data-state="running"] .v2-state{color:var(--pf-info)}
+.v2[data-state="done"] .v2-state{color:var(--pf-ok)}
+.v2[data-state="error"] .v2-state{color:var(--pf-bad)}
+.v2-run{border:1px solid var(--pf-line-strong);background:transparent;color:var(--pf-fg);
+  border-radius:9px;height:30px;padding:0 12px;cursor:pointer;font:600 12.5px 'Segoe UI',Arial,sans-serif;
+  transition:background .12s,color .12s,border-color .12s}
+.v2-run:hover{background:var(--pf-accent);border-color:var(--pf-accent);color:var(--pf-on-accent)}
+.v2[data-state="running"] .v2-run{border-color:var(--pf-bad);color:var(--pf-bad)}
+/* точка «живого» состояния — единственный мигающий элемент */
+.v2-dot{width:6px;height:6px;border-radius:50%;background:var(--pf-line-strong);
+  margin-right:7px;flex:0 0 6px;display:inline-block;vertical-align:0}
+.v2[data-state="running"] .v2-dot{background:var(--pf-info);-webkit-animation:dgPulse 1.1s ease-in-out infinite;animation:dgPulse 1.1s ease-in-out infinite}
+.v2[data-state="done"] .v2-dot{background:var(--pf-ok)}
+.v2[data-state="error"] .v2-dot{background:var(--pf-bad)}
+@-webkit-keyframes dgPulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes dgPulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ============================================================
+   ВАРИАНТ 3 — «Строка»: плотный список, раскрытие по наведению
+   ============================================================ */
+.v3{position:relative;background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:12px;
+  box-sizing:border-box;overflow:hidden;margin-bottom:8px;
+  transition:background .12s,border-color .12s,box-shadow .12s}
+.v3:hover,.v3.is-hover{background:var(--pf-hover);border-color:var(--pf-line-strong);
+  box-shadow:var(--pf-shadow-tile)}
+.v3-row{display:flex;align-items:center;height:52px;padding:0 12px}
+.v3-idx{font:600 11px/1 Consolas,'Courier New',monospace;color:var(--pf-fg-3);
+  width:22px;flex:0 0 22px}
+.v3{--cat:var(--pf-line-strong)}
+.v3[data-cat="cpu"]{--cat:#2F6FD0}
+.v3[data-cat="ib"]{--cat:#5C8A16}
+.v3[data-cat="q"]{--cat:#7B4BE0}
+.v3[data-cat="ser"]{--cat:#A96A12}
+.v3[data-cat="mem"]{--cat:#0E8C80}
+.v3[data-cat="io"]{--cat:#C2417F}
+html.pf-dark .v3[data-cat="cpu"]{--cat:#6EA8FE}
+html.pf-dark .v3[data-cat="ib"]{--cat:#C4F252}
+html.pf-dark .v3[data-cat="q"]{--cat:#B49CFF}
+html.pf-dark .v3[data-cat="ser"]{--cat:#F0B45A}
+html.pf-dark .v3[data-cat="mem"]{--cat:#59D3C8}
+html.pf-dark .v3[data-cat="io"]{--cat:#F58FBF}
+.v3-cat{width:3px;height:22px;border-radius:2px;margin-right:10px;flex:0 0 3px;background:var(--cat)}
+.v3-name{flex:1 1 auto;min-width:0;font-size:14px;font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v3-code{font:500 11px/1 Consolas,'Courier New',monospace;color:var(--pf-fg-3);
+  margin-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1 auto}
+.v3-val{font:600 14px/1 Consolas,'Courier New',monospace;color:var(--pf-fg);
+  font-variant-numeric:tabular-nums;margin-left:12px;flex:0 0 auto;min-width:74px;text-align:right}
+.v3-val.empty{color:var(--pf-fg-3);font-weight:500}
+.v3-dot{width:7px;height:7px;border-radius:50%;background:var(--pf-line-strong);
+  margin-left:10px;flex:0 0 7px}
+.v3[data-state="running"] .v3-dot{background:var(--pf-info);-webkit-animation:dgPulse 1.1s ease-in-out infinite;animation:dgPulse 1.1s ease-in-out infinite}
+.v3[data-state="done"] .v3-dot{background:var(--pf-ok)}
+.v3[data-state="error"] .v3-dot{background:var(--pf-bad)}
+.v3-more{max-height:0;overflow:hidden;transition:max-height .16s}
+.v3:hover .v3-more,.v3.is-hover .v3-more,.v3:focus-within .v3-more{max-height:64px}
+.v3[data-state="done"] .v3-more{max-height:64px}
+.v3-more-in{display:flex;align-items:center;padding:0 12px 10px 44px}
+.v3-desc{flex:1 1 auto;font-size:12px;color:var(--pf-fg-2);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;margin-right:10px}
+.v3-run{border:1px solid var(--pf-line);background:var(--pf-surface);color:var(--pf-fg);
+  border-radius:8px;height:26px;padding:0 10px;cursor:pointer;font:600 11.5px 'Segoe UI',Arial,sans-serif;
+  flex:0 0 auto;transition:background .12s,border-color .12s}
+.v3-run:hover{background:var(--pf-raised);border-color:var(--pf-line-strong)}
+/* прогресс как заливка строки слева направо: не добавляет элементов в поток */
+.v3-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--pf-info-bg);opacity:.55;
+  pointer-events:none;transition:width .18s linear}
+.v3[data-state="done"] .v3-fill{width:100%;background:var(--pf-ok-bg);opacity:.35}
+.v3[data-state="error"] .v3-fill{width:100%;background:var(--pf-bad-bg);opacity:.5}
+
+/* ---------- общее: фокус и «уменьшенное движение» ---------- */
+.v1-act:focus-visible,.v2-run:focus-visible,.v3-run:focus-visible,.dg-btn:focus-visible{
+  outline:2px solid var(--pf-accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  .v1,.v2,.v3,.v1-prog i,.v2-ring .fl,.v3-fill{transition:none!important;-webkit-animation:none!important;animation:none!important}
+}
+
+/* ---------- таблица спецификаций ---------- */
+.dg-spec{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0 0}
+.dg-spec th,.dg-spec td{text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--pf-line);
+  vertical-align:top}
+.dg-spec th{color:var(--pf-fg-3);font-weight:600;white-space:nowrap;width:150px}
+.dg-spec td{color:var(--pf-fg-2)}
+</style>
+</head>
+<body class="dg">
+
+<header class="dg-top"><div class="dg-top-in">
+  <span class="dg-brand"><i></i>Карточки тестов — варианты</span>
+  <span class="sp"></span>
+  <button class="dg-btn" id="btnTheme">Тёмная тема</button>
+  <button class="dg-btn pri" id="btnPlay">Проиграть все</button>
+</div></header>
+
+<div class="dg-wrap">
+
+  <div class="dg-h">
+    <span class="dg-tag">что не так сейчас</span>
+    <h2>Карточка сообщает структуру, но не результат</h2>
+    <p>Четыре вещи мешают читать сетку из одиннадцати карточек: порция продублирована дважды
+      («Реализация» и чип внизу); метки «Суть» и «Реализация» набраны капсом жирным и спорят
+      с заголовком; кольцо в углу пустое в простое и стоит рядом с кнопкой «−»; кнопка прижата
+      к низу, поэтому у карточек разной высоты она «плавает», а строка результата, появляясь,
+      меняет высоту карточки. Ниже — то, что есть, и три переработки.</p>
+  </div>
+
+  <!-- ================= КАК СЕЙЧАС ================= -->
+  <div class="dg-h" id="asis">
+    <span class="dg-tag">как сейчас в 1С</span>
+    <h2>Текущая карточка, разметка и стили 1:1</h2>
+    <p>Ниже — настоящая разметка из модуля кокпита и настоящий набор стилей страницы.
+      Состояния переключаются теми же классами, что и в рабочей форме
+      (<code>state-run</code>, <code>state-ok</code>, <code>badge run</code>, <code>.result ok</code>).
+      Наведение показано принудительно тем же набором объявлений, что в <code>.tile:hover</code>.</p>
+  </div>
+  <div class="dg-strip" id="asisStrip"></div>
+  <p class="dg-note">Клик по карточке проигрывает прогон: кольцо, статус и строка результата
+    меняются так же, как их меняет мост формы (<code>PF1C.state</code> → <code>progress</code> → <code>result</code>).</p>
+
+  <!-- ================= ВАРИАНТ 1 ================= -->
+  <div class="dg-h">
+    <span class="dg-tag">вариант 1</span>
+    <h2>Плотный: цифра на первом плане, действие по требованию</h2>
+    <p>Высота фиксирована (152), поэтому сетка ровная и кнопки не плавают. Метки «Суть» и
+      «Реализация» свёрнуты в одну строку факта. Место под медиану зарезервировано: при
+      завершении высота не меняется, появляются только цифра, дельта и искра последних прогонов.
+      Кнопка в простое — иконка, при наведении разворачивается в подпись.</p>
+  </div>
+  <div class="dg-strip" id="v1Strip"><div class="dg-strip" id="v1Strip">
+  <div class="dg-cell">
+    <article class="v1" data-state="idle" data-cat="cpu">
+      <i class="v1-prog"><i></i></i>
+      <div class="v1-top"><span class="v1-idx">01</span><span class="v1-code">CPU_Арифметика</span><span class="v1-badge">—</span></div>
+      <h4 class="v1-title">ЦПУ: арифметический цикл</h4>
+      <p class="v1-meta">50 000 итераций · 1 повтор</p>
+      <div class="v1-val"><span class="v1-num empty">—</span><span class="v1-unit">мс</span><span class="v1-delta"></span></div>
+      <div class="v1-spark"><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i></div>
+      <button class="v1-act" type="button"><span class="v1-ico">▶</span><span class="v1-lbl">Запустить</span></button>
+    </article>
+    <div class="dg-cap"><b></b>простой</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v1 is-hover" data-state="idle" data-cat="cpu">
+      <i class="v1-prog"><i></i></i>
+      <div class="v1-top"><span class="v1-idx">02</span><span class="v1-code">CPU_Строки</span><span class="v1-badge">—</span></div>
+      <h4 class="v1-title">ЦПУ: строковые операции</h4>
+      <p class="v1-meta">8 000 сегментов · 1 повтор</p>
+      <div class="v1-val"><span class="v1-num empty">—</span><span class="v1-unit">мс</span><span class="v1-delta"></span></div>
+      <div class="v1-spark"><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i></div>
+      <button class="v1-act" type="button"><span class="v1-ico">▶</span><span class="v1-lbl">Запустить</span></button>
+    </article>
+    <div class="dg-cap hov"><b></b>наведение: подъём и раскрытие кнопки</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v1" data-state="running" data-cat="cpu">
+      <i class="v1-prog"><i></i></i>
+      <div class="v1-top"><span class="v1-idx">03</span><span class="v1-code">CPU_Коллекции</span><span class="v1-badge">идёт</span></div>
+      <h4 class="v1-title">ЦПУ: коллекции</h4>
+      <p class="v1-meta">прогон 2 из 3 · итерация 31 000</p>
+      <div class="v1-val"><span class="v1-num">42</span><span class="v1-unit">мс</span><span class="v1-delta"></span></div>
+      <div class="v1-spark"><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i></div>
+      <button class="v1-act" type="button"><span class="v1-ico">■</span><span class="v1-lbl">Стоп</span></button>
+    </article>
+    <div class="dg-cap run"><b></b>идёт прогон</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v1" data-state="done" data-cat="cpu">
+      <i class="v1-prog"><i></i></i>
+      <div class="v1-top"><span class="v1-idx">04</span><span class="v1-code">CPU_Сортировка</span><span class="v1-badge">готово</span></div>
+      <h4 class="v1-title">ЦПУ: сортировка массива</h4>
+      <p class="v1-meta">1,68 мс/тыс. итераций · 3 прогона</p>
+      <div class="v1-val"><span class="v1-num">84</span><span class="v1-unit">мс</span><span class="v1-delta good">−6%</span></div>
+      <div class="v1-spark"><i class="on" style="height:9px"></i><i class="on" style="height:12px"></i><i class="on" style="height:10px"></i><i class="on" style="height:14px"></i><i class="on" style="height:11px"></i></div>
+      <button class="v1-act" type="button"><span class="v1-ico">↻</span><span class="v1-lbl">Ещё раз</span></button>
+    </article>
+    <div class="dg-cap ok"><b></b>готово</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v1" data-state="error" data-cat="cpu">
+      <i class="v1-prog"><i></i></i>
+      <div class="v1-top"><span class="v1-idx">05</span><span class="v1-code">CPU_Рекурсия</span><span class="v1-badge">ошибка</span></div>
+      <h4 class="v1-title">ЦПУ: глубокая рекурсия</h4>
+      <p class="v1-meta">запрос не выполнен · 1,2 с</p>
+      <div class="v1-val"><span class="v1-num" style="color:var(--pf-bad)">!</span><span class="v1-unit"></span><span class="v1-delta"></span></div>
+      <div class="v1-spark"><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i></div>
+      <button class="v1-act" type="button"><span class="v1-ico">↻</span><span class="v1-lbl">Повторить</span></button>
+    </article>
+    <div class="dg-cap err"><b></b>ошибка</div>
+  </div>
+</div></div>
+  <table class="dg-spec"><tr><th>Геометрия</th><td>радиус 14 · паддинг 13/14 · высота 152 фикс · прогресс — линия 2 px по верхней кромке</td></tr>
+  <tr><th>Типографика</th><td>заголовок 16/600 · факт 12.5 · цифра 23 моно · код 11.5 моно · статус 10.5 капс</td></tr>
+  <tr><th>Ритм</th><td>4 / 8 / 12 / 16; всё в одну колонку, выравнивание по левому краю</td></tr>
+  <tr><th>Наведение</th><td>подъём 2 px, тень, рамка; подпись кнопки раскрывается за 160 мс</td></tr>
+  <tr><th>Прогон</th><td>линия прогресса 2.4 с, цифра считается на месте, кнопка становится «Стоп»</td></tr>
+  <tr><th>Завершение</th><td>цифра, дельта (±%), искра 5 прогонов, бейдж «готово»; высота не меняется</td></tr></table>
+
+  <!-- ================= ВАРИАНТ 2 ================= -->
+  <div class="dg-h">
+    <span class="dg-tag">вариант 2</span>
+    <h2>Пульт: кольцо — главный индикатор, а не украшение</h2>
+    <p>Кольцо 64 px слева и оно всегда осмысленно: в простое пустое с прочерком, в прогоне
+      заполняется и держит процент, по завершении — полное, в цвете успеха, с медианой в центре.
+      Справа — код сценария, название в две строки, факт одной строкой. Внизу — состояние
+      словами и кнопка. Мигает только точка состояния: один живой элемент на карточку.</p>
+  </div>
+  <div class="dg-strip" id="v2Strip"><div class="dg-strip" id="v2Strip">
+  <div class="dg-cell">
+    <article class="v2" data-state="idle">
+      <div class="v2-main">
+        <div class="v2-ring">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="tr" cx="32" cy="32" r="26"></circle><circle class="fl" cx="32" cy="32" r="26"></circle></svg>
+          <div class="v2-c">&mdash;<small>мс</small></div>
+        </div>
+        <div class="v2-head">
+          <div class="v2-kicker"><span class="v2-idx">01</span><span class="v2-code">CPU_Арифметика</span></div>
+          <h4 class="v2-title">ЦПУ: арифметический цикл</h4>
+          <p class="v2-sub">50 000 итераций · 1 повтор</p>
+        </div>
+      </div>
+      <div class="v2-foot"><span class="v2-state"><i class="v2-dot"></i>не запускался</span><button class="v2-run" type="button">Запустить</button></div>
+    </article>
+    <div class="dg-cap"><b></b>простой</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v2 is-hover" data-state="idle">
+      <div class="v2-main">
+        <div class="v2-ring">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="tr" cx="32" cy="32" r="26"></circle><circle class="fl" cx="32" cy="32" r="26"></circle></svg>
+          <div class="v2-c">&mdash;<small>мс</small></div>
+        </div>
+        <div class="v2-head">
+          <div class="v2-kicker"><span class="v2-idx">02</span><span class="v2-code">CPU_Строки</span></div>
+          <h4 class="v2-title">ЦПУ: строковые операции</h4>
+          <p class="v2-sub">8 000 сегментов · 1 повтор</p>
+        </div>
+      </div>
+      <div class="v2-foot"><span class="v2-state"><i class="v2-dot"></i>не запускался</span><button class="v2-run" type="button">Запустить</button></div>
+    </article>
+    <div class="dg-cap hov"><b></b>наведение</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v2" data-state="running">
+      <div class="v2-main">
+        <div class="v2-ring">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="tr" cx="32" cy="32" r="26"></circle><circle class="fl" cx="32" cy="32" r="26"></circle></svg>
+          <div class="v2-c">45<small>%</small></div>
+        </div>
+        <div class="v2-head">
+          <div class="v2-kicker"><span class="v2-idx">03</span><span class="v2-code">CPU_Коллекции</span></div>
+          <h4 class="v2-title">ЦПУ: коллекции</h4>
+          <p class="v2-sub">20 000 добавлений · 1 повтор</p>
+        </div>
+      </div>
+      <div class="v2-foot"><span class="v2-state"><i class="v2-dot"></i>прогон 2 из 3 · 41 мс</span><button class="v2-run" type="button">Стоп</button></div>
+    </article>
+    <div class="dg-cap run"><b></b>идёт прогон</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v2" data-state="done">
+      <div class="v2-main">
+        <div class="v2-ring">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="tr" cx="32" cy="32" r="26"></circle><circle class="fl" cx="32" cy="32" r="26"></circle></svg>
+          <div class="v2-c">84<small>мс</small></div>
+        </div>
+        <div class="v2-head">
+          <div class="v2-kicker"><span class="v2-idx">04</span><span class="v2-code">CPU_Сортировка</span></div>
+          <h4 class="v2-title">ЦПУ: сортировка массива</h4>
+          <p class="v2-sub">1,68 мс/тыс. итераций · 3 прогона</p>
+        </div>
+      </div>
+      <div class="v2-foot"><span class="v2-state"><i class="v2-dot"></i>готово · 1,68 мс/тыс.</span><button class="v2-run" type="button">Ещё раз</button></div>
+    </article>
+    <div class="dg-cap ok"><b></b>готово</div>
+  </div>
+
+  <div class="dg-cell">
+    <article class="v2" data-state="error">
+      <div class="v2-main">
+        <div class="v2-ring">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="tr" cx="32" cy="32" r="26"></circle><circle class="fl" cx="32" cy="32" r="26"></circle></svg>
+          <div class="v2-c">!<small>ошибка</small></div>
+        </div>
+        <div class="v2-head">
+          <div class="v2-kicker"><span class="v2-idx">05</span><span class="v2-code">CPU_Рекурсия</span></div>
+          <h4 class="v2-title">ЦПУ: глубокая рекурсия</h4>
+          <p class="v2-sub">запрос не выполнен · 1,2 с</p>
+        </div>
+      </div>
+      <div class="v2-foot"><span class="v2-state"><i class="v2-dot"></i>запрос не выполнен</span><button class="v2-run" type="button">Повторить</button></div>
+    </article>
+    <div class="dg-cap err"><b></b>ошибка</div>
+  </div>
+</div></div>
+  <table class="dg-spec"><tr><th>Геометрия</th><td>радиус 16 · паддинг 14 · высота 152 фикс · кольцо 64, обводка 5, длина 163.4</td></tr>
+  <tr><th>Типографика</th><td>заголовок 15.5/600 в две строки · факт 12 · цифра в кольце 15 моно · состояние 11 капс</td></tr>
+  <tr><th>Состояния</th><td>точка: серая / синяя с пульсом / зелёная / красная; кольцо меняет цвет по состоянию</td></tr>
+  <tr><th>Наведение</th><td>подъём 2 px, тень, рамка; кнопка заливается акцентом</td></tr>
+  <tr><th>Прогон</th><td>кольцо заполняется 2.4 с, в центре процент, состояние — «прогон 2 из 3»</td></tr>
+  <tr><th>Завершение</th><td>кольцо полное зелёное, в центре медиана, состояние «готово, 84 мс»</td></tr></table>
+
+  <!-- ================= ВАРИАНТ 3 ================= -->
+  <div class="dg-h">
+    <span class="dg-tag">вариант 3</span>
+    <h2>Строка: одиннадцать тестов видно целиком</h2>
+    <p>Строка 52 px: номер, цветная метка категории, название, код, медиана, точка состояния.
+      Детали и кнопка раскрываются при наведении — карточка не занимает место, пока её не
+      спросили. Прогон показан заливкой строки слева направо. В таком виде одиннадцать
+      сценариев укладываются в один экран и сравниваются глазами по одному столбцу цифр.</p>
+  </div>
+  <div class="dg-list" id="v3Strip"><div id="v3Strip" class="dg-list">
+  <div class="dg-row3">
+    <div class="dg-cap"><b></b>простой</div>
+    <article class="v3" data-state="idle" data-cat="cpu">
+      <i class="v3-fill"></i>
+      <div class="v3-row">
+        <span class="v3-idx">01</span><i class="v3-cat"></i>
+        <span class="v3-name">ЦПУ: арифметический цикл</span>
+        <span class="v3-code">CPU_Арифметика</span>
+        <span class="v3-val empty">—</span><i class="v3-dot"></i>
+      </div>
+      <div class="v3-more"><div class="v3-more-in"><span class="v3-desc">50 000 итераций: умножение, деление, сравнение · 1 повтор</span><button class="v3-run" type="button">Запустить</button></div></div>
+    </article>
+  </div>
+
+  <div class="dg-row3">
+    <div class="dg-cap hov"><b></b>наведение</div>
+    <article class="v3 is-hover" data-state="idle" data-cat="cpu">
+      <i class="v3-fill"></i>
+      <div class="v3-row">
+        <span class="v3-idx">02</span><i class="v3-cat"></i>
+        <span class="v3-name">ЦПУ: строковые операции</span>
+        <span class="v3-code">CPU_Строки</span>
+        <span class="v3-val empty">—</span><i class="v3-dot"></i>
+      </div>
+      <div class="v3-more"><div class="v3-more-in"><span class="v3-desc">8 000 сегментов: конкатенация с буфером, поиск подстроки · 1 повтор</span><button class="v3-run" type="button">Запустить</button></div></div>
+    </article>
+  </div>
+
+  <div class="dg-row3">
+    <div class="dg-cap run"><b></b>идёт прогон</div>
+    <article class="v3" data-state="running" data-cat="cpu">
+      <i class="v3-fill" style="width:45%"></i>
+      <div class="v3-row">
+        <span class="v3-idx">03</span><i class="v3-cat"></i>
+        <span class="v3-name">ЦПУ: коллекции</span>
+        <span class="v3-code">CPU_Коллекции</span>
+        <span class="v3-val">41 мс</span><i class="v3-dot"></i>
+      </div>
+      <div class="v3-more"><div class="v3-more-in"><span class="v3-desc">прогон 2 из 3 · итерация 31 000 из 20 000</span><button class="v3-run" type="button">Стоп</button></div></div>
+    </article>
+  </div>
+
+  <div class="dg-row3">
+    <div class="dg-cap ok"><b></b>готово</div>
+    <article class="v3" data-state="done" data-cat="cpu">
+      <i class="v3-fill"></i>
+      <div class="v3-row">
+        <span class="v3-idx">04</span><i class="v3-cat"></i>
+        <span class="v3-name">ЦПУ: сортировка массива</span>
+        <span class="v3-code">CPU_Сортировка</span>
+        <span class="v3-val">84 мс</span><i class="v3-dot"></i>
+      </div>
+      <div class="v3-more"><div class="v3-more-in"><span class="v3-desc">1,68 мс/тыс. итераций · 3 прогона · −6% к прошлому замеру</span><button class="v3-run" type="button">Ещё раз</button></div></div>
+    </article>
+  </div>
+
+  <div class="dg-row3">
+    <div class="dg-cap err"><b></b>ошибка</div>
+    <article class="v3" data-state="error" data-cat="cpu">
+      <i class="v3-fill"></i>
+      <div class="v3-row">
+        <span class="v3-idx">05</span><i class="v3-cat"></i>
+        <span class="v3-name">ЦПУ: глубокая рекурсия</span>
+        <span class="v3-code">CPU_Рекурсия</span>
+        <span class="v3-val">ошибка</span><i class="v3-dot"></i>
+      </div>
+      <div class="v3-more"><div class="v3-more-in"><span class="v3-desc">запрос не выполнен · 1,2 с</span><button class="v3-run" type="button">Повторить</button></div></div>
+    </article>
+  </div>
+</div></div>
+  <table class="dg-spec"><tr><th>Геометрия</th><td>радиус 12 · строка 52 · раскрытие до 116 · заливка прогресса на всю строку</td></tr>
+  <tr><th>Типографика</th><td>название 14/600 · код 11 моно · медиана 14 моно, выровнена по правому краю в колонке 74</td></tr>
+  <tr><th>Наведение</th><td>раскрытие деталей 160 мс, тень, рамка; строка не сдвигает соседей вбок</td></tr>
+  <tr><th>Прогон</th><td>заливка слева направо, точка пульсирует, цифра в столбце считается</td></tr>
+  <tr><th>Завершение</th><td>цифра и точка успеха, детали остаются раскрытыми</td></tr></table>
+
+  <div class="dg-h">
+    <span class="dg-tag">сводка</span>
+    <h2>Что я бы выбрал</h2>
+    <p>Для кокпита — вариант 2: кольцо там уже есть в разметке, и в этом варианте оно наконец
+      работает (процент в прогоне, медиана после). Для списка из одиннадцати задач, когда цель —
+      сравнить, а не рассматривать, — вариант 3. Вариант 1 — компромисс, если нужно сохранить
+      текущую сетку в два столбца и просто убрать шум. Все три используют только существующие
+      токены, поэтому обе темы работают без второго набора правил; ни один не полагается на
+      <code>gap</code>, <code>:has</code> или <code>color-mix</code> — их движок HTML-поля не умеет.</p>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   Имитация прогона. Один общий таймер на карточку, как в форме:
+   сначала состояние «идёт», затем «готово» или «ошибка».
+   ============================================================ */
+window.addEventListener('load', function(){
+  'use strict';
+  var ACCENT = 6, DUR = 2400;
+  var VARIANTS = [];
+
+  function fmt(n){ return String(n).replace('.', ','); }
+
+  /* --- секция «как сейчас»: настоящая разметка, клонируется из шаблона --- */
+  var ASIS = [
+    {n:1, state:'idle'},
+    {n:2, state:'hover'},
+    {n:3, state:'run'},
+    {n:4, state:'ok'},
+    {n:5, state:'err'}
+  ];
+
+  var tpl = document.getElementById('tplCard');
+  var asisHost = document.getElementById('asisStrip');
+
+  function asisCard(n){
+    var html = tpl.innerHTML.replace(/id='card\d+'/, "id='acard" + n + "'")
+                            .replace(/run:\d+/, 'run:' + n);
+    var box = document.createElement('div');
+    box.innerHTML = html;
+    return box.firstElementChild;
+  }
+
+  function setAsis(card, st){
+    var sp = 'span-4';
+    card.className = 'tile card ' + sp + ' state-' + st;
+    var b = card.querySelector('.badge');
+    if (b) {
+      b.className = 'badge ' + st;
+      b.innerHTML = st === 'run' ? 'выполняется' : st === 'ok' ? 'готово'
+                  : st === 'err' ? 'ошибка' : '&mdash;';
+    }
+    var s = card.querySelector('.status');
+    var r = card.querySelector('.result');
+    if (st === 'idle') { if (s) s.innerHTML = '&mdash;'; if (r) { r.className = 'result'; r.innerHTML = ''; } }
+    if (st === 'run') { if (s) s.innerHTML = 'Прогон 2 из 3: 41 мс'; if (r) { r.className = 'result'; r.innerHTML = ''; }
+      card.querySelector('.mr-fill').style.strokeDashoffset = '41.5'; }
+    if (st === 'ok') {
+      if (s) s.innerHTML = '100%';
+      if (r) { r.className = 'result ok'; r.innerHTML = 'ОК: медиана 84 мс (1,68 мс/тыс. итераций)'; }
+      card.querySelector('.mr-fill').style.strokeDashoffset = '0';
+    }
+    if (st === 'err') {
+      if (s) s.innerHTML = '—';
+      if (r) { r.className = 'result err'; r.innerHTML = 'Ошибка: запрос не выполнен'; }
+      card.querySelector('.mr-fill').style.strokeDashoffset = '52';
+    }
+  }
+
+  /* прогон на настоящей карточке: те же шаги, что делает мост формы */
+  function asisRun(card){
+    if (card.dataset.busy === '1') { return; }
+    card.dataset.busy = '1';
+    var ring = card.querySelector('.mr-fill');
+    var st = card.querySelector('.status');
+    var t0 = Date.now();
+    setAsis(card, 'run');
+    if (ring) { ring.style.strokeDashoffset = '75.4'; }
+    var timer = setInterval(function(){
+      var p = Math.min(100, Math.round((Date.now() - t0) / 24));
+      if (ring) { ring.style.strokeDashoffset = String(75.4 * (1 - p / 100)); }
+      if (st) { st.innerHTML = 'Прогон ' + (p < 50 ? 1 : p < 90 ? 2 : 3) + ' из 3: ' + (30 + p) + ' мс'; }
+      if (p >= 100) {
+        clearInterval(timer);
+        setAsis(card, 'ok');
+        if (ring) { ring.style.strokeDashoffset = '0'; }
+        card.dataset.busy = '0';
+      }
+    }, 40);
+  }
+
+  ASIS.forEach(function(spec){
+    var wrap = document.createElement('div');
+    wrap.className = 'dg-cell';
+    var c = asisCard(spec.n);
+    setAsis(c, spec.state === 'hover' ? 'idle' : spec.state);
+    if (spec.state === 'hover') {
+      c.className += ' asis-hover';
+      c.querySelector('.mr-fill').style.strokeDashoffset = '75.4';
+    }
+    var cap = document.createElement('div');
+    cap.className = 'dg-cap' + (spec.state === 'hover' ? ' hov' : spec.state === 'run' ? ' run'
+                              : spec.state === 'ok' ? ' ok' : spec.state === 'err' ? ' err' : '');
+    cap.innerHTML = '<b></b>' + ({idle:'простой', hover:'наведение', run:'идёт прогон',
+                                  ok:'готово', err:'ошибка'})[spec.state];
+    wrap.appendChild(c);
+    wrap.appendChild(cap);
+    asisHost.appendChild(wrap);
+    c.addEventListener('click', function(){ asisRun(c); });
+    VARIANTS.push({card: c, api: null, run: function(){ asisRun(c); }});
+  });
+
+  /* ============================================================
+     Варианты. Разметка карточек — в разметке страницы, здесь только
+     проигрывание состояний и подсчёт условной медианы.
+     ============================================================ */
+  function each(sel, fn){ Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+
+  /* --- вариант 1 --- */
+  function v1Set(card, st, median, pct, delta){
+    card.setAttribute('data-state', st);
+    var num = card.querySelector('.v1-num');
+    var unit = card.querySelector('.v1-unit');
+    var badge = card.querySelector('.v1-badge');
+    var d = card.querySelector('.v1-delta');
+    var lbl = card.querySelector('.v1-lbl');
+    var ico = card.querySelector('.v1-ico');
+    var meta = card.querySelector('.v1-meta');
+    if (st === 'idle') {
+      num.className = 'v1-num empty'; num.textContent = '—'; unit.textContent = 'мс';
+      badge.textContent = '—'; d.className = 'v1-delta'; lbl.textContent = 'Запустить';
+      ico.textContent = '▶'; meta.textContent = '50 000 итераций · 1 повтор';
+      card.querySelector('.v1-prog i').style.width = '0%';
+    } else if (st === 'running') {
+      var cur = Math.max(1, Math.round(median * (pct || 41) / 100));
+      num.className = 'v1-num'; num.textContent = fmt(cur); unit.textContent = 'мс';
+      badge.textContent = 'идёт'; lbl.textContent = 'Стоп'; ico.textContent = '■';
+      meta.textContent = 'прогон 2 из 3 · итерация 31 000';
+      card.querySelector('.v1-prog i').style.width = (pct || 45) + '%';
+    } else if (st === 'done') {
+      num.className = 'v1-num'; num.textContent = fmt(median); unit.textContent = 'мс';
+      badge.textContent = 'готово'; lbl.textContent = 'Ещё раз'; ico.textContent = '↻';
+      meta.textContent = '1,68 мс/тыс. итераций · 3 прогона';
+      card.querySelector('.v1-prog i').style.width = '100%';
+      d.className = 'v1-delta ' + (delta < 0 ? 'good' : delta > 0 ? 'bad' : 'flat');
+      d.textContent = (delta > 0 ? '+' : delta < 0 ? '−' : '') + Math.abs(delta) + '%';
+    } else if (st === 'error') {
+      num.className = 'v1-num'; num.style.color = 'var(--pf-bad)';
+      num.textContent = '!'; unit.textContent = '';
+      badge.textContent = 'ошибка'; lbl.textContent = 'Повторить'; ico.textContent = '↻';
+      meta.textContent = 'запрос не выполнен · 1,2 с';
+      d.className = 'v1-delta';
+      card.querySelector('.v1-prog i').style.width = '100%';
+    }
+    if (st !== 'error') { num.style.color = ''; }
+  }
+
+  /* --- вариант 2 --- */
+  function v2Set(card, st, median, pct){
+    card.setAttribute('data-state', st);
+    var c = card.querySelector('.v2-c');
+    var state = card.querySelector('.v2-state');
+    var btn = card.querySelector('.v2-run');
+    if (st === 'idle') {
+      c.innerHTML = '&mdash;<small>мс</small>';
+      state.textContent = 'не запускался'; btn.textContent = 'Запустить';
+    } else if (st === 'running') {
+      c.innerHTML = (pct || 45) + '<small>%</small>';
+      state.textContent = 'прогон 2 из 3 · 41 мс'; btn.textContent = 'Стоп';
+    } else if (st === 'done') {
+      c.innerHTML = fmt(median) + '<small>мс</small>';
+      state.textContent = 'готово · 1,68 мс/тыс.'; btn.textContent = 'Ещё раз';
+    } else if (st === 'error') {
+      c.innerHTML = '!<small></small>';
+      state.textContent = 'запрос не выполнен'; btn.textContent = 'Повторить';
+    }
+  }
+
+  /* --- вариант 3 --- */
+  function v3Set(card, st, median, pct){
+    card.setAttribute('data-state', st);
+    var val = card.querySelector('.v3-val');
+    var dot = card.querySelector('.v3-dot');
+    var fill = card.querySelector('.v3-fill');
+    var run = card.querySelector('.v3-run');
+    if (st === 'idle') {
+      val.className = 'v3-val empty'; val.textContent = '—';
+      fill.style.width = '0%'; run.textContent = 'Запустить';
+    } else if (st === 'running') {
+      val.className = 'v3-val'; val.textContent = '41 мс';
+      fill.style.width = (pct || 0) + '%'; run.textContent = 'Стоп';
+    } else if (st === 'done') {
+      val.className = 'v3-val'; val.textContent = median + ' мс';
+      fill.style.width = '100%'; run.textContent = 'Ещё раз';
+    } else if (st === 'error') {
+      val.className = 'v3-val'; val.textContent = 'ошибка';
+      fill.style.width = '100%'; run.textContent = 'Повторить';
+    }
+  }
+
+  /* проигрывание: idle → running (2.4 c) → done, с шагом процента */
+  function play(card, api){
+    if (card.dataset.busy === '1') { return; }
+    card.dataset.busy = '1';
+    var start = Date.now();
+    var median = 78 + Math.round(Math.random() * 14);
+    var delta = (Math.random() < 0.5 ? -1 : 1) * (2 + Math.round(Math.random() * 9));
+    api.set(card, 'running', median, 0);
+    var timer = setInterval(function(){
+      var p = Math.min(100, Math.round((Date.now() - start) / 24));
+      if (api.kind === 'v2') { api.set(card, 'running', median, p); }
+      if (api.kind === 'v3') { api.set(card, 'running', median, p); }
+      if (api.kind === 'v1') { api.set(card, 'running', median, p); }
+      if (Date.now() - start >= DUR) {
+        clearInterval(timer);
+        api.set(card, 'done', median, 100, delta);
+        if (api.kind === 'v1') {
+          var bars = card.querySelectorAll('.v1-spark i');
+          var h = [8, 11, 9, 14, 10];
+          Array.prototype.forEach.call(bars, function(b, i){
+            b.style.height = h[i] + 'px'; b.className = i === bars.length - 1 ? 'on' : '';
+          });
+        }
+        card.dataset.busy = '0';
+      }
+    }, 40);
+  }
+
+  function wire(sel, kind, set){
+    each(sel, function(card){
+      if (card.getAttribute('data-static') === '1') { return; }
+      var api = {kind: kind, set: function(c, st, med, pct, d){
+        if (kind === 'v1') { v1Set(c, st, med, pct, d); } else if (kind === 'v2') { v2Set(c, st, med, pct); }
+        else { v3Set(c, st, med, pct); }
+      }};
+      VARIANTS.push({card: card, api: api, run: function(){ play(card, api); }});
+      card.addEventListener('click', function(ev){
+        play(card, api);
+      });
+      var b = card.querySelector('button');
+      if (b) { b.addEventListener('click', function(ev){ ev.stopPropagation(); play(card, api); }); }
+    });
+  }
+
+  wire('#v1Strip .v1', 'v1', v1Set);
+  wire('#v2Strip .v2', 'v2', v2Set);
+  wire('#v3Strip .v3', 'v3', v3Set);
+
+  /* кнопка «проиграть все» */
+  document.getElementById('btnPlay').addEventListener('click', function(){
+    VARIANTS.forEach(function(v, i){
+      setTimeout(function(){ v.run(); }, i * 90);
+    });
+  });
+
+  /* переключение темы: единственное, что меняется — класс на <html> */
+  var dark = false;
+  document.getElementById('btnTheme').addEventListener('click', function(){
+    dark = !dark;
+    document.documentElement.className = dark ? 'pf-dark' : 'pf-light';
+    this.textContent = dark ? 'Светлая тема' : 'Тёмная тема';
+  });
+
+  /* статичные состояния в полосах уже расставлены в разметке;
+     карточки «идёт» и «готово» подписаны, чтобы различие читалось без наведения */
+});
+</script>
+
+<!-- настоящая разметка карточки из модуля кокпита: клонируется для секции «как сейчас» -->
+<template id="tplCard"><section class='tile card span-4 state-idle' id='card1' data-cat='cpu'><i class='edge'></i><div class='c-top'><span class='idx'>01</span><span class='code' title='CPU_Арифметика'>CPU_Арифметика</span><span class='badge'>&mdash;</span></div><h3>ЦПУ: арифметический цикл</h3><p class='p'><b class='pl'>Суть</b>50 тысяч итераций: умножение, деление, сравнение.</p><p class='p'><b class='pl'>Реализация</b>50000 итераций, повторов 1</p><div class='c-foot'><span class='unit'>50000 итераций</span><button class='btn primary' data-pf='run:1'>Запустить</button></div><div class='status'>&mdash;</div><p class='result'></p><svg class='mr' viewBox='0 0 30 30' aria-hidden='true'><circle class='mr-bg' cx='15' cy='15' r='12'></circle><circle class='mr-fill' cx='15' cy='15' r='12'></circle></svg></section></template>
+
+</body>
+</html>
