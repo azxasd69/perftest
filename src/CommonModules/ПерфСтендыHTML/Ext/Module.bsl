@@ -1,8 +1,10 @@
 ﻿// Карточка стенда «ПерфТест»: паспорт, среда, платформа, замеры, замечания сбора.
 //
-// Модуль только собирает HTML по данным регистров и отдает его в единый каркас
-// ПерфUI.Документ (боковая панель, тема, стили). Переключателя темы на карточке
-// нет: тема берется из приложения, иначе из системной настройки (см. СкриптТемы).
+// Разметка собрана из компонентов кокпита (ПерфUI.Стили): bar, bento, tile,
+// log-head, table, badge, track, big. Своего CSS у страницы почти нет - только
+// сетка пар «подпись - значение» и поле выбора стенда, которых в кокпите нет.
+// Поэтому светлая тема работает без отдельных правил: цвета берутся из токенов,
+// и дублировать их под .pf-light не нужно.
 //
 // Правила:
 //   * любое обращение к регистрам - в Попытка; нет данных - блок не рисуется;
@@ -17,34 +19,39 @@
 	Попытка
 		Данные = ДанныеСтенда(Стенд);
 	Исключение
+		// Причина сбоя видна в маркере: иначе карточка молча показывает пустое состояние.
+		Попытка
+			ПерфСценарии.ЗаписатьМетку("card-error:" + КраткоеПредставлениеОшибки(ИнформацияОбОшибке()));
+		Исключение
+			ИгнорируемаяОшибка = ИнформацияОбОшибке();
+		КонецПопытки;
 		Данные = Неопределено;
 	КонецПопытки;
 
+	Части = Новый Массив;
 	Если Данные = Неопределено Тогда
-		Тело = "<div class='pfsc-empty'>Паспорта стендов еще нет: выполните замер на кокпите - "
-			+ "паспорт соберется автоматически.</div>";
-		Возврат ПерфUI.Документ("ПерфСтенды", "ПерфТест - карточка стенда", Тело,
-			СтилиКарточки(), Ложь, "pfsc-wrap", "", "", Настройки);
-
+		Части.Добавить("<main class='bento'><section class='tile span-12'>"
+			+ "<div class='log-head'><h2>Паспорта стендов еще нет</h2></div>"
+			+ "<div class='empty'>Паспорт собирается автоматически при первом замере: "
+			+ "запустите сценарий на кокпите и вернитесь на эту страницу.</div></section></main>");
+		Возврат ПерфUI.Документ("ПерфСтенды", "ПерфТест - карточка стенда",
+			СтрСоединить(Части, ""), СтилиКарточки(), Ложь, "wrap", "", "", Настройки);
 	КонецЕсли;
 
-	Части = Новый Массив;
 	Части.Добавить(Шапка(Данные));
+	Части.Добавить("<main class='bento'>");
 	Части.Добавить(Плитки(Данные));
-	Части.Добавить("<section class='pfsc-grid'>");
 	Части.Добавить(БлокСреда(Данные));
 	Части.Добавить(БлокПлатформа(Данные));
-	Части.Добавить("</section>");
 	Части.Добавить(БлокКлиент(Данные));
 	Части.Добавить(БлокЗамеры(Данные));
-	Части.Добавить("<section class='pfsc-grid'>");
 	Части.Добавить(БлокЗамечаний(Данные));
 	Части.Добавить(БлокДиагностики(Данные));
-	Части.Добавить("</section>");
+	Части.Добавить("</main>");
 	Части.Добавить(Подвал(Данные));
 
 	Возврат ПерфUI.Документ("ПерфСтенды", "ПерфТест - карточка " + Данные.Стенд,
-		СтрСоединить(Части, ""), СтилиКарточки(), Ложь, "pfsc-wrap", "", "", Настройки);
+		СтрСоединить(Части, ""), СтилиКарточки(), Ложь, "wrap", "", "", Настройки);
 
 КонецФункции
 
@@ -185,6 +192,8 @@
 КонецФункции
 
 // Замеры стенда, отсортированные по убыванию медианы.
+// Версия платформы входит в ключ регистра: один стенд может быть измерен
+// несколькими платформами, поэтому она выводится отдельной колонкой.
 Функция ЗамерыСтенда(Имя)
 
 	Результат = Новый Массив;
@@ -192,6 +201,7 @@
 		Запрос = Новый Запрос(
 			"ВЫБРАТЬ
 			|	Т.Сценарий КАК Сценарий,
+			|	Т.ВерсияПлатформы КАК ВерсияПлатформы,
 			|	Т.МедианаМс КАК МедианаМс,
 			|	Т.НаЕдиницуМс КАК НаЕдиницуМс,
 			|	Т.МинМс КАК МинМс,
@@ -209,11 +219,11 @@
 		Запрос.УстановитьПараметр("Стенд", Имя);
 		Выборка = Запрос.Выполнить().Выбрать();
 		Пока Выборка.Следующий() Цикл
-			Результат.Добавить(Новый Структура("Сценарий, МедианаМс, НаЕдиницуМс, МинМс, МаксМс, "
-				+ "Порция, Единица, Повторов, ДатаЗамера",
-				СокрЛП(Выборка.Сценарий), Выборка.МедианаМс, Выборка.НаЕдиницуМс,
-				Выборка.МинМс, Выборка.МаксМс, Выборка.Порция, СокрЛП(Выборка.Единица),
-				Выборка.Повторов, Выборка.ДатаЗамера));
+			Результат.Добавить(Новый Структура("Сценарий, ВерсияПлатформы, МедианаМс, НаЕдиницуМс, "
+				+ "МинМс, МаксМс, Порция, Единица, Повторов, ДатаЗамера",
+				СокрЛП(Выборка.Сценарий), СокрЛП(Выборка.ВерсияПлатформы), Выборка.МедианаМс,
+				Выборка.НаЕдиницуМс, Выборка.МинМс, Выборка.МаксМс, Выборка.Порция,
+				СокрЛП(Выборка.Единица), Выборка.Повторов, Выборка.ДатаЗамера));
 		КонецЦикла;
 	Исключение
 		ИгнорируемаяОшибка = ИнформацияОбОшибке();
@@ -257,23 +267,37 @@
 КонецФункции
 
 // ---------------------------------------------------------------------------
-// Блоки разметки
+// Блоки разметки: те же компоненты, что и на кокпите (bar, bento, tile).
 
+// Шапка: бренд, крошки, выбор стенда и переходы; вторая строка - чипы паспорта.
 Функция Шапка(Данные)
 
 	П = Данные.Паспорт;
 	Части = Новый Массив;
-	Части.Добавить("<header class='pfsc-head'><div class='pfsc-head-main'>");
-	Части.Добавить("<div class='pfsc-crumbs'><span>ПерфТест</span><span>стенд</span>"
-		+ "<span>карточка</span></div>");
-	Части.Добавить("<h1>" + Текст(Данные.Стенд) + "</h1>");
-	Части.Добавить("<div class='pfsc-chips'>");
-	Части.Добавить(Чип("схема паспорта " + Формат(П.СхемаПаспорта, "ЧГ="), ""));
+	Части.Добавить("<header class='bar'>");
+	Части.Добавить("<div class='bar-row'>");
+	Части.Добавить("<div class='brand'><span class='pulse'></span>ПерфТест"
+		+ "<span class='ver'>" + Текст(Метаданные.Версия) + "</span></div>");
+	Части.Добавить("<div class='crumbles'><span>стенд</span><span>карточка</span></div>");
+	Части.Добавить("<span class='grow'></span>");
+	Части.Добавить("<label class='field'><span>стенд</span><select id='stand'"
+		+ " data-pf-field='stand'>");
+	Для Каждого Имя Из Данные.Стенды Цикл
+		Части.Добавить("<option value='" + Текст(Имя) + "'"
+			+ ?(СокрЛП(Имя) = Данные.Стенд, " selected", "") + ">" + Текст(Имя) + "</option>");
+	КонецЦикла;
+	Части.Добавить("</select></label>");
+	Части.Добавить("<button class='btn' data-pf='open:ПерфСравнениеСтендов'>Сравнить</button>");
+	Части.Добавить("<button class='btn primary' data-pf='open:ПерфДашборд'>На дашборд</button>");
+	Части.Добавить("</div>");
+	// Чипы паспорта: те же бейджи, что на карточках кокпита.
+	Части.Добавить("<div class='bar-row'><span class='chips'>");
+	Части.Добавить(Значок("схема паспорта " + Формат(П.СхемаПаспорта, "ЧГ="), ""));
 	Если ЗначениеЗаполнено(П.ВерсияПлатформыСервер) Тогда
-		Части.Добавить(Чип("платформа " + СокрЛП(П.ВерсияПлатформыСервер), ""));
+		Части.Добавить(Значок("платформа " + СокрЛП(П.ВерсияПлатформыСервер), ""));
 	КонецЕсли;
 	Если ЗначениеЗаполнено(П.СУБД) Тогда
-		Части.Добавить(Чип("ИБ " + СокрЛП(П.СУБД), ""));
+		Части.Добавить(Значок("ИБ " + СокрЛП(П.СУБД), ""));
 	КонецЕсли;
 	Если ЗначениеЗаполнено(П.РежимКлиента) Тогда
 		// «толстый клиент (управляемое)» -> «толстый»: подпись чипа уже говорит «клиент».
@@ -282,31 +306,21 @@
 		Если ВРег(КлиентКоротко) = "КЛИЕНТ" И СловаКлиента.Количество() > 1 Тогда
 			КлиентКоротко = СокрЛП(СловаКлиента[1]);
 		КонецЕсли;
-		Части.Добавить(Чип("клиент " + КлиентКоротко, ""));
+		Части.Добавить(Значок("клиент " + КлиентКоротко, ""));
 	КонецЕсли;
 	Если П.БлоковНеСобрано > 0 Тогда
-		Части.Добавить(Чип("собрано не все: " + Формат(П.БлоковНеСобрано, "ЧГ=") + " "
-			+ СклонениеБлоков(П.БлоковНеСобрано), "warn"));
+		Части.Добавить(Значок("собрано не все: " + Формат(П.БлоковНеСобрано, "ЧГ=") + " "
+			+ СклонениеБлоков(П.БлоковНеСобрано), "cancel"));
 	Иначе
-		Части.Добавить(Чип("паспорт полный", "ok"));
+		Части.Добавить(Значок("паспорт полный", "ok"));
 	КонецЕсли;
-	Части.Добавить("</div></div>");
-
-	// Действия: выбор стенда и переходы. Переключателя темы здесь нет.
-	Части.Добавить("<div class='pfsc-actions'>");
-	Части.Добавить("<select class='pfsc-select' data-pf-field='stand'>");
-	Для Каждого Имя Из Данные.Стенды Цикл
-		Части.Добавить("<option value='" + Текст(Имя) + "'" + ?(СокрЛП(Имя) = Данные.Стенд, " selected", "")
-			+ ">" + Текст(Имя) + "</option>");
-	КонецЦикла;
-	Части.Добавить("</select>");
-	Части.Добавить("<button class='pfsc-btn' data-pf='open:ПерфСравнениеСтендов'>Сравнить</button>");
-	Части.Добавить("<button class='pfsc-btn primary' data-pf='open:ПерфДашборд'>На дашборд</button>");
-	Части.Добавить("</div></header>");
+	Части.Добавить("</span></div>");
+	Части.Добавить("</header>");
 	Возврат СтрСоединить(Части, "");
 
 КонецФункции
 
+// Четыре KPI: те же плитки, что в верхней строке кокпита.
 Функция Плитки(Данные)
 
 	П = Данные.Паспорт;
@@ -317,24 +331,13 @@
 	ВсегоЗамеров = Данные.Замеры.Количество();
 
 	Части = Новый Массив;
-	Части.Добавить("<section class='pfsc-kpi'>");
-	Части.Добавить(Плитка("Ядра / потоки", Ядра, "/ " + Потоки,
+	Части.Добавить(ПерфUI.Плитка("Ядра / потоки", Ядра, "/ " + Потоки,
 		?(ЗначениеЗаполнено(П.СерверЦПУ), СокрЛП(П.СерверЦПУ), "данных о процессоре нет")));
-	Части.Добавить(Плитка("Память сервера", Память, "ГБ", ОЗУПояснение(П)));
-	Части.Добавить(Плитка("Данные ИБ", ДанныеИБ, "КБ", "объекты PerfTest"));
-	Части.Добавить(Плитка("Замеров в стенде", Формат(ВсегоЗамеров, "ЧГ="), "",
+	Части.Добавить(ПерфUI.Плитка("Память сервера", Память, "ГБ", ОЗУПояснение(П)));
+	Части.Добавить(ПерфUI.Плитка("Данные ИБ", ДанныеИБ, "КБ", "объекты PerfTest"));
+	Части.Добавить(ПерфUI.Плитка("Замеров в стенде", Формат(ВсегоЗамеров, "ЧГ="), "",
 		?(ВсегоЗамеров > 0, "медианы по сценариям", "замеров еще нет")));
-	Части.Добавить("</section>");
 	Возврат СтрСоединить(Части, "");
-
-КонецФункции
-
-Функция Плитка(Подпись, Значение, Единица, Пояснение)
-
-	Возврат "<div class='pfsc-tile'><div class='pfsc-lbl'>" + Текст(Подпись) + "</div>"
-		+ "<div class='pfsc-big'>" + Текст(Значение)
-		+ ?(ПустаяСтрока(Единица), "", "<small>" + Текст(Единица) + "</small>") + "</div>"
-		+ "<div class='pfsc-sub'>" + Текст(Пояснение) + "</div></div>";
 
 КонецФункции
 
@@ -358,7 +361,7 @@
 
 	П = Данные.Паспорт;
 	Части = Новый Массив;
-	Части.Добавить("<article class='pfsc-card'><h2>Среда сервера</h2><dl class='pfsc-rows'>");
+	Части.Добавить(НачалоБлока("Среда сервера", 6));
 	Части.Добавить(Пара("ОС", П.СерверОС));
 	Части.Добавить(Пара("Процессор", П.СерверЦПУ));
 	Если П.СерверЦПУМГц > 0 Тогда
@@ -382,7 +385,7 @@
 			+ ?(П.СерверСетьСкоростьМбит > 0, ", " + Формат(П.СерверСетьСкоростьМбит, "ЧГ=") + " Мбит/с", "")));
 	КонецЕсли;
 	Части.Добавить(Пара("Аптайм", П.СерверАптайм));
-	Части.Добавить("</dl></article>");
+	Части.Добавить(КонецБлока());
 	Возврат СтрСоединить(Части, "");
 
 КонецФункции
@@ -391,8 +394,7 @@
 
 	П = Данные.Паспорт;
 	Части = Новый Массив;
-	Части.Добавить("<article class='pfsc-card'><h2>Платформа и информационная база</h2>"
-		+ "<dl class='pfsc-rows'>");
+	Части.Добавить(НачалоБлока("Платформа и информационная база", 6));
 	Части.Добавить(Пара("Платформа сервера", СокрЛП(П.ВерсияПлатформыСервер)
 		+ ?(ЗначениеЗаполнено(П.ПлатформаСервер), ", " + СокрЛП(П.ПлатформаСервер), "")));
 	Если ЗначениеЗаполнено(П.ВерсияПлатформыКлиент) Тогда
@@ -412,7 +414,7 @@
 	Части.Добавить(Пара("Часовой пояс ИБ", П.ЧасовойПоясИБ));
 	Части.Добавить(Пара("Каталог программы", П.СерверКаталогПрограммы));
 	Части.Добавить(Пара("Временные файлы", П.СерверКаталогВременныхФайлов));
-	Части.Добавить("</dl></article>");
+	Части.Добавить(КонецБлока());
 	Возврат СтрСоединить(Части, "");
 
 КонецФункции
@@ -425,8 +427,7 @@
 		Возврат "";
 	КонецЕсли;
 	Части = Новый Массив;
-	Части.Добавить("<section class='pfsc-grid'><article class='pfsc-card pfsc-span'>"
-		+ "<h2>Рабочее место (клиент)</h2><dl class='pfsc-rows'>");
+	Части.Добавить(НачалоБлока("Рабочее место (клиент)", 12));
 	Части.Добавить(Пара("Компьютер", П.КлиентИмяКомпьютера
 		+ ?(ЗначениеЗаполнено(П.КлиентПК), " (" + СокрЛП(П.КлиентПК) + ")", "")));
 	Части.Добавить(Пара("ОС клиента", П.КлиентОС));
@@ -441,7 +442,7 @@
 	Если ЗначениеЗаполнено(П.КлиентБраузер) Тогда
 		Части.Добавить(Пара("Браузер", П.КлиентБраузер));
 	КонецЕсли;
-	Части.Добавить("</dl></article></section>");
+	Части.Добавить(КонецБлока());
 	Возврат СтрСоединить(Части, "");
 
 КонецФункции
@@ -457,11 +458,11 @@
 	КонецЦикла;
 
 	Части = Новый Массив;
-	Части.Добавить("<section class='pfsc-card pfsc-span'><h2>Замеры стенда (медианы)</h2>"
-		+ "<div class='pfsc-table-wrap'><table><thead><tr>"
-		+ "<th>Сценарий</th><th class='n'>Медиана, мс</th><th class='n'>мс / 1000 ед.</th>"
-		+ "<th class='n'>Мин</th><th class='n'>Макс</th><th class='n'>Порция</th><th>Доля</th>"
-		+ "</tr></thead><tbody>");
+	Части.Добавить("<section class='tile span-12'>"
+		+ "<div class='log-head'><h2>Замеры стенда</h2><span>медианы по сценариям</span></div>"
+		+ "<table><thead><tr><th>Сценарий</th><th>Платформа</th><th class='n'>Медиана, мс</th>"
+		+ "<th class='n'>мс / 1000 ед.</th><th class='n'>Мин</th><th class='n'>Макс</th>"
+		+ "<th class='n'>Порция</th><th>Доля</th></tr></thead><tbody>");
 	Для Каждого Замер Из Данные.Замеры Цикл
 		Подпись = Замер.Сценарий;
 		Описание = "";
@@ -471,17 +472,18 @@
 			Описание = Сценарий.Описание;
 		КонецЕсли;
 		Доля = ?(Максимум > 0, Окр(Замер.МедианаМс / Максимум * 100, 0), 0);
-		Части.Добавить("<tr><td class='name'>" + Текст(Подпись)
-			+ "<div class='pfsc-code'>" + Текст(Замер.Сценарий) + "</div>"
-			+ ?(ПустаяСтрока(Описание), "", "<div class='pfsc-note'>" + Текст(Описание) + "</div>")
-			+ "</td><td class='n'>" + Формат(Замер.МедианаМс, "ЧГ=") + "</td>"
+		Части.Добавить("<tr><td><b>" + Текст(Подпись) + "</b>"
+			+ "<div class='subtle'>" + Текст(Замер.Сценарий)
+			+ ?(ПустаяСтрока(Описание), "", " &middot; " + Текст(Описание)) + "</div></td>"
+			+ "<td class='subtle'>" + Текст(Замер.ВерсияПлатформы) + "</td>"
+			+ "<td class='n'>" + Формат(Замер.МедианаМс, "ЧГ=") + "</td>"
 			+ "<td class='n'>" + Формат(Замер.НаЕдиницуМс, "ЧДЦ=2; ЧГ=") + "</td>"
 			+ "<td class='n'>" + Формат(Замер.МинМс, "ЧГ=") + "</td>"
 			+ "<td class='n'>" + Формат(Замер.МаксМс, "ЧГ=") + "</td>"
 			+ "<td class='n'>" + Формат(Замер.Порция, "ЧГ=") + "</td>"
-			+ "<td><div class='pfsc-bar'><i style='width:" + Формат(Доля, "ЧГ=") + "%'></i></div></td></tr>");
+			+ "<td><div class='track'><i style='width:" + Формат(Доля, "ЧГ=") + "%'></i></div></td></tr>");
 	КонецЦикла;
-	Части.Добавить("</tbody></table></div></section>");
+	Части.Добавить("</tbody></table></section>");
 	Возврат СтрСоединить(Части, "");
 
 КонецФункции
@@ -489,18 +491,15 @@
 Функция БлокЗамечаний(Данные)
 
 	Части = Новый Массив;
-	Части.Добавить("<article class='pfsc-card'><h2>Что не собрано</h2>");
+	Части.Добавить("<section class='tile span-6'><div class='log-head'><h2>Что не собрано</h2></div>");
 	Если Данные.Замечания.Количество() = 0 Тогда
-		Части.Добавить("<div class='pfsc-ok'>Паспорт собран полностью: все блоки применимы "
-			+ "на этом стенде.</div>");
+		Части.Добавить("<div class='sub'>Паспорт собран полностью: все блоки применимы на этом стенде.</div>");
 	Иначе
-		Части.Добавить("<ul class='pfsc-notes'>");
 		Для Каждого Причина Из Данные.Замечания Цикл
-			Части.Добавить("<li><span class='pfsc-ico'>i</span><span>" + Текст(Причина) + "</span></li>");
+			Части.Добавить("<div class='result cancel'>" + Текст(Причина) + "</div>");
 		КонецЦикла;
-		Части.Добавить("</ul>");
 	КонецЕсли;
-	Части.Добавить("</article>");
+	Части.Добавить("</section>");
 	Возврат СтрСоединить(Части, "");
 
 КонецФункции
@@ -509,7 +508,7 @@
 
 	П = Данные.Паспорт;
 	Части = Новый Массив;
-	Части.Добавить("<article class='pfsc-card'><h2>Диагностика сбора</h2><dl class='pfsc-rows'>");
+	Части.Добавить(НачалоБлока("Диагностика сбора", 6));
 	Части.Добавить(Пара("Схема паспорта", Формат(П.СхемаПаспорта, "ЧГ=")));
 	Если П.ВремяСбораМс > 0 Тогда
 		Части.Добавить(Пара("Время сбора", Формат(П.ВремяСбораМс, "ЧГ=") + " мс"));
@@ -520,7 +519,7 @@
 	Если ЗначениеЗаполнено(П.Примечание) Тогда
 		Части.Добавить(Пара("Примечание", П.Примечание));
 	КонецЕсли;
-	Части.Добавить("</dl></article>");
+	Части.Добавить(КонецБлока());
 	Возврат СтрСоединить(Части, "");
 
 КонецФункции
@@ -528,10 +527,23 @@
 Функция Подвал(Данные)
 
 	П = Данные.Паспорт;
-	Возврат "<footer class='pfsc-foot'>"
-		+ "<span>Паспорт стенда · схема " + Формат(П.СхемаПаспорта, "ЧГ=") + "</span>"
-		+ "<span>Отпечаток <span class='pfsc-mono'>" + Текст(Лев(П.Отпечаток, 80)) + "</span></span>"
-		+ "<span>Сбор идет до старта замера и в фоне: результат не искажается</span></footer>";
+	Возврат "<div class='foot'>Паспорт стенда, схема " + Формат(П.СхемаПаспорта, "ЧГ=")
+		+ " &middot; отпечаток <span class='subtle'>" + Текст(Лев(П.Отпечаток, 80)) + "</span>"
+		+ " &middot; сбор идет до старта замера и в фоне, поэтому результат не искажается</div>";
+
+КонецФункции
+
+// Открытие/закрытие секции-плитки с заголовком в стиле кокпита.
+Функция НачалоБлока(Заголовок, Ширина)
+
+	Возврат "<section class='tile span-" + Ширина + "'><div class='log-head'><h2>"
+		+ Текст(Заголовок) + "</h2></div><dl class='kv'>";
+
+КонецФункции
+
+Функция КонецБлока()
+
+	Возврат "</dl></section>";
 
 КонецФункции
 
@@ -560,10 +572,11 @@
 
 КонецФункции
 
-Функция Чип(ТекстЧипа, Вид)
+// Чип паспорта - бейдж кокпита: вид "" (нейтральный), ok, cancel.
+Функция Значок(ТекстЧипа, Вид)
 
-	Возврат "<span class='pfsc-chip" + ?(ПустаяСтрока(Вид), "", " " + Вид) + "'>"
-		+ "<i class='pfsc-dot'></i>" + Текст(ТекстЧипа) + "</span>";
+	Возврат "<span class='badge" + ?(ПустаяСтрока(Вид), "", " " + Вид) + "'>"
+		+ Текст(ТекстЧипа) + "</span>";
 
 КонецФункции
 
@@ -578,81 +591,28 @@
 
 #Область Стили
 
+// Все оформление - из ПерфUI.Стили (тот же CSS, что у кокпита). Здесь только
+// то, чего в кокпите нет: сетка пар «подпись - значение», поле выбора стенда
+// и мелкий текст. Цвета - только через токены, поэтому светлая тема работает
+// без отдельных правил.
 Функция СтилиКарточки() Экспорт
+
 	Возврат "<style>"
-		+ "html,body{background:var(--pf-bg);color:var(--pf-fg)}.pfsc-wrap{max-width:1240px;width:100%;margi"
-		+ "n:0 auto;padding:20px 24px 56px;box-sizing:border-box;color:var(--pf-fg)}.pfsc-head{display:flex;flex-wr"
-		+ "ap:wrap;gap:16px;align-items:flex-start;margin-bottom:16px}.pfsc-head-main{flex:1 1 420px;min-width:280p"
-		+ "x}.pfsc-crumbs{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pf-fg-3);margin-"
-		+ "bottom:8px;font-weight:600}.pfsc-crumbs span+span:before{content:'›';margin:0 8px;color:var(--pf-line)}."
-		+ "pfsc-head h1{margin:0;font-size:30px;line-height:1.25;letter-spacing:-.015em;font-weight:650}.pfsc-chips"
-		+ "{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.pfsc-chip{display:inline-flex;align-items:center;g"
-		+ "ap:6px;font-size:13px;font-weight:600;color:var(--pf-fg-2);background:var(--pf-surface);border:1px solid"
-		+ " var(--pf-line);border-radius:999px;padding:4px 10px}.pfsc-chip .pfsc-dot{width:7px;height:7px;border-ra"
-		+ "dius:50%;background:var(--pf-accent);box-shadow:0 0 0 3px rgba(196,242,82,.12)}.pfsc-chip.warn{color:var"
-		+ "(--pf-warn);border-color:var(--pf-warn-bg);background:rgba(242,184,75,.14)}.pfsc-chip.warn .pfsc-dot{bac"
-		+ "kground:var(--pf-warn);box-shadow:0 0 0 3px rgba(242,184,75,.14)}.pfsc-chip.ok{color:var(--pf-ok);border"
-		+ "-color:var(--pf-ok-bg);background:rgba(123,216,143,.10)}.pfsc-chip.ok .pfsc-dot{background:var(--pf-ok);"
-		+ "box-shadow:0 0 0 3px rgba(123,216,143,.12)}.pfsc-actions{display:flex;flex-wrap:wrap;gap:8px;align-items"
-		+ ":center}.pfsc-select{font:600 14px 'Segoe UI',Arial,sans-serif;color:var(--pf-fg);background:var(--pf-su"
-		+ "rface);border:1px solid var(--pf-line);border-radius:8px;padding:8px 12px;max-width:300px}.pfsc-btn{font"
-		+ ":650 14px 'Segoe UI',Arial,sans-serif;border-radius:8px;padding:8px 12px;cursor:pointer;background:var(-"
-		+ "-pf-surface);border:1px solid var(--pf-line);color:var(--pf-fg)}.pfsc-btn:hover{border-color:var(--pf-li"
-		+ "ne-strong)}.pfsc-btn.primary{background:var(--pf-accent);color:var(--pf-on-accent);border-color:transpar"
-		+ "ent}.pfsc-kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.pf"
-		+ "sc-tile{background:var(--pf-surface);border:1px solid var(--pf-line);border-radius:14px;padding:16px 18p"
-		+ "x 14px}.pfsc-lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pf-fg-3);margi"
-		+ "n-bottom:10px;font-weight:600}.pfsc-big{font-size:30px;font-weight:700;letter-spacing:-.015em;line-heigh"
-		+ "t:1.05}.pfsc-big small{font-size:14px;font-weight:600;color:var(--pf-fg-2);margin-left:4px}.pfsc-sub{fon"
-		+ "t-size:12px;color:var(--pf-fg-3);margin-top:10px;line-height:1.4}.pfsc-grid{display:grid;grid-template-c"
-		+ "olumns:1fr 1fr;gap:16px;margin-bottom:16px;-webkit-align-items:stretch;align-items:stretch}.pfsc-card{ba"
-		+ "ckground:var(--pf-surface);border:1px solid var(--pf-line);border-radius:14px;padding:18px 20px 16px;hei"
-		+ "ght:100%;box-sizing:border-box}.pfsc-card.pfsc-span{grid-column:1/-1;margin-bottom:16px}.pfsc-card h2{ma"
-		+ "rgin:0 0 14px;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--pf-fg-2);font-wei"
-		+ "ght:700}.pfsc-rows{display:grid;grid-template-columns:minmax(110px,30%) 1fr;gap:9px 18px;align-items:bas"
-		+ "eline;margin:0}.pfsc-rows dt{margin:0;color:var(--pf-fg-3);font-size:13px;line-height:1.45}.pfsc-rows dd"
-		+ "{margin:0;font-size:14px;line-height:1.45;overflow-wrap:anywhere;color:var(--pf-fg)}.pfsc-table-wrap{ove"
-		+ "rflow-x:auto}.pfsc-card table{width:100%;border-collapse:collapse;font-size:14px;color:var(--pf-fg)}.pfs"
-		+ "c-card th,.pfsc-card td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--pf-line);white-s"
-		+ "pace:nowrap;vertical-align:top}.pfsc-card tbody tr:nth-child(even){background:var(--pf-sunken)}.pfsc-car"
-		+ "d th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pf-fg-3);font-weight:700}."
-		+ "pfsc-card td.n,.pfsc-card th.n{text-align:right;font-variant-numeric:tabular-nums;padding-left:22px}.pfs"
-		+ "c-card td.name{white-space:normal}.pfsc-card .pfsc-code{font-family:ui-monospace,Consolas,monospace;font"
-		+ "-size:12px;color:var(--pf-fg-3)}.pfsc-card .pfsc-note{font-size:12px;color:var(--pf-fg-3);white-space:no"
-		+ "rmal;margin-top:2px}.pfsc-bar{position:relative;height:6px;border-radius:4px;background:var(--pf-raised)"
-		+ ";min-width:90px;overflow:hidden}.pfsc-bar i{position:absolute;top:0;bottom:0;left:0;border-radius:4px;ba"
-		+ "ckground:var(--pf-accent)}.pfsc-notes{list-style:none;margin:0;padding:0;display:grid;gap:8px}.pfsc-note"
-		+ "s li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--pf-fg-2);background:var(--p"
-		+ "f-surface);border:1px solid var(--pf-line);border-radius:8px;padding:8px 12px}.pfsc-ico{flex:0 0 auto;wi"
-		+ "dth:18px;height:18px;border-radius:50%;display:inline-block;text-align:center;line-height:18px;font-size"
-		+ ":12px;font-weight:700;color:var(--pf-warn);background:rgba(242,184,75,.14);border:1px solid var(--pf-war"
-		+ "n-bg)}.pfsc-ok{font-size:14px;color:var(--pf-ok);background:rgba(123,216,143,.10);border:1px solid var(-"
-		+ "-pf-ok-bg);border-radius:8px;padding:12px 12px}.pfsc-foot{display:flex;flex-wrap:wrap;gap:8px 24px;align"
-		+ "-items:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--pf-line);font-size:12px;color:"
-		+ "var(--pf-fg-3)}.pfsc-mono{font-family:ui-monospace,Consolas,monospace}.pfsc-empty{border:1px dashed var("
-		+ "--pf-line);border-radius:16px;padding:24px;text-align:center;color:var(--pf-fg-3);font-size:14px}.pf-lig"
-		+ "ht .pfsc-wrap{color:var(--pf-fg)}.pf-light .pfsc-head h1{color:var(--pf-fg)}.pf-light .pfsc-crumbs,.pf-l"
-		+ "ight .pfsc-foot{color:var(--pf-fg-3)}.pf-light .pfsc-chip{background:var(--pf-raised);border-color:var(-"
-		+ "-pf-line);color:var(--pf-fg);font-weight:600}.pf-light .pfsc-chip .pfsc-dot{background:var(--pf-accent);"
-		+ "box-shadow:0 0 0 3px rgba(106,76,246,.12)}.pf-light .pfsc-chip.warn{background:rgba(160,90,0,.10);border"
-		+ "-color:var(--pf-warn-bg);color:var(--pf-warn)}.pf-light .pfsc-chip.warn .pfsc-dot{background:var(--pf-wa"
-		+ "rn)}.pf-light .pfsc-chip.ok{background:rgba(31,122,61,.10);border-color:var(--pf-ok-line);color:var(--pf"
-		+ "-ok)}.pf-light .pfsc-chip.ok .pfsc-dot{background:var(--pf-ok)}.pf-light .pfsc-select,.pf-light .pfsc-bt"
-		+ "n{background:var(--pf-surface);border-color:var(--pf-line);color:var(--pf-fg)}.pf-light .pfsc-btn.primar"
-		+ "y{background:var(--pf-accent);color:var(--pf-surface);border-color:transparent}.pf-light .pfsc-tile,.pf-"
-		+ "light .pfsc-card{background:var(--pf-surface);border-color:var(--pf-line)}.pf-light .pfsc-card h2{color:"
-		+ "var(--pf-fg-2)}.pf-light .pfsc-card tbody tr:nth-child(even){background:var(--pf-raised)}.pf-light .pfsc"
-		+ "-lbl,.pf-light .pfsc-sub,.pf-light .pfsc-rows dt,.pf-light .pfsc-card th{color:var(--pf-fg-3)}.pf-light "
-		+ ".pfsc-big,.pf-light .pfsc-rows dd,.pf-light .pfsc-card table{color:var(--pf-fg)}.pf-light .pfsc-big smal"
-		+ "l{color:var(--pf-fg-3)}.pf-light .pfsc-card th,.pf-light .pfsc-card td{border-color:var(--pf-line)}.pf-l"
-		+ "ight .pfsc-card .pfsc-code,.pf-light .pfsc-card .pfsc-note{color:var(--pf-fg-3)}.pf-light .pfsc-bar{back"
-		+ "ground:var(--pf-raised)}.pf-light .pfsc-bar i{background:var(--pf-accent)}.pf-light .pfsc-notes li{backg"
-		+ "round:var(--pf-raised);border-color:var(--pf-line);color:var(--pf-fg-2)}.pf-light .pfsc-ico{color:var(--"
-		+ "pf-warn);background:rgba(160,90,0,.10);border-color:var(--pf-warn-bg)}.pf-light .pfsc-ok{color:var(--pf-"
-		+ "ok);background:rgba(31,122,61,.08);border-color:var(--pf-ok-bg)}.pf-light .pfsc-empty{color:var(--pf-fg-"
-		+ "3);border-color:var(--pf-line-strong)}@media (max-width:900px){.pfsc-kpi{grid-template-columns:repeat(2,"
-		+ "minmax(0,1fr))}.pfsc-grid{grid-template-columns:1fr}.pfsc-wrap{padding:16px 14px 40px}.pfsc-head h1{font"
-		+ "-size:26px}.pfsc-rows{grid-template-columns:minmax(96px,40%) 1fr;gap:8px 12px}}</style>";
+		+ ".field select{font:14px 'Segoe UI',Arial,sans-serif;color:var(--pf-fg);"
+		+ "background:var(--pf-raised);border:1px solid var(--pf-line);border-radius:8px;"
+		+ "padding:5px 8px;max-width:340px;outline:none}"
+		+ ".field select:focus{border-color:var(--pf-accent)}"
+		+ ".kv{display:grid;grid-template-columns:minmax(120px,32%) 1fr;gap:8px 16px;margin:0}"
+		+ ".kv dt{margin:0;font-size:13px;line-height:1.45;color:var(--pf-fg-2)}"
+		+ ".kv dd{margin:0;font-size:14px;line-height:1.45;overflow-wrap:anywhere}"
+		+ ".chips{display:flex;flex-wrap:wrap;align-items:center}"
+		+ ".chips .badge{margin:0 6px 0 0}"
+		+ ".subtle{color:var(--pf-fg-2);font-size:12px;font-weight:400}"
+		+ ".tile .log-head h2{font-size:20px}"
+		+ "@media (max-width:1100px){.kv{grid-template-columns:1fr}"
+		+ ".kv dt{margin-top:6px}}"
+		+ "</style>";
+
 КонецФункции
 
 #КонецОбласти
