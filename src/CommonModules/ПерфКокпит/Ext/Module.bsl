@@ -158,7 +158,7 @@
 		+ "<div class='big'><span id='kDone'>0</span><small> / "
 		+ Строка(Сценарии.Количество()) + "</small></div>"
 		+ "<div class='hero-hint' id='kDoneHint'>еще не запускали</div></div>"
-		+ "<i class='hero-blob'></i></section>");
+		+ "</section>");
 	Части.Добавить("<section class='tile span-2'><div class='lbl'>Средняя медиана</div>"
 		+ "<div class='big'><span id='kMedian'>&mdash;</span><small> мс</small></div>"
 		+ "<div class='sub' id='kMedianHint'>по завершенным</div></section>");
