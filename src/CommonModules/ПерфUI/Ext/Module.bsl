@@ -524,11 +524,11 @@
 		+ "<rect width='32' height='32' rx='7.4' fill='#6A4CF6'/>"
 		+ "<g transform='translate(2.6 2.6) scale(0.84)'>"
 		+ "<path d='M15.7 8.2A8.8 8.8 0 1 0 15.7 23.8' fill='none' stroke='#F2A63C'"
-		+ " stroke-width='3.2' stroke-linecap='round'/>"
-		+ "<g stroke='#ffffff' stroke-width='2.4' stroke-linecap='round'>"
-		+ "<path d='M19.8 16H26.4'/><path d='M23.1 11.4v1.8M23.1 19v1.8'/></g>"
-		+ "<circle cx='19.8' cy='16' r='2.3' fill='#ffffff'/>"
-		+ "<circle cx='26.4' cy='16' r='2.3' fill='#ffffff'/></g></svg>";
+		+ " stroke-width='3.4' stroke-linecap='round'/>"
+		+ "<g stroke='#ffffff' stroke-width='2.6' stroke-linecap='round'>"
+		+ "<path d='M19.8 16H26.6'/></g>"
+		+ "<circle cx='19.8' cy='16' r='2.4' fill='#ffffff'/>"
+		+ "<circle cx='26.6' cy='16' r='2.4' fill='#ffffff'/></g></svg>";
 КонецФункции
 
 Функция Меню(Активный = "", ВерсияСтрокой = "", Тема = "dark") Экспорт
