@@ -12,7 +12,7 @@
 // backdrop-filter; sticky только с префиксом -webkit-.
 
 Функция Стили() Экспорт
-																											Возврат "<style>"
+																												Возврат "<style>"
 		+ "html{--pf-bg:#FBF8FF;--pf-sunken:#F7F3FF;--pf-surface:#FFFFFF;--pf-raised:#F3EEFC;--pf-line:#E6E1F0;--pf-lin"
 		+ "e-strong:#9C8AC6;--pf-fg:#1B1A21;--pf-fg-2:#45424F;--pf-fg-3:#6B6879;--pf-accent:#6A4CF6;--pf-accent-bg:#EDE"
 		+ "8FF;--pf-on-accent:#FFFFFF;--pf-ok:#0F7A4F;--pf-ok-bg:#E2F5EC;--pf-ok-line:#0F7A4F;--pf-warn:#8A5A00;--pf-wa"
@@ -199,7 +199,9 @@
 		+ "6px solid currentColor;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-transition:-webkit-tr"
 		+ "ansform .15s;transition:transform .15s}.sec.closed .chev{-webkit-transform:rotate(-45deg);transform:rotate(-"
 		+ "45deg)}.sec.closed>*:not(.sec-h){display:none}body.pf-collapsed .logo-t,body.pf-collapsed .side-stand,body.p"
-		+ "f-collapsed .side-foot{display:none}body.pf-collapsed .side{overflow:hidden}"
+		+ "f-collapsed .side-foot{display:none}body.pf-collapsed .side{overflow:hidden}.logo .mark{display:-webkit-flex"
+		+ ";display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:c"
+		+ "enter}.logo .mark svg{width:64%;height:64%;display:block}"
 		+ "</style>";
 КонецФункции
 
@@ -515,6 +517,19 @@
 // Рейл навигации. Активный - имя открытой формы.
 // Иконки - встроенный SVG: движок HTML-поля рисует его без внешних файлов,
 // а цвет берется из currentColor, поэтому тема применяется автоматически.
+// Знак бренда: два разных узла на наклонной оси - базовый стенд и кандидат.
+// Один цвет, геометрия 32x32, вес около 0,4 КБ.
+Функция ЗнакЛоготипа() Экспорт
+
+	Возврат "<svg viewBox='0 0 32 32' width='32' height='32' aria-hidden='true'>"
+		+ "<path d='M9 21 20.5 13.2' fill='none' stroke='#fff' stroke-width='3.6'"
+		+ " stroke-linecap='round'/>"
+		+ "<circle cx='7' cy='22.4' r='3.8' fill='#fff'/>"
+		+ "<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#fff'/>"
+		+ "</svg>";
+
+КонецФункции
+
 Функция Меню(Активный = "", ВерсияСтрокой = "", Тема = "dark") Экспорт
 
 	Пункты = ПунктыМеню();
@@ -524,7 +539,7 @@
 
 	Части = Новый Массив;
 	Части.Добавить("<nav class='side' id='pfSide'>"
-		+ "<div class='logo'><span class='mark'></span>"
+		+ "<div class='logo'><span class='mark'>" + ЗнакЛоготипа() + "</span>"
 		+ "<div class='logo-t'><b>ПерфТест</b><span>" + Экранировать(ПодписьВерсии) + "</span></div></div>");
 
 	ТекущаяГруппа = "";

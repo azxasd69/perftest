@@ -1,0 +1,102 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><style>
+body{margin:0;font:14px/1.5 'Segoe UI',Arial,sans-serif;background:#FBF8FF;color:#1B1A21}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+h1{font-size:20px;margin:0 0 4px}.sub{color:#6B6879;margin:0 0 18px}
+h2{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#6B6879;margin:26px 0 10px}
+.card{background:#fff;border:1px solid #E6E1F0;border-radius:14px;padding:16px 18px}
+.row{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.col{display:flex;flex-direction:column;gap:8px}
+.cap{font-size:12px;color:#6B6879}
+.tile{display:inline-flex;align-items:center;justify-content:center;border-radius:9px;vertical-align:middle}
+.plain{display:inline-flex;align-items:center}
+.refs{display:flex;gap:28px;align-items:flex-start}
+.ref{display:flex;align-items:center;gap:10px}
+.old{border-left:3px solid #F0C9C5;padding-left:14px}
+.new{border-left:3px solid #63E3AB;padding-left:14px}
+.note{font-size:13px;color:#45424F}
+</style></head><body><div class='wrap'>
+<h1>Вариант 2: проверка на совпадения и уточнение</h1>
+<p class='sub'>Слева прежний знак, справа уточнённый: разные узлы и наклонная ось.</p>
+
+<div class='row'>
+  <div class='card old'><div class='cap'>было</div><div class='row'>
+    <span class='tile' style='width:72px;height:72px;background:#6A4CF6'><svg viewBox='0 0 32 32' width='44' height='44'><g fill='none' stroke='#FFFFFF' stroke-width='3' stroke-linecap='round'>
+  <path d='M7 16h18'/>
+  <circle cx='7' cy='16' r='3.2' fill='#FFFFFF' stroke='none'/>
+  <circle cx='25' cy='16' r='3.2' fill='#FFFFFF' stroke='none'/>
+  <path d='M16 9v-3M16 26v-3'/>
+</g></svg></span><span class='plain'><svg viewBox='0 0 32 32' width='40' height='40'><g fill='none' stroke='#6A4CF6' stroke-width='3' stroke-linecap='round'>
+  <path d='M7 16h18'/>
+  <circle cx='7' cy='16' r='3.2' fill='#6A4CF6' stroke='none'/>
+  <circle cx='25' cy='16' r='3.2' fill='#6A4CF6' stroke='none'/>
+  <path d='M16 9v-3M16 26v-3'/>
+</g></svg></span>
+  </div></div>
+  <div class='card new'><div class='cap'>стало</div><div class='row'>
+    <span class='tile' style='width:72px;height:72px;background:#6A4CF6'><svg viewBox='0 0 32 32' width='44' height='44'><g fill='none' stroke='#FFFFFF' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#FFFFFF'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#FFFFFF'/></svg></span><span class='plain'><svg viewBox='0 0 32 32' width='40' height='40'><g fill='none' stroke='#6A4CF6' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#6A4CF6'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#6A4CF6'/></svg></span>
+  </div></div>
+</div>
+
+<h2>С чем путается прежний знак</h2>
+<div class='card refs'><div class='ref'><span class='plain'><svg viewBox='0 0 32 32' width='40' height='40'><g fill='none' stroke='#9C8AC6' stroke-width='3'
+        stroke-linecap='round'><path d='M5 16h22'/><circle cx='16' cy='16' r='3.2' fill='#9C8AC6'
+        stroke='none'/></g></svg></span><span class='cap'>Ползунок (Material linear_scale)</span></div><div class='ref'><span class='plain'><svg viewBox='0 0 32 32' width='40' height='40'><g fill='none' stroke='#9C8AC6' stroke-width='3'
+        stroke-linecap='round'><path d='M5 16h22'/><circle cx='16' cy='16' r='4.5' fill='none'/>
+        <path d='M11 11v10M21 11v10'/></g></svg></span><span class='cap'>git-commit (пиктограмма)</span></div><div class='ref'><span class='plain'><svg viewBox='0 0 32 32' width='40' height='40'><g fill='#9C8AC6'><rect x='8' y='9' width='4' height='14' rx='1.4'/>
+        <rect x='20' y='9' width='4' height='14' rx='1.4'/><rect x='13' y='14.5' width='6' height='3'/>
+        </g></svg></span><span class='cap'>Гантель (фитнес)</span></div></div>
+
+<h2>Уточнённый знак в двух средах</h2>
+<div class='card row'>
+  <div class='col'><span class='cap'>плашка 96</span><span class='tile' style='width:96px;height:96px;background:#6A4CF6'><svg viewBox='0 0 32 32' width='59' height='59'><g fill='none' stroke='#FFFFFF' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#FFFFFF'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#FFFFFF'/></svg></span></div>
+  <div class='col'><span class='cap'>панель 34</span><span class='tile' style='width:34px;height:34px;background:#6A4CF6'><svg viewBox='0 0 32 32' width='21' height='21'><g fill='none' stroke='#FFFFFF' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#FFFFFF'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#FFFFFF'/></svg></span></div>
+  <div class='col'><span class='cap'>иконка 16</span><span class='tile' style='width:16px;height:16px;background:#6A4CF6'><svg viewBox='0 0 32 32' width='9' height='9'><g fill='none' stroke='#FFFFFF' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#FFFFFF'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#FFFFFF'/></svg></span></div>
+  <div class='col'><span class='cap'>на светлом 96</span><span class='plain'><svg viewBox='0 0 32 32' width='96' height='96'><g fill='none' stroke='#6A4CF6' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#6A4CF6'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#6A4CF6'/></svg></span></div>
+  <div class='col'><span class='cap'>на светлом 34</span><span class='plain'><svg viewBox='0 0 32 32' width='34' height='34'><g fill='none' stroke='#6A4CF6' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#6A4CF6'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#6A4CF6'/></svg></span></div>
+  <div class='col'><span class='cap'>favicon 16</span><span class='plain'><svg viewBox='0 0 32 32' width='16' height='16'><g fill='none' stroke='#6A4CF6' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#6A4CF6'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#6A4CF6'/></svg></span></div>
+</div>
+<div class='card' style='margin-top:14px'>
+  <span class='cap'>шапка сайта</span>
+  <div style='display:flex;align-items:center;gap:10px;margin-top:8px'>
+    <span class='plain'><svg viewBox='0 0 32 32' width='30' height='30'><g fill='none' stroke='#6A4CF6' stroke-width='3.6' stroke-linecap='round'>
+  <path d='M9 21 20.5 13.2'/>
+</g>
+<circle cx='7' cy='22.4' r='3.8' fill='#6A4CF6'/>
+<path d='M24.6 4.6 30.6 11 24.6 17.4 18.6 11z' fill='#6A4CF6'/></svg></span><b style='font-size:16px'>ПерфТест</b>
+    <span class='cap'>рейтинг конфигураций 1С</span>
+    <span style='margin-left:auto' class='cap'>Замеры · Стенды · Рейтинг</span>
+  </div>
+</div>
+</div></body></html>
