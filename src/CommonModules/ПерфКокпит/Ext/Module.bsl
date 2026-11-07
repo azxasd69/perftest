@@ -80,6 +80,7 @@
 	// Верхняя панель в одну строку: бренд, переходы по отчетам, параметры прогона,
 	// меню (палитра) и пуск/стоп. На узком окне строка переносится.
 	Части.Добавить("<header class='bar bar-single'>");
+	Части.Добавить("<div class='bar-in'>");
 	Части.Добавить("<div class='brand'><span class='pulse'></span>"
 		+ "<span class='brand-name'>ПерфТест</span>"
 		+ "<span class='ver'>" + Экранировать(КонфигурацияСтрокой) + "</span></div>");
@@ -107,7 +108,11 @@
 		+ "data-pf='send:stop'>Стоп</button>");
 	Части.Добавить("</span>");
 	Части.Добавить("</span>");
+	Части.Добавить("</div>");
 	Части.Добавить("</header>");
+	// Шапка закреплена (position:fixed), поэтому в потоке ее заменяет распорка:
+	// высоту ставит скрипт, иначе контент уезжает под шапку.
+	Части.Добавить("<div id='barspace'></div>");
 
 	// Чипы-фильтры по категориям: клик скрывает чужие карточки (только в HTML).
 	Категории = Новый Массив;
@@ -319,6 +324,12 @@
 		+ "if(pi){pi.addEventListener('input',function(){PF1C.palIdx=0;PF1C.palRefresh();});}"
 		+ "var sc=document.getElementById('scrim');"
 		+ "if(sc){sc.addEventListener('click',function(e){if(e.target===sc){PF1C.closePal();}});}"
+		+ "function pfBar(){var b=document.querySelector('.bar-single');"
+		+ "var s=document.getElementById('barspace');"
+		+ "if(!b||!s){return;}s.style.height=(b.offsetHeight)+'px';}"
+		+ "if(window.addEventListener){window.addEventListener('load',pfBar);"
+		+ "window.addEventListener('resize',pfBar);}"
+		+ "setTimeout(pfBar,150);setTimeout(pfBar,700);"
 		+ "</scr" + "ipt>";
 КонецФункции
 
