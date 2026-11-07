@@ -94,7 +94,7 @@
 		+ "outline:none}.pal ul{list-style:none;margin:0;padding:6px;max-height:46vh;overflow:auto}.pal li{padding:"
 		+ "8px 12px;border-radius:8px;font-size:14px;cursor:pointer;color:var(--pf-fg-2)}.pal li.sel{background:var"
 		+ "(--pf-accent-bg);color:var(--pf-fg)}.pal .tip{font-size:12px;color:var(--pf-fg-2);padding:8px 16px;borde"
-		+ "r-top:1px solid var(--pf-line)}.stat{position:fixed;left:0;right:0;bottom:0;background:var(--pf-surface)"
+		+ "r-top:1px solid var(--pf-line)}.stat{position:fixed;left:272px;right:0;bottom:0;background:var(--pf-surface)"
 		+ ";border-top:1px solid var(--pf-line);padding:8px 16px;font-size:14px;color:var(--pf-fg-2);z-index:30}.st"
 		+ "at b{color:var(--pf-fg)}.xs{font-size:12px}.big-lg{font-size:26px}.big-md{font-size:26px}.hidden{display"
 		+ ":none}.side{position:fixed;left:0;top:0;bottom:0;width:272px;background:var(--pf-side-bg);color:var(--pf"
@@ -119,7 +119,7 @@
 		+ "ine-height:14px;padding:4px 0}.ss-r span{display:block;color:var(--pf-fg-3);text-transform:uppercase;letter-spacing:.0"
 		+ "4em;font-size:10px}.ss-r b{display:block;color:var(--pf-side-fg);font-weight:600;text-align:left;line-h"
 		+ "eight:16px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}body.pf-c"
-		+ "ollapsed{padding-left:76px !important}body.pf-collapsed .side{width:60px !important;padding:16px 8px !im"
+		+ "ollapsed{padding-left:76px !important}body.pf-collapsed .stat{left:60px !important}body.pf-collapsed .side{width:60px !important;padding:16px 8px !im"
 		+ "portant}body.pf-collapsed .nav-label, body.pf-collapsed .side .logo b, body.pf-collapsed .side .logo spa"
 		+ "n, body.pf-collapsed .side-foot, body.pf-collapsed .side-stand{display:none !important}body.pf-collapsed"
 		+ " .side .logo{-webkit-justify-content:center;justify-content:center;padding:6px 0 14px}body.pf-collapsed "
@@ -558,9 +558,15 @@
 	С = СведенияОСтенде();
 	Строки = Новый Массив;
 	ДобавитьСтрокуСтенда(Строки, "платформа", С.Платформа);
-	ДобавитьСтрокуСтенда(Строки, "ОС", С.ОС);
 	ДобавитьСтрокуСтенда(Строки, "режим", С.Режим);
-	ДобавитьСтрокуСтенда(Строки, "клиент", С.Клиент);
+	Если С.КлиентСервер Тогда
+		// Две машины: сервер приложения и рабочее место.
+		ДобавитьСтрокуСтенда(Строки, "сервер", С.Сервер);
+		ДобавитьСтрокуСтенда(Строки, "клиент", С.МашинаКлиента);
+	Иначе
+		ДобавитьСтрокуСтенда(Строки, "ОС", С.ОС);
+		ДобавитьСтрокуСтенда(Строки, "запуск", С.Клиент);
+	КонецЕсли;
 	ДобавитьСтрокуСтенда(Строки, "база", С.База);
 	ДобавитьСтрокуСтенда(Строки, "CPU", С.ЦПУ);
 	ДобавитьСтрокуСтенда(Строки, "память", С.Память);
@@ -585,8 +591,9 @@
 // Сведения о текущем стенде. Все значения - короткие строки для панели.
 Функция СведенияОСтенде() Экспорт
 
-	С = Новый Структура("Имя, Платформа, ОС, Режим, Клиент, База, ЦПУ, Память",
-		"", "", "", "", "", "", "", "");
+	С = Новый Структура("Имя, Платформа, ОС, Режим, Клиент, База, ЦПУ, Память,"
+		+ "КлиентСервер, Сервер, МашинаКлиента",
+		"", "", "", "", "", "", "", "", Ложь, "", "");
 
 	Попытка
 		Запрос = Новый Запрос(
@@ -594,6 +601,9 @@
 			|	Т.Стенд КАК Стенд,
 			|	Т.ВерсияПлатформыСервер КАК Платформа,
 			|	Т.СерверОС КАК ОС,
+			|	Т.СерверКомпьютер КАК КомпьютерСервера,
+			|	Т.КлиентИмяКомпьютера КАК КомпьютерКлиента,
+			|	Т.КлиентОС КАК ОСКлиента,
 			|	Т.РежимИБ КАК РежимИБ,
 			|	Т.РежимКлиента КАК Клиент,
 			|	Т.СерверЦПУ КАК ЦПУ,
@@ -612,6 +622,13 @@
 			С.Клиент = КороткийКлиент(СокрЛП(Выборка.Клиент));
 			// Только модель процессора: число ядер есть в паспорте и карточке стенда.
 			С.ЦПУ = КороткоеИмяЦПУ(СокрЛП(Выборка.ЦПУ));
+			// Клиент-серверный вариант: панель показывает машины сервера и клиента.
+			С.КлиентСервер = ВРег(С.Режим) <> "ФАЙЛОВЫЙ";
+			Если С.КлиентСервер Тогда
+				С.Сервер = МашинаСтрокой(СокрЛП(Выборка.КомпьютерСервера), С.ОС);
+				С.МашинаКлиента = МашинаСтрокой(СокрЛП(Выборка.КомпьютерКлиента),
+					КороткоеИмяОС(СокрЛП(Выборка.ОСКлиента)));
+			КонецЕсли;
 			Если Выборка.ПамятьМб > 0 Тогда
 				С.Память = Формат(Окр(Выборка.ПамятьМб / 1024, 0), "ЧГ=0") + " ГБ";
 			КонецЕсли;
@@ -642,6 +659,9 @@
 			ИгнорируемаяОшибка = ИнформацияОбОшибке();
 		КонецПопытки;
 	КонецЕсли;
+	Если НЕ С.КлиентСервер Тогда
+		С.КлиентСервер = ВРег(С.Режим) <> "ФАЙЛОВЫЙ";
+	КонецЕсли;
 
 	Попытка
 		С.База = АдресБазыИзСтроки(СтрокаСоединенияИнформационнойБазы());
@@ -660,6 +680,19 @@
 	КонецЕсли;
 
 	Возврат С;
+
+КонецФункции
+
+// «Компьютер (ОС)» для блока стенда: пустые части не выводятся.
+Функция МашинаСтрокой(Компьютер, ОС)
+
+	Если ПустаяСтрока(Компьютер) Тогда
+		Возврат ОС;
+	КонецЕсли;
+	Если ПустаяСтрока(ОС) Тогда
+		Возврат Компьютер;
+	КонецЕсли;
+	Возврат Компьютер + " (" + ОС + ")";
 
 КонецФункции
 

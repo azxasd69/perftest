@@ -1239,7 +1239,7 @@
 		+ "<input class='stand-input' value='" + Экранировать(БазовыйСтенд)
 		+ "' spellcheck='false' data-pf-field='base'></label>");
 	Части.Добавить("<button class='btn' data-pf='send:refresh'>Сформировать</button>");
-	Части.Добавить("<button class='btn kbd' data-pf='send:reset'>Сбросить к сеансу</button>");
+	Части.Добавить("<button class='btn kbd' data-pf='send:reset' title='Вернуться к стенду сеанса'>Сброс</button>");
 	Части.Добавить("</div>");
 	Части.Добавить("<div class='bar-row'><span class='chips'>");
 	Для Каждого Элемент Из Чипы Цикл

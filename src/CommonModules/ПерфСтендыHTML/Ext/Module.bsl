@@ -287,6 +287,8 @@
 			+ ?(СокрЛП(Имя) = Данные.Стенд, " selected", "") + ">" + Текст(Имя) + "</option>");
 	КонецЦикла;
 	Части.Добавить("</select></label>");
+	Части.Добавить("<button class='btn' data-pf='send:refresh'"
+		+ " title='Собрать паспорт стенда заново'>Обновить</button>");
 	Части.Добавить("<button class='btn' data-pf='open:ПерфСравнениеСтендов'>Сравнить</button>");
 	Части.Добавить("<button class='btn primary' data-pf='open:ПерфДашборд'>На дашборд</button>");
 	Части.Добавить("</div>");
