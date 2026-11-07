@@ -98,7 +98,7 @@
 		+ "<input class='rep-input' type='number' min='1' max='9' value='"
 		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>");
 	// Палитра теперь называется «Меню»: в ней не только пуск, но и переходы по страницам.
-	Части.Добавить("<button class='btn menu' data-pf='pal'>Меню<kbd>Ctrl+K</kbd></button>");
+	Части.Добавить("<button class='btn menu' data-pf='pal'>Меню</button>");
 	// Пуск и стоп всегда рядом: при переносе строки они уезжают вместе, а не порознь.
 	Части.Добавить("<span class='bar-actions'>");
 	Части.Добавить("<button class='btn primary' id='runAll' data-pf='send:all'>"

@@ -184,7 +184,6 @@
 		+ ".bar-single .field{margin-right:10px}"
 		+ ".btn.menu{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;color:var(--pf-fg-2)}"
 		+ ".btn.menu:hover:not(:disabled){color:var(--pf-fg)}"
-		+ ".btn.menu kbd{font-family:Consolas,'Courier New',monospace;font-size:11px;color:var(--pf-fg-3);background:var(--pf-sunken);border:1px solid var(--pf-line);border-radius:4px;padding:0 4px;margin-left:8px}"
 		+ "</style>";
 КонецФункции
 
