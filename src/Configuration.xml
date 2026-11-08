@@ -44,7 +44,7 @@
 			<ScriptVariant>Russian</ScriptVariant>
 			<DefaultRoles/>
 			<Vendor/>
-			<Version>1.24</Version>
+			<Version>1.25</Version>
 			<UpdateCatalogAddress/>
 			<IncludeHelpInContents>false</IncludeHelpInContents>
 			<UseManagedFormInOrdinaryApplication>false</UseManagedFormInOrdinaryApplication>
@@ -279,6 +279,7 @@
 			<InformationRegister>ПерфОшибки</InformationRegister>
 			<InformationRegister>ПерфОчередьОбмена</InformationRegister>
 			<InformationRegister>ПерфОбменСекрет</InformationRegister>
+			<InformationRegister>ПерфОбменСертификат</InformationRegister>
 			<AccumulationRegister>ПерфОстаткиТоваров</AccumulationRegister>
 		</ChildObjects>
 	</Configuration>
