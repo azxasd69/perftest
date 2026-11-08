@@ -296,6 +296,7 @@
 			<InformationRegister>ПерфОбменПроба</InformationRegister>
 
 
+			<ScheduledJob>ПерфОбменОтправка</ScheduledJob>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>
