@@ -252,8 +252,16 @@
 			<CommonModule>ПерфКокпит</CommonModule>
 			<CommonModule>ПерфUI</CommonModule>
 			<CommonModule>ПерфСтендыHTML</CommonModule>
+			<CommonModule>ПерфЖурнал</CommonModule>
+			<CommonModule>ПерфОбмен</CommonModule>
 			<Constant>ПерфТемаСветлая</Constant>
 			<Constant>ПерфПанельСвернута</Constant>
+			<Constant>ПерфОбменВключен</Constant>
+			<Constant>ПерфОбменАдрес</Constant>
+			<Constant>ПерфОбменПорт</Constant>
+			<Constant>ПерфОбменБатч</Constant>
+			<Constant>ПерфОбменТаймаут</Constant>
+			<Constant>ПерфОбменКаталогСекрета</Constant>
 			<CommonForm>НачальнаяСтраница</CommonForm>
 			<CommonForm>ПерфДашборд</CommonForm>
 			<CommonForm>ПерфИсторияЗамеров</CommonForm>
@@ -267,6 +275,8 @@
 			<InformationRegister>ПерфРезультаты</InformationRegister>
 			<InformationRegister>ПерфСтенды</InformationRegister>
 			<InformationRegister>ПерфИстория</InformationRegister>
+			<InformationRegister>ПерфОшибки</InformationRegister>
+			<InformationRegister>ПерфОчередьОбмена</InformationRegister>
 			<AccumulationRegister>ПерфОстаткиТоваров</AccumulationRegister>
 		</ChildObjects>
 	</Configuration>
