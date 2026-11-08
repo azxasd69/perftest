@@ -45,7 +45,7 @@
 
 // Карточка сценария: индекс, код, бейдж, суть, реализация, единица, кнопка, кольцо.
 Функция КарточкаHTML(Номер, Сценарий, Ширина)
-	Порция = Формат(Сценарий.Порция, "ЧГ=");
+	Порция = Формат(Сценарий.Порция, "ЧГ=3");
 	Кат = КатегорияСценария(Сценарий.Имя);
 	// Карточка-строка: в одну линию номер, название, код и медиана, детали и кнопка -
 	// в раскрывающейся части. Раскрытие только на наведение и на завершение.
@@ -61,7 +61,23 @@
 		+ "<span class='desc'>" + Порция + " " + Экранировать(Сценарий.Единица)
 		+ " &middot; повторов " + Формат(Сценарий.Повторов, "ЧН=0; ЧГ=") + "</span>"
 		+ "<button class='btn primary' data-pf='run:" + Номер + "'>Запустить</button>"
-		+ "</div><p class='result'></p></div></section>";
+		+ "</div>"
+		+ ТекстКарточкиHTML(Сценарий)
+		+ "<p class='result'></p></div></section>";
+КонецФункции
+
+// Суть и реализация сценария: два абзаца в раскрывающейся части карточки (ТЗ ФТ-02).
+// Тексты приходят из формы (ТекстСути/ТекстРеализации), где числа взяты из порции;
+// если их нет, абзацы не выводятся и карточка остается рабочей.
+Функция ТекстКарточкиHTML(Сценарий)
+	Текст = "";
+	Если Сценарий.Свойство("Суть") И Не ПустаяСтрока(Сценарий.Суть) Тогда
+		Текст = Текст + "<p class='why'>" + Экранировать(Сценарий.Суть) + "</p>";
+	КонецЕсли;
+	Если Сценарий.Свойство("Реализация") И Не ПустаяСтрока(Сценарий.Реализация) Тогда
+		Текст = Текст + "<p class='why why-impl'>" + Экранировать(Сценарий.Реализация) + "</p>";
+	КонецЕсли;
+	Возврат Текст;
 КонецФункции
 
 // Полная страница кокпита.
@@ -185,7 +201,9 @@
 		+ "var PF1C={q:[],total:" + Формат(ВсегоСценариев, "ЧН=0; ЧГ=") + ","
 		+ "send:function(c){this.q.push(c);},take:function(){"
 		+ "if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;},"
-		+ "run:function(n){this.send('run:'+n);},"
+		// run(n): карточка сразу переходит в «выполняется», кнопки блокируются
+		// (stop разблокируется): состояние ставит JS, а не вызов из 1С.
+		+ "run:function(n){this.state(n,'run');this.lock(true);this.send('run:'+n);},"
 		+ "filter:function(cat){var cards=document.querySelectorAll('.card');"
 		+ "for(var i=0;i<cards.length;i++){var c=cards[i];"
 		+ "c.style.display=(cat==='all'||c.getAttribute('data-cat')===cat)?'':'none';}"
@@ -272,6 +290,9 @@
 		+ "for(var i=0;i<b.length;i++){b[i].disabled=!!on;}"
 		+ "var a=document.getElementById('runAll');if(a){a.disabled=!!on;}"
 		+ "var s=document.getElementById('stop');if(s){s.disabled=!on;}},"
+		// all(): очередь из всех карточек - блокировка ставится до первой
+		// команды, иначе кнопка «Запустить все» остаётся нажимаемой.
+		+ "all:function(){this.lock(true);this.send('all');},"
 		+ "status:function(txt){var s=document.getElementById('stat');if(s){s.innerHTML=txt;}},"
 		+ "stand:function(v){var s=document.getElementById('stand');if(s){s.value=v;}"
 		+ "var t=document.getElementById('stat');if(t){t.innerHTML='Готов к работе. Стенд: <b>'+v+'</b>';}}};"
@@ -309,7 +330,6 @@
 		+ "if(pi){pi.addEventListener('input',function(){PF1C.palIdx=0;PF1C.palRefresh();});}"
 		+ "var sc=document.getElementById('scrim');"
 		+ "if(sc){sc.addEventListener('click',function(e){if(e.target===sc){PF1C.closePal();}});}"
-		+ "if(!b||!s){return;}s.style.height=(b.offsetHeight)+'px';}"
 		+ "</scr" + "ipt>";
 КонецФункции
 
