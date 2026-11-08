@@ -262,6 +262,7 @@
 			<Constant>ПерфОбменБатч</Constant>
 			<Constant>ПерфОбменТаймаут</Constant>
 			<Constant>ПерфОбменКаталогСекрета</Constant>
+			<Constant>ПерфОбменБазовыйПуть</Constant>
 			<CommonForm>НачальнаяСтраница</CommonForm>
 			<CommonForm>ПерфДашборд</CommonForm>
 			<CommonForm>ПерфИсторияЗамеров</CommonForm>
@@ -277,6 +278,7 @@
 			<InformationRegister>ПерфИстория</InformationRegister>
 			<InformationRegister>ПерфОшибки</InformationRegister>
 			<InformationRegister>ПерфОчередьОбмена</InformationRegister>
+			<InformationRegister>ПерфОбменСекрет</InformationRegister>
 			<AccumulationRegister>ПерфОстаткиТоваров</AccumulationRegister>
 		</ChildObjects>
 	</Configuration>
