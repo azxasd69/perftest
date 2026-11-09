@@ -1,0 +1,27 @@
+# Политика окончаний строк.
+#
+# Выгрузка 1С (src/, ext/) хранится ровно так, как её пишет платформа:
+# UTF-8 с BOM и CRLF. Это эталон tools/normalize-dump.ps1; отклонение от него
+# даёт шум в diff на каждой правке из Конфигуратора.
+#
+# Тексты (docs/, *.md) — LF, чтобы нормально жить в вебе и в git-хостингах.
+
+* text=auto eol=lf
+
+*.bsl   text eol=crlf
+*.xml   text eol=crlf
+*.ps1   text eol=crlf
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+*.json  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+
+# Артефакты, которые не должны участвовать в нормализации
+*.png   binary
+*.jpg   binary
+*.ico   binary
+*.1CD   binary
+*.cf    binary
+*.cfe   binary
+*.epf   binary

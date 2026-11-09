@@ -1,0 +1,25 @@
+root = true
+
+# Тексты — LF
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Выгрузка 1С: платформа пишет UTF-8 с BOM и CRLF.
+# Отклонение от этого ломает diff при следующей выгрузке из Конфигуратора.
+[*.{bsl,xml}]
+charset = utf-8-bom
+end_of_line = crlf
+
+[*.{ps1,psm1,cmd,bat}]
+end_of_line = crlf
+
+[*.{json,yml,yaml,mjs}]
+indent_size = 2

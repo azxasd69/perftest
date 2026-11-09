@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Политика выгрузки: BOM + CRLF + порядок служебных узлов. Ловит правки
+  # XML руками и шум, который добавляет Конфигуратор при сохранении.
+  dump-policy:
+    name: Политика выгрузки
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Нормализация (ожидается код 0)
+        shell: pwsh
+        run: ./tools/normalize-dump.ps1 -Path src
+
+  # XML корректен, версия в выгрузке, README и CHANGELOG согласованы.
+  dump-and-version:
+    name: XML и версия
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: XML, BOM, окончания строк
+        run: python tools/check-xml.py
+      - name: Версия в выгрузке = README = CHANGELOG
+        run: python tools/check-version.py
+      - name: Ссылки в документации
+        run: python tools/check-links.py
+
+  # Синтаксис BSL. Движок тот же, что локально: BSL Language Server 1.0.7.
+  bsl:
+    name: Синтаксис BSL
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Получить BSL Language Server 1.0.7
+        run: |
+          curl -sSL -o bsl-language-server.jar \
+            https://github.com/1c-syntax/bsl-language-server/releases/download/v1.0.7/bsl-language-server-1.0.7.jar
+          java -jar bsl-language-server.jar --version
+      - name: Анализ модулей
+        run: |
+          java -jar bsl-language-server.jar analyze -s src -o build/bsl -r json -q || true
+      - name: Разбор отчёта (падаем только на ERROR)
+        run: python tools/check-bsl-report.py build/bsl
+
+  # JS-мост внутри HTML-поля: баланс скобок и наличие функций моста.
+  # BSL Language Server этого не видит, а регресс был реальным (кнопка
+  # «Запустить все» не перерисовывала кокпит).
+  html-bridge:
+    name: JS-мост HTML-поля
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Проверить модули с PF1C
+        run: |
+          node tools/check-html-bridge.mjs \
+            src/CommonModules/ПерфКокпит/Ext/Module.bsl \
+            src/CommonModules/ПерфUI/Ext/Module.bsl
