@@ -72,6 +72,7 @@ jobs:
           java -jar bsl-language-server.jar --version
       - name: Анализ модулей
         run: |
+          mkdir -p build/bsl
           java -jar bsl-language-server.jar analyze -s src -o build/bsl -r json -q || true
       - name: Разбор отчёта (падаем только на ERROR)
         run: python tools/check-bsl-report.py build/bsl
