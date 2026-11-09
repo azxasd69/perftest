@@ -99,7 +99,7 @@
 		+ Формат(Повторов, "ЧН=0; ЧГ=") + "' data-pf-field='rep'></label>";
 	Правая = "<button class='btn menu' data-pf='pal'>Меню</button>"
 		+ "<span class='bar-actions'>"
-		+ "<button class='btn primary' id='runAll' data-pf='send:all'>Запустить все</button>"
+		+ "<button class='btn primary' id='runAll' data-pf='runall'>Запустить все</button>"
 		+ "<button class='btn danger' id='stop' disabled data-pf='send:stop'>Стоп</button>"
 		+ "</span>";
 	Части.Добавить(ПерфUI.Шапка("НачальнаяСтраница", Средняя, Правая));
@@ -205,7 +205,7 @@
 		+ "if(!this.q.length){return '';}var s=this.q.join('|');this.q=[];return s;},"
 		// run(n): карточка сразу переходит в «выполняется», кнопки блокируются
 		// (stop разблокируется): состояние ставит JS, а не вызов из 1С.
-		+ "run:function(n){this.state(n,'run');this.lock(true);this.send('run:'+n);},"
+		+ "run:function(n){this.busy=true;this.state(n,'run');this.lock(true);this.send('run:'+n);},"
 		+ "filter:function(cat){var cards=document.querySelectorAll('.card');"
 		+ "for(var i=0;i<cards.length;i++){var c=cards[i];"
 		+ "c.style.display=(cat==='all'||c.getAttribute('data-cat')===cat)?'':'none';}"
@@ -282,7 +282,11 @@
 		+ "else{PF1C.state(n,res);PF1C.result(n,res,txt);}"
 		+ "var q=c.querySelector('.val');"
 		+ "if(q){q.innerHTML=(res==='ok'?((median||0)+'<i>мс</i>'):'&mdash;');}"
-		+ "c.setAttribute('data-median',median||0);PF1C.refreshKpi();PF1C.lock(false);},"
+		+ "c.setAttribute('data-median',median||0);PF1C.refreshKpi();"
+		// Во время общего прогона кнопки не разблокируются: иначе «Стоп» гаснет
+		// после первой же карточки, а «Запустить все» остается нажимаемой.
+		+ "var own=c.querySelector('.btn');if(own){own.disabled=false;}"
+		+ "if(!PF1C.busy){PF1C.lock(false);}},"
 		+ "refreshKpi:function(){var cards=document.querySelectorAll('.card');"
 		+ "var ok=0,sum=0,slow=0,slowTitle='',last='';"
 		+ "for(var i=0;i<cards.length;i++){var c=cards[i];"
@@ -297,7 +301,10 @@
 		+ "var s=document.getElementById('stop');if(s){s.disabled=!on;}},"
 		// all(): очередь из всех карточек - блокировка ставится до первой
 		// команды, иначе кнопка «Запустить все» остаётся нажимаемой.
-		+ "all:function(){this.lock(true);this.send('all');},"
+		+ "all:function(){this.busy=true;this.lock(true);this.send('all');},"
+		// end(): прогон закончился (очередь пуста, отмена или сбой) - снять
+		// блокировку целиком.
+		+ "end:function(){this.busy=false;this.lock(false);},"
 		// setReps(n): подписи «повторов N» в карточках - по фактическому значению
 		// из шапки, чтобы при смене поля они не оставались старыми.
 		+ "setReps:function(n){var e=document.querySelectorAll('.reps');"

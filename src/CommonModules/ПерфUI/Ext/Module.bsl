@@ -979,6 +979,9 @@
 		+ "else if(window.PF1C&&PF1C.send){PF1C.send('open:'+arg);}}"
 		+ "else if(cmd==='send'){PF1C.send(arg);}"
 		+ "else if(cmd==='run'){if(PF1C.run){PF1C.run(arg);}else{PF1C.send('run:'+arg);}}"
+		// runall: общий прогон ставит блокировку до отправки команды, иначе
+		// «Стоп» остается недоступной (найдено живым прогоном 09.11.2026).
+		+ "else if(cmd==='runall'){if(PF1C.all){PF1C.all();}else{PF1C.send('all');}}"
 		+ "else if(cmd==='pal'){if(PF1C.openPal){PF1C.openPal();}}"
 		+ "else if(cmd==='palpick'){if(PF1C.palPick){PF1C.palPick(parseInt(arg,10));}}"
 		+ "else if(cmd==='close'){if(PF1C.closePal){PF1C.closePal();}}"
