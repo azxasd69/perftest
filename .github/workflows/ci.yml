@@ -21,9 +21,10 @@ jobs:
         shell: pwsh
         run: ./tools/normalize-dump.ps1 -Path src
 
-  # XML корректен, версия в выгрузке, README и CHANGELOG согласованы.
+  # XML корректен, версия в выгрузке, README и CHANGELOG согласованы,
+  # относительные ссылки в документации живые.
   dump-and-version:
-    name: XML и версия
+    name: XML, версия, ссылки
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,9 +39,12 @@ jobs:
         run: python tools/check-links.py
 
   # Синтаксис BSL. Движок тот же, что локально: BSL Language Server 1.0.7.
+  # Требует Java 21: jar собран под class file 65.
   bsl:
     name: Синтаксис BSL
     runs-on: ubuntu-latest
+    env:
+      BSL_LS_URL: https://github.com/1c-syntax/bsl-language-server/releases/download/v1.0.7/bsl-language-server-1.0.7.jar
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -49,8 +53,12 @@ jobs:
           java-version: '21'
       - name: Получить BSL Language Server 1.0.7
         run: |
-          curl -sSL -o bsl-language-server.jar \
-            https://github.com/1c-syntax/bsl-language-server/releases/download/v1.0.7/bsl-language-server-1.0.7.jar
+          # -f: падать на 4xx/5xx вместо сохранения HTML в .jar
+          # --retry-all-errors: редирект на release-assets иногда обрывается
+          curl -fL --http1.1 --retry 5 --retry-delay 2 --retry-all-errors \
+            -o bsl-language-server.jar "$BSL_LS_URL"
+          ls -l bsl-language-server.jar
+          unzip -t bsl-language-server.jar > /dev/null
           java -jar bsl-language-server.jar --version
       - name: Анализ модулей
         run: |
