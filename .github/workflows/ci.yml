@@ -46,7 +46,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: '21'
       - name: Получить BSL Language Server 1.0.7
         run: |
           curl -sSL -o bsl-language-server.jar \
