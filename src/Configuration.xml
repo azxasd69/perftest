@@ -44,7 +44,7 @@
 			<ScriptVariant>Russian</ScriptVariant>
 			<DefaultRoles/>
 			<Vendor/>
-			<Version>1.40</Version>
+			<Version>1.41</Version>
 			<UpdateCatalogAddress/>
 			<IncludeHelpInContents>false</IncludeHelpInContents>
 			<UseManagedFormInOrdinaryApplication>false</UseManagedFormInOrdinaryApplication>
@@ -249,6 +249,7 @@
 			<CommonModule>ПерфПаспортКлиент</CommonModule>
 			<CommonModule>ПерфСреда</CommonModule>
 			<CommonModule>ПерфСредаКлиент</CommonModule>
+			<CommonModule>ПерфОбслуживание</CommonModule>
 			<CommonModule>ПерфПробаКлиент</CommonModule>
 			<CommonModule>ПерфСценарии</CommonModule>
 			<CommonModule>ПерфОтчетыHTML</CommonModule>
