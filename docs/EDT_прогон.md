@@ -7,12 +7,12 @@
 
 | Шаг | Команда | Результат |
 |---|---|---|
-| Рабочая область | `1cedtcli -data 1c\perf-test\edt` | создана |
-| Импорт конфигурации | `-command import --version 8.3.27 --configuration-files 1c\perf-test\src --project <ws>\PerfTest --build true` | код 0, проект собран |
-| Импорт расширения | `-command import --version 8.3.27 --base-project-name PerfTest --configuration-files 1c\perf-test\ext\PerfStyle --project <ws>\PerfStyle --build true` | код 0, проект собран |
+| Рабочая область | `1cedtcli -data edt` | создана |
+| Импорт конфигурации | `-command import --version 8.3.27 --configuration-files src --project <ws>\PerfTest --build true` | код 0, проект собран |
+| Импорт расширения | `-command import --version 8.3.27 --base-project-name PerfTest --configuration-files ext\PerfStyle --project <ws>\PerfStyle --build true` | код 0, проект собран |
 | Проверка | `-command validate --file <ws>\v3.tsv --project-list "[\"<ws>\PerfTest\" \"<ws>\PerfStyle\"]"` | код 0, отчёт 287 КБ |
 
-Проект EDT лежит в `1c\perf-test\edt` (386 файлов, 7,1 МБ) и добавлен в `.gitignore`:
+Проект EDT лежит в `edt` (386 файлов, 7,1 МБ) и добавлен в `.gitignore`:
 это промежуточный артефакт, он собирается командами выше.
 
 ### Замечания по CLI
@@ -141,20 +141,20 @@ Style.PerfCockpit, имя объекта "PerfCockpit" должно содерж
 
 ```powershell
 # 1. Импорт конфигурации в новую рабочую область
-C:\Python314\python.exe scratch\edt.py -data 1c\perf-test\edt -command import `
-  --version "8.3.27" --configuration-files 1c\perf-test\src `
-  --project 1c\perf-test\edt\PerfTest --build true
+C:\Python314\python.exe scratch\edt.py -data edt -command import `
+  --version "8.3.27" --configuration-files src `
+  --project edt\PerfTest --build true
 
 # 2. Импорт расширения
-C:\Python314\python.exe scratch\edt.py -data 1c\perf-test\edt -command import `
+C:\Python314\python.exe scratch\edt.py -data edt -command import `
   --version "8.3.27" --base-project-name "PerfTest" `
-  --configuration-files 1c\perf-test\ext\PerfStyle `
-  --project 1c\perf-test\edt\PerfStyle --build true
+  --configuration-files ext\PerfStyle `
+  --project edt\PerfStyle --build true
 
 # 3. Проверка (список - JSON-массивом в одной строке)
-C:\Python314\python.exe scratch\edt.py -data 1c\perf-test\edt -command validate `
-  --file 1c\perf-test\edt\v3.tsv `
-  --project-list "[\"1c\perf-test\edt\PerfTest\" \"1c\perf-test\edt\PerfStyle\"]"
+C:\Python314\python.exe scratch\edt.py -data edt -command validate `
+  --file edt\v3.tsv `
+  --project-list "[\"edt\PerfTest\" \"edt\PerfStyle\"]"
 ```
 
 Отчёт `validate` - TSV с колонками: дата, важность, категория, проект, правило,
@@ -164,7 +164,7 @@ C:\Python314\python.exe scratch\edt.py -data 1c\perf-test\edt -command validate 
 
 - EDT 2026.2 понимает платформы до 8.5.1, поэтому обмен идёт через выгрузку 8.3.27
   (формат 2.20). Выгрузка 8.5.4 (2.22) даёт код 204.
-- Платформы не зарегистрированы в реестре (в MSI обеих платформ ключей `SOFTWARE\1C` нет, только HKCR) - это упаковка, а не поломка; EDT установленные версии автоматически не видит, путь к платформе задаётся в его настройках. На `bsl-check` это влияло иначе: BSL LS ищет платформы по файловой системе и терял их из-за пустой `ProgramFiles(x86)` - починено 08.11.2026 в `tools\1c\bsl-check.ps1` (см. `README.md` раздела 4). На импорт и проверку это не влияло, но `start`/`infobase-*` не использовались.
+- Платформы не зарегистрированы в реестре (в MSI обеих платформ ключей `SOFTWARE\1C` нет, только HKCR) - это упаковка, а не поломка; EDT установленные версии автоматически не видит, путь к платформе задаётся в его настройках. На `bsl-check` это влияло иначе: BSL LS ищет платформы по файловой системе и терял их из-за пустой `ProgramFiles(x86)` - починено 08.11.2026 в `tools\bsl-check.ps1` (см. `README.md` раздела 4). На импорт и проверку это не влияло, но `start`/`infobase-*` не использовались.
 - Проверка EDT дополняет `bsl-check`, а не заменяет: `bsl-check` (BSL LS) ловит
   синтаксис и часть стандартов, EDT - стандарты кодирования, обращения к платформе
   в разрезе клиентов и производительность.
@@ -245,7 +245,7 @@ C:\Python314\python.exe scratch\edt.py -data 1c\perf-test\edt -command validate 
 
 ```powershell
 C:\Python314\python.exe scratch\edt.py -data scratch\edt-130 -command import `
-  --version "8.3.27" --configuration-files 1c\perf-test\src `
+  --version "8.3.27" --configuration-files src `
   --project scratch\edt-130\PerfTest --build true
 
 C:\Python314\python.exe scratch\edt.py -data scratch\edt-130 -command validate `
@@ -311,7 +311,7 @@ C:\Python314\python.exe scratch\edt.py -data scratch\edt-130 -command validate `
 
 ## 9. Прогон 09.11.2026 (версия 1.38, плитки каналов и проба с рабочего места)
 
-Рабочая область `scratch\edt-final`, импорт `1c\perf-test\src` (XML 2.20, 8.3.27),
+Рабочая область `scratch\edt-final`, импорт `src` (XML 2.20, 8.3.27),
 `validate` по проекту целиком.
 
 | Показатель | 1.30 (08.11) | 1.37 (до правок) | 1.38 (после правок) |
@@ -413,7 +413,7 @@ C:\Python314\python.exe scratch\edt.py -data scratch\edt-130 -command validate `
 | Тривиальная | - | 15 |
 
 Импорт: `python scratch\edt.py -data scratch\edt-142 -command import --version "8.3.27"
---configuration-files 1c\perf-test\src --project scratch\edt-142\PerfTest --build true` (rc=0),
+--configuration-files src --project scratch\edt-142\PerfTest --build true` (rc=0),
 проверка: `-command validate --file scratch\edt-142\v.tsv --project-list
 '["scratch/edt-142/PerfTest"]'` (rc=0).
 
