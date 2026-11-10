@@ -1,0 +1,35 @@
+# Локальная рабочая область 1C:EDT (собирается по требованию)
+edt/
+
+# Индекс bsl-indexer (code-index MCP): собирается локально
+src/.code-index/
+
+# Артефакты сборки и выгрузки
+dist/
+_build/
+*.cf
+*.cfe
+*.epf
+*.erf
+
+# Информационные базы и журналы регистрации
+*.1CD
+*.1CD.cfl
+*.lgd
+*.lgf
+*.lgp
+*.lgx
+*.cgr
+
+# Секреты и ключи
+.secret/
+*.pem
+*.ppk
+obmen-secrets.json
+
+# Служебное
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/
