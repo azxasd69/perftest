@@ -1,7 +1,7 @@
 # PerfTest — конфигурация сравнительных замеров производительности 1С
 
 [![CI](https://github.com/azxasd69/perftest/actions/workflows/ci.yml/badge.svg)](https://github.com/azxasd69/perftest/actions/workflows/ci.yml)
-[![Версия](https://img.shields.io/badge/версия-1.42-blue)](CHANGELOG.md)
+[![Версия](https://img.shields.io/badge/версия-1.43-blue)](CHANGELOG.md)
 [![Лицензия](https://img.shields.io/badge/лицензия-MIT-green)](LICENSE)
 
 Конфигурация 1С:Предприятие 8.3, которая измеряет скорость типовых операций на разных
@@ -509,6 +509,13 @@ Linux-блок, что и ожидается на Windows).
   инициализируется явно, а не «когда-нибудь».
 - **`ИмяКомпьютера()`** в веб-клиенте исключено препроцессором — иначе модуль не компилировался
   для web (в EDT это «Ошибка конфигурации»).
+- **Файлы пишет только сервер.** Маркеры прогона, дампы HTML смоука, файл ошибки автопрогона,
+  журнал моста и CSV раннера раньше писались из клиентского кода (`КаталогВременныхФайлов()`,
+  `Новый ЗаписьТекста`). В толстом и тонком клиенте Windows это работает, а там, где платформа
+  запрещает синхронные методы, падает с «Использование синхронных методов на клиенте запрещено!» —
+  причём на записи маркера, а не на замере (1.43). Теперь всё это делает сервер:
+  `ПерфОбслуживание.ЗаписатьТекстовыйФайл` / `ЗаписатьВременныйФайл`, `ПерфСценарии.ЗаписатьМетку`.
+  Регресс ловит гейт `tools/check-client-io.py`.
 
 ### 4.5. Устойчивость прогона и обслуживание базы
 
@@ -570,6 +577,7 @@ pwsh -File tools\normalize-dump.ps1 -Path src -Apply     # BOM/CRLF/порядо
 | Версия согласована | `python tools/check-version.py` | код 0 | CI |
 | Ссылки в документации | `python tools/check-links.py` | код 0 | CI |
 | Синтаксис BSL | `pwsh -File tools\bsl-check.ps1 -Path src -Config .bsl-language-server.json` | код 0 | CI (BSL LS 1.0.7) |
+| Клиентский код без файлов | `python tools/check-client-io.py` | код 0 | CI |
 | JS-мост HTML-поля | `node tools/check-html-bridge.mjs src/CommonModules/ПерфКокпит/Ext/Module.bsl` | код 0 | CI |
 | Загрузка и проверка ИБ | `tools\ib.ps1 -Action load`, затем `-Action check` | код 0 | вручную |
 | Смоук форм | `/C ПерфСмоукФорм` | `form-ok` по всем формам | вручную |
